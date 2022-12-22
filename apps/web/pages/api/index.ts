@@ -1,3 +1,4 @@
+// axios instance 를 생성해주었습니다.
 import axios from "axios";
 const request = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
