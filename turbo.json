@@ -1,11 +1,10 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["$NEXT_PUBLIC_BASE_URL", "$REACT_APP_BASE_URL"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"],
-      "env": ["NEXT_PUBLIC_BASE_URL", "REACT_APP_BASE_URL"]
+      "env": ["NEXT_PUBLIC_BASE_URL", "REACT_APP_BASE_URL"],
+      "outputs": ["dist/**", ".next/**"]
     },
     "test": {
       "dependsOn": ["^build"]

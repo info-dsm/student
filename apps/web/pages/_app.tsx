@@ -6,7 +6,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { ThemeProvider } from "styled-components";
-import { theme } from "ui";
+import { theme, GlobalStyle } from "ui";
 import React, { useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 export default function App({ Component, pageProps }: AppProps) {
@@ -15,10 +15,12 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <ThemeProvider theme={theme}></ThemeProvider>
-          <RecoilRoot>
-            <Component {...pageProps} />
-          </RecoilRoot>
+          <ThemeProvider theme={theme}>
+            <RecoilRoot>
+              <GlobalStyle />
+              <Component {...pageProps} />
+            </RecoilRoot>
+          </ThemeProvider>
         </Hydrate>
         <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
