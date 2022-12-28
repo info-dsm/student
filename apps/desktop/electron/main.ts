@@ -1,8 +1,8 @@
 import * as path from "path";
 import { app, BrowserWindow } from "electron";
-import * as isDev from "electron-is-dev";
+import isDev from "electron-is-dev";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:3000";
 
 let mainWindow: BrowserWindow | null;
 

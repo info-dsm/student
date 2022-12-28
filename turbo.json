@@ -4,7 +4,7 @@
     "build": {
       "dependsOn": ["^build"],
       "env": ["NEXT_PUBLIC_BASE_URL", "REACT_APP_BASE_URL"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["build/**", "dist/**", ".next/**"]
     },
     "test": {
       "dependsOn": ["^build"]

@@ -2,8 +2,8 @@
 exports.__esModule = true;
 var path = require("path");
 var electron_1 = require("electron");
-var isDev = require("electron-is-dev");
-var BASE_URL = "http://localhost:3001";
+var electron_is_dev_1 = require("electron-is-dev");
+var BASE_URL = "http://localhost:3000";
 var mainWindow;
 function createMainWindow() {
     mainWindow = new electron_1.BrowserWindow({
@@ -17,7 +17,7 @@ function createMainWindow() {
     mainWindow.once("ready-to-show", function () {
         mainWindow === null || mainWindow === void 0 ? void 0 : mainWindow.show();
     });
-    if (isDev) {
+    if (electron_is_dev_1["default"]) {
         mainWindow.loadURL(BASE_URL);
         mainWindow.webContents.openDevTools();
     }

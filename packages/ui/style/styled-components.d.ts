@@ -1,5 +1,5 @@
 import "styled-components";
-type MainKey =
+type adminKey =
   | "blue"
   | "black"
   | "silver"
@@ -9,9 +9,13 @@ type MainKey =
   | "purple"
   | "line"
   | "false";
+type studentKey = "balck" | "blue" | "indigo" | "cobalt" | "white";
 declare module "styled-components" {
   export interface DefaultTheme {
-    colors: { main: { [key in MainKey]: string } };
+    colors: {
+      admin: { [key in adminKey]: string };
+      student: { [key in studentKey]: string };
+    };
     graduation: string;
   }
 }

@@ -17,7 +17,7 @@ export default function Home() {
   );
 }
 const Asdf = styled.div`
-  background-color: ${(props) => props.theme.colors.main.blue};
+  background-color: ${(props) => props.theme.colors.admin.blue};
   width: 100px;
-  height: 100px;
+  height: 1100px;
 `;
