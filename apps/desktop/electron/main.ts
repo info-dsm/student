@@ -1,6 +1,6 @@
 import * as path from "path";
 import { app, BrowserWindow } from "electron";
-import isDev from "electron-is-dev";
+import * as isDev from "electron-is-dev";
 
 const BASE_URL = "http://localhost:3000";
 
