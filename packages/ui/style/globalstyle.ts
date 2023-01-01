@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     scroll-behavior: smooth;
     ::-webkit-scrollbar {
-    background-color: ${(props) => props.theme.colors.admin.silver};
+    background-color: ${(props) => props.theme.colors.gray};
     width: 10px;
     }
     ::-webkit-scrollbar-thumb {

@@ -35,38 +35,32 @@ module.exports = __toCommonJS(src_exports);
 // components/Button.tsx
 var import_styled_components = __toESM(require("styled-components"));
 var import_jsx_runtime = require("react/jsx-runtime");
-var Button = () => {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(_Button, { width: 200, height: 100, children: "\uC548\uB155\uD558\uC138\uC694" }) });
+var Button = (props) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(_Button, { children: props.children }) });
 };
 var _Button = import_styled_components.default.div`
   width: 5rem;
   height: 1.5rem;
-  background-color: ${(props) => props.theme.colors.admin.blue};
+  background-color: ${(props) => props.theme.colors.blue};
 `;
 
 // style/theme.ts
 var theme = {
   colors: {
-    admin: {
-      blue: "#4000FF",
-      black: "#000000",
-      silver: "#F0F0F0",
-      gray: "#BDBDBD",
-      kaki: "#868686",
-      white: "#FFFFFF",
-      purple: "#F8F6FF",
-      line: "#D9D9D9",
-      false: "#F63A42"
-    },
-    student: {
-      balck: "#101112",
-      blue: "#6750F8",
-      indigo: "#6D62EF",
-      cobalt: "#888DFF",
-      white: "#FFFFFF"
-    }
+    balck: "#101112",
+    black40: "rgba(16, 17, 18, 0.4)",
+    black50: "rgba(16, 17, 18, 0.5)",
+    blue: "#6750F8",
+    indigo: "#6D62EF",
+    cobalt: "#888DFF",
+    white: "#FFFFFF",
+    red: "#E24646",
+    gray: "#EAEAEA",
+    gray2: "#F7F7F7",
+    pink: "#F8CFCF",
+    skeleton: "#D9D9D9"
   },
-  graduation: 'linear-gradient(180deg,"#7243FF" 0%,"#AB91F8" 100%)'
+  graduation: "linear-gradient(180deg, rgba(16, 17, 18, 0.2) 4.95%, #101112 95.05%)"
 };
 
 // style/globalstyle.ts
@@ -80,7 +74,7 @@ var GlobalStyle = import_styled_components2.createGlobalStyle`
     overflow-x: hidden;
     scroll-behavior: smooth;
     ::-webkit-scrollbar {
-    background-color: ${(props) => props.theme.colors.admin.silver};
+    background-color: ${(props) => props.theme.colors.gray};
     width: 10px;
     }
     ::-webkit-scrollbar-thumb {

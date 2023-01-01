@@ -1,20 +1,21 @@
 import "styled-components";
-type adminKey =
+type MainKey =
+  | "balck"
+  | "black40"
+  | "black50"
   | "blue"
-  | "black"
-  | "silver"
-  | "gray"
-  | "kaki"
+  | "indigo"
+  | "cobalt"
   | "white"
-  | "purple"
-  | "line"
-  | "false";
-type studentKey = "balck" | "blue" | "indigo" | "cobalt" | "white";
+  | "red"
+  | "gray"
+  | "gray2"
+  | "pink"
+  | "skeleton";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      admin: { [key in adminKey]: string };
-      student: { [key in studentKey]: string };
+      [key in studentKey]: string;
     };
     graduation: string;
   }

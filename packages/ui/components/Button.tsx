@@ -3,19 +3,19 @@ import * as React from "react";
 import styled from "styled-components";
 import { ReactNode } from "react";
 
-type ChildType = { content: string };
+export interface ChildType {
+  children: ReactNode;
+}
 
-export const Button = () => {
+export const Button = (props: ChildType) => {
   return (
     <>
-      <_Button width={200} height={100}>
-        안녕하세요
-      </_Button>
+      <_Button>{props.children}</_Button>
     </>
   );
 };
-const _Button = styled.div<{ width: number; height: number }>`
+const _Button = styled.div`
   width: 5rem;
   height: 1.5rem;
-  background-color: ${(props) => props.theme.colors.admin.blue};
+  background-color: ${(props) => props.theme.colors.blue};
 `;
