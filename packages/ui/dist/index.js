@@ -35,12 +35,13 @@ module.exports = __toCommonJS(src_exports);
 // components/Button.tsx
 var import_styled_components = __toESM(require("styled-components"));
 var import_jsx_runtime = require("react/jsx-runtime");
-var Button = ({ children }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(_Button, { children }) });
+var Button = () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(_Button, { width: 200, height: 100, children: "\uC548\uB155\uD558\uC138\uC694" }) });
 };
 var _Button = import_styled_components.default.div`
   width: 5rem;
   height: 1.5rem;
+  background-color: ${(props) => props.theme.colors.admin.blue};
 `;
 
 // style/theme.ts
@@ -70,21 +71,19 @@ var theme = {
 
 // style/globalstyle.ts
 var import_styled_components2 = require("styled-components");
-var import_styled_normalize = require("styled-normalize");
 var GlobalStyle = import_styled_components2.createGlobalStyle`
-  ${import_styled_normalize.normalize}
-  body,html {
+  body {
     user-select:none;
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    &::-webkit-scrollbar {
+    ::-webkit-scrollbar {
     background-color: ${(props) => props.theme.colors.admin.silver};
     width: 10px;
     }
-    &::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb {
       background-color: #6141cc;
       border-radius: 3px;
       width: 10px;
