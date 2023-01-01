@@ -1,27 +1,25 @@
+import { ReactNode } from 'react';
 import * as styled_components from 'styled-components';
 
-declare const Button: () => JSX.Element;
+interface ChildType {
+    children: ReactNode;
+}
+declare const Button: (props: ChildType) => JSX.Element;
 
 declare const theme: {
     colors: {
-        admin: {
-            blue: string;
-            black: string;
-            silver: string;
-            gray: string;
-            kaki: string;
-            white: string;
-            purple: string;
-            line: string;
-            false: string;
-        };
-        student: {
-            balck: string;
-            blue: string;
-            indigo: string;
-            cobalt: string;
-            white: string;
-        };
+        balck: string;
+        black40: string;
+        black50: string;
+        blue: string;
+        indigo: string;
+        cobalt: string;
+        white: string;
+        red: string;
+        gray: string;
+        gray2: string;
+        pink: string;
+        skeleton: string;
     };
     graduation: string;
 };
@@ -30,4 +28,4 @@ declare const GlobalStyle: styled_components.GlobalStyleComponent<{}, styled_com
 
 declare const Props: () => JSX.Element;
 
-export { Button, GlobalStyle, Props, theme };
+export { Button, ChildType, GlobalStyle, Props, theme };
