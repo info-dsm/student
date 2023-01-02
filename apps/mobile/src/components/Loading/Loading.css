@@ -1,0 +1,19 @@
+html, body {
+  background-color: #6750F8;
+}
+
+.icon-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.info-icon {
+  margin-right: 7px;
+}
+
+.info-text {
+  position: relative;
+  bottom: 4px;
+}
