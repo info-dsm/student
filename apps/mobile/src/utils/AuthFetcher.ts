@@ -12,3 +12,4 @@ const authFetcher = async (path: string, options: any) => {
 };
 
 export default authFetcher;
+
