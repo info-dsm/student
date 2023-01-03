@@ -1,13 +1,13 @@
 import Icon1x from "../icons/1x";
-import "./Loading.css"
+import LoadingStyle from "./Loading.module.css"
 
 const Load: React.FC = () =>{
   return (
-    <>
-      <div className="icon-center">
+    <div className={LoadingStyle.body}>
+      <div className={LoadingStyle.iconCenter}>
         <Icon1x />
       </div>
-    </>
+    </div>
   )
 }
 
