@@ -1,28 +1,13 @@
+import * as React from 'react';
 import * as styled_components from 'styled-components';
 
 interface ButtonProps {
-    /**
-     * Is this the principal call to action on the page?
-     */
-    primary?: boolean;
-    /**
-     * What background color to use
-     */
-    backgroundColor?: string;
-    /**
-     * How large should the button be?
-     */
-    size?: "small" | "medium" | "large";
-    /**
-     * Button contents
-     */
-    label: string;
-    /**
-     * Optional click handler
-     */
+    children: React.ReactNode;
+    size: string;
+    less: number;
     onClick?: () => void;
 }
-declare const Button: ({ primary, backgroundColor, size, label, onClick, ...props }: ButtonProps) => JSX.Element;
+declare const Button: ({ children, less, size, onClick, ...props }: ButtonProps) => JSX.Element;
 
 declare const theme: {
     colors: {
