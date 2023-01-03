@@ -14,7 +14,7 @@ const Spacing = styled.div`
     margin-bottom: 10px;
   }
 `;
-export const lessButton = () => (
+export const lessButton: ComponentStory<typeof Button> = () => (
   <>
     <Spacing>
       <Button size="small" less={5}>
@@ -30,7 +30,7 @@ export const lessButton = () => (
   </>
 );
 lessButton.storyName = "less";
-export const RoundButton = () => (
+export const RoundButton: ComponentStory<typeof Button> = () => (
   <>
     <Spacing>
       <Button size="small" less={20}>
