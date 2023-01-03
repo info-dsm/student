@@ -19,23 +19,27 @@ import styled from "styled-components";
 import { Fragment, jsx } from "react/jsx-runtime";
 var Button = (_a) => {
   var _b = _a, {
-    primary,
-    backgroundColor,
+    children,
+    less,
     size,
-    label,
     onClick
   } = _b, props = __objRest(_b, [
-    "primary",
-    "backgroundColor",
+    "children",
+    "less",
     "size",
-    "label",
     "onClick"
   ]);
-  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(_Button, { children: label }) });
+  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(_Button, { size, less, children }) });
 };
 var _Button = styled.div`
-  width: 5rem;
+  width: ${(props) => props.size === "small" ? "5rem" : props.size === "aver" ? "6rem" : "7.5rem"};
   height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: ${(props) => props.less}px;
+  text-align: center;
+  font-size: 0.7rem;
+  cursor: pointer;
+  color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.blue};
 `;
 
