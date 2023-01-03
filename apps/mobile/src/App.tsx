@@ -48,7 +48,10 @@ const App: React.FC = () => {
   if (error) {
     return (
       // error 페이지가 현재 준비되지 않아서 일단 이렇게 해놈
-      <IonApp>{error}</IonApp>
+      <IonApp>
+        <h1 style={{ margin: 0, textAlign: 'center' }}>authFetch Error</h1>
+        <Load/>
+      </IonApp>
     )
   }
 
@@ -71,7 +74,7 @@ const App: React.FC = () => {
                 {/* 페이지 연결 */}
               </Route>
               <Route exact path="/">
-                <Redirect to="/account/login" />
+                <Redirect to={"/account/login"} />
               </Route>
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
