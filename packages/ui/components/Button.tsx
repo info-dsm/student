@@ -1,16 +1,41 @@
 // ui 컴포넌트 사용 예시입니다.
 import * as React from "react";
 import styled from "styled-components";
-import { ReactNode } from "react";
 
-export interface ChildType {
-  children: ReactNode;
+export interface ButtonProps {
+  /**
+   * Is this the principal call to action on the page?
+   */
+  primary?: boolean;
+  /**
+   * What background color to use
+   */
+  backgroundColor?: string;
+  /**
+   * How large should the button be?
+   */
+  size?: "small" | "medium" | "large";
+  /**
+   * Button contents
+   */
+  label: string;
+  /**
+   * Optional click handler
+   */
+  onClick?: () => void;
 }
 
-export const Button = (props: ChildType) => {
+export const Button = ({
+  primary,
+  backgroundColor,
+  size,
+  label,
+  onClick,
+  ...props
+}: ButtonProps) => {
   return (
     <>
-      <_Button>{props.children}</_Button>
+      <_Button>{label}</_Button>
     </>
   );
 };
