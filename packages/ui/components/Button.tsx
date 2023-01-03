@@ -1,4 +1,4 @@
-// ui 컴포넌트 사용 예시입니다.
+// button 컴포넌트입니다. size뱔로 100px, 120px, 150px입니다.
 import * as React from "react";
 import styled from "styled-components";
 export interface ButtonProps {
