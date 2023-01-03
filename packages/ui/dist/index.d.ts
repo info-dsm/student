@@ -1,10 +1,28 @@
-import { ReactNode } from 'react';
 import * as styled_components from 'styled-components';
 
-interface ChildType {
-    children: ReactNode;
+interface ButtonProps {
+    /**
+     * Is this the principal call to action on the page?
+     */
+    primary?: boolean;
+    /**
+     * What background color to use
+     */
+    backgroundColor?: string;
+    /**
+     * How large should the button be?
+     */
+    size?: "small" | "medium" | "large";
+    /**
+     * Button contents
+     */
+    label: string;
+    /**
+     * Optional click handler
+     */
+    onClick?: () => void;
 }
-declare const Button: (props: ChildType) => JSX.Element;
+declare const Button: ({ primary, backgroundColor, size, label, onClick, ...props }: ButtonProps) => JSX.Element;
 
 declare const theme: {
     colors: {
@@ -28,4 +46,4 @@ declare const GlobalStyle: styled_components.GlobalStyleComponent<{}, styled_com
 
 declare const Props: () => JSX.Element;
 
-export { Button, ChildType, GlobalStyle, Props, theme };
+export { Button, ButtonProps, GlobalStyle, Props, theme };
