@@ -43,24 +43,8 @@ var _Button = styled.div`
   background-color: ${(props) => props.theme.colors.blue};
 `;
 
-// style/theme.ts
-var theme = {
-  colors: {
-    balck: "#101112",
-    black40: "rgba(16, 17, 18, 0.4)",
-    black50: "rgba(16, 17, 18, 0.5)",
-    blue: "#6750F8",
-    indigo: "#6D62EF",
-    cobalt: "#888DFF",
-    white: "#FFFFFF",
-    red: "#E24646",
-    gray: "#EAEAEA",
-    gray2: "#F7F7F7",
-    pink: "#F8CFCF",
-    skeleton: "#D9D9D9"
-  },
-  graduation: "linear-gradient(180deg, rgba(16, 17, 18, 0.2) 4.95%, #101112 95.05%)"
-};
+// style/CustomThemeProvider.tsx
+import { ThemeProvider } from "styled-components";
 
 // style/globalstyle.ts
 import { createGlobalStyle } from "styled-components";
@@ -91,14 +75,41 @@ var GlobalStyle = createGlobalStyle`
   }
 `;
 
+// style/theme.ts
+var theme = {
+  colors: {
+    balck: "#101112",
+    black40: "rgba(16, 17, 18, 0.4)",
+    black50: "rgba(16, 17, 18, 0.5)",
+    blue: "#6750F8",
+    indigo: "#6D62EF",
+    cobalt: "#888DFF",
+    white: "#FFFFFF",
+    red: "#E24646",
+    gray: "#EAEAEA",
+    gray2: "#F7F7F7",
+    pink: "#F8CFCF",
+    skeleton: "#D9D9D9"
+  },
+  graduation: "linear-gradient(180deg, rgba(16, 17, 18, 0.2) 4.95%, #101112 95.05%)"
+};
+
+// style/CustomThemeProvider.tsx
+import { Fragment as Fragment2, jsx as jsx2, jsxs } from "react/jsx-runtime";
+var CustomThemeProvider = ({ children }) => {
+  return /* @__PURE__ */ jsx2(Fragment2, { children: /* @__PURE__ */ jsxs(ThemeProvider, { theme, children: [
+    /* @__PURE__ */ jsx2(GlobalStyle, {}),
+    children
+  ] }) });
+};
+
 // components/table.tsx
-import { Fragment as Fragment2, jsx as jsx2 } from "react/jsx-runtime";
+import { Fragment as Fragment3, jsx as jsx3 } from "react/jsx-runtime";
 var Props = () => {
-  return /* @__PURE__ */ jsx2(Fragment2, { children: /* @__PURE__ */ jsx2("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
+  return /* @__PURE__ */ jsx3(Fragment3, { children: /* @__PURE__ */ jsx3("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
 };
 export {
   Button,
-  GlobalStyle,
-  Props,
-  theme
+  CustomThemeProvider,
+  Props
 };

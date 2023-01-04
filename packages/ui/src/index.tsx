@@ -1,6 +1,5 @@
 import * as React from "react";
 
 export { Button, type ButtonProps} from "../components/Button";
-export * from "../style/theme";
-export * from "../style/globalstyle";
+export {CustomThemeProvider, type ChildProps} from "../style/CustomThemeProvider";
 export * from "../components/table";

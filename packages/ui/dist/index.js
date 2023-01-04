@@ -40,9 +40,8 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
-  GlobalStyle: () => GlobalStyle,
-  Props: () => Props,
-  theme: () => theme
+  CustomThemeProvider: () => CustomThemeProvider,
+  Props: () => Props
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -75,24 +74,8 @@ var _Button = import_styled_components.default.div`
   background-color: ${(props) => props.theme.colors.blue};
 `;
 
-// style/theme.ts
-var theme = {
-  colors: {
-    balck: "#101112",
-    black40: "rgba(16, 17, 18, 0.4)",
-    black50: "rgba(16, 17, 18, 0.5)",
-    blue: "#6750F8",
-    indigo: "#6D62EF",
-    cobalt: "#888DFF",
-    white: "#FFFFFF",
-    red: "#E24646",
-    gray: "#EAEAEA",
-    gray2: "#F7F7F7",
-    pink: "#F8CFCF",
-    skeleton: "#D9D9D9"
-  },
-  graduation: "linear-gradient(180deg, rgba(16, 17, 18, 0.2) 4.95%, #101112 95.05%)"
-};
+// style/CustomThemeProvider.tsx
+var import_styled_components3 = require("styled-components");
 
 // style/globalstyle.ts
 var import_styled_components2 = require("styled-components");
@@ -123,15 +106,42 @@ var GlobalStyle = import_styled_components2.createGlobalStyle`
   }
 `;
 
-// components/table.tsx
+// style/theme.ts
+var theme = {
+  colors: {
+    balck: "#101112",
+    black40: "rgba(16, 17, 18, 0.4)",
+    black50: "rgba(16, 17, 18, 0.5)",
+    blue: "#6750F8",
+    indigo: "#6D62EF",
+    cobalt: "#888DFF",
+    white: "#FFFFFF",
+    red: "#E24646",
+    gray: "#EAEAEA",
+    gray2: "#F7F7F7",
+    pink: "#F8CFCF",
+    skeleton: "#D9D9D9"
+  },
+  graduation: "linear-gradient(180deg, rgba(16, 17, 18, 0.2) 4.95%, #101112 95.05%)"
+};
+
+// style/CustomThemeProvider.tsx
 var import_jsx_runtime2 = require("react/jsx-runtime");
+var CustomThemeProvider = ({ children }) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_styled_components3.ThemeProvider, { theme, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(GlobalStyle, {}),
+    children
+  ] }) });
+};
+
+// components/table.tsx
+var import_jsx_runtime3 = require("react/jsx-runtime");
 var Props = () => {
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_jsx_runtime3.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Button,
-  GlobalStyle,
-  Props,
-  theme
+  CustomThemeProvider,
+  Props
 });
