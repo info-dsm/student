@@ -37,6 +37,9 @@ const _Button = styled.div<{ size: string; less: number }>`
   cursor: pointer;
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.blue};
+  :hover {
+    filter: brightness(0.8);
+  }
 `;
 export const MiniButton = ({
   children,
@@ -64,5 +67,9 @@ const _MiniButton = styled.div<{ size: string; less: number }>`
 
   background-color: ${(props) => props.theme.colors.blue};
   color: ${(props) => props.theme.colors.white};
+  cursor: pointer;
   border-radius: 5px;
+  :hover {
+    filter: brightness(0.8);
+  }
 `;

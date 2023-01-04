@@ -74,6 +74,9 @@ var _Button = import_styled_components.default.div`
   cursor: pointer;
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.blue};
+  :hover {
+    filter: brightness(0.8);
+  }
 `;
 var MiniButton = (_a) => {
   var _b = _a, {
@@ -100,7 +103,11 @@ var _MiniButton = import_styled_components.default.div`
 
   background-color: ${(props) => props.theme.colors.blue};
   color: ${(props) => props.theme.colors.white};
+  cursor: pointer;
   border-radius: 5px;
+  :hover {
+    filter: brightness(0.8);
+  }
 `;
 
 // style/CustomThemeProvider.tsx
@@ -268,13 +275,13 @@ var Pagination = ({
 };
 var _Button2 = import_styled_components4.default.div`
   font: 700 normal 1rem "pretendard", sans-serif;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 3rem;
+  width: 3rem;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 3rem;
   background-color: ${(props) => props.selected ? props.theme.colors.blue : "transparent"};
   color: ${(props) => props.selected ? props.theme.colors.white : props.theme.colors.black};
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
   :hover {
     background-color: ${(props) => props.theme.colors.blue};
@@ -283,18 +290,18 @@ var _Button2 = import_styled_components4.default.div`
 `;
 var _Elipsis = import_styled_components4.default.div`
   font: 700 normal 1rem "pretendard", sans-serif;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   text-align: center;
   line-height: 2.5rem;
   color: ${(props) => props.theme.colors.black};
 `;
 var _NavBar = import_styled_components4.default.div`
-  font: 500 normal 1rem "pretendard", sans-serif;
-  width: 1rem;
-  height: 2.5rem;
+  font: 400 normal 1.2rem "pretendard", sans-serif;
+  width: 1.2rem;
+  height: 3rem;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 3rem;
   cursor: pointer;
   color: ${(props) => props.theme.colors.black};
   :hover {
@@ -305,7 +312,7 @@ var _Container = import_styled_components4.default.div`
   margin: 0 auto;
 
   display: flex;
-  height: 2.5rem;
+  height: 3rem;
   width: ${(props) => props.width}px;
   justify-content: space-between;
 `;

@@ -12,7 +12,6 @@ export default {
   title: "INFO/Components/Pagination",
   component: Pagination,
   argTypes: { onClick: { action: "clicked" } },
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } as ComponentMeta<typeof Pagination>;
 
 export const lessPagin: ComponentStory<typeof Pagination> = (args) => {

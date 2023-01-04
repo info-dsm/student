@@ -115,15 +115,15 @@ export const Pagination = ({
 };
 const _Button = styled.div<{ selected: boolean }>`
   font: 700 normal 1rem "pretendard", sans-serif;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 3rem;
+  width: 3rem;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 3rem;
   background-color: ${(props) =>
     props.selected ? props.theme.colors.blue : "transparent"};
   color: ${(props) =>
     props.selected ? props.theme.colors.white : props.theme.colors.black};
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
   :hover {
     background-color: ${(props) => props.theme.colors.blue};
@@ -132,18 +132,18 @@ const _Button = styled.div<{ selected: boolean }>`
 `;
 const _Elipsis = styled.div`
   font: 700 normal 1rem "pretendard", sans-serif;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   text-align: center;
   line-height: 2.5rem;
   color: ${(props) => props.theme.colors.black};
 `;
 const _NavBar = styled.div`
-  font: 500 normal 1rem "pretendard", sans-serif;
-  width: 1rem;
-  height: 2.5rem;
+  font: 400 normal 1.2rem "pretendard", sans-serif;
+  width: 1.2rem;
+  height: 3rem;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 3rem;
   cursor: pointer;
   color: ${(props) => props.theme.colors.black};
   :hover {
@@ -154,7 +154,7 @@ const _Container = styled.div<{ width: number }>`
   margin: 0 auto;
 
   display: flex;
-  height: 2.5rem;
+  height: 3rem;
   width: ${(props) => props.width}px;
   justify-content: space-between;
 `;
