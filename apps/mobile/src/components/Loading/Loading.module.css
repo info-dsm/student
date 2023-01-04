@@ -1,19 +1,21 @@
-html, body {
+.body {
   background-color: #6750F8;
+  width: 100vw;
+  height: 100vh;
 }
 
-.icon-center {
+.iconCenter {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.info-icon {
+.infoIcon {
   margin-right: 7px;
 }
 
-.info-text {
+.infoText {
   position: relative;
   bottom: 4px;
 }
