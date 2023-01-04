@@ -5,11 +5,14 @@ const authFetcher = async (path: string, options: any) => {
   const response = await fetch(path, {
     method: "GET", 
     headers: {
-      Authorization: `Bearer ${getCookie("info-token")}`
+      "Authorization": `Bearer ${getCookie("info-token")}`
     }
   });
-  return response.data();
+  return {
+    status: response.status,
+    statusText: response.statusText,
+    data: response.data()
+  };
 };
 
 export default authFetcher;
-
