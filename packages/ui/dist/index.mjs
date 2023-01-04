@@ -29,7 +29,7 @@ var Button = (_a) => {
     "size",
     "onClick"
   ]);
-  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(_Button, { size, less, children }) });
+  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(_Button, { size, less, onClick: () => onClick, children }) });
 };
 var _Button = styled.div`
   width: ${(props) => props.size === "small" ? "5rem" : props.size === "aver" ? "6rem" : "7.5rem"};

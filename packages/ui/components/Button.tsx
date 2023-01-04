@@ -1,8 +1,8 @@
 // button 컴포넌트입니다. size뱔로 100px, 120px, 150px입니다.
-import * as React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 export interface ButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   size: string;
   less: number;
   onClick?: () => void;
@@ -16,7 +16,7 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <>
-      <_Button size={size} less={less}>
+      <_Button size={size} less={less} onClick={() => onClick}>
         {children}
       </_Button>
     </>

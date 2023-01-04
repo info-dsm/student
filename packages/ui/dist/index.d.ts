@@ -1,8 +1,8 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 import * as styled_components from 'styled-components';
 
 interface ButtonProps {
-    children: React.ReactNode;
+    children: ReactNode;
     size: string;
     less: number;
     onClick?: () => void;
