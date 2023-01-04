@@ -4,7 +4,7 @@ export interface SelectUi {
   selectProps: string[];
   onClick: (item: string) => void;
 }
-export const SelectComplete = ({ selectProps, onClick }: any) => {
+export const LittleSelectComplete = ({ selectProps, onClick }: SelectUi) => {
   const [state, setState] = useState<boolean>(false);
   const [write, setWrite] = useState(selectProps[0]);
   const AddValuePropsFunc = (props) => {
