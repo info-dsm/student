@@ -11,7 +11,15 @@ interface ButtonProps extends ChildProps {
     onClick?: () => void;
 }
 declare const Button: ({ children, less, size, onClick, ...props }: ButtonProps) => JSX.Element;
+declare const MiniButton: ({ children, less, size, onClick, ...props }: ButtonProps) => JSX.Element;
 
 declare const Props: () => JSX.Element;
 
-export { Button, ButtonProps, ChildProps, CustomThemeProvider, Props };
+interface PaginationProps {
+    nowIndex: number;
+    lastIndex: number;
+    changeIndex: (index: number) => void;
+}
+declare const Pagination: ({ nowIndex, lastIndex, changeIndex, }: PaginationProps) => JSX.Element;
+
+export { Button, ButtonProps, ChildProps, CustomThemeProvider, MiniButton, Pagination, PaginationProps, Props };

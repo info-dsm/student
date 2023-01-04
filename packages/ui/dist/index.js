@@ -41,6 +41,8 @@ var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
   CustomThemeProvider: () => CustomThemeProvider,
+  MiniButton: () => MiniButton,
+  Pagination: () => Pagination,
   Props: () => Props
 });
 module.exports = __toCommonJS(src_exports);
@@ -72,6 +74,33 @@ var _Button = import_styled_components.default.div`
   cursor: pointer;
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.blue};
+`;
+var MiniButton = (_a) => {
+  var _b = _a, {
+    children,
+    less,
+    size,
+    onClick
+  } = _b, props = __objRest(_b, [
+    "children",
+    "less",
+    "size",
+    "onClick"
+  ]);
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(_MiniButton, { size, less, onClick: () => onClick, children }) });
+};
+var _MiniButton = import_styled_components.default.div`
+  width: ${(props) => props.size === "small" ? "2.5rem" : "3rem"};
+  font: 500 normal ${(props) => props.size === "small" ? "1rem" : "0.7rem"}
+      "pretendard",
+    sans-serif;
+  height: ${(props) => props.size === "small" ? "2.5rem" : "1.25rem"};
+  text-align: center;
+  line-height: ${(props) => props.size === "small" ? "2.5rem" : "1.25rem"};
+
+  background-color: ${(props) => props.theme.colors.blue};
+  color: ${(props) => props.theme.colors.white};
+  border-radius: 5px;
 `;
 
 // style/CustomThemeProvider.tsx
@@ -139,9 +168,152 @@ var import_jsx_runtime3 = require("react/jsx-runtime");
 var Props = () => {
   return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_jsx_runtime3.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
 };
+
+// components/pagination.tsx
+var import_react = require("react");
+var import_styled_components4 = __toESM(require("styled-components"));
+var import_jsx_runtime4 = require("react/jsx-runtime");
+var Pagination = ({
+  nowIndex,
+  lastIndex,
+  changeIndex
+}) => {
+  const ChangeIndex = (0, import_react.useCallback)(
+    (index) => {
+      changeIndex(index);
+    },
+    [nowIndex]
+  );
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_jsx_runtime4.Fragment, { children: lastIndex < 8 ? /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(_Container, { width: (lastIndex - 1) * 70 + 130, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      _NavBar,
+      {
+        onClick: () => {
+          if (nowIndex > 1) {
+            ChangeIndex(nowIndex - 1);
+          }
+        },
+        children: "<"
+      }
+    ),
+    new Array(lastIndex).fill("").map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_jsx_runtime4.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      _Button2,
+      {
+        selected: nowIndex === index + 1,
+        onClick: () => ChangeIndex(index + 1),
+        children: index + 1
+      }
+    ) })),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      _NavBar,
+      {
+        onClick: () => {
+          if (nowIndex < lastIndex) {
+            ChangeIndex(nowIndex + 1);
+          }
+        },
+        children: ">"
+      }
+    )
+  ] }) : /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(_Container, { width: 550, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      _NavBar,
+      {
+        onClick: () => {
+          if (nowIndex > 1) {
+            ChangeIndex(nowIndex - 1);
+          }
+        },
+        children: "<"
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(_Button2, { selected: nowIndex === 1, onClick: () => ChangeIndex(1), children: "1" }),
+    nowIndex < 6 ? /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(_Button2, { selected: nowIndex === 2, onClick: () => ChangeIndex(2), children: "2" }) : /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(_Elipsis, { children: "\u2022\u2022\u2022" }),
+    (nowIndex < 6 ? [3, 4, 5] : nowIndex > lastIndex - 5 ? [lastIndex - 4, lastIndex - 3, lastIndex - 2] : [nowIndex - 1, nowIndex, nowIndex + 1]).map((item) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      _Button2,
+      {
+        selected: nowIndex === item,
+        onClick: () => ChangeIndex(item),
+        children: item
+      }
+    )),
+    nowIndex > lastIndex - 5 ? /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      _Button2,
+      {
+        selected: nowIndex === lastIndex - 1,
+        onClick: () => ChangeIndex(lastIndex + 1),
+        children: lastIndex - 1
+      }
+    ) : /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(_Elipsis, { children: "\u2022\u2022\u2022" }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      _Button2,
+      {
+        selected: nowIndex === lastIndex,
+        onClick: () => ChangeIndex(lastIndex),
+        children: lastIndex
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      _NavBar,
+      {
+        onClick: () => {
+          if (nowIndex < lastIndex) {
+            ChangeIndex(nowIndex + 1);
+          }
+        },
+        children: ">"
+      }
+    )
+  ] }) });
+};
+var _Button2 = import_styled_components4.default.div`
+  font: 700 normal 1rem "pretendard", sans-serif;
+  height: 2.5rem;
+  width: 2.5rem;
+  text-align: center;
+  line-height: 2.5rem;
+  background-color: ${(props) => props.selected ? props.theme.colors.blue : "transparent"};
+  color: ${(props) => props.selected ? props.theme.colors.white : props.theme.colors.black};
+  border-radius: 5px;
+  cursor: pointer;
+  :hover {
+    background-color: ${(props) => props.theme.colors.blue};
+    color: ${(props) => props.theme.colors.white};
+  }
+`;
+var _Elipsis = import_styled_components4.default.div`
+  font: 700 normal 1rem "pretendard", sans-serif;
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  line-height: 2.5rem;
+  color: ${(props) => props.theme.colors.black};
+`;
+var _NavBar = import_styled_components4.default.div`
+  font: 500 normal 1rem "pretendard", sans-serif;
+  width: 1rem;
+  height: 2.5rem;
+  text-align: center;
+  line-height: 2.5rem;
+  cursor: pointer;
+  color: ${(props) => props.theme.colors.black};
+  :hover {
+    color: ${(props) => props.theme.colors.blue};
+  }
+`;
+var _Container = import_styled_components4.default.div`
+  margin: 0 auto;
+
+  display: flex;
+  height: 2.5rem;
+  width: ${(props) => props.width}px;
+  justify-content: space-between;
+`;
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Button,
   CustomThemeProvider,
+  MiniButton,
+  Pagination,
   Props
 });
