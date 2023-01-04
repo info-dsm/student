@@ -1,7 +1,7 @@
 {
   "name": "info-app",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@capacitor/app": "4.1.1",
     "@capacitor/core": "4.6.1",
@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^12.6.3",
+    "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^12.19.15",
     "@types/react": "^18.0.17",
@@ -20,6 +21,7 @@
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^1.2.2",
+    "dotenv": "^16.0.3",
     "history": "^4.9.0",
     "ionicons": "^6.0.3",
     "react": "^18.2.0",
