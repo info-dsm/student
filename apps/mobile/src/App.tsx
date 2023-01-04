@@ -43,7 +43,7 @@ import authFetcher from './utils/AuthFetcher';
 setupIonicReact();
 
 const App: React.FC = () => {
-  const { data, error } = useSWR("url", authFetcher)
+  const { data, error } = useSWR("/user/info", authFetcher)
 
   if (error) {
     return (
@@ -68,13 +68,37 @@ const App: React.FC = () => {
           <IonTabs>
             <IonRouterOutlet>
               <Route exact path="/account/login">
-                <Load />
+                {/* 사용자가 login(로그인)을 시도하는 페이지 입니다. */}
+              </Route>
+              <Route exact path="/account/signup">
+                {/* 사용자가 signup(회원가입)을 시도하는 페이지 입니다. */}
+              </Route>
+              <Route exact path="/company">
+                {/* 회사들을 표시 해주는 회사목록페이지 입니다. */}
+              </Route>
+              <Route exact path="/company/:id">
+                {/* 회사의 정보를 자세히 볼 수 있는 페이지 입니다. */}
+              </Route>
+              <Route exact path="/company/search/:id">
+                {/* 회사를 검색 후 검색 결과를 보여주는 페이지 입니다. */}
+              </Route>
+              <Route exact path="/notice">
+                {/* 회사들의 모집공고를 표시해주는 페이지 입니다. */}
+              </Route>
+              <Route exact path="/notice/search/:id">
+                {/* 모집공고를 검색 후 검색 결과를 보여주는 페이지 입니다. */}
+              </Route>
+              <Route exact path="/notice/:id">
+                {/* 모집공고를 자세히 볼 수 있는 페이지 입니다. */}
+              </Route>
+              <Route exact path="/mypage">
+                {/* 내 계정의 정보를 보여주는 페이지 입니다. */}
+              </Route>
+              <Route exact path="/recruit/:id">
+                {/* 취업 현황을 보여주는 페이지 입니다. */}
               </Route>
               <Route exact path="/">
-                {/* 페이지 연결 */}
-              </Route>
-              <Route exact path="/">
-                <Redirect to={"/account/login"} />
+                <Redirect to={data.status === 201 ? "/account/login" : "/main"} />
               </Route>
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
