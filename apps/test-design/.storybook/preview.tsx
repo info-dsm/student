@@ -1,12 +1,11 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle, theme } from "ui";
+import { CustomThemeProvider } from "ui";
 export const decorators = [
   (Story) => (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
+    <CustomThemeProvider>
       <Story />
-    </ThemeProvider>
+    </CustomThemeProvider>
   ),
 ];
 export const parameters = {
