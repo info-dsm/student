@@ -16,7 +16,7 @@ declare const MiniButton: ({ children, less, size, onClick, ...props }: ButtonPr
 interface TableProps {
     children: ReactNode;
 }
-declare const Table: () => JSX.Element;
+declare const Table: ({ children }: TableProps) => JSX.Element;
 
 interface PaginationProps {
     nowIndex: number;

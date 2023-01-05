@@ -173,7 +173,7 @@ var CustomThemeProvider = ({ children }) => {
 
 // components/table.tsx
 var import_jsx_runtime3 = require("react/jsx-runtime");
-var Table = () => {
+var Table = ({ children }) => {
   return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_jsx_runtime3.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
 };
 

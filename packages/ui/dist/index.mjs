@@ -139,7 +139,7 @@ var CustomThemeProvider = ({ children }) => {
 
 // components/table.tsx
 import { Fragment as Fragment3, jsx as jsx3 } from "react/jsx-runtime";
-var Table = () => {
+var Table = ({ children }) => {
   return /* @__PURE__ */ jsx3(Fragment3, { children: /* @__PURE__ */ jsx3("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
 };
 

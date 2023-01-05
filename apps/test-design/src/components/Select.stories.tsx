@@ -3,12 +3,6 @@ import React, { useState, useCallback } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { LittleSelectComplete } from "ui";
-import styled from "styled-components";
-// const Spacing = styled.div`
-//   * {
-//     margin-bottom: 10px;
-//   }
-// `;
 export default {
   title: "INFO/Components",
   component: LittleSelectComplete,
