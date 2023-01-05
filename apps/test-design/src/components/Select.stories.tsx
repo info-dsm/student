@@ -1,0 +1,36 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useCallback } from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+
+import { LittleSelectComplete } from "ui";
+import styled from "styled-components";
+// const Spacing = styled.div`
+//   * {
+//     margin-bottom: 10px;
+//   }
+// `;
+export default {
+  title: "INFO/Components",
+  component: LittleSelectComplete,
+  argTypes: { onClick: { action: "clicked" } },
+} as ComponentMeta<typeof LittleSelectComplete>;
+
+export const SelectUi: ComponentStory<typeof LittleSelectComplete> = (args) => {
+  const [now, setNow] = useState<string>("기본");
+  const changeIndex = useCallback(
+    (item: string) => {
+      setNow(item);
+    },
+    [now, setNow]
+  );
+  return (
+    <>
+      <LittleSelectComplete
+        now={now}
+        list={["기본", "년도 검색"]}
+        onClick={changeIndex}
+      />
+    </>
+  );
+};
+SelectUi.storyName = "Select";

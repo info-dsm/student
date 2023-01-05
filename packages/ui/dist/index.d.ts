@@ -13,7 +13,10 @@ interface ButtonProps extends ChildProps {
 declare const Button: ({ children, less, size, onClick, ...props }: ButtonProps) => JSX.Element;
 declare const MiniButton: ({ children, less, size, onClick, ...props }: ButtonProps) => JSX.Element;
 
-declare const Props: () => JSX.Element;
+interface TableProps {
+    children: ReactNode;
+}
+declare const Table: () => JSX.Element;
 
 interface PaginationProps {
     nowIndex: number;
@@ -22,4 +25,11 @@ interface PaginationProps {
 }
 declare const Pagination: ({ nowIndex, lastIndex, changeIndex, }: PaginationProps) => JSX.Element;
 
-export { Button, ButtonProps, ChildProps, CustomThemeProvider, MiniButton, Pagination, PaginationProps, Props };
+interface SelectProps {
+    now: string;
+    list: string[];
+    onClick: (item: string) => void;
+}
+declare const LittleSelectComplete: ({ now, list, onClick }: SelectProps) => JSX.Element;
+
+export { Button, ButtonProps, ChildProps, CustomThemeProvider, LittleSelectComplete, MiniButton, Pagination, PaginationProps, SelectProps, Table, TableProps };
