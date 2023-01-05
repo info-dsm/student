@@ -11,7 +11,8 @@ type MainKey =
   | "gray"
   | "gray2"
   | "pink"
-  | "skeleton";
+  | "skeleton"
+  | "violet";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
