@@ -41,9 +41,10 @@ var src_exports = {};
 __export(src_exports, {
   Button: () => Button,
   CustomThemeProvider: () => CustomThemeProvider,
+  LittleSelectComplete: () => LittleSelectComplete,
   MiniButton: () => MiniButton,
   Pagination: () => Pagination,
-  Props: () => Props
+  Table: () => Table
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -172,7 +173,7 @@ var CustomThemeProvider = ({ children }) => {
 
 // components/table.tsx
 var import_jsx_runtime3 = require("react/jsx-runtime");
-var Props = () => {
+var Table = () => {
   return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_jsx_runtime3.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
 };
 
@@ -316,11 +317,103 @@ var _Container = import_styled_components4.default.div`
   width: ${(props) => props.width}px;
   justify-content: space-between;
 `;
+
+// components/Select.tsx
+var import_styled_components5 = __toESM(require("styled-components"));
+var import_react2 = require("react");
+var import_jsx_runtime5 = require("react/jsx-runtime");
+var LittleSelectComplete = ({ now, list, onClick }) => {
+  const [state, setState] = (0, import_react2.useState)(false);
+  const AddValuePropsFunc = (0, import_react2.useCallback)((props) => {
+    setState(false);
+    onClick(props);
+  }, []);
+  (0, import_react2.useLayoutEffect)(() => {
+    document.addEventListener("click", () => {
+      setState(false);
+    });
+  }, [state]);
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(import_jsx_runtime5.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(
+      InputProps,
+      {
+        id: now,
+        state,
+        onClick: (e) => {
+          e.stopPropagation();
+          setState(!state);
+        },
+        children: [
+          now,
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(SelectIcon, { state })
+        ]
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(DataList, { state, children: list.map((user) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { onMouseDown: () => AddValuePropsFunc(user), children: user }, user)) })
+  ] });
+};
+var Spin = (x, y) => import_styled_components5.keyframes`
+ 0% {
+    transform: rotate(${x}deg);
+ }
+ 100% {
+  transform: rotate(${y}deg);
+ }
+`;
+var DataList = import_styled_components5.default.div`
+  visibility: ${(props) => props.state ? "visible" : "hidden"};
+  width: auto;
+  height: auto;
+  div {
+    box-sizing: border-box;
+    background-color: ${(props) => props.theme.colors.white};
+    position: relative;
+    width: 7.5rem;
+    height: 2rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: ${(props) => props.theme.colors.black};
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    font: 500 normal 1rem "pretendard", sans-serif;
+    line-height: 2rem;
+    :last-child {
+      border-radius: 0px 0px 5px 5px;
+    }
+  }
+
+  div:hover {
+    background-color: ${(p) => p.theme.colors.gray};
+  }
+`;
+var InputProps = import_styled_components5.default.div`
+  width: 7.5rem;
+  height: 2rem;
+  border-radius: 5px 5px ${(props) => props.state ? 0 : 5}px
+    ${(props) => props.state ? 0 : 5}px;
+  font: 500 normal 1rem "pretendard", sans-serif;
+  line-height: 2rem;
+  color: ${(props) => props.theme.colors.white};
+  text-align: center;
+  background-color: ${(props) => props.theme.colors.blue};
+  cursor: pointer;
+`;
+var SelectIcon = import_styled_components5.default.div`
+  position: absolute;
+  top: 1.7rem;
+  left: 7rem;
+  border-top: 0.5rem solid ${(props) => props.theme.colors.white};
+  border-left: 0.3rem solid transparent;
+  border-right: 0.3rem solid transparent;
+  animation: ${(props) => props.state ? Spin(180, 0) : Spin(0, 180)} 0.25s
+    ease-in-out 0s alternate forwards;
+`;
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Button,
   CustomThemeProvider,
+  LittleSelectComplete,
   MiniButton,
   Pagination,
-  Props
+  Table
 });

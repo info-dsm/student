@@ -1,18 +1,17 @@
 import styled, { keyframes } from "styled-components";
-import React, { useState, useEffect } from "react";
-export interface SelectUi {
-  selectProps: string[];
+import React, { useState, useLayoutEffect, useCallback } from "react";
+export interface SelectProps {
+  now: string;
+  list: string[];
   onClick: (item: string) => void;
 }
-export const LittleSelectComplete = ({ selectProps, onClick }: SelectUi) => {
+export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
   const [state, setState] = useState<boolean>(false);
-  const [write, setWrite] = useState(selectProps[0]);
-  const AddValuePropsFunc = (props) => {
-    setWrite(props);
+  const AddValuePropsFunc = useCallback((props: string) => {
     setState(false);
     onClick(props);
-  };
-  useEffect(() => {
+  }, []);
+  useLayoutEffect(() => {
     document.addEventListener("click", () => {
       setState(false);
     });
@@ -20,24 +19,22 @@ export const LittleSelectComplete = ({ selectProps, onClick }: SelectUi) => {
   return (
     <>
       <InputProps
-        width={200}
-        id={write}
+        id={now}
         state={state}
         onClick={(e) => {
           e.stopPropagation();
           setState(!state);
         }}
       >
-        {write}
+        {now}
         <SelectIcon state={state} />
       </InputProps>
       <DataList state={state}>
-        <ul>
-          {selectProps.map((user: string) => (
-            // eslint-disable-next-line react/jsx-key
-            <li onMouseDown={() => AddValuePropsFunc(user)}>{user}</li>
-          ))}
-        </ul>
+        {list.map((user: string) => (
+          <div onMouseDown={() => AddValuePropsFunc(user)} key={user}>
+            {user}
+          </div>
+        ))}
       </DataList>
     </>
   );
@@ -51,64 +48,50 @@ const Spin = (x: number, y: number) => keyframes`
  }
 `;
 const DataList = styled.div<{ state: boolean }>`
-  width: 195px;
-  position: relative;
-  z-index: 2;
   visibility: ${(props) => (props.state ? "visible" : "hidden")};
-  padding: 0;
-
-  ul {
-    position: relative;
-    list-style-type: none;
-    margin-top: -3.5px;
-    border-radius: 0px 0px 10px 10px;
-    width: 205px;
-
-    padding: 0 0 10px 0;
-  }
-  li {
+  width: auto;
+  height: auto;
+  div {
     box-sizing: border-box;
     background-color: ${(props) => props.theme.colors.white};
     position: relative;
-    padding-top: 6px;
-    width: 215px;
-    height: 40px;
-    font-size: 18px;
+    width: 7.5rem;
+    height: 2rem;
+    font-size: 0.8rem;
     cursor: pointer;
     color: ${(props) => props.theme.colors.black};
     border: 1px solid #d3d3d3;
     text-align: center;
-    font: 700 normal 20px "Noto Sans";
+    font: 500 normal 1rem "pretendard", sans-serif;
+    line-height: 2rem;
+    :last-child {
+      border-radius: 0px 0px 5px 5px;
+    }
   }
 
-  li:hover {
-    background-color: ${(props) => props.theme.colors.blue};
-    color: ${(props) => props.theme.colors.white};
+  div:hover {
+    background-color: ${(p) => p.theme.colors.gray};
   }
 `;
-const InputProps = styled.div<{ width: number; state: boolean }>`
-  padding-top: 11px;
-  padding-right: 15px;
-  width: ${(props) => props.width}px;
-  height: 40px;
-  border-radius: 10px 10px ${(props) => (props.state ? 0 : 10)}px
-    ${(props) => (props.state ? 0 : 10)}px;
-  font: 700 normal 20px "Noto Sans";
+const InputProps = styled.div<{ state: boolean }>`
+  width: 7.5rem;
+  height: 2rem;
+  border-radius: 5px 5px ${(props) => (props.state ? 0 : 5)}px
+    ${(props) => (props.state ? 0 : 5)}px;
+  font: 500 normal 1rem "pretendard", sans-serif;
+  line-height: 2rem;
   color: ${(props) => props.theme.colors.white};
   text-align: center;
-  border: none;
   background-color: ${(props) => props.theme.colors.blue};
-  margin: 0px;
   cursor: pointer;
 `;
 const SelectIcon = styled.div<{ state: boolean }>`
   position: absolute;
-  top: 17px;
-  left: 185px;
-  border-bottom: 10px solid none;
-  border-top: 15px solid ${(props) => props.theme.colors.white};
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
+  top: 1.7rem;
+  left: 7rem;
+  border-top: 0.5rem solid ${(props) => props.theme.colors.white};
+  border-left: 0.3rem solid transparent;
+  border-right: 0.3rem solid transparent;
   animation: ${(props) => (props.state ? Spin(180, 0) : Spin(0, 180))} 0.25s
     ease-in-out 0s alternate forwards;
 `;

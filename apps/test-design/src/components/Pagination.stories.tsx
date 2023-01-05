@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useCallback } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
@@ -9,17 +11,19 @@ const Spacing = styled.div`
   }
 `;
 export default {
-  title: "INFO/Components/Pagination",
+  title: "INFO/Components",
   component: Pagination,
   argTypes: { onClick: { action: "clicked" } },
 } as ComponentMeta<typeof Pagination>;
 
 export const lessPagin: ComponentStory<typeof Pagination> = (args) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [nowIndex, setNowIndex] = useState<number>(1);
-  const changeIndex = (index: number) => {
-    setNowIndex(index);
-  };
+  const changeIndex = useCallback(
+    (index: number) => {
+      setNowIndex(index);
+    },
+    [nowIndex, setNowIndex]
+  );
   return (
     <Spacing>
       {new Array(7).fill("").map((item, index) => (
@@ -39,4 +43,4 @@ export const lessPagin: ComponentStory<typeof Pagination> = (args) => {
     </Spacing>
   );
 };
-lessPagin.storyName = "";
+lessPagin.storyName = "Pagination";

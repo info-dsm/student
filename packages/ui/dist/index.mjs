@@ -139,7 +139,7 @@ var CustomThemeProvider = ({ children }) => {
 
 // components/table.tsx
 import { Fragment as Fragment3, jsx as jsx3 } from "react/jsx-runtime";
-var Props = () => {
+var Table = () => {
   return /* @__PURE__ */ jsx3(Fragment3, { children: /* @__PURE__ */ jsx3("div", { children: "\uC548\uB155\uD558\uC138\uC5EC" }) });
 };
 
@@ -283,10 +283,102 @@ var _Container = styled2.div`
   width: ${(props) => props.width}px;
   justify-content: space-between;
 `;
+
+// components/Select.tsx
+import styled3, { keyframes } from "styled-components";
+import { useState, useLayoutEffect, useCallback as useCallback2 } from "react";
+import { Fragment as Fragment5, jsx as jsx5, jsxs as jsxs3 } from "react/jsx-runtime";
+var LittleSelectComplete = ({ now, list, onClick }) => {
+  const [state, setState] = useState(false);
+  const AddValuePropsFunc = useCallback2((props) => {
+    setState(false);
+    onClick(props);
+  }, []);
+  useLayoutEffect(() => {
+    document.addEventListener("click", () => {
+      setState(false);
+    });
+  }, [state]);
+  return /* @__PURE__ */ jsxs3(Fragment5, { children: [
+    /* @__PURE__ */ jsxs3(
+      InputProps,
+      {
+        id: now,
+        state,
+        onClick: (e) => {
+          e.stopPropagation();
+          setState(!state);
+        },
+        children: [
+          now,
+          /* @__PURE__ */ jsx5(SelectIcon, { state })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsx5(DataList, { state, children: list.map((user) => /* @__PURE__ */ jsx5("div", { onMouseDown: () => AddValuePropsFunc(user), children: user }, user)) })
+  ] });
+};
+var Spin = (x, y) => keyframes`
+ 0% {
+    transform: rotate(${x}deg);
+ }
+ 100% {
+  transform: rotate(${y}deg);
+ }
+`;
+var DataList = styled3.div`
+  visibility: ${(props) => props.state ? "visible" : "hidden"};
+  width: auto;
+  height: auto;
+  div {
+    box-sizing: border-box;
+    background-color: ${(props) => props.theme.colors.white};
+    position: relative;
+    width: 7.5rem;
+    height: 2rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: ${(props) => props.theme.colors.black};
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    font: 500 normal 1rem "pretendard", sans-serif;
+    line-height: 2rem;
+    :last-child {
+      border-radius: 0px 0px 5px 5px;
+    }
+  }
+
+  div:hover {
+    background-color: ${(p) => p.theme.colors.gray};
+  }
+`;
+var InputProps = styled3.div`
+  width: 7.5rem;
+  height: 2rem;
+  border-radius: 5px 5px ${(props) => props.state ? 0 : 5}px
+    ${(props) => props.state ? 0 : 5}px;
+  font: 500 normal 1rem "pretendard", sans-serif;
+  line-height: 2rem;
+  color: ${(props) => props.theme.colors.white};
+  text-align: center;
+  background-color: ${(props) => props.theme.colors.blue};
+  cursor: pointer;
+`;
+var SelectIcon = styled3.div`
+  position: absolute;
+  top: 1.7rem;
+  left: 7rem;
+  border-top: 0.5rem solid ${(props) => props.theme.colors.white};
+  border-left: 0.3rem solid transparent;
+  border-right: 0.3rem solid transparent;
+  animation: ${(props) => props.state ? Spin(180, 0) : Spin(0, 180)} 0.25s
+    ease-in-out 0s alternate forwards;
+`;
 export {
   Button,
   CustomThemeProvider,
+  LittleSelectComplete,
   MiniButton,
   Pagination,
-  Props
+  Table
 };
