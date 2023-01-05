@@ -36,9 +36,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Load from './components/Loading/LoadComponent';
+import Load from './pages/etc/Loading/LoadComponent';
 import useSWR from 'swr' 
 import authFetcher from './utils/AuthFetcher';
+import NotFound from './pages/etc/NotFound';
 
 setupIonicReact();
 
@@ -58,7 +59,7 @@ const App: React.FC = () => {
   if (!data) {
     return (
       <IonApp>
-        <Load />
+        <Load/>
       </IonApp>
     )
   } else {
@@ -66,63 +67,85 @@ const App: React.FC = () => {
       <IonApp>
         <IonReactRouter>
           <IonTabs>
-            <IonRouterOutlet>
-              <Route exact path="/account/login">
-                {/* 사용자가 login(로그인)을 시도하는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/account/signup">
-                {/* 사용자가 signup(회원가입)을 시도하는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/company">
-                {/* 회사들을 표시 해주는 회사목록페이지 입니다. */}
-              </Route>
-              <Route exact path="/company/:id">
-                {/* 회사의 정보를 자세히 볼 수 있는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/company/search/:id">
-                {/* 회사를 검색 후 검색 결과를 보여주는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/notice">
-                {/* 회사들의 모집공고를 표시해주는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/notice/search/:id">
-                {/* 모집공고를 검색 후 검색 결과를 보여주는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/notice/:id">
-                {/* 모집공고를 자세히 볼 수 있는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/mypage">
-                {/* 내 계정의 정보를 보여주는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/recruit/:id">
-                {/* 취업 현황을 보여주는 페이지 입니다. */}
-              </Route>
-              <Route exact path="/">
-                <Redirect to={data.status === 201 ? "/account/login" : "/main"} />
-              </Route>
-            </IonRouterOutlet>
-            <IonTabBar slot="bottom">
-              <IonTabButton tab="tab1" href="/list">
-                <IonIcon ios={businessOutline} md={businessSharp} icon={business} />
-                <IonLabel>회사목록</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="tab2" href="/report">
-                <IonIcon ios={globeOutline} md={globeSharp} icon={globe} />
-                <IonLabel>모집공고</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="tab3" href="/admin">
-                <IonIcon ios={statsChartOutline} md={statsChartSharp} icon={statsChart} />
-                <IonLabel>취업현황</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="tab4" href="/admin">
-                <IonIcon ios={personOutline} md={personSharp} icon={person} />
-                <IonLabel>내정보</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="tab5" href="/admin">
-                <IonIcon ios={cogOutline} md={cogSharp} icon={cog} />
-                <IonLabel>문의</IonLabel>
-              </IonTabButton>
-            </IonTabBar>
+            {data.status == 200 ? 
+              <IonRouterOutlet>
+                <Route exact path="/account/login">
+                  {/* 사용자가 login(로그인)을 시도하는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/account/signup">
+                  {/* 사용자가 signup(회원가입)을 시도하는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/company">
+                  {/* 회사들을 표시 해주는 회사목록페이지 입니다. */}
+                </Route>
+                <Route exact path="/company/:id">
+                  {/* 회사의 정보를 자세히 볼 수 있는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/company/search/:id">
+                  {/* 회사를 검색 후 검색 결과를 보여주는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/notice">
+                  {/* 회사들의 모집공고를 표시해주는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/notice/search/:id">
+                  {/* 모집공고를 검색 후 검색 결과를 보여주는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/notice/:id">
+                  {/* 모집공고를 자세히 볼 수 있는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/mypage">
+                  {/* 내 계정의 정보를 보여주는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/recruit/:id">
+                  {/* 취업 현황을 보여주는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/">
+                  <Redirect to="/main" />
+                </Route>
+                <Route exact path="*">
+                  <NotFound />
+                </Route>
+              </IonRouterOutlet>
+            :
+              <IonRouterOutlet>
+                <Route exact path="/account/login">
+                  {/* 사용자가 login(로그인)을 시도하는 페이지 입니다. */}
+                </Route>
+                <Route exact path="/account/signup">
+                  {/* 사용자가 signup(회원가입)을 시도하는 페이지 입니다. */}
+                </Route>
+                <Route exact path="*">
+                  <Redirect to="/account/login" />
+                </Route>
+              </IonRouterOutlet>
+            }
+
+            {data.status == 200 ?
+              <IonTabBar slot="bottom">
+                <IonTabButton tab="tab1" href="/list">
+                  <IonIcon ios={businessOutline} md={businessSharp} icon={business} />
+                  <IonLabel>회사목록</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="tab2" href="/report">
+                  <IonIcon ios={globeOutline} md={globeSharp} icon={globe} />
+                  <IonLabel>모집공고</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="tab3" href="/admin">
+                  <IonIcon ios={statsChartOutline} md={statsChartSharp} icon={statsChart} />
+                  <IonLabel>취업현황</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="tab4" href="/admin">
+                  <IonIcon ios={personOutline} md={personSharp} icon={person} />
+                  <IonLabel>내정보</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="tab5" href="/admin">
+                  <IonIcon ios={cogOutline} md={cogSharp} icon={cog} />
+                  <IonLabel>문의</IonLabel>
+                </IonTabButton>
+              </IonTabBar>
+              :
+              <></>
+            }
           </IonTabs>
         </IonReactRouter>
       </IonApp>
