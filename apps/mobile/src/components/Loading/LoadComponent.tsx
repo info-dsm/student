@@ -1,13 +1,14 @@
-import Icon1x from "../icons/1x";
+import { IonApp } from "@ionic/react";
+import Icon1x from "../../../components/icons/1x";
 import LoadingStyle from "./Loading.module.css"
 
 const Load: React.FC = () =>{
   return (
-    <div className={LoadingStyle.body}>
+    <IonApp className={LoadingStyle.body}>
       <div className={LoadingStyle.iconCenter}>
         <Icon1x />
       </div>
-    </div>
+    </IonApp>
   )
 }
 
