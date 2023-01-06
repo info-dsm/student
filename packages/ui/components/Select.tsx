@@ -18,7 +18,7 @@ export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
   }, [state]);
   return (
     <>
-      <InputProps
+      <_InfoButton
         id={now}
         state={state}
         onClick={(e) => {
@@ -27,15 +27,13 @@ export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
         }}
       >
         {now}
-        <SelectIcon state={state} />
-      </InputProps>
-      <DataList state={state}>
+        <_SelectIcon state={state} />
+      </_InfoButton>
+      <_SelectList state={state}>
         {list.map((user: string) => (
-          <div onMouseDown={() => AddValuePropsFunc(user)} key={user}>
-            {user}
-          </div>
+          <div onMouseDown={() => AddValuePropsFunc(user)}>{user}</div>
         ))}
-      </DataList>
+      </_SelectList>
     </>
   );
 };
@@ -47,7 +45,7 @@ const Spin = (x: number, y: number) => keyframes`
   transform: rotate(${y}deg);
  }
 `;
-const DataList = styled.div<{ state: boolean }>`
+const _SelectList = styled.div<{ state: boolean }>`
   visibility: ${(props) => (props.state ? "visible" : "hidden")};
   width: auto;
   height: auto;
@@ -73,7 +71,7 @@ const DataList = styled.div<{ state: boolean }>`
     background-color: ${(p) => p.theme.colors.gray};
   }
 `;
-const InputProps = styled.div<{ state: boolean }>`
+const _InfoButton = styled.div<{ state: boolean }>`
   width: 7.5rem;
   height: 2rem;
   border-radius: 5px 5px ${(props) => (props.state ? 0 : 5)}px
@@ -85,7 +83,7 @@ const InputProps = styled.div<{ state: boolean }>`
   background-color: ${(props) => props.theme.colors.blue};
   cursor: pointer;
 `;
-const SelectIcon = styled.div<{ state: boolean }>`
+const _SelectIcon = styled.div<{ state: boolean }>`
   position: absolute;
   top: 1.7rem;
   left: 7rem;

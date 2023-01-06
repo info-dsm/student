@@ -2,6 +2,6 @@ import * as React from "react";
 
 export { Button,MiniButton, type ButtonProps} from "../components/Button";
 export {CustomThemeProvider, type ChildProps} from "../style/CustomThemeProvider";
-export * from "../components/table";
+export {Toast, type ToastProps} from "../components/Toast";
 export {Pagination, type PaginationProps} from "../components/pagination";
 export {LittleSelectComplete, type SelectProps} from "../components/Select";
