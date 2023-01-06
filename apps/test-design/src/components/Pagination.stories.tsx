@@ -4,19 +4,15 @@ import React, { useState, useCallback } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { Pagination } from "ui";
-import styled from "styled-components";
-const Spacing = styled.div`
-  * {
-    margin-bottom: 10px;
-  }
-`;
 export default {
   title: "INFO/Components",
   component: Pagination,
-  argTypes: { onClick: { action: "clicked" } },
+  argTypes: {
+    lastIndex: { type: "number", min: 1, step: 4 },
+  },
 } as ComponentMeta<typeof Pagination>;
 
-export const lessPagin: ComponentStory<typeof Pagination> = (args) => {
+export const lessPagin: ComponentStory<typeof Pagination> = ({ lastIndex }) => {
   const [nowIndex, setNowIndex] = useState<number>(1);
   const changeIndex = useCallback(
     (index: number) => {
@@ -25,22 +21,13 @@ export const lessPagin: ComponentStory<typeof Pagination> = (args) => {
     [nowIndex, setNowIndex]
   );
   return (
-    <Spacing>
-      {new Array(7).fill("").map((item, index) => (
-        <>
-          <Pagination
-            nowIndex={nowIndex}
-            lastIndex={index + 1}
-            changeIndex={changeIndex}
-          />
-        </>
-      ))}
+    <>
       <Pagination
         nowIndex={nowIndex}
-        lastIndex={33}
+        lastIndex={lastIndex}
         changeIndex={changeIndex}
       />
-    </Spacing>
+    </>
   );
 };
 lessPagin.storyName = "Pagination";

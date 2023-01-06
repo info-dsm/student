@@ -31,9 +31,7 @@ export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
       </_InfoButton>
       <_SelectList state={state}>
         {list.map((user: string) => (
-          <div onMouseDown={() => AddValuePropsFunc(user)} key={user}>
-            {user}
-          </div>
+          <div onMouseDown={() => AddValuePropsFunc(user)}>{user}</div>
         ))}
       </_SelectList>
     </>

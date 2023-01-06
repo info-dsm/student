@@ -6,10 +6,9 @@ import { LittleSelectComplete } from "ui";
 export default {
   title: "INFO/Components",
   component: LittleSelectComplete,
-  argTypes: { onClick: { action: "clicked" } },
 } as ComponentMeta<typeof LittleSelectComplete>;
 
-export const SelectUi: ComponentStory<typeof LittleSelectComplete> = (args) => {
+export const SelectUi: ComponentStory<typeof LittleSelectComplete> = () => {
   const [now, setNow] = useState<string>("기본");
   const changeIndex = useCallback(
     (item: string) => {
