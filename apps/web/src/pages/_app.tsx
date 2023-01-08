@@ -1,5 +1,4 @@
 import type { AppProps } from "next/app";
-import { RecoilRoot } from "recoil";
 import {
   Hydrate,
   QueryClientProvider,
@@ -14,11 +13,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <RecoilRoot>
-            <CustomThemeProvider>
-              <Component {...pageProps} />
-            </CustomThemeProvider>
-          </RecoilRoot>
+          <CustomThemeProvider>
+            <Component {...pageProps} />
+          </CustomThemeProvider>
         </Hydrate>
         <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
