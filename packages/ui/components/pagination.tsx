@@ -29,7 +29,7 @@ export const Pagination = ({
           >
             &lt;
           </_NavBar>
-          {new Array(lastIndex).fill("").map((item, index: number) => (
+          {new Array(lastIndex).fill("").map((item: string, index: number) => (
             <>
               <_Button
                 selected={nowIndex === index + 1}

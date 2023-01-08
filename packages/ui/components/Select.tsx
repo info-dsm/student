@@ -7,10 +7,12 @@ export interface SelectProps {
 }
 export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
   const [state, setState] = useState<boolean>(false);
-  const AddValuePropsFunc = useCallback((props: string) => {
-    setState(false);
-    onClick(props);
-  }, []);
+  const AddValuePropsFunc = useCallback(
+    (props: string) => {
+      onClick(props);
+    },
+    [now]
+  );
   useLayoutEffect(() => {
     document.addEventListener("click", () => {
       setState(false);
@@ -21,7 +23,7 @@ export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
       <_InfoButton
         id={now}
         state={state}
-        onClick={(e) => {
+        onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
           e.stopPropagation();
           setState(!state);
         }}
