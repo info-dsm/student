@@ -14,7 +14,7 @@ export const Pagination = ({
     (index: number) => {
       changeIndex(index);
     },
-    [nowIndex]
+    [changeIndex]
   );
   return (
     <>
