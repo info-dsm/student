@@ -1,4 +1,4 @@
-.Account {
+.LoginPage {
   background-color: #6750F8;
   width: 100%;
   height: 100%;
@@ -24,12 +24,15 @@
 }
 
 .auth {
+  position: relative;
+  top: 700px;
   border-radius: 30px 30px 0px 0px;
   width: 100%;
   height: 100%;
   background-color: white;
   padding: 40px;
   color: black;
+  animation: auth .47s forwards;
 }
 
 .auth > h1 {
@@ -54,23 +57,6 @@
   margin-bottom: 10px;
 }
 
-.LoginForm > div {
-  margin-top: 8px;
-  text-align: center;
-  color: #343A40;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 11px;
-}
-
-.LoginForm > div > a {
-  color: #6750F8;
-  font-weight: 700;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-
 .LoginForm > input[type="text"], 
 .LoginForm > input[type="password"] {
   background-color: #EAEAEA;
@@ -85,7 +71,95 @@
   line-height: 11px;
 }
 
-.LoginButton {
+.SignUpPage {
+  background-color: #fff;
+}
+
+.SignUpForm {
+  padding: 52px 40px;
+}
+
+.SignUpForm > .title {
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 31px;
+  color: #343A40;
+  margin-top: 10px;
+}
+
+.SignUpForm > p {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 12px;
+  color: #5F5F5F;
+  margin-top: 36px;
+  margin-bottom: 10px;
+}
+
+.SignUpForm > label {
+  display: flex;
+}
+
+.SignUpForm > input[type="text"],
+.SignUpForm > input[type="password"],
+.SignUpForm > input[type="email"] {
+  background-color: #EAEAEA;
+  width: 100%;
+  height: 36px;
+  border-radius: 10px;
+  border: 0;
+  padding: 22px 15px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 11px;
+  margin-bottom: 8px;
+}
+
+.SignUpForm > label > input[type="text"],
+.SignUpForm > label > input[type="password"],
+.SignUpForm > label > input[type="email"] {
+  background-color: #EAEAEA;
+  width: 100%;
+  height: 36px;
+  border-radius: 10px;
+  border: 0;
+  padding: 22px 15px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 11px;
+  margin-bottom: 8px;
+}
+
+.SignUpForm > label > input[type="text"]:disabled,
+.SignUpForm > label > input[type="password"]:disabled,
+.SignUpForm > label > input[type="email"]:disabled {
+  background-color: #D0D0D0;
+}
+
+.email {
+  border-radius: 10px 0px 0px 10px !important;
+}
+
+.SignUpForm > label > button {
+  width: 140px;
+  height: 44px;
+  text-align: center;
+  border-radius: 0px 10px 10px 0px;
+  padding: 13px 12px 13px 12px;
+  background-color: #EAEAEA;
+  color: rgba(103, 80, 248, 1);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 10px;
+}
+
+.SignUpForm > label > button:disabled {
+  background-color: #D0D0D0;
+}
+
+.SubmitBtn {
   background-color: #6750F8;
   border-radius: 10px;
   border: 0;
@@ -96,6 +170,28 @@
   margin-bottom: 6px;
 }
 
+.Accountfooter {
+  margin-top: 8px;
+  text-align: center;
+  color: #343A40;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 11px;
+}
+
+.Accountfooter > a {
+  color: #6750F8;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 @keyframes auth {
-  
+  from {
+    top: 700px;
+  }
+
+  to {
+    top: 0px;
+  }
 }
