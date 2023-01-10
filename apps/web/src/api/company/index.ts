@@ -1,0 +1,1 @@
+export { getCompanyList } from "./getCompanyList";
