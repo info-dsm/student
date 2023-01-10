@@ -4,5 +4,8 @@ const nextConfig = {
   experimental: {
     transpilePackages: ["ui"],
   },
+  compiler: {
+    styledComponents: true,
+  },
 };
 module.exports = nextConfig;

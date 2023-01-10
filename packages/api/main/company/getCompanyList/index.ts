@@ -25,38 +25,38 @@ export interface getCompanyListProps {
       businessCertificate: {
         fileId: string;
         fileUrl: string;
-        fileType: "FileType";
+        fileType: string;
         extension: string;
         fileName: string;
         companyNumber: string;
-        companyFileClassificationType: "CompanyFileClassificationType";
+        companyFileClassificationType: string;
       };
       companyIntroductionFile: {
         fileId: string;
         fileUrl: string;
-        fileType: "FileType";
+        fileType: string;
         extension: string;
         fileName: string;
         companyNumber: string;
-        companyFileClassificationType: "CompanyFileClassificationType";
+        companyFileClassificationType: string;
       }[];
       companyLogo: {
         fileId: string;
         fileUrl: string;
-        fileType: "FileType";
+        fileType: string;
         extension: string;
         fileName: string;
         companyNumber: string;
-        companyFileClassificationType: "CompanyFileClassificationType";
+        companyFileClassificationType: string;
       };
       companyPhotoList: {
         fileId: string;
         fileUrl: string;
-        fileType: "FileType";
+        fileType: string;
         extension: string;
         fileName: string;
         companyNumber: string;
-        companyFileClassificationType: "CompanyFileClassificationType";
+        companyFileClassificationType: string;
       }[];
     };
   }[];
@@ -84,18 +84,14 @@ export interface getCompanyListProps {
   empty: boolean;
 }
 export const getCompanyList = async (idx: number) => {
-  try {
-    const { data } = await requestApi({
-      method: "get",
-      url: "/company/list",
-      params: {
-        idx: idx,
-        size: 8,
-      },
-    });
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  const data: getCompanyListProps = await requestApi({
+    method: "get",
+    url: "/company/list",
+    params: {
+      idx: idx,
+      size: 8,
+    },
+  });
+  console.log(data);
+  return data;
 };

@@ -23,6 +23,7 @@ const _Toast = styled.div`
   height: 37rem;
   background-color: ${(props) => props.theme.colors.violet};
   padding-top: 1.5rem;
+  margin: 0 auto;
 `;
 const _Layout = styled.div`
   height: 32rem;

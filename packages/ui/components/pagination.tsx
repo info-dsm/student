@@ -34,6 +34,7 @@ export const Pagination = ({
               <_Button
                 selected={nowIndex === index + 1}
                 onClick={() => ChangeIndex(index + 1)}
+                key={`${index + 1}pagin`}
               >
                 {index + 1}
               </_Button>
@@ -60,11 +61,19 @@ export const Pagination = ({
           >
             &lt;
           </_NavBar>
-          <_Button selected={nowIndex === 1} onClick={() => ChangeIndex(1)}>
+          <_Button
+            selected={nowIndex === 1}
+            onClick={() => ChangeIndex(1)}
+            key={"1pagin"}
+          >
             1
           </_Button>
           {nowIndex < 6 ? (
-            <_Button selected={nowIndex === 2} onClick={() => ChangeIndex(2)}>
+            <_Button
+              selected={nowIndex === 2}
+              onClick={() => ChangeIndex(2)}
+              key={"2pagin"}
+            >
               2
             </_Button>
           ) : (
@@ -79,6 +88,7 @@ export const Pagination = ({
             <_Button
               selected={nowIndex === item}
               onClick={() => ChangeIndex(item)}
+              key={`${item}pagin`}
             >
               {item}
             </_Button>
@@ -86,7 +96,8 @@ export const Pagination = ({
           {nowIndex > lastIndex - 5 ? (
             <_Button
               selected={nowIndex === lastIndex - 1}
-              onClick={() => ChangeIndex(lastIndex + 1)}
+              onClick={() => ChangeIndex(lastIndex - 1)}
+              key={`${lastIndex - 1}pagin`}
             >
               {lastIndex - 1}
             </_Button>
@@ -96,6 +107,7 @@ export const Pagination = ({
           <_Button
             selected={nowIndex === lastIndex}
             onClick={() => ChangeIndex(lastIndex)}
+            key={`${lastIndex}pagin`}
           >
             {lastIndex}
           </_Button>
