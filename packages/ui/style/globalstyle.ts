@@ -19,6 +19,9 @@ export const GlobalStyle = createGlobalStyle`
   }
   html {  
     font-size: 20px;
+    @media (max-width: 1000px) {
+      font-size: 12px;
+    }
   }
   * {
     outline: none;
