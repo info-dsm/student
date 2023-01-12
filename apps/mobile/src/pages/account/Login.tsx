@@ -34,7 +34,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <IonApp className={AccStyle.LoginPage}>
+    <div className={AccStyle.LoginPage}>
       <div className={cn(AccStyle.MarginLRAuto, AccStyle.AuthMarginTB)}>
         <Icon2x/>
       </div>
@@ -57,7 +57,7 @@ const Login: React.FC = () => {
           </div>
         </form>
       </div>
-    </IonApp>
+    </div>
   )
 }
 
