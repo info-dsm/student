@@ -14,4 +14,5 @@ const _Table = styled.div`
   background-color: ${(props) => props.theme.colors.white};
   width: 65rem;
   height: 26rem;
+  border-radius: 10px;
 `;

@@ -11,7 +11,7 @@ export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
     (props: string) => {
       onClick(props);
     },
-    [now]
+    [onClick]
   );
   useLayoutEffect(() => {
     document.addEventListener("click", () => {

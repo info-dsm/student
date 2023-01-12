@@ -89,7 +89,7 @@ export const getCompanyList = async (idx: number) => {
     url: "/company/list",
     params: {
       idx: idx,
-      size: 8,
+      size: 11,
     },
   });
   console.log(data);
