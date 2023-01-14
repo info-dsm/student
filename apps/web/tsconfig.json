@@ -1,4 +1,10 @@
 {
   "extends": "tsconfig/nextjs.json",
+  // "compilerOptions": {
+  //   "baseUrl": "./src/",
+  //   "paths": {
+  //     "@apis/*": ["api/*"]
+  //   }
+  // },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

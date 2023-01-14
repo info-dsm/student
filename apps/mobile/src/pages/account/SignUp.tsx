@@ -3,7 +3,7 @@ import Icon1x from "../../components/icons/1x";
 import AccStyle from './Account.module.css'
 const SignUp: React.FC = () => {
   return (
-    <IonApp className={AccStyle.SignUpPage}>
+    <div className={AccStyle.SignUpPage}>
       <form className={AccStyle.SignUpForm}>
         <Icon1x />
         <h1 className={AccStyle.title}>학생 회원가입</h1>
@@ -27,7 +27,7 @@ const SignUp: React.FC = () => {
           <a href="/account/login">로그인</a>
         </div>
       </form>
-    </IonApp>
+    </div>
   )
 }
 

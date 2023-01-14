@@ -12,6 +12,7 @@ export const theme = {
     gray2: "#F7F7F7",
     pink: "#F8CFCF",
     skeleton: "#D9D9D9",
+    violet: "#F8F6FF",
   },
   graduation:
     "linear-gradient(180deg, rgba(16, 17, 18, 0.2) 4.95%, #101112 95.05%)",

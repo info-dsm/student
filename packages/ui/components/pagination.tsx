@@ -14,12 +14,12 @@ export const Pagination = ({
     (index: number) => {
       changeIndex(index);
     },
-    [nowIndex]
+    [changeIndex]
   );
   return (
     <>
       {lastIndex < 8 ? (
-        <_Container width={(lastIndex - 1) * 70 + 130}>
+        <_Container width={(lastIndex - 1) * 3.5 + 6.5}>
           <_NavBar
             onClick={() => {
               if (nowIndex > 1) {
@@ -29,11 +29,12 @@ export const Pagination = ({
           >
             &lt;
           </_NavBar>
-          {new Array(lastIndex).fill("").map((item, index: number) => (
+          {new Array(lastIndex).fill("").map((item: string, index: number) => (
             <>
               <_Button
                 selected={nowIndex === index + 1}
                 onClick={() => ChangeIndex(index + 1)}
+                key={index + 1}
               >
                 {index + 1}
               </_Button>
@@ -50,7 +51,7 @@ export const Pagination = ({
           </_NavBar>
         </_Container>
       ) : (
-        <_Container width={550}>
+        <_Container width={27.5}>
           <_NavBar
             onClick={() => {
               if (nowIndex > 1) {
@@ -60,11 +61,19 @@ export const Pagination = ({
           >
             &lt;
           </_NavBar>
-          <_Button selected={nowIndex === 1} onClick={() => ChangeIndex(1)}>
+          <_Button
+            selected={nowIndex === 1}
+            onClick={() => ChangeIndex(1)}
+            key={1}
+          >
             1
           </_Button>
           {nowIndex < 6 ? (
-            <_Button selected={nowIndex === 2} onClick={() => ChangeIndex(2)}>
+            <_Button
+              selected={nowIndex === 2}
+              onClick={() => ChangeIndex(2)}
+              key={2}
+            >
               2
             </_Button>
           ) : (
@@ -79,6 +88,7 @@ export const Pagination = ({
             <_Button
               selected={nowIndex === item}
               onClick={() => ChangeIndex(item)}
+              key={item}
             >
               {item}
             </_Button>
@@ -86,7 +96,8 @@ export const Pagination = ({
           {nowIndex > lastIndex - 5 ? (
             <_Button
               selected={nowIndex === lastIndex - 1}
-              onClick={() => ChangeIndex(lastIndex + 1)}
+              onClick={() => ChangeIndex(lastIndex - 1)}
+              key={lastIndex - 1}
             >
               {lastIndex - 1}
             </_Button>
@@ -96,6 +107,7 @@ export const Pagination = ({
           <_Button
             selected={nowIndex === lastIndex}
             onClick={() => ChangeIndex(lastIndex)}
+            key={lastIndex}
           >
             {lastIndex}
           </_Button>
@@ -115,15 +127,15 @@ export const Pagination = ({
 };
 const _Button = styled.div<{ selected: boolean }>`
   font: 700 normal 1rem "pretendard", sans-serif;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 3rem;
+  width: 3rem;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 3rem;
   background-color: ${(props) =>
     props.selected ? props.theme.colors.blue : "transparent"};
   color: ${(props) =>
     props.selected ? props.theme.colors.white : props.theme.colors.black};
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
   :hover {
     background-color: ${(props) => props.theme.colors.blue};
@@ -132,18 +144,18 @@ const _Button = styled.div<{ selected: boolean }>`
 `;
 const _Elipsis = styled.div`
   font: 700 normal 1rem "pretendard", sans-serif;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   text-align: center;
   line-height: 2.5rem;
   color: ${(props) => props.theme.colors.black};
 `;
 const _NavBar = styled.div`
-  font: 500 normal 1rem "pretendard", sans-serif;
-  width: 1rem;
-  height: 2.5rem;
+  font: 400 normal 1.2rem "pretendard", sans-serif;
+  width: 1.2rem;
+  height: 3rem;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 3rem;
   cursor: pointer;
   color: ${(props) => props.theme.colors.black};
   :hover {
@@ -151,10 +163,10 @@ const _NavBar = styled.div`
   }
 `;
 const _Container = styled.div<{ width: number }>`
-  margin: 0 auto;
-
+  margin: 1rem auto;
+  background-color: aliceblue;
   display: flex;
-  height: 2.5rem;
-  width: ${(props) => props.width}px;
+  height: 3rem;
+  width: ${(props) => props.width}rem;
   justify-content: space-between;
 `;
