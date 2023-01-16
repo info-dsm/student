@@ -1,8 +1,10 @@
-import { cardProps } from "../../type/interfaces"
+import { NoticeCardProps } from "../../type/interfaces"
 
-const CardNotice: React.FC<cardProps> = () => {
+const CardNotice: React.FC<NoticeCardProps> = () => {
   return (
-    <></>
+    <div>
+
+    </div>
   )
 }
 

@@ -3,9 +3,21 @@ export interface searchBarProps {
   placeholder: string,
 };
 
-export interface cardProps {
+export interface CompanyCardProps {
   title: string,
-  content: string,
+  desc: string,
   image: string,
-  tag: object
+  tags: object[]
+}
+
+export interface NoticeCardProps {
+  title: string,
+  company: string,
+  address: string,
+  image: string,
+  tags: object[]
+}
+
+export interface cardTag {
+  name: string
 }
