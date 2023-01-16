@@ -1,9 +1,9 @@
-import { cardProps } from "../../type/interfaces"
+import { CompanyCardProps } from "../../type/interfaces"
 import CardStyle from './card.module.css'
 import cn from "classnames"
 import IconGray from "../icons/card"
 import snippet from "../../utils/snippet"
-const CardCompany: React.FC<cardProps> = ({ title, desc, tags, image }) => {
+const CardCompany: React.FC<CompanyCardProps> = ({ title, desc, tags, image }) => {
   return (
     <div className={CardStyle.body}>
       {!image ? 
