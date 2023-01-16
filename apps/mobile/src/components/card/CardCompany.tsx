@@ -1,4 +1,4 @@
-import { cardProps, cardTag  } from "../../type/interfaces"
+import { cardProps } from "../../type/interfaces"
 import CardStyle from './card.module.css'
 import cn from "classnames"
 import IconGray from "../icons/card"
@@ -11,7 +11,7 @@ const CardCompany: React.FC<cardProps> = ({ title, desc, tags, image }) => {
           <IconGray />
         </div>
       :
-        <img />
+        <img className={CardStyle.image} src={image} />
       }
       <div className={CardStyle.content}>
         <h1>{title}</h1>
