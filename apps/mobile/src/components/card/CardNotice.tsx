@@ -1,4 +1,4 @@
-import { NoticeCardProps } from "../../type/interfaces"
+import { NoticeCardProps } from "../../types/interfaces"
 
 const CardNotice: React.FC<NoticeCardProps> = () => {
   return (
