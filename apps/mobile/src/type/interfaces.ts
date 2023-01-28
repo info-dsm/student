@@ -7,7 +7,7 @@ export interface CompanyCardProps {
   title: string,
   desc: string,
   image: string,
-  tags: object[]
+  tags: {name:string}[]
 }
 
 export interface NoticeCardProps {
