@@ -15,9 +15,5 @@ export interface NoticeCardProps {
   company: string,
   address: string,
   image: string,
-  tags: object[]
-}
-
-export interface cardTag {
-  name: string
+  tags: {name:string}[]
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { searchBarProps } from "../../type/interfaces";
+import { searchBarProps } from "../../types/interfaces";
 import searchStyle from './search.module.css'
 
 const SearchBar: React.FC<searchBarProps> = ({ url, placeholder }) => {
