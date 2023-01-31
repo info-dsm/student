@@ -10,3 +10,10 @@ export { Pagination, type PaginationProps } from "../components/Pagination";
 export { LittleSelectComplete, type SelectProps } from "../components/Select";
 export { Table, type TableProps } from "../components/Table";
 export { Title, List, type TitleProps } from "../components/List";
+export { Logo, type LogoProps } from "../components/Logo";
+export { Header, type HeaderProps } from "../components/Header";
+export {
+  InputText,
+  Password,
+  type InputTextProps,
+} from "../components/InputText";

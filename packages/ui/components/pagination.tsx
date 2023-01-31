@@ -164,7 +164,6 @@ const _NavBar = styled.div`
 `;
 const _Container = styled.div<{ width: number }>`
   margin: 1rem auto;
-  background-color: aliceblue;
   display: flex;
   height: 3rem;
   width: ${(props) => props.width}rem;
