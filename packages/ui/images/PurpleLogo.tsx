@@ -1,9 +1,8 @@
-const PurpleLogo = () => {
+const PurpleLogo = (props: { width: string; height: string }) => {
   return (
     <>
       <svg
-        width="34"
-        height="32"
+        {...props}
         viewBox="0 0 17 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

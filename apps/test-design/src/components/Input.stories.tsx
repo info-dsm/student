@@ -2,7 +2,6 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { InputText } from "ui";
-import styled from "styled-components";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "INFO/Components",
@@ -20,4 +19,5 @@ export const Input = Template.bind({});
 Input.args = {
   placeholder: "",
   error: false,
+  onInput: (e) => console.log(e.target.value),
 };

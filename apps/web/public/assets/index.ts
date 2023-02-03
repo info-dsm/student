@@ -1,2 +1,1 @@
-// 사진 파일 저장소입니다.
-export {};
+export { default as BackImg } from "./images/background 1.jpg";

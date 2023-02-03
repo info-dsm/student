@@ -1,11 +1,9 @@
-import { NextPage } from "next";
 import { Modal, InputText, Password } from "ui";
 import React, { useState, useCallback } from "react";
-import Background from "../../../lib/components/Background";
+import Background from "./Background";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { login } from "apis";
-const LoginPage: NextPage = () => {
+const LoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState<boolean>(false);
   const [data, setData] = useState<{ email: string; password: string }>({
@@ -23,8 +21,6 @@ const LoginPage: NextPage = () => {
   }, [error, setError]);
   const Submit = () => {
     console.log("submit");
-    const _data = login(data, "user").catch((e) => console.log("error"));
-    console.log(_data, "asdew");
   };
   return (
     <>

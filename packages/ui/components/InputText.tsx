@@ -3,7 +3,8 @@ import styled from "styled-components";
 export interface InputTextProps {
   placeholder: string;
   error: boolean;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  onFocus: () => void;
 }
 export const _Input = styled.input<{ error: boolean }>`
   border-radius: 5px;
@@ -11,9 +12,7 @@ export const _Input = styled.input<{ error: boolean }>`
   font: 500 15px "Pretendard";
   color: ${(props) =>
     props.error ? props.theme.colors.red : props.theme.colors.black};
-  ::placeholder {
-    color: ${(props) => props.theme.colors.black40};
-  }
+
   background-color: ${(props) =>
     props.error ? props.theme.colors.pink : props.theme.colors.gray};
 `;
@@ -26,6 +25,9 @@ const _InputText = styled(_Input)`
   border: 1px solid
     ${(props) =>
       props.error ? props.theme.colors.red : props.theme.colors.gray};
+  ::placeholder {
+    color: ${(props) => props.theme.colors.black40};
+  }
 `;
 export const Password = (props: InputTextProps) => {
   const [state, setState] = useState<boolean>(false);

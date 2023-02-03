@@ -4,3 +4,7 @@ export type CompanyTitleProps = {
   width: number;
   key: string;
 }[];
+export type EmailProps = {
+  e: string | null;
+  props: "email" | "password";
+};

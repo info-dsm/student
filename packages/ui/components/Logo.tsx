@@ -9,7 +9,8 @@ export const Logo = (props: LogoProps) => {
   return (
     <>
       <_Layout {...props}>
-        {props.main ? <PurpleLogo /> : <WhiteLogo />} info
+        {props.main ? <PurpleLogo width="34" height="32" /> : <WhiteLogo />}{" "}
+        info
       </_Layout>
     </>
   );

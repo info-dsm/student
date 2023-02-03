@@ -3,6 +3,8 @@ export const theme = {
     balck: "#101112",
     black40: "rgba(16, 17, 18, 0.4)",
     black50: "rgba(16, 17, 18, 0.5)",
+    black60: "rgba(16, 17, 18, 0.6)",
+    black80: "rgba(16, 17, 18, 0.8)",
     blue: "#6750F8",
     indigo: "#6D62EF",
     cobalt: "#888DFF",

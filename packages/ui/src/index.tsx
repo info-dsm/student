@@ -17,3 +17,9 @@ export {
   Password,
   type InputTextProps,
 } from "../components/InputText";
+export {
+  AuthorizationInput,
+  type AuthorizationProps,
+} from "../components/Authorization";
+export { Modal } from "../modal";
+export { SmallLogo, type SmallLogoProps } from "../components/SmallLogo";

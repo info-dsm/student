@@ -31,7 +31,8 @@ export const Header = ({ children, bgColor, admin, menu }: HeaderProps) => {
 };
 const _Container = styled.div<{ bgColor: string }>`
   background-color: ${(props) => props.bgColor};
-  width: 100%;
+  backdrop-filter: blur(9px);
+  width: 100vw;
   height: 100px;
   display: flex;
 `;
