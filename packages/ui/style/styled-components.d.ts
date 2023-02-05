@@ -1,8 +1,10 @@
 import "styled-components";
 type MainKey =
-  | "balck"
+  | "black"
   | "black40"
   | "black50"
+  | "black60"
+  | "black80"
   | "blue"
   | "indigo"
   | "cobalt"
@@ -16,7 +18,7 @@ type MainKey =
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      [key in studentKey]: string;
+      [key in MainKey]: string;
     };
     graduation: string;
   }

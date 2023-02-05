@@ -3,8 +3,16 @@ import styled from "styled-components";
 import { SmallLogo } from "../src";
 export interface ModalProps {
   children: ReactNode;
-  text: string;
-  direct: string;
+  comment: string;
+  confirm: string;
+  bottom: {
+    text: string;
+    direct: string;
+  };
+  top?: {
+    text: string;
+    direct: string;
+  };
   onClick: () => void;
   href: () => void;
   move: () => void;
@@ -12,9 +20,14 @@ export interface ModalProps {
 }
 export const Modal = ({
   children,
+  comment,
+  confirm,
   href,
-  text,
-  direct,
+  bottom,
+  top = {
+    text: "비밀번호를 잊어버리셨나요?",
+    direct: "비밀번호 찾기",
+  },
   move,
   onSubmit,
   ...props
@@ -26,16 +39,16 @@ export const Modal = ({
           <_Locate>
             <SmallLogo {...props} />
           </_Locate>
-          <_Title>선생님 로그인</_Title>
+          <_Title>{comment}</_Title>
           <_Switch size={13} opac={"black60"}>
-            비밀번호를 잊어버리셨나요? <span onClick={href}>비밀번호 찾기</span>
+            {top.text} <span onClick={href}>{top.direct}</span>
           </_Switch>
           {children}
           <_BottomLayout>
-            <_Button onClick={onSubmit}>로그인</_Button>
+            <_Button onClick={onSubmit}>{confirm}</_Button>
             <_Or>or</_Or>
             <_Switch size={14} opac={"black80"}>
-              {text} <span onClick={move}>{direct}</span>
+              {bottom.text} <span onClick={move}>{bottom.direct}</span>
             </_Switch>
           </_BottomLayout>
         </_Layout>

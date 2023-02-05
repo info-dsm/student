@@ -15,4 +15,7 @@ const _Table = styled.div`
   width: 65rem;
   height: 26rem;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

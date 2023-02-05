@@ -3,28 +3,18 @@ import { Header, Logo } from "ui";
 import React from "react";
 import { BackImg } from "../../../public/assets";
 import Image from "next/image";
-const Background = () => {
+const Background = (props: {
+  menu: {
+    onClick: () => void;
+    key: string;
+    selected: boolean;
+  }[];
+}) => {
   return (
     <>
-      {" "}
       <Image src={BackImg} alt="" placeholder="blur" fill></Image>
       <_Layout>
-        <Header
-          bgColor="rgba(16, 17, 18, 0.5);"
-          admin={false}
-          menu={[
-            {
-              onClick: () => {},
-              key: "모집공고",
-              selected: false,
-            },
-            {
-              onClick: () => {},
-              key: "회사",
-              selected: false,
-            },
-          ]}
-        >
+        <Header bgColor="rgba(16, 17, 18, 0.5);" admin={false} {...props}>
           <Logo main={false} onClick={() => {}} />
         </Header>
       </_Layout>
