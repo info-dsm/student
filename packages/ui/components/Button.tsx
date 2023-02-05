@@ -5,21 +5,13 @@ import { ChildProps } from "../style/CustomThemeProvider";
 export interface ButtonProps extends ChildProps {
   size: string;
   less: number;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
-export const Button = ({
-  children,
-  less,
-  size,
-  onClick,
-  ...props
-}: ButtonProps) => {
+export const Button = ({ children, less, size, onClick }: ButtonProps) => {
   return (
     <>
-      <_Button size={size} less={less} onClick={() => onClick}>
-        {children}
-      </_Button>
+      <_Button {...{ less, size, onClick }}>{children}</_Button>
     </>
   );
 };
