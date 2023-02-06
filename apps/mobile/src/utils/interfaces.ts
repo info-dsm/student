@@ -57,3 +57,8 @@ export interface NoticeCardProps {
   image?: string | null,
   tags: tags[]
 }
+
+export interface SearchBarProps {
+  url: string,
+  placeholder: string
+}
