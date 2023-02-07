@@ -1,4 +1,4 @@
 {
   "extends": "tsconfig/base.json",
-  "include": ["main"]
+  "include": ["main", "../../apps/web/src/axios/main/company/grant"]
 }

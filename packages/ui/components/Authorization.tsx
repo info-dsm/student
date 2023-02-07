@@ -3,14 +3,21 @@ import { _Input, InputTextProps } from "./InputText";
 export interface AuthorizationProps extends InputTextProps {
   onClick: () => void;
   aut: string;
+  comment: string;
+  value: string;
 }
 export const AuthorizationInput = (props: AuthorizationProps) => {
-  const { onClick, aut, ...item } = props;
+  const { onClick, aut, value, placeholder, comment, ...item } = props;
   return (
     <_Container error={item.error}>
-      <_AuthorizationInput type={"text"} {...item} />
+      <_AuthorizationInput
+        type={"text"}
+        {...item}
+        placeholder={item.error ? comment : placeholder}
+        value={item.error ? "" : value}
+      />
       <_Layout>
-        <span {...onClick}>{aut}</span>
+        <span {...{ onClick }}>{aut}</span>
       </_Layout>
     </_Container>
   );
@@ -30,5 +37,17 @@ const _AuthorizationInput = styled(_Input)`
   border: none;
   width: 300px;
   height: 54px;
+  ::placeholder {
+    color: ${(props) =>
+      props.error ? props.theme.colors.red : props.theme.colors.black40};
+  }
 `;
-const _Layout = styled.div``;
+const _Layout = styled.div`
+  line-height: 56px;
+  width: max-content;
+  span {
+    font: 500 13px "Pretendard";
+    color: ${(props) => props.theme.colors.blue};
+    cursor: pointer;
+  }
+`;

@@ -1,36 +1,29 @@
-// button 컴포넌트입니다. size뱔로 100px, 120px, 150px입니다.
-import React from "react";
 import styled from "styled-components";
-import { ChildProps } from "../style/CustomThemeProvider";
-export interface ButtonProps extends ChildProps {
-  size: string;
-  less: number;
+export interface ButtonProps {
+  text: string;
   onClick: () => void;
 }
 
-export const Button = ({ children, less, size, onClick }: ButtonProps) => {
+export const Button = ({ text, ...props }: ButtonProps) => {
   return (
     <>
-      <_Button {...{ less, size, onClick }}>{children}</_Button>
+      <_Button {...props}>{text}</_Button>
     </>
   );
 };
-const _Button = styled.div<{ size: string; less: number }>`
-  width: ${(props) =>
-    props.size === "small"
-      ? "5rem"
-      : props.size === "aver"
-      ? "6rem"
-      : "7.5rem"};
+const _Button = styled.div`
+  width: max-content;
   height: 1.5rem;
+  font: 700 0.7rem "Pretendard";
   line-height: 1.5rem;
-  border-radius: ${(props) => props.less}px;
+  border-radius: 0.25rem;
   text-align: center;
-  font-size: 0.7rem;
+
   cursor: pointer;
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.blue};
   :hover {
     filter: brightness(0.8);
   }
+  padding: 0 1rem;
 `;

@@ -3,7 +3,9 @@ import styled from "styled-components";
 export interface InputTextProps {
   placeholder: string;
   error: boolean;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  onFocus: () => void;
+  author?: boolean;
 }
 export const _Input = styled.input<{ error: boolean }>`
   border-radius: 5px;
@@ -11,9 +13,7 @@ export const _Input = styled.input<{ error: boolean }>`
   font: 500 15px "Pretendard";
   color: ${(props) =>
     props.error ? props.theme.colors.red : props.theme.colors.black};
-  ::placeholder {
-    color: ${(props) => props.theme.colors.black40};
-  }
+
   background-color: ${(props) =>
     props.error ? props.theme.colors.pink : props.theme.colors.gray};
 `;
@@ -26,8 +26,11 @@ const _InputText = styled(_Input)`
   border: 1px solid
     ${(props) =>
       props.error ? props.theme.colors.red : props.theme.colors.gray};
+  ::placeholder {
+    color: ${(props) => props.theme.colors.black40};
+  }
 `;
-export const Password = (props: InputTextProps) => {
+export const Password = ({ author = false, ...props }: InputTextProps) => {
   const [state, setState] = useState<boolean>(false);
   const ShowPw = useCallback(
     (checked: boolean) => {
@@ -45,7 +48,7 @@ export const Password = (props: InputTextProps) => {
             ShowPw(e.target.checked)
           }
         />
-        <_WatchPw>비밀번호 표시하기</_WatchPw>
+        <_WatchPw>{author ? "인증코드" : "비밀번호"} 표시하기</_WatchPw>
       </div>
     </_Layout>
   );

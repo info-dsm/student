@@ -26,15 +26,7 @@ export const lessButton: ComponentStory<typeof Button> = () => (
       <MiniButton size="large" less={5}>
         추가
       </MiniButton>
-      <Button size="small" less={5} onClick={() => console.log("as")}>
-        양식 등록
-      </Button>
-      <Button size="aver" less={5} onClick={() => console.log("as")}>
-        선도기업 등록
-      </Button>
-      <Button size="large" less={5} onClick={() => console.log("as")}>
-        모집의뢰 등록
-      </Button>
+      <Button text={"선도기업"} onClick={() => console.log("as")}></Button>
     </_Spacing>
   </>
 );
@@ -48,15 +40,6 @@ export const RoundButton: ComponentStory<typeof Button> = () => (
       <MiniButton size="large" less={20}>
         추가
       </MiniButton>
-      <Button size="small" less={20} onClick={() => console.log("as")}>
-        양식 등록
-      </Button>
-      <Button size="aver" less={20} onClick={() => console.log("as")}>
-        선도기업 등록
-      </Button>
-      <Button size="large" less={20} onClick={() => console.log("as")}>
-        모집의뢰 등록
-      </Button>
     </_Spacing>
   </>
 );

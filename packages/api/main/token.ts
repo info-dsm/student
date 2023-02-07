@@ -1,9 +1,10 @@
+import { getCookie } from "./cookie/getCookie";
 // axios instance 를 생성해주었습니다.
 import axios from "axios";
 const requestApi = axios.create({
   baseURL: "http://43.200.191.39/",
   headers: {
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaW5nZW9uMjdAZHNtLmhzLmtyIiwiYXV0aC1sZXZlbCI6IlNUVURFTlQiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNjczMzE0ODAyLCJleHAiOjE2NzM0MDEyMDJ9.cbpClr8ATsqIgn1hL0qMCCVcR6qEL2ppx-jWs6o5ED8`,
+    Authorization: `Bearer ${getCookie("accessToken")}`,
   },
 });
 requestApi.interceptors.request.use(
