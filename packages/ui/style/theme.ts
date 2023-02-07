@@ -17,6 +17,5 @@ export const theme: DefaultTheme = {
     skeleton: "#D9D9D9",
     violet: "#F8F6FF",
   },
-  graduation:
-    "linear-gradient(180deg, rgba(16, 17, 18, 0.2) 4.95%, #101112 95.05%)",
+  graduation: "linear-gradient(180deg, #6D62EF 4.95%, #6750F8 95.05%)",
 };

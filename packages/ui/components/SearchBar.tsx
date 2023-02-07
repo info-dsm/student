@@ -1,8 +1,9 @@
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 export interface SearchBarProps {
   placeholder: string;
   onClick: () => void;
-  onInput: () => void;
+  onInput: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 export const SearchBar = ({ onClick, ...props }: SearchBarProps) => {
   return (
@@ -18,6 +19,8 @@ const _Layout = styled.div`
   height: max-content;
   border: 5px solid ${(props) => props.theme.colors.blue};
   border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.white};
+  padding-left: 16px;
   display: flex;
 `;
 const _Input = styled.input`
@@ -27,7 +30,7 @@ const _Input = styled.input`
   ::placeholder {
     color: ${(props) => props.theme.colors.black40};
   }
-  padding: 0 16px;
+  padding-right: 16px;
   border: none;
   font: 500 20px "Pretendard";
   line-height: 50px;

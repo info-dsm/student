@@ -9,7 +9,8 @@ export { Toast, type ToastProps } from "../components/Toast";
 export { Pagination, type PaginationProps } from "../components/Pagination";
 export { LittleSelectComplete, type SelectProps } from "../components/Select";
 export { Table } from "../components/Table";
-export { Title, List, Wait, type TitleProps } from "../components/List";
+export { List, type ListProps } from "../components/List";
+export { Title, Wait, type TitleProps } from "../components/Title";
 export { Logo, type LogoProps } from "../components/Logo";
 export { Header, type HeaderProps } from "../components/Header";
 export {
@@ -25,3 +26,4 @@ export { Modal } from "../modal";
 export { SmallLogo, type SmallLogoProps } from "../components/SmallLogo";
 export { Success } from "../components/Success";
 export { SearchBar, type SearchBarProps } from "../components/SearchBar";
+export { ModalHeader, type ModalHeaderProps } from "../modal/ModalHeader";

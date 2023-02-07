@@ -14,7 +14,8 @@ export const Pagination = ({
     (index: number) => {
       changeIndex(index);
     },
-    [changeIndex]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [nowIndex, changeIndex]
   );
   return (
     <>

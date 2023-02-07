@@ -53,7 +53,12 @@ const LoginPage = ({
       })
       .catch((err) => {
         console.log(err);
-        setError({ error: true, comment: err.response.data.message });
+        setError({
+          error: true,
+          comment: err.response
+            ? err.response.data.message
+            : "서버 에러입니다.",
+        });
       });
   };
   return (
@@ -108,4 +113,5 @@ const _Layout = styled.div`
 const _ErrorComent = styled.div`
   font: 500 13px "Pretendard";
   line-height: 16px;
+  color: ${({ theme }) => theme.colors.red};
 `;

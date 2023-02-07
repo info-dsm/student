@@ -1,11 +1,5 @@
 import styled from "styled-components";
-import DownPolygonIcon from "../images/DownPolygoIcon";
-import { ReactEventHandler, SyntheticEvent } from "react";
-export interface TitleProps {
-  checked: boolean;
-  data: { title: string; width: number; key: string }[];
-  onChange: () => void;
-}
+import { _Layout, _CheckBox } from "./Title";
 export interface ListProps {
   checked: boolean;
   onChange: () => void;
@@ -66,45 +60,17 @@ export interface ListProps {
       }[];
     };
   };
+  onClick: () => void;
+  onWrite: () => void;
+  onWatch: () => void;
 }
-const _Layout = styled.div`
-  width: 60rem;
-  height: 2rem;
-  border-bottom: 0.05rem solid ${(props) => props.theme.colors.gray};
-  display: flex;
-  gap: 0.5rem;
-`;
-export const Title = ({ data, ...props }: TitleProps) => {
-  return (
-    <>
-      <_Layout>
-        <_CheckBox type={"checkbox"} {...props} />
-        {data.map((item: { title: string; width: number; key: string }) => (
-          <>
-            <_TitleLayout width={item.width} key={item.key}>
-              {item.title}
-              <DownPolygonIcon />
-            </_TitleLayout>
-          </>
-        ))}
-      </_Layout>
-    </>
-  );
-};
-const _CheckBox = styled.input`
-  margin-top: 0.5rem;
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
-  border: 0.05rem solid ${(props) => props.theme.colors.black};
-`;
-const _TitleLayout = styled.div<{ width: number }>`
-  width: ${(props) => props.width}rem;
-  font: 700 0.7rem "Pretendadard";
-  line-height: 2rem;
-`;
-
-export const List = ({ list, ...props }: ListProps) => {
+export const List = ({
+  list,
+  onClick,
+  onWatch,
+  onWrite,
+  ...props
+}: ListProps) => {
   return (
     <>
       <_Layout>
@@ -137,7 +103,7 @@ export const List = ({ list, ...props }: ListProps) => {
             {list.isAssociated ? "Y" : "N"}
           </_CompanyLeading>
         </_ListLayout>
-        <_ListLayout width={4.5}>
+        <_ListLayout width={4.5} {...{ onClick }}>
           <_Link>{list.totalEmployedCount} 명</_Link>
         </_ListLayout>
         <_ListLayout width={5.5}>
@@ -187,4 +153,3 @@ const _Link = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.blue};
   cursor: pointer;
 `;
-export const Wait = () => <_Layout />;

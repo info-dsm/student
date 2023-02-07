@@ -1,7 +1,7 @@
 // axios instance 를 생성해주었습니다.
 import axios from "axios";
 const request = axios.create({
-  baseURL: "http://43.200.191.39",
+  baseURL: process.env.NEXT_PUBLIC_API_KEY,
 });
 request.interceptors.request.use(
   (config) => {

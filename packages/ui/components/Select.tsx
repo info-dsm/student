@@ -31,9 +31,8 @@ export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
             setState(!state);
           }}
         >
-          {now}
+          <div>{now}</div>
           <_SelectIcon {...{ state }}>
-            {" "}
             <HighPolygon />
           </_SelectIcon>
         </_InfoButton>
@@ -90,15 +89,21 @@ const _InfoButton = styled.div<{ state: boolean }>`
   font: 500 normal 20px "pretendard", sans-serif;
   line-height: 40px;
   color: ${(props) => props.theme.colors.white};
-  text-align: center;
+
   background-color: ${(props) => props.theme.colors.blue};
   cursor: pointer;
   display: flex;
   justify-content: center;
   gap: 20px;
   padding: 0 10px;
+  div {
+    text-align: center;
+    width: 75px;
+  }
 `;
-const _SelectIcon = styled.div<{ state: boolean }>`
+const _SelectIcon = styled.span<{ state: boolean }>`
+  display: flex;
+  align-items: center;
   animation: ${(props) => (props.state ? Spin(0, 180) : Spin(180, 0))} 0.25s
     ease-in-out 0s alternate forwards;
 `;

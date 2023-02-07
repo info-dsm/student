@@ -1,4 +1,4 @@
-import { CompanyTitleProps } from "../pages/type/interface";
+import { CompanyTitleProps } from "../../../pages/type/interface";
 
 export const CompanyTitleData: CompanyTitleProps = [
   {
