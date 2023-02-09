@@ -1,13 +1,16 @@
 import TeacherNotice from "../../../../lib/components/teacher/Notice";
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
-import { deleteNoRemainNotice, getGoneList } from "../../../../axios/dist";
+import {
+  getOnList,
+  deleteNoRemainNotice,
+  deleteNotice,
+} from "../../../../axios/dist";
 const TeacherNoticePage = () => {
   const [getIndex, setIndex] = useState<number>(0);
-  const [now, setNow] = useState<"승인된" | "미승인">("승인된");
   const { status, data } = useQuery(
-    ["noticeGone", getIndex, now],
-    async () => getGoneList(getIndex, now === "승인된" ? "APPROVE" : "WAITING"),
+    ["noticeProgress", getIndex],
+    async () => getOnList(getIndex),
     { keepPreviousData: true }
   );
   const ChangeIndex = useCallback(
@@ -15,13 +18,6 @@ const TeacherNoticePage = () => {
       setIndex(num - 1);
     },
     [setIndex]
-  );
-  const onClick = useCallback(
-    (item: "승인된" | "미승인") => {
-      setNow(item);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [now, setNow]
   );
   const GetElementList = (check: boolean[]) => {
     const companyNumberArr: {
@@ -40,6 +36,12 @@ const TeacherNoticePage = () => {
   };
   const grantList = [
     {
+      text: "모집 종료",
+      onClick: (check: boolean[]) => {
+        deleteNotice(GetElementList(check)).then(() => location.reload());
+      },
+    },
+    {
       text: "삭제",
       onClick: (check: boolean[]) => {
         deleteNoRemainNotice(GetElementList(check)).then(() =>
@@ -57,11 +59,7 @@ const TeacherNoticePage = () => {
           getIndex,
           ChangeIndex,
           grantList,
-          approveStatus: {
-            now,
-            list: ["승인된", "미승인"],
-            onClick,
-          },
+          listStatus: "APPROVE",
         }}
       />
     </>

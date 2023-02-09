@@ -27,3 +27,6 @@ export { SmallLogo, type SmallLogoProps } from "../components/SmallLogo";
 export { Success } from "../components/Success";
 export { SearchBar, type SearchBarProps } from "../components/SearchBar";
 export { ModalHeader, type ModalHeaderProps } from "../modal/ModalHeader";
+export { LabelButton, type LabelButtonProps } from "../components/Label";
+export { NoticeList } from "../components/NoticeList";
+export { ChangeSelect,type ChangeSelectProps } from "../components/ChangeStatus";

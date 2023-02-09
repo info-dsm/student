@@ -49,7 +49,7 @@ const LoginPage = ({
         ] = `Bearer ${res.accessToken}`;
         cookie.set("accessToken", res.accessToken, { expires: 7 });
         cookie.set("refreshToken", res.refreshToken, { expires: 7 });
-        router.push("/teacher/notice");
+        router.push(path.direct);
       })
       .catch((err) => {
         console.log(err);
@@ -74,7 +74,7 @@ const LoginPage = ({
         }}
         confirm={"로그인"}
         {...{ comment }}
-        move={() => router.push("/teacher/signup")}
+        move={() => router.push(path.signUp)}
         onSubmit={() => Submit()}
       >
         <_Layout>

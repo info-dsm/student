@@ -1,66 +1,27 @@
 export interface NoticeProps {
-  content: [
-    {
-      noticeId: string;
-      company: {
-        companyNumber: string;
-        companyName: string;
+  content: {
+    noticeId: string;
+    company: {
+      companyNumber: string;
+      companyName: string;
+    };
+    classificationResponse: {
+      bigClassification: {
+        bigClassificationName: string;
       };
-      classificationResponse: [
-        {
-          bigClassification: {
-            bigClassificationName: string;
-          };
-          name: string;
-        },
-        {
-          bigClassification: {
-            bigClassificationName: string;
-          };
-          name: string;
-        }
-      ];
-      numberdetailBusinessDescription: string;
-      numberOfEmployee: number;
-      gradeCutLine: number;
-      applicantCount: number;
-      isPersonalContact: boolean;
-      noticeOpenPeriod: {
-        startDate: string;
-        endDate: string;
-      };
-    },
-    {
-      noticeId: string;
-      company: {
-        companyNumber: string;
-        companyName: string;
-      };
-      classificationResponse: [
-        {
-          bigClassification: {
-            bigClassificationName: string;
-          };
-          name: string;
-        },
-        {
-          bigClassification: {
-            bigClassificationName: string;
-          };
-          name: string;
-        }
-      ];
-      detailBusinessDescription: string;
-      numberOfEmployee: number;
-      gradeCutLine: number;
-      applicantCount: number;
-      isPersonalContact: boolean;
-      noticeOpenPeriod: {
-        startDate: string;
-        endDate: string;
-      };
-    }
-  ];
+      name: string;
+    }[];
+    numberdetailBusinessDescription: string;
+    numberOfEmployee: number;
+    gradeCutLine: number;
+    applicantCount: number;
+    isPersonalContact: boolean;
+    noticeOpenPeriod: {
+      startDate: string;
+      endDate: string;
+    };
+    approveStatus?: "WAITING" | "APPROVE";
+  }[];
   pageable: {
     sort: {
       empty: boolean;
