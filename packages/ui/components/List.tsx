@@ -1,3 +1,4 @@
+import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import { _Layout, _CheckBox } from "./Title";
 export interface ListProps {
@@ -71,6 +72,26 @@ export const List = ({
   onWrite,
   ...props
 }: ListProps) => {
+  const [listObject, setListObject] = useState<{
+    address: string;
+    tag: string;
+  }>({
+    address: list.homeAddressInfo.fullAddress,
+    tag: list.businessTagged.map((item) => item.name).join(","),
+  });
+  useLayoutEffect(() => {
+    setListObject({
+      address:
+        listObject.address.length > 20
+          ? `${listObject.address.slice(0, 17)}...`
+          : listObject.address,
+      tag:
+        listObject.tag.length > 28
+          ? `${listObject.tag.slice(0, 25)}...`
+          : listObject.tag,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <_Layout>
@@ -80,18 +101,10 @@ export const List = ({
           <_CompanyName>{list.companyName}</_CompanyName>
         </_ListLayout>
         <_ListLayout width={7}>
-          <_CompanySmall>
-            {list.homeAddressInfo.fullAddress.slice(0, 20)}...
-          </_CompanySmall>
+          <_CompanySmall>{listObject.address}</_CompanySmall>
         </_ListLayout>
         <_ListLayout width={7.5}>
-          <_CompanySmall>
-            {list.businessTagged
-              .map((item) => Object.values(item))
-              .join(",")
-              .slice(0, 28)}
-            ...
-          </_CompanySmall>
+          <_CompanySmall>{listObject.tag}</_CompanySmall>
         </_ListLayout>
         <_ListLayout width={5.5}>
           <_CompanyLeading bool={list.isLeading}>

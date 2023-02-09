@@ -1,10 +1,11 @@
 import Background from "../../../lib/components/Background";
 import LoginPage from "../../../lib/components/LoginPage";
+import { NextPage } from "next";
 const props = {
   member: false,
   comment: "회사 로그인",
   path: {
-    signUp: "/company/signup",
+    signUp: "/company/signup/1",
     direct: "/company",
   },
 };
@@ -20,7 +21,7 @@ const menu = [
     selected: false,
   },
 ];
-const CompanyLogin = () => {
+const CompanyLogin: NextPage = () => {
   return (
     <>
       <Background {...{ menu }} />

@@ -10,7 +10,7 @@ export const Toast = ({ label, children }: ToastProps) => {
       <_Toast>
         <_Layout>
           <_Title>
-            {label === "company" ? "회사 리스트" : "모집공고 리스트"}
+            {label === "company" ? "기업 리스트" : "모집공고 리스트"}
           </_Title>
           {children}
         </_Layout>
