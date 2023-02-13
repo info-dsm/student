@@ -10,6 +10,9 @@ export default {
   argTypes: {
     lastIndex: { type: "number", min: 1, step: 4 },
   },
+  parameters: {
+    layout: "centered",
+  },
 } as ComponentMeta<typeof Pagination>;
 
 export const lessPagin: ComponentStory<typeof Pagination> = ({ lastIndex }) => {

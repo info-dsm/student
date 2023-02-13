@@ -1,57 +1,78 @@
 import styled from "styled-components";
-import TitleIcon from "../images/title";
+import React, { ReactNode } from "react";
+type MenuProps = { onClick: () => void; key: string; selected: boolean };
 
-const HeaderComponent = () => {
-  const nav = [
-    { content: "회사", link: "/student/company" },
-    { content: "모집공고", link: "/student/notice" },
-    {
-      content: "내정보",
-      link: "/student/mypage",
-    },
-    {
-      content: "로그인",
-      link: "/student/auth/login",
-    },
-    // { content: "개발팀", link: "" },
-  ];
+export interface HeaderProps {
+  children: ReactNode;
+  bgColor: string;
+  admin: boolean;
+  menu: MenuProps[];
+}
 
+export const Header = ({ children, bgColor, admin, menu }: HeaderProps) => {
   return (
     <>
-      <MainDiv>
-        <a href="/student/main">
-          <TitleIcon />
-        </a>
-        <div>
-          {nav.map((t) => (
-            <a href={t.link}>{t.content}</a>
-          ))}
-        </div>
-      </MainDiv>
+      <_Container {...{ bgColor }}>
+        <_Shape>
+          <_Layout>
+            <div>{children}</div>
+          </_Layout>
+          <_Nav>
+            {menu.map((item: MenuProps) => (
+              <_Menu {...{ ...item, admin }}>
+                <span>{item.key}</span>
+              </_Menu>
+            ))}
+          </_Nav>
+        </_Shape>
+      </_Container>
     </>
   );
 };
-
-export default HeaderComponent;
-
-const MainDiv = styled.div`
-  width: 100vw;
-  padding: 22px 136px;
-  display: inline-flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(16, 17, 18, 0.5);
+const _Container = styled.div<{ bgColor: string }>`
+  background-color: ${(props) => props.bgColor};
   backdrop-filter: blur(9px);
-  > div {
-    font-size: 15px;
-    font-weight: 600;
-    display: inline-flex;
-    gap: 35px;
-    a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
+  width: 100vw;
+  height: 100px;
+  display: flex;
+`;
+const _Shape = styled.div`
+  width: 65rem;
+  height: 100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+`;
+const _Layout = styled.div`
+  width: auto;
+  height: min-content;
+  div {
+    line-height: 100px;
+  }
+`;
+const _Menu = styled.div<{ admin: boolean; selected: boolean }>`
+  width: max-content;
+  height: min-content;
+  line-height: 100px;
+  span {
+    font: 500 20px "pretendard";
+    cursor: pointer;
+    border-bottom: ${(props) =>
+      props.selected ? `1px solid ${props.theme.colors.blue}` : "none"};
+    color: ${(props) =>
+      props.selected
+        ? props.theme.colors.blue
+        : props.admin
+        ? props.theme.colors.black
+        : props.theme.colors.white};
+    :hover {
+      color: ${(props) => props.theme.colors.blue};
     }
   }
+`;
+const _Nav = styled.nav`
+  width: 320px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
 `;

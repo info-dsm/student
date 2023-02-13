@@ -1,26 +1,16 @@
-import requestApi from "../../token";
-
-interface loginProps {
+import request from "../..";
+export interface loginProps {
   accessToken: string;
-  refreshToken: string;
+  refreshToken: "string";
 }
-
-export const login = async ({
-  req,
-}: {
-  req: {
-    email: string;
-    password: string;
-  };
-}) => {
-  const data: loginProps = await requestApi({
+export const login = async (
+  data: { company?: string; email?: string; password: string },
+  endpoint: string
+) => {
+  const res: loginProps = await request({
     method: "post",
-    url: "/auth/login/user",
-    data: {
-      email: req.email,
-      password: req.password,
-    },
+    url: `/auth/login/${endpoint}`,
+    data,
   });
-
-  return data;
+  return res;
 };

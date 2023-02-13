@@ -1,14 +1,15 @@
 import styled, { keyframes } from "styled-components";
 import React, { useState, useLayoutEffect, useCallback } from "react";
+import HighPolygon from "../images/HighPolygon";
 export interface SelectProps {
-  now: string;
-  list: string[];
-  onClick: (item: string) => void;
+  now: "기본" | "년도 검색";
+  list: ["기본", "년도 검색"];
+  onClick: (item: "기본" | "년도 검색") => void;
 }
 export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
   const [state, setState] = useState<boolean>(false);
   const AddValuePropsFunc = useCallback(
-    (props: string) => {
+    (props: "기본" | "년도 검색") => {
       onClick(props);
     },
     [onClick]
@@ -20,22 +21,29 @@ export const LittleSelectComplete = ({ now, list, onClick }: SelectProps) => {
   }, [state]);
   return (
     <>
-      <_InfoButton
-        id={now}
-        state={state}
-        onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-          e.stopPropagation();
-          setState(!state);
-        }}
-      >
-        {now}
-        <_SelectIcon state={state} />
-      </_InfoButton>
-      <_SelectList state={state}>
-        {list.map((user: string) => (
-          <div onMouseDown={() => AddValuePropsFunc(user)}>{user}</div>
-        ))}
-      </_SelectList>
+      <_Layout>
+        {" "}
+        <_InfoButton
+          id={now}
+          {...{ state }}
+          onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+            e.stopPropagation();
+            setState(!state);
+          }}
+        >
+          <div>{now}</div>
+          <_SelectIcon {...{ state }}>
+            <HighPolygon />
+          </_SelectIcon>
+        </_InfoButton>
+        <_SelectList {...{ state }}>
+          {list.map((user: "기본" | "년도 검색") => (
+            <div onMouseDown={() => AddValuePropsFunc(user)} key={user}>
+              {user}
+            </div>
+          ))}
+        </_SelectList>
+      </_Layout>
     </>
   );
 };
@@ -55,15 +63,15 @@ const _SelectList = styled.div<{ state: boolean }>`
     box-sizing: border-box;
     background-color: ${(props) => props.theme.colors.white};
     position: relative;
-    width: 7.5rem;
-    height: 2rem;
-    font-size: 0.8rem;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
     cursor: pointer;
     color: ${(props) => props.theme.colors.black};
     border: 1px solid #d3d3d3;
     text-align: center;
-    font: 500 normal 1rem "pretendard", sans-serif;
-    line-height: 2rem;
+    font: 500 normal 20px "pretendard", sans-serif;
+    line-height: 40px;
     :last-child {
       border-radius: 0px 0px 5px 5px;
     }
@@ -74,24 +82,31 @@ const _SelectList = styled.div<{ state: boolean }>`
   }
 `;
 const _InfoButton = styled.div<{ state: boolean }>`
-  width: 7.5rem;
-  height: 2rem;
+  width: 150px;
+  height: 40px;
   border-radius: 5px 5px ${(props) => (props.state ? 0 : 5)}px
     ${(props) => (props.state ? 0 : 5)}px;
-  font: 500 normal 1rem "pretendard", sans-serif;
-  line-height: 2rem;
+  font: 500 normal 20px "pretendard", sans-serif;
+  line-height: 40px;
   color: ${(props) => props.theme.colors.white};
-  text-align: center;
+
   background-color: ${(props) => props.theme.colors.blue};
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 10px;
+  div {
+    text-align: center;
+    width: 75px;
+  }
 `;
-const _SelectIcon = styled.div<{ state: boolean }>`
-  position: absolute;
-  top: 1.7rem;
-  left: 7rem;
-  border-top: 0.5rem solid ${(props) => props.theme.colors.white};
-  border-left: 0.3rem solid transparent;
-  border-right: 0.3rem solid transparent;
-  animation: ${(props) => (props.state ? Spin(180, 0) : Spin(0, 180))} 0.25s
+const _SelectIcon = styled.span<{ state: boolean }>`
+  display: flex;
+  align-items: center;
+  animation: ${(props) => (props.state ? Spin(0, 180) : Spin(180, 0))} 0.25s
     ease-in-out 0s alternate forwards;
+`;
+const _Layout = styled.div`
+  margin-top: 10px;
 `;

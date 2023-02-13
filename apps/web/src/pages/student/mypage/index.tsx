@@ -6,7 +6,7 @@ import {
 } from "apis";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import HeaderComponent from "ui/components/Header";
+import HeaderComponent from "ui/components/StudentHeader";
 import StudentMyPageProfile from "./Profile";
 import StudentSupportStatus from "./SupportStatus";
 

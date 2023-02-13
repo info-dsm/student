@@ -7,5 +7,13 @@ const nextConfig = {
   experimental: {
     transpilePackages: ["ui"],
   },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/api/loginApi",
+  //       destination:"http://43.200.191.39"
+  //     }
+  //   ]
+  // }
 };
 module.exports = nextConfig;

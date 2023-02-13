@@ -4,7 +4,7 @@ import StudentMainNoticeContainer from "./NoticeContainer";
 import TextBox from "./TextBox";
 import React, { useEffect, useState } from "react";
 import { getCompanyList, getCompanyListContentProps } from "apis";
-import HeaderComponent from "ui/components/Header";
+import HeaderComponent from "ui/components/StudentHeader";
 
 const StudentPage = () => {
   const [companyKind, setCompanyKind] =

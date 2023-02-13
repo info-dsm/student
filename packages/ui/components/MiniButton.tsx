@@ -6,18 +6,10 @@ export interface MiniButtonProps extends ChildProps {
   onClick?: () => void;
 }
 
-export const MiniButton = ({
-  children,
-  less,
-  size,
-  onClick,
-  ...props
-}: MiniButtonProps) => {
+export const MiniButton = ({ children, ...props }: MiniButtonProps) => {
   return (
     <>
-      <_MiniButton size={size} less={less} onClick={() => onClick}>
-        {children}
-      </_MiniButton>
+      <_MiniButton {...props}>{children}</_MiniButton>
     </>
   );
 };

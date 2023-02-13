@@ -13,7 +13,7 @@ import DetailInfo from "../../detail/NoticeDetailInfo";
 import DetailRecruitmentJob from "./RecruitmentJob";
 import QualificationRequirements from "./Qualification";
 import Welfare from "./Welfare";
-import HeaderComponent from "ui/components/Header";
+import HeaderComponent from "ui/components/StudentHeader";
 
 const NoticeDetail = ({
   noticeInfo,

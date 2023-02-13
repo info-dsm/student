@@ -10,7 +10,7 @@ export const Toast = ({ label, children }: ToastProps) => {
       <_Toast>
         <_Layout>
           <_Title>
-            {label === "company" ? "회사 리스트" : "모집공고 리스트"}
+            {label === "company" ? "기업 리스트" : "모집공고 리스트"}
           </_Title>
           {children}
         </_Layout>
@@ -24,7 +24,6 @@ const _Toast = styled.div`
   background-color: ${(props) => props.theme.colors.violet};
   padding-top: 1.5rem;
   border-radius: 10px;
-  margin: 0 auto;
 `;
 const _Layout = styled.div`
   height: 33rem;

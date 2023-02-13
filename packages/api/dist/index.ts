@@ -14,8 +14,6 @@ export { codeCheck } from "../main/auth/codeCheck";
 
 export { codeSend } from "../main/auth/codeSend";
 
-export { login } from "../main/auth/login";
-
 export { reissue } from "../main/auth/reissue";
 
 export { studentKeyCheck } from "../main/auth/studentKeyCheck";
@@ -52,3 +50,5 @@ export {
 export { applyNotice } from "../main/applies/applyNotice";
 
 export { getApplyList, type getApplyListProps } from "../main/applies/applyList";
+export { setCookie } from "../main/cookie/setCookie";
+export { login, type loginProps } from "../main/auth/login/index";

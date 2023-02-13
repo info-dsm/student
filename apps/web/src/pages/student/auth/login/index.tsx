@@ -81,7 +81,7 @@ const StudentLogin = () => {
             link: "./signup",
           }}
           clickEvent={() => {
-            login({ req: request })
+            login({email: request.email, password: request.password}, "user")
               .then((res) => {
                 sessionStorage.setItem("accessToken", res.accessToken);
                 sessionStorage.setItem("refreshToken", res.refreshToken);

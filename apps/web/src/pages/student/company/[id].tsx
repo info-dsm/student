@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import StudentCompany from "./company";
 import StudentCompanyBanner from "./banner";
-import HeaderComponent from "ui/components/Header";
+import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "./Kind";
 
 const StudentSearchCompanyList = ({ q, data }: { q: string; data: string }) => {

@@ -8,7 +8,7 @@ import {
 } from "apis";
 import DetailInfo from "../../detail/NoticeDetailInfo";
 import StudentCompanyNoticeList from "./noticeList";
-import HeaderComponent from "ui/components/Header";
+import HeaderComponent from "ui/components/StudentHeader";
 
 const StudentCompanyDetail = ({
   data,

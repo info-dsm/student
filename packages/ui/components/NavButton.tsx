@@ -19,7 +19,7 @@ const _NavButton = styled.div<{ state: boolean }>`
   color: ${(props) =>
     props.state ? props.theme.colors.white : props.theme.colors.black};
   background-color: ${(props) =>
-    props.state ? props.theme.colors.blue : props.theme.colors.silver};
+    props.state ? props.theme.colors.blue : props.theme.colors.gray};
   border-radius: 5px 5px 0 0;
   :hover {
     filter: brightness(${(props) => (props.state ? 1 : 0.8)});

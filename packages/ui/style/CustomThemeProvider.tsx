@@ -8,7 +8,7 @@ export interface ChildProps {
 export const CustomThemeProvider = ({ children }: ChildProps) => {
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider {...{ theme }}>
         <GlobalStyle />
         {children}
       </ThemeProvider>

@@ -9,7 +9,7 @@ import StudentNoticeBanner from "./banner";
 import StudentClosedNotice from "./closedNotice";
 import StudentNotice from "./notice";
 import { useState, useEffect } from "react";
-import HeaderComponent from "ui/components/Header";
+import HeaderComponent from "ui/components/StudentHeader";
 import NoticePlaceHolder from "./placeholder";
 import ClosedNoticePlaceHolder from "./closedPlaceholder";
 
