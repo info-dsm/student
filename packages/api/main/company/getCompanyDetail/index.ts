@@ -1,48 +1,36 @@
 import requestApi from "../../token";
-export interface getCompanyListProps {
-  totalPages: number;
-  totalElements: number;
-  size: number;
-  content: getCompanyListContentProps[];
-  number: number;
-  sort: {
-    empty: boolean;
-    sorted: boolean;
-    unsorted: boolean;
-  };
-  numberOfElements: number;
-  pageable: {
-    offset: number;
-    sort: {
-      empty: boolean;
-      sorted: boolean;
-      unsorted: boolean;
-    };
-    paged: boolean;
-    pageNumber: number;
-    pageSize: number;
-    unpaged: boolean;
-  };
-  first: boolean;
-  last: boolean;
-  empty: boolean;
-}
 
-export interface getCompanyListContentProps {
+export interface getCompanyDetailProps {
   companyNumber: string;
-  contactorEmail: string;
   companyName: string;
-  homeAddressInfo: {
-    fullAddress: string;
-    addressNumber: string;
+  contactor: {
+    name: string;
+    email: string;
+    rank: string;
+    phoneNumber?: string;
+    passwordHint?: string;
+    companyNumber: string;
+  };
+  companyInformation: {
+    homeAddress?: {
+      fullAddress: string;
+      addressNumber: string;
+    };
+    agentAddress?: {
+      fullAddress: string;
+      addressNumber: string;
+    };
+    representativeName: string;
+    establishedAt: number;
+    workerCount: number;
+    annualSales: number;
+    companyPhone: string;
   };
   businessTagged: {
-    name: string;
+    id: string;
   }[];
-  workerCount: number;
-  annualSales: bigint;
-  isLeading: boolean;
-  isAssociated: boolean;
+  isLeading: true;
+  isAssociated: true;
   latestNoticeYear?: number;
   totalEmployedCount: number;
   companyIntroductionResponse: {
@@ -102,21 +90,11 @@ export interface getCompanyListContentProps {
   };
 }
 
-export const getCompanyList = async ({
-  idx,
-  size,
-}: {
-  idx: number;
-  size: number;
-}) => {
-  const data: getCompanyListProps = await requestApi({
-    method: "get",
-    url: "/company/list",
-    params: {
-      idx: idx,
-      size: size,
-    },
+export const getCompanyDetail = async ({ id }: { id: string }) => {
+  const data: getCompanyDetailProps = await requestApi({
+    method: "GET",
+    url: `/company/${id}`,
   });
-  console.log(data);
+
   return data;
 };
