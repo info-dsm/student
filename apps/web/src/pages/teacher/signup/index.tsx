@@ -97,7 +97,6 @@ const LoginPage = () => {
   return (
     <>
       <Background {...menu} />
-
       <Modal
         onClick={() => router.push("/")}
         href={() => {

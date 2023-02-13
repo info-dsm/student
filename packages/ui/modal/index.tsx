@@ -56,7 +56,7 @@ export const Modal = ({
     </_Container>
   );
 };
-const _Container = styled.div`
+export const _Container = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
@@ -75,19 +75,19 @@ const _Box = styled.div`
   box-shadow: ${(props) => props.theme.colors.black40} 0 0 0 999999px;
   border-radius: 5px;
 `;
-const _Layout = styled.div`
+export const _Layout = styled.div`
   width: 408px;
   text-align: center;
 `;
-const _Locate = styled.div`
+export const _Locate = styled.div`
   display: inline-block;
 `;
-const _Title = styled.h1`
+export const _Title = styled.h1`
   font: 600 24px "Pretendard";
   line-height: 29px;
   color: ${(props) => props.theme.colors.black};
 `;
-const _Switch = styled.div<{ size: number; opac: string }>`
+export const _Switch = styled.div<{ size: number; opac: string }>`
   color: ${(props) => props.theme.colors[`${props.opac}`]};
   font: 500 ${(props) => props.size}px "Pretendard";
   span {
@@ -98,13 +98,13 @@ const _Switch = styled.div<{ size: number; opac: string }>`
     }
   }
 `;
-const _BottomLayout = styled.div`
+export const _BottomLayout = styled.div`
   height: 96px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
-const _Button = styled.div`
+export const _Button = styled.div`
   width: 408px;
   height: 48px;
   color: ${(props) => props.theme.colors.white};
@@ -117,7 +117,7 @@ const _Button = styled.div`
     filter: brightness(0.8);
   }
 `;
-const _Or = styled.div`
+export const _Or = styled.div`
   font: 600 14px "Pretendard";
   line-height: 17px;
   color: ${(props) => props.theme.colors.black40};

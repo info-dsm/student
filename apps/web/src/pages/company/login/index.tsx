@@ -1,6 +1,7 @@
 import Background from "../../../lib/components/Background";
 import LoginPage from "../../../lib/components/LoginPage";
 import { NextPage } from "next";
+import menu from "../../../data/logindata/company";
 const props = {
   member: false,
   comment: "회사 로그인",
@@ -9,22 +10,11 @@ const props = {
     direct: "/company",
   },
 };
-const menu = [
-  {
-    onClick: () => {},
-    key: "내가 등록한 모집공고",
-    selected: false,
-  },
-  {
-    onClick: () => {},
-    key: "모집공고 작성",
-    selected: false,
-  },
-];
+
 const CompanyLogin: NextPage = () => {
   return (
     <>
-      <Background {...{ menu }} />
+      <Background {...menu} />
       <LoginPage {...props} />
     </>
   );

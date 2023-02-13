@@ -18,7 +18,6 @@ const _Button = styled.div`
   line-height: 1.5rem;
   border-radius: 0.25rem;
   text-align: center;
-
   cursor: pointer;
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.blue};

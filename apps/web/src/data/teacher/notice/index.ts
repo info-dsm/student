@@ -1,4 +1,4 @@
-import { CompanyTitleProps } from "../../../pages/type/interface";
+import { CompanyTitleProps } from "../../../../@types/interface";
 export const NoticeTitleData: CompanyTitleProps = [
   {
     title: "상태",

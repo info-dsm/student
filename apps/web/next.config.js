@@ -7,13 +7,14 @@ const nextConfig = {
   experimental: {
     transpilePackages: ["ui"],
   },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/api/loginApi",
-  //       destination:"http://43.200.191.39"
-  //     }
-  //   ]
-  // }
+  trailingSlash: true,
+  async rewrites() {
+    return [
+      {
+        source: "/company/signup/1",
+        destination: "https://postcode.map.daum.net/:path*/",
+      },
+    ];
+  },
 };
 module.exports = nextConfig;

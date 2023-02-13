@@ -45,6 +45,7 @@ const TeacherNotice = ({
   result?: string;
 }) => {
   const router = useRouter();
+  console.log(router.asPath);
   const [remainCount, setRemainCount] = useState<number>(0);
   const [check, setCheck] = useState<boolean[]>([false]);
   const [modal, setModal] = useState<string>("");
@@ -81,17 +82,23 @@ const TeacherNotice = ({
         {
           onClick: () => router.push("/teacher/notice"),
           text: "대기 중인 모집공고",
-          status: (router.asPath as string) === "/teacher/notice",
+          status:
+            (router.asPath as string) ===
+            ("/teacher/notice/" || "/teacher/notice"),
         },
         {
           onClick: () => router.push("/teacher/notice/progress"),
           text: "모집 중인 모집공고",
-          status: (router.asPath as string) === "/teacher/notice/progress",
+          status:
+            (router.asPath as string) ===
+            ("/teacher/notice/progress/" || "/teacher/notice/progress"),
         },
         {
           onClick: () => router.push("/teacher/notice/gone"),
           text: "마감 된 모집공고",
-          status: (router.asPath as string) === "/teacher/notice/gone",
+          status:
+            (router.asPath as string) ===
+            ("/teacher/notice/gone/" || "/teacher/notice/gone"),
         },
       ];
   return (

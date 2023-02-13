@@ -23,5 +23,5 @@ const Background = (props: {
 };
 export default Background;
 const _Layout = styled.div`
-  position: absolute;
+  position: fixed;
 `;
