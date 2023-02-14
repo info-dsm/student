@@ -1,6 +1,6 @@
 import { SignUpAction, SignUpState } from "../utils/interfaces";
 
-export function signUpReducer(state: SignUpState ,action: SignUpAction) {
+export function signUpReducer(state: SignUpState, action: SignUpAction) {
   switch(action.type) {
     case "email":
       return {
