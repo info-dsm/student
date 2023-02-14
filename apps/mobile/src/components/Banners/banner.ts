@@ -4,17 +4,17 @@ export const BannersBackground = styled.div`
   width: 100%;
   height: 130px;
   color: #fff;
-  background: ${(props: { type: boolean }) => (props.type ? "#6750F8" : "#9291FC")};
+  background: ${(props: { bannerType: boolean }) => (props.bannerType ? "#6750F8" : "#9291FC")};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   padding: 17px 28px 17px 26px;
+  margin-top: 40px;
   margin-bottom: 21px;
   display: flex;
+  justify-content: space-between;
 
   img {
-    position: absolute;
-    right: 28px;
-    top: auto;
+    float: right;
     width: 62px;
     height: 85.38px;
   }
