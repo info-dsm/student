@@ -1,7 +1,7 @@
 import { useIonAlert } from "@ionic/react"
 import axios from "axios"
 import { useReducer } from "react"
-import { Icon2x } from "../../components/icons/Icon2x"
+import { Icon2n } from "../../components/icons/Icon2n"
 import { signUpReducer } from "../../modules/signUpReducer"
 import { Accountfooter, EmailLabel, SignUpForm, SignUpFormTitle, SignUpPage, SubmitBtn } from "../../style/auth"
 
@@ -53,49 +53,71 @@ export const SignUp: React.FC = () => {
             header: "Error!",
             message: "인증번호가 정확하지 않아요!",
             buttons: ['OK']
-          })
+          });
         else {
           updateEvent({ type: "verify" })
           preventAlert({
             header: "Success!",
             message: "인증이 완료되었습니다.",
             buttons: ['OK']
-          })
+          });
         }
       })
       .catch(() => {
-        preventAlert({
+        return preventAlert({
           header: "Error!",
           message: "다시 시도 해주세요!",
           buttons: ['OK']
-        })
+        });
       })
   }
 
   async function signUpSubmit() {
-    await axios.post(process.env.REACT_APP_BASE_URL + `/auth/signup/student?emailCode=${event.code}`, {
-      studentKey: event.studentKey,
-      name: event.name,
-      email: event.email,
-      password: event.password,
-      githubLink: event.github
+    if (!event.isVerify) return preventAlert({
+      header: "Error!",
+      message: "이메일 인증을 해주세요.",
+      buttons: ['OK']
+    }) 
+    else if (!event.name) return preventAlert({
+      header: "Error!",
+      message: "이름을 작성 해주세요.",
+      buttons: ['OK']
     })
-      .then(() => {
-
+    else if (event.password !== event.password2) return preventAlert({
+      header: "Error!",
+      message: "비밀번호가 일치하지 않습니다.",
+      buttons: ['OK']
+    })
+    else if (!event.studentKey) return preventAlert({
+      header: "Error!",
+      message: "학번을 작성 해주세요.",
+      buttons: ['OK']
+    })
+    else {
+      await axios.post(process.env.REACT_APP_BASE_URL + `/auth/signup/student?emailCode=${event.code}`, {
+        studentKey: event.studentKey,
+        name: event.name,
+        email: event.email,
+        password: event.password,
+        githubLink: event.github
       })
-      .catch(() => {
-        preventAlert({
-          header: "Error!",
-          message: "다시 시도 해주세요!",
-          buttons: ['OK']
+        .then(() => {
+          window.location.href = "/"
         })
-      })
+        .catch(() => {
+          preventAlert({
+            header: "Error!",
+            message: "다시 시도 해주세요!",
+            buttons: ['OK']
+          })
+        })
+    }
   }
 
   return (
     <SignUpPage>
       <SignUpForm onSubmit={signUpSubmit}>
-        <Icon2x />
+        <Icon2n />
         <SignUpFormTitle >학생 회원가입</SignUpFormTitle>
         <p>이메일</p>
         <EmailLabel disable={event.isSend}>
