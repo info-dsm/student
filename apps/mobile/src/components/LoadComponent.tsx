@@ -1,12 +1,12 @@
 import styled from "styled-components"
 import { fadeIn, fadeOut } from "../style/fade";
 import { LoadProps } from "../utils/interfaces";
-import { Icon1x } from "./icons/Icon1x";
+import { Icon1n } from "./icons/Icon1n";
 
 export const Load = ({ status }: LoadProps) => {
   return (
     <Div status={status}>
-      <Icon1x />
+      <Icon1n />
     </Div>
   )
 }
