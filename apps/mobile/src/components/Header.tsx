@@ -1,12 +1,23 @@
-import Icon1x from "./icons/1x";
-import HeaderStyle from './component.module.css'
+import styled from "styled-components";
+import { Icon2n } from "./icons/Icon2n";
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   return (
-    <div className={HeaderStyle.Header}>
-      <Icon1x />
-    </div>
+    <HeaderDiv>
+      <a href="/">
+        <Icon2n />
+      </a>
+    </HeaderDiv>
   )
 }
 
-export default Header;
+const HeaderDiv = styled.div`
+  position: fixed;
+  text-align: center; 
+  width: 100%;
+  background-color: white;
+  margin: 0;
+  padding-top: 17px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #EAEAEA;
+`
