@@ -1,4 +1,4 @@
-import { NoticeCardProps } from "../../utils/interfaces";
+import { NoticeCardProps, NoticeTags } from "../../utils/interfaces";
 import { Body, NoticeContent, Image, NotImage } from "./cards";
 
 export const CardNotice: React.FC<NoticeCardProps> = ({ title, tags, company, image, address }) => {
@@ -18,9 +18,9 @@ export const CardNotice: React.FC<NoticeCardProps> = ({ title, tags, company, im
           <p><b>주소</b> &nbsp; {address}</p>
         </div>
         <ul>
-          {tags.map((tag: { id:string }) => (
-            <li>
-              {tag.id}
+          {tags.map((tag: NoticeTags, index: number) => (
+            <li key={index}>
+              {tag.name}
             </li>
           ))}
         </ul>
