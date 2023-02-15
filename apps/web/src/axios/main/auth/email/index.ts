@@ -9,6 +9,7 @@ export const sendNumber = (email: string) => {
 };
 export const confirmCode = (email: string, data: string, type: string) => {
   const res = request({
+    method: "post",
     url: "/auth/code",
     data: {
       email,

@@ -14,7 +14,7 @@ export const AuthorizationInput = (props: AuthorizationProps) => {
         type={"text"}
         {...item}
         placeholder={item.error ? comment : placeholder}
-        value={item.error ? "" : value}
+        defaultValue={item.error ? "" : value}
       />
       <_Layout>
         <span {...{ onClick }}>{aut}</span>

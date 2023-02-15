@@ -3,63 +3,7 @@ export interface getCompanyListProps {
   totalPages: number;
   totalElements: number;
   size: number;
-  content: {
-    companyNumber: string;
-    contactorEmail: string;
-    companyName: string;
-    homeAddressInfo: {
-      fullAddress: string;
-      addressNumber: string;
-    };
-    businessTagged: {
-      name: string;
-    }[];
-    workerCount: number;
-    annualSales: bigint;
-    isLeading: boolean;
-    isAssociated: boolean;
-    latestNoticeYear?: number;
-    totalEmployedCount: number;
-    companyIntroductionResponse: {
-      introduction: string;
-      businessCertificate: {
-        fileId: string;
-        fileUrl: string;
-        fileType: string;
-        extension: string;
-        fileName: string;
-        companyNumber: string;
-        companyFileClassificationType: string;
-      };
-      companyIntroductionFile: {
-        fileId: string;
-        fileUrl: string;
-        fileType: string;
-        extension: string;
-        fileName: string;
-        companyNumber: string;
-        companyFileClassificationType: string;
-      }[];
-      companyLogo: {
-        fileId: string;
-        fileUrl: string;
-        fileType: string;
-        extension: string;
-        fileName: string;
-        companyNumber: string;
-        companyFileClassificationType: string;
-      };
-      companyPhotoList: {
-        fileId: string;
-        fileUrl: string;
-        fileType: string;
-        extension: string;
-        fileName: string;
-        companyNumber: string;
-        companyFileClassificationType: string;
-      }[];
-    };
-  }[];
+  content: getCompanyListContentProps[];
   number: number;
   sort: {
     empty: boolean;
@@ -83,13 +27,94 @@ export interface getCompanyListProps {
   last: boolean;
   empty: boolean;
 }
-export const getCompanyList = async (idx: number) => {
+
+export interface getCompanyListContentProps {
+  companyNumber: string;
+  contactorEmail: string;
+  companyName: string;
+  homeAddressInfo: {
+    fullAddress: string;
+    addressNumber: string;
+  };
+  businessTagged: {
+    name: string;
+  }[];
+  workerCount: number;
+  annualSales: bigint;
+  isLeading: boolean;
+  isAssociated: boolean;
+  latestNoticeYear?: number;
+  totalEmployedCount: number;
+  companyIntroductionResponse: {
+    introduction: string;
+    businessCertificate: {
+      fileId: string;
+      fileUrl: string;
+      fileType: "IMAGE" | "DOCS" | "UNKNOWN";
+      extension: string;
+      fileName: string;
+      companyNumber: string;
+      companyFileClassificationType:
+        | "BUSINESS_CERTIFICATE"
+        | "COMPANY_INTRODUCTION"
+        | "COMPANY_LOGO"
+        | "COMPANY_PHOTO";
+    };
+    companyIntroductionFile: {
+      fileId: string;
+      fileUrl: string;
+      fileType: "IMAGE" | "DOCS" | "UNKNOWN";
+      extension: string;
+      fileName: string;
+      companyNumber: string;
+      companyFileClassificationType:
+        | "BUSINESS_CERTIFICATE"
+        | "COMPANY_INTRODUCTION"
+        | "COMPANY_LOGO"
+        | "COMPANY_PHOTO";
+    }[];
+    companyLogo: {
+      fileId: string;
+      fileUrl: string;
+      fileType: "IMAGE" | "DOCS" | "UNKNOWN";
+      extension: string;
+      fileName: string;
+      companyNumber: string;
+      companyFileClassificationType:
+        | "BUSINESS_CERTIFICATE"
+        | "COMPANY_INTRODUCTION"
+        | "COMPANY_LOGO"
+        | "COMPANY_PHOTO";
+    };
+    companyPhotoList: {
+      fileId: string;
+      fileUrl: string;
+      fileType: "IMAGE" | "DOCS" | "UNKNOWN";
+      extension: string;
+      fileName: string;
+      companyNumber: string;
+      companyFileClassificationType:
+        | "BUSINESS_CERTIFICATE"
+        | "COMPANY_INTRODUCTION"
+        | "COMPANY_LOGO"
+        | "COMPANY_PHOTO";
+    }[];
+  };
+}
+
+export const getCompanyList = async ({
+  idx,
+  size,
+}: {
+  idx: number;
+  size: number;
+}) => {
   const data: getCompanyListProps = await requestApi({
     method: "get",
     url: "/company/list",
     params: {
       idx: idx,
-      size: 11,
+      size: size,
     },
   });
   console.log(data);

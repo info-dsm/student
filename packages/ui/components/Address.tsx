@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export interface AddressInputProps {
   text: string;
-  value: string;
+  defaultValue: string;
   onClick: () => void;
   number: string;
   placeholder: string;
@@ -38,6 +38,9 @@ const _Input = styled.input`
   border: none;
   padding: 0 16px;
   background-color: ${({ theme }) => theme.colors.gray};
+  ::placeholder {
+    color: ${(props) => props.theme.colors.black40};
+  }
 `;
 const _AddressNumber = styled.div`
   border-radius: 5px;

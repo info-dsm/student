@@ -19,45 +19,22 @@ const FirstSignUp = () => {
   const router = useRouter();
   const [data, setData] = useRecoilState(firstSignUpData);
   const [secondData, setSecondeData] = useRecoilState(secondSignUpData);
+  console.log(data.companyNameRequest);
   const ChangeInput = useCallback(
     function (
       props: "companyNumber" | "companyNameRequest",
 
-      e: string | { comapnyName: string }
+      e: string | { companyName: string }
     ) {
       console.log(data);
       setData({ ...data, [props]: e });
     },
     [data, setData]
   );
-  // const MultiFile = useCallback(
-  //   (
-  //     props: "companyIntroductionFile" | "companyPhotoList",
-  //     e: {
-  //       fileName: string;
-  //       contentType: string;
-  //     }[]
-  //   ) => {
-  //     setData({ ...data, [props]: [...data[props], data] });
-  //   },
-  //   [data, setData]
-  // );
-  // const FileInput = useCallback(
-  //   (
-  //     props: "businessRegisteredCertificate" | "companyLogo",
-  //     e: {
-  //       fileName: string;
-  //       contentType: string;
-  //     }
-  //   ) => {
-  //     setData({ ...data, [props]: e });
-  //   },
-  //   [data, setData]
-  // );
-  const handleComplete = (
+  function handleComplete(
     data: AddressProps,
     props: "homeAddress" | "agentAddress"
-  ) => {
+  ) {
     let fullAddress = data.address;
     let extraAddress = "";
 
@@ -74,7 +51,7 @@ const FirstSignUp = () => {
 
     ChangeSecond(props, { fullAddress, addressNumber: data.zonecode });
     document.body.removeChild(document.getElementById("daum_postcode_script")!);
-  };
+  }
   const CheckNumber = (
     props: "workerCount" | "establishedAt" | "annualSales",
     e: ChangeEvent<HTMLInputElement>
@@ -118,6 +95,8 @@ const FirstSignUp = () => {
             break;
         }
         ChangeInput("companyNumber", e.target.value);
+      } else {
+        e.target.value = e.target.value.slice(0, 12);
       }
     },
     [ChangeInput]
@@ -130,7 +109,8 @@ const FirstSignUp = () => {
         | "workerCount"
         | "establishedAt"
         | "annualSales"
-        | "representativeName",
+        | "representativeName"
+        | "companyPhone",
       e: { fullAddress: string; addressNumber: string } | string
     ) => {
       setSecondeData({ ...secondData, [props]: e });
@@ -148,29 +128,37 @@ const FirstSignUp = () => {
         }}
         href={() => router.push("/company/login")}
         confirm={"다음"}
-        onSubmit={function (): void {
-          throw new Error("Function not implemented.");
-        }}
+        onSubmit={() => router.push("/company/signup/2")}
         count={1}
       >
         <_Layout>
           <Success text={"회사정보 입력"} success={false}></Success>
           <_Interval gap={12}>
             <InputText
-              placeholder={"회사 명을 입력해주세요."}
+              placeholder={"기업 명을 입력해주세요."}
               {...{ error: false }}
               onInput={(e) =>
                 ChangeInput("companyNameRequest", {
-                  comapnyName: e.target.value,
+                  companyName: e.target.value,
                 })
               }
+              defaultValue={data.companyNameRequest.companyName}
               onFocus={() => {}}
             />
             <InputText
               placeholder={"사업자번호를 입력해주세요. ex)000-00-00000"}
               {...{ error: false }}
               onInput={ChangeCompanyNumber}
-              value={data.companyNumber}
+              defaultValue={data.companyNumber}
+              onFocus={() => {}}
+            />
+            <InputText
+              placeholder={
+                "기업 전화번호를 입력해주세요. ex) 02 or 0xx-xxxx-xxxx"
+              }
+              {...{ error: false }}
+              onInput={(e) => ChangeSecond("companyPhone", e.target.value)}
+              defaultValue={secondData.companyPhone}
               onFocus={() => {}}
             />
             <_Interval gap={10}>
@@ -207,7 +195,7 @@ const FirstSignUp = () => {
             </_Interval>
             <AddressInput
               text={"본사"}
-              value={secondData.homeAddress.fullAddress}
+              defaultValue={secondData.homeAddress.fullAddress}
               onClick={() =>
                 open({
                   onComplete: (data) => handleComplete(data, "homeAddress"),
@@ -222,7 +210,7 @@ const FirstSignUp = () => {
             />
             <AddressInput
               text={"연구소/지점 (선택)"}
-              value={secondData.agentAddress.fullAddress}
+              defaultValue={secondData.agentAddress.fullAddress}
               onClick={() =>
                 open({
                   onComplete: (data) => handleComplete(data, "agentAddress"),
@@ -234,64 +222,6 @@ const FirstSignUp = () => {
               }
               number={secondData.agentAddress.addressNumber}
               placeholder={"클릭 시 주소를 추가하실 수 있습니다."}
-            />
-            <FileManage
-              multiple={true}
-              accept={"image/jpeg, image/png"}
-              onChange={(e) => console.log(e.target.files)}
-              title={"사업자 등록증"}
-              list={{
-                fileName: "",
-                contentType: "",
-              }}
-              onClick={function (i?: number | undefined): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <FileManage
-              multiple={false}
-              accept={".pdf, .doc, .docx, .hwp"}
-              onChange={function (e: ChangeEvent<HTMLInputElement>): void {
-                throw new Error("Function not implemented.");
-              }}
-              title={"사업자 등록증"}
-              list={{
-                fileName: "",
-                contentType: "",
-              }}
-              onClick={function (i?: number | undefined): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <FileManage
-              multiple={false}
-              accept={".pdf, .doc, .docx, .hwp"}
-              onChange={function (e: ChangeEvent<HTMLInputElement>): void {
-                throw new Error("Function not implemented.");
-              }}
-              title={"사업자 등록증"}
-              list={{
-                fileName: "",
-                contentType: "",
-              }}
-              onClick={function (i?: number | undefined): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <FileManage
-              multiple={false}
-              accept={".pdf, .doc, .docx, .hwp"}
-              onChange={function (e: ChangeEvent<HTMLInputElement>): void {
-                throw new Error("Function not implemented.");
-              }}
-              title={"사업자 등록증"}
-              list={{
-                fileName: "",
-                contentType: "",
-              }}
-              onClick={function (i?: number | undefined): void {
-                throw new Error("Function not implemented.");
-              }}
             />
           </_Interval>
         </_Layout>

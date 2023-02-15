@@ -87,6 +87,7 @@ const _Bottom = styled.div`
   text-align: center;
   font: 600 14px "Pretendard";
   color: ${(props) => props.theme.colors.black60};
+  width: 408px;
 `;
 const _Layout = styled.div`
   width: 408px;

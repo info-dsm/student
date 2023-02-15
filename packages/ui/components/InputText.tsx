@@ -5,7 +5,7 @@ export interface InputTextProps {
   error: boolean;
   onInput: (e: ChangeEvent<HTMLInputElement>) => void;
   onFocus: () => void;
-  value?: string;
+  defaultValue?: string;
   author?: boolean;
 }
 export const _Input = styled.input<{ error: boolean }>`

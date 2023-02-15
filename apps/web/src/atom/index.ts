@@ -1,5 +1,4 @@
 import { atom, RecoilState } from "recoil";
-type FileData = {};
 export const firstSignUpData: RecoilState<{
   companyNumber: string;
   companyNameRequest: {

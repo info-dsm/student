@@ -34,3 +34,6 @@ export { ModalCompany, type ModalCompanyProps } from "../modal/ModalCompany";
 export { SmallInput, type SmallInputProps } from "../components/SmallInput";
 export { AddressInput, type AddressInputProps } from "../components/Address";
 export { FileManage, type FileManageProps } from "../components/FileManage";
+export { SecondModalCompany, type SecondModalCompanyProps } from "../modal/SecondModal";
+export { CheckInput, type CheckInputProps } from "../components/Check";
+export { TextArea, type TextAreaProps } from "../components/TextArea";
