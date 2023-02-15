@@ -1,3 +1,0 @@
-# Info Mobile
-
-## Ionic/React

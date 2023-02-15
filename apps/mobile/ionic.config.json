@@ -1,8 +1,8 @@
 {
-  "name": "Info-app",
+  "name": "info-app",
   "integrations": {
     "capacitor": {}
   },
   "type": "react",
-  "id": "7ec240e7"
+  "id": "6ced39a5"
 }
