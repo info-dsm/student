@@ -34,6 +34,36 @@ export const companySignUp = async (
     };
     businessAreaList: string[];
     introduction: string;
+  },
+  photos: {
+    businessRegisteredCertificate:
+      | {
+          fileName: string;
+          contentType: string;
+        }
+      | undefined;
+    companyIntroductionFile:
+      | (
+          | {
+              fileName: string;
+              contentType: string;
+            }
+          | undefined
+        )[];
+    companyLogo:
+      | {
+          fileName: string;
+          contentType: string;
+        }
+      | undefined;
+    companyPhotoList:
+      | (
+          | {
+              fileName: string;
+              contentType: string;
+            }
+          | undefined
+        )[];
   }
 ) => {
   const data = await request({
@@ -45,6 +75,7 @@ export const companySignUp = async (
       companyInformation,
       companyContact,
       ...others,
+      ...photos,
     },
   });
   console.log(data);

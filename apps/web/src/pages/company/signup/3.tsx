@@ -1,5 +1,5 @@
 import router from "next/router";
-import { ChangeEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import {
@@ -12,7 +12,7 @@ import {
   Success,
 } from "ui";
 import { firstSignUpData, secondSignUpData } from "../../../atom";
-import { confirmCode, sendNumber } from "../../../axios/dist";
+import { companySignUp, confirmCode, sendNumber } from "../../../axios/dist";
 import menu from "../../../data/logindata/company";
 import Background from "../../../lib/components/Background";
 type fileProps = "business" | "logo" | "photo" | "introduce";
@@ -146,7 +146,37 @@ const LastSignUpPage = () => {
       })
       .catch(() => OccurError("잘못된 인증코드입니다.", "code"));
   };
-  const SubmitRequest = () => {};
+  const SubmitRequest = () => {
+    if (
+      file.business !== null &&
+      file.introduce !== null &&
+      file.logo !== null &&
+      file.photo !== null
+    ) {
+      const companyPhotoList = file.photo.map((e: File | null) => {
+        if (e !== null) {
+          return { fileName: e.name, contentType: e.type };
+        }
+      });
+      const companyIntroductionFile = file.introduce.map((e: File | null) => {
+        if (e !== null) {
+          return { fileName: e.name, contentType: e.type };
+        }
+      });
+      companySignUp(code, second, companyContact, first, {
+        businessRegisteredCertificate: {
+          fileName: file?.business[0]?.name as string,
+          contentType: file?.business[0]?.type as string,
+        },
+        companyIntroductionFile,
+        companyLogo: {
+          fileName: file?.logo[0]?.name as string,
+          contentType: file?.logo[0]?.type as string,
+        },
+        companyPhotoList,
+      });
+    }
+  };
   return (
     <>
       <>
@@ -159,7 +189,7 @@ const LastSignUpPage = () => {
           href={() => router.push("/company/login")}
           confirm={"회원가입"}
           move={() => router.back()}
-          onSubmit={() => router.push("/company/signup/2")}
+          onSubmit={() => SubmitRequest()}
           count={3}
         >
           <_Layout>
