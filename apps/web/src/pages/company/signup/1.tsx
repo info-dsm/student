@@ -1,13 +1,6 @@
 import Background from "../../../lib/components/Background";
 import menu from "../../../data/logindata/company";
-import {
-  InputText,
-  ModalCompany,
-  Success,
-  SmallInput,
-  AddressInput,
-  FileManage,
-} from "ui";
+import { InputText, ModalCompany, Success, SmallInput, AddressInput } from "ui";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";

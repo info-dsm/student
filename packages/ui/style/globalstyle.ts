@@ -6,7 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     -moz-user-select:none;
     -ms-user-select:none;
     overflow-x: hidden;
-    scroll-behavior: smooth; margin: 0;
+    scroll-behavior: smooth;
+     margin: 0;
     ::-webkit-scrollbar {
     background-color: ${(props) => props.theme.colors.gray};
     width: 10px;

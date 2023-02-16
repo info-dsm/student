@@ -86,7 +86,7 @@ const _InfoButton = styled.div<{ state: boolean }>`
   height: 40px;
   border-radius: 5px 5px ${(props) => (props.state ? 0 : 5)}px
     ${(props) => (props.state ? 0 : 5)}px;
-  font: 500 normal 20px "pretendard", sans-serif;
+  font: 500 normal 20px "Pretendard", sans-serif;
   line-height: 40px;
   color: ${(props) => props.theme.colors.white};
 

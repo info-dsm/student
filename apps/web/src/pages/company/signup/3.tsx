@@ -237,15 +237,19 @@ const LastSignUpPage = () => {
 
               <_Flex>
                 <SmallInput
-                  onChange={(e) => {}}
+                  onChange={(e) => {
+                    ChangeContact("contactorName", e.target.value);
+                  }}
                   text={"담당자"}
-                  value={""}
+                  value={companyContact.contactorName}
                   placeholder={"담당자 명을 입력해주세요."}
                 />
                 <SmallInput
-                  onChange={(e) => {}}
+                  onChange={(e) => {
+                    ChangeContact("contactorRank", e.target.value);
+                  }}
                   text={"소속부서"}
-                  value={""}
+                  value={companyContact.contactorRank}
                   placeholder={"소속부서를 입력해주세요."}
                 />
               </_Flex>
@@ -254,8 +258,11 @@ const LastSignUpPage = () => {
                   "(선택) 담당자 전화번호를 입력해주세요.  ex) xxx-xxxx-xxxx"
                 }
                 {...{ error: false }}
-                onInput={(e) => {}}
+                onInput={(e) => {
+                  ChangeContact("contactorPhone", e.target.value);
+                }}
                 onFocus={() => {}}
+                defaultValue={companyContact.contactorPhone}
               />
               <Success text={"이메일 인증"} success={success.email} />
               <_Interval gap={10}>

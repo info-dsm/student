@@ -17,7 +17,7 @@ export const Logo = (props: LogoProps) => {
 };
 const _Layout = styled.div<{ main: boolean }>`
   height: 32px;
-  width: 103px;
+  width: max-content;
   font: 700 34px "pretendard";
   cursor: pointer;
   color: ${(props) =>

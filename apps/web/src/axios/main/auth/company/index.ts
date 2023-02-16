@@ -67,6 +67,7 @@ export const companySignUp = async (
   }
 ) => {
   const data = await request({
+    method: "post",
     url: "company/signup",
     params: {
       emailCheckCode,

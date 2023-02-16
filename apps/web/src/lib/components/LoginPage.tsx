@@ -1,5 +1,5 @@
 import { Modal, InputText, Password } from "ui";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, ChangeEvent } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { login } from "../../axios/dist/index";
@@ -19,17 +19,15 @@ const LoginPage = ({
     error: false,
     comment: "",
   });
-  const [data, setData] = useState<
-    | { email: string; password: string }
-    | { companyNumber: string; password: string }
-  >(
-    member
-      ? {
-          email: "",
-          password: "",
-        }
-      : { companyNumber: "", password: "" }
-  );
+  const [data, setData] = useState<{
+    email: string;
+    companyNumber: string;
+    password: string;
+  }>({
+    email: "",
+    companyNumber: "",
+    password: "",
+  });
   const ChangeInput = useCallback(
     (e: string, props: string) => {
       setData({ ...data, [props]: e });
@@ -40,13 +38,62 @@ const LoginPage = ({
     setError({ error: false, comment: "" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, setError]);
+  const ChangeCompanyNumber = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.value.length < 13) {
+        switch (e.target.value.length) {
+          case 1:
+          case 2:
+          case 3:
+            e.target.value = e.target.value.replace(/[^0-9]/g, "");
+            if (e.target.value.length === 3) {
+              e.target.value += "-";
+            }
+            break;
+          case 5:
+          case 6:
+            e.target.value =
+              e.target.value.slice(0, 4) +
+              e.target.value
+                .slice(3, e.target.value.length)
+                .replace(/[^0-9]/g, "");
+            if (e.target.value.length === 6) {
+              e.target.value += "-";
+            }
+            break;
+          case 4:
+          case 7:
+            e.target.value = e.target.value.slice(0, e.target.value.length - 1);
+            break;
+          default:
+            e.target.value =
+              e.target.value.slice(0, 7) +
+              e.target.value
+                .slice(7, e.target.value.length)
+                .replace(/[^0-9]/g, "");
+            break;
+        }
+        ChangeInput(e.target.value, "companyNumber");
+      } else {
+        e.target.value = e.target.value.slice(0, 12);
+      }
+    },
+    [ChangeInput]
+  );
   const Submit = () => {
-    login(data, member ? "user" : "company")
+    const { email, companyNumber, password } = data;
+    const loginData = member
+      ? { email, password }
+      : { companyNumber, password };
+    login(loginData, member ? "user" : "company")
       .then((res: { accessToken: string; refreshToken: string }) => {
         console.log(res);
         request.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${res.accessToken}`;
+        if (data.companyNumber !== "") {
+          localStorage.setItem("companyNumber", data.companyNumber);
+        }
         cookie.set("accessToken", res.accessToken, { expires: 7 });
         cookie.set("refreshToken", res.refreshToken, { expires: 7 });
         router.push(path.direct);
@@ -86,8 +133,11 @@ const LoginPage = ({
             }
             {...{ error: error.error }}
             onInput={(e) =>
-              ChangeInput(e.target.value, member ? "email" : "companyNumber")
+              member
+                ? ChangeInput(e.target.value, "email")
+                : ChangeCompanyNumber(e)
             }
+            defaultValue={member ? data.email : data.companyNumber}
             onFocus={() => ClearError()}
           />
           <Password

@@ -71,7 +71,7 @@ const _Menu = styled.div<{ admin: boolean; selected: boolean }>`
   }
 `;
 const _Nav = styled.nav`
-  width: 320px;
+  width: 400px;
   display: flex;
   justify-content: flex-end;
   gap: 1.5rem;

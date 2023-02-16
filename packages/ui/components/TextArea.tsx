@@ -10,7 +10,6 @@ export const TextArea = (props: TextAreaProps) => {
   return <_TextArea {...props} />;
 };
 const _TextArea = styled.textarea`
-  width: 728px;
   height: 150px;
   background-color: ${({ theme }) => theme.colors.gray};
   border: none;

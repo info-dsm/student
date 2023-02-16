@@ -17,4 +17,5 @@ export { getWaitList } from '../main/notice/wait';
 export { getGoneList } from "../main/notice/gone";
 export { getCompanyNoticeEvery } from "../main/notice/search";
 export { getBusiness, type TagProps } from '../main/company/businessTag';
-export {companySignUp,type companySignUpProps}from '../main/auth/company';
+export { companySignUp, type companySignUpProps } from '../main/auth/company';
+export { getBaseList,type getBaseListProps } from '../main/notice/baseList';
