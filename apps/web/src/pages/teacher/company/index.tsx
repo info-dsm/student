@@ -18,7 +18,9 @@ const TeacherCompanyPage: NextPage = () => {
   );
   return (
     <>
-      <TeacherCompany {...{ status, data, getIndex, ChangeIndex }} />
+      <TeacherCompany
+        {...{ status, data, getIndex, queryKey: "list", ChangeIndex }}
+      />
     </>
   );
 };

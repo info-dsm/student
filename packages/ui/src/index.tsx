@@ -43,4 +43,6 @@ export { CheckBox, type CheckBoxProps } from "../components/CheckBox";
 export { BigCheck, type BigCheckProps } from "../components/BigCheckInput";
 export { InputNotice, type InputNoticeProps } from "../components/InputNotice";
 export { OtherSearch, type OtherSearchProps } from "../components/OthersSearch";
-export {SelectPrime,type SelectPrimeProps}from "../components/SelectPrime";
+export { SelectPrime, type SelectPrimeProps } from "../components/SelectPrime";
+export { NoticeCompanyList,CompanyTitle,type NoticeCompanyListProps,type CompanyTitleProps } from "../components/CompanyNoticeList";
+export { CompanyTable } from "../components/TableCompany";

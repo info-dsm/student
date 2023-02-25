@@ -2,8 +2,12 @@ import { Modal, InputText, Password, AuthorizationInput, Success } from "ui";
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { confirmCode, login, sendNumber } from "../../../axios/dist";
-import cookie from "js-cookie";
+import {
+  confirmCode,
+  login,
+  sendNumber,
+  teacherSignUp,
+} from "../../../axios/dist";
 import Background from "../../../lib/components/Background";
 import menu from "../../../data/logindata";
 const LoginPage = () => {
@@ -26,11 +30,11 @@ const LoginPage = () => {
   });
   const [data, setData] = useState<{
     email: string;
-    data: string;
+    code: string;
     name: string;
     teacherCode: string;
     password: string;
-  }>({ email: "", data: "", name: "", teacherCode: "", password: "" });
+  }>({ email: "", code: "", name: "", teacherCode: "", password: "" });
   const [success, setSuccess] = useState<{
     email: boolean;
     name: boolean;
@@ -43,7 +47,7 @@ const LoginPage = () => {
   const ChangeInput = useCallback(
     (
       e: string,
-      props: "email" | "data" | "name" | "teacherCode" | "password"
+      props: "email" | "code" | "name" | "teacherCode" | "password"
     ) => {
       setData({ ...data, [props]: e });
     },
@@ -77,11 +81,15 @@ const LoginPage = () => {
       .catch(() => OccurError("중복된 이메일입니다.", "email"));
   };
   const CodeRequest = () => {
-    confirmCode(data.email, data.data, "SIGNUP_EMAIL")
+    confirmCode(data.email, data.code, "SIGNUP_EMAIL")
       .then(() => OccuerSucces("email"))
       .catch(() => OccurError("잘못된 인증코드입니다.", "code"));
   };
   const Submit = () => {
+    const { code, teacherCode, ...props } = data;
+    teacherSignUp(code, teacherCode, props).then(() =>
+      router.push("/teacher/login")
+    );
     // login(data, "user")
     //   .then((res: { accessToken: string; refreshToken: string }) => {
     //     console.log(res);
@@ -131,10 +139,10 @@ const LoginPage = () => {
             <AuthorizationInput
               placeholder={"인증번호 입력해주세요."}
               {...error.code}
-              onInput={(e) => ChangeInput(e.target.value, "data")}
+              onInput={(e) => ChangeInput(e.target.value, "code")}
               onFocus={() => {}}
               onClick={() => CodeRequest()}
-              value={data.data}
+              value={data.code}
               aut={"안증번호 확인"}
             />
           </_Interval>

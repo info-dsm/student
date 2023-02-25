@@ -76,31 +76,28 @@ const TeacherNotice = ({
     },
     [check]
   );
-  const LabelData = data?.content[0].approveStatus
-    ? []
-    : [
-        {
-          onClick: () => router.push("/teacher/notice"),
-          text: "대기 중인 모집공고",
-          status:
-            (router.asPath as string) ===
-            ("/teacher/notice/" || "/teacher/notice"),
-        },
-        {
-          onClick: () => router.push("/teacher/notice/progress"),
-          text: "모집 중인 모집공고",
-          status:
-            (router.asPath as string) ===
-            ("/teacher/notice/progress/" || "/teacher/notice/progress"),
-        },
-        {
-          onClick: () => router.push("/teacher/notice/gone"),
-          text: "마감 된 모집공고",
-          status:
-            (router.asPath as string) ===
-            ("/teacher/notice/gone/" || "/teacher/notice/gone"),
-        },
-      ];
+  const LabelData = [
+    {
+      onClick: () => router.push("/teacher/notice"),
+      text: "대기 중인 모집공고",
+      status:
+        (router.asPath as string) === ("/teacher/notice/" || "/teacher/notice"),
+    },
+    {
+      onClick: () => router.push("/teacher/notice/progress"),
+      text: "모집 중인 모집공고",
+      status:
+        (router.asPath as string) ===
+        ("/teacher/notice/progress/" || "/teacher/notice/progress"),
+    },
+    {
+      onClick: () => router.push("/teacher/notice/gone"),
+      text: "마감 된 모집공고",
+      status:
+        (router.asPath as string) ===
+        ("/teacher/notice/gone/" || "/teacher/notice/gone"),
+    },
+  ];
   return (
     <>
       <_BackGround>
@@ -142,7 +139,9 @@ const TeacherNotice = ({
             <Toast label={"notice"}>
               <Table>
                 <Title
-                  checked={check.every((value) => value === true)}
+                  checked={
+                    check.length !== 0 && check.every((value) => value === true)
+                  }
                   data={NoticeTitleData}
                   onChange={CheckAll}
                 />
@@ -170,7 +169,16 @@ const TeacherNotice = ({
                         checked={check[i]}
                         onClick={() => {}}
                         onWatch={() => {}}
-                        onEdit={() => {}}
+                        onEdit={() => {
+                          router.push({
+                            pathname: "/teacher/notice/edit",
+                            query: {
+                              compayNumber:
+                                data.content[i].company.companyNumber,
+                              noticeId: data.content[i].noticeId,
+                            },
+                          });
+                        }}
                         {...{ listStatus }}
                       />
                     ))}

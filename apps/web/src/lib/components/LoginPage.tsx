@@ -2,7 +2,7 @@ import { Modal, InputText, Password } from "ui";
 import React, { useState, useCallback, ChangeEvent } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { login } from "../../axios/dist/index";
+import { getCompanyNumber, login } from "../../axios/dist/index";
 import cookie from "js-cookie";
 import request from "../../axios/main";
 const LoginPage = ({
@@ -25,7 +25,7 @@ const LoginPage = ({
     password: string;
   }>({
     email: "",
-    companyNumber: "",
+    companyNumber: getCompanyNumber() ?? "",
     password: "",
   });
   const ChangeInput = useCallback(
@@ -91,7 +91,7 @@ const LoginPage = ({
         request.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${res.accessToken}`;
-        if (data.companyNumber !== "") {
+        if (member) {
           localStorage.setItem("companyNumber", data.companyNumber);
         }
         cookie.set("accessToken", res.accessToken, { expires: 7 });

@@ -1,5 +1,5 @@
 import TeacherNotice from "../../../../lib/components/teacher/Notice";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 import {
   getOnList,
@@ -8,6 +8,7 @@ import {
 } from "../../../../axios/dist";
 const TeacherNoticePage = () => {
   const [getIndex, setIndex] = useState<number>(0);
+  const queryClient = useQueryClient();
   const { status, data } = useQuery(
     ["noticeProgress", getIndex],
     async () => getOnList(getIndex),
@@ -38,14 +39,20 @@ const TeacherNoticePage = () => {
     {
       text: "모집 종료",
       onClick: (check: boolean[]) => {
-        deleteNotice(GetElementList(check)).then(() => location.reload());
+        deleteNotice(GetElementList(check)).then(() =>
+          queryClient.refetchQueries({
+            queryKey: ["noticeProgress", getIndex],
+          })
+        );
       },
     },
     {
       text: "삭제",
       onClick: (check: boolean[]) => {
         deleteNoRemainNotice(GetElementList(check)).then(() =>
-          location.reload()
+          queryClient.refetchQueries({
+            queryKey: ["noticeProgress", getIndex],
+          })
         );
       },
     },

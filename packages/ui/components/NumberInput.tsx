@@ -3,7 +3,7 @@ import styled from "styled-components";
 export interface NumberInputProps {
   text: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  defaultValue: string;
+  value: string;
   last?: string;
 }
 export const NumberInput = ({

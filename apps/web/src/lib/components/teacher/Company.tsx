@@ -13,6 +13,7 @@ import {
   Wait,
   Button,
 } from "ui";
+import { useQueryClient } from "@tanstack/react-query";
 import React, { useState, useCallback, useLayoutEffect } from "react";
 import { CompanyTitleData } from "../../../data/teacher/company";
 import styled from "styled-components";
@@ -23,14 +24,17 @@ const TeacherCompany = ({
   data,
   ChangeIndex,
   getIndex,
+  queryKey,
   result = "",
 }: {
   status: "success" | "loading" | "error";
   data: getCompanyListProps | undefined;
   ChangeIndex: (num: number) => void;
   getIndex: number;
+  queryKey: string;
   result?: string;
 }) => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const [now, setNow] = useState<"기본" | "년도 검색">("기본");
   const [remainCount, setRemainCount] = useState<number>(0);
@@ -95,7 +99,10 @@ const TeacherCompany = ({
       text: "선도기업 등록",
       onClick: () => {
         companyAssosiate(GetCompanyNumberList("isLeading"), "leading").then(
-          () => location.reload()
+          () =>
+            queryClient.refetchQueries({
+              queryKey: [queryKey, getIndex],
+            })
         );
       },
     },
@@ -105,7 +112,12 @@ const TeacherCompany = ({
         companyAssosiate(
           GetCompanyNumberList("isAssociated"),
           "associate"
-        ).then(() => location.reload());
+        ).then(() => {
+          console.log(queryKey);
+          queryClient.refetchQueries({
+            queryKey: [queryKey, getIndex],
+          });
+        });
       },
     },
   ];
@@ -160,20 +172,22 @@ const TeacherCompany = ({
           <Toast label={"company"}>
             <Table>
               <Title
-                checked={check.every((value) => value === true)}
+                checked={
+                  check.length !== 0 && check.every((value) => value === true)
+                }
                 data={CompanyTitleData}
                 onChange={CheckAll}
               />
               {status === "loading" ? (
                 new Array(11).fill("").map((a, i) => (
                   <>
-                    <Wait key={i} />
+                    <Wait key={`${i}qwe`} />
                   </>
                 ))
               ) : status === "error" ? (
                 new Array(11).fill("").map((a, i) => (
                   <>
-                    <Wait key={i} />
+                    <Wait key={`${i}qwe`} />
                   </>
                 ))
               ) : (
@@ -184,7 +198,7 @@ const TeacherCompany = ({
                         ChangeCheck(i);
                       }}
                       {...{ list }}
-                      key={i}
+                      key={`${i}qwe`}
                       checked={check[i]}
                       onClick={() => {
                         if (list.totalEmployedCount > 0) {
@@ -193,14 +207,20 @@ const TeacherCompany = ({
                           window.alert("재직자가 없습니다.");
                         }
                       }}
-                      onWrite={() => {}}
+                      onWrite={() => {
+                        router.push(
+                          `/teacher/company/write/${data.content[i].companyNumber}`
+                        );
+                      }}
                       onWatch={() => {}}
                     />
                   ))}
                   {remainCount && data ? (
                     new Array(remainCount)
                       .fill("")
-                      .map((a, i) => <Wait key={data.content.length + i} />)
+                      .map((a, i) => (
+                        <Wait key={`${data.content.length + i}qwe`} />
+                      ))
                   ) : (
                     <></>
                   )}
@@ -210,7 +230,7 @@ const TeacherCompany = ({
                 {check.filter((b: boolean) => b).length}개 선택됨
                 <_ButtonLayout>
                   {grantList.map((props) => (
-                    <Button {...props} />
+                    <Button {...props} key={props.text} />
                   ))}
                 </_ButtonLayout>
               </_Bottom>

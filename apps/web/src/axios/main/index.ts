@@ -1,8 +1,13 @@
 // axios instance 를 생성해주었습니다.
 import axios from "axios";
+import cookie from "js-cookie";
 const request = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_KEY,
 });
+const accessToken = cookie.get("accessToken");
+if (accessToken !== undefined) {
+  request.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+}
 request.interceptors.request.use(
   (config) => {
     return config;

@@ -32,6 +32,7 @@ export const SelectPrime = ({
         <_Tb>
           <div>
             <_Input
+              key={write}
               id={write}
               state={state}
               onClick={(e) => {

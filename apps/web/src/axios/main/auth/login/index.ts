@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import request from "../..";
 export interface loginProps {
   accessToken: string;

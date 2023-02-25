@@ -1,5 +1,5 @@
 import TeacherNotice from "../../../lib/components/teacher/Notice";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 import {
   deleteNoRemainNotice,
@@ -14,6 +14,7 @@ const TeacherNoticePage = () => {
     async () => getWaitList(getIndex),
     { keepPreviousData: true }
   );
+  const queryClient = useQueryClient();
   const ChangeIndex = useCallback(
     (num: number) => {
       setIndex(num - 1);
@@ -39,20 +40,30 @@ const TeacherNoticePage = () => {
     {
       text: "접수",
       onClick: (check: boolean[]) => {
-        postAcceptNotice(GetElementList(check)).then(() => location.reload());
+        postAcceptNotice(GetElementList(check)).then(() =>
+          queryClient.refetchQueries({
+            queryKey: ["notice", getIndex],
+          })
+        );
       },
     },
     {
       text: "모집 종료",
       onClick: (check: boolean[]) => {
-        deleteNotice(GetElementList(check)).then(() => location.reload());
+        deleteNotice(GetElementList(check)).then(() =>
+          queryClient.refetchQueries({
+            queryKey: ["notice", getIndex],
+          })
+        );
       },
     },
     {
       text: "삭제",
       onClick: (check: boolean[]) => {
         deleteNoRemainNotice(GetElementList(check)).then(() =>
-          location.reload()
+          queryClient.refetchQueries({
+            queryKey: ["notice", getIndex],
+          })
         );
       },
     },

@@ -12,7 +12,6 @@ const FirstSignUp = () => {
   const router = useRouter();
   const [data, setData] = useRecoilState(firstSignUpData);
   const [secondData, setSecondeData] = useRecoilState(secondSignUpData);
-  console.log(data.companyNameRequest);
   const ChangeInput = useCallback(
     function (
       props: "companyNumber" | "companyNameRequest",

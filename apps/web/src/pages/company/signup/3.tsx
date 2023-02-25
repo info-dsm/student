@@ -12,7 +12,12 @@ import {
   Success,
 } from "ui";
 import { firstSignUpData, secondSignUpData } from "../../../atom";
-import { companySignUp, confirmCode, sendNumber } from "../../../axios/dist";
+import {
+  companySignUp,
+  confirmCode,
+  createNoticeFile,
+  sendNumber,
+} from "../../../axios/dist";
 import menu from "../../../data/logindata/company";
 import Background from "../../../lib/components/Background";
 type fileProps = "business" | "logo" | "photo" | "introduce";
@@ -155,25 +160,42 @@ const LastSignUpPage = () => {
     ) {
       const companyPhotoList = file.photo.map((e: File | null) => {
         if (e !== null) {
-          return { fileName: e.name, contentType: e.type };
+          return { fileName: e.name as string, contentType: e.type as string };
         }
       });
       const companyIntroductionFile = file.introduce.map((e: File | null) => {
         if (e !== null) {
-          return { fileName: e.name, contentType: e.type };
+          return { fileName: e.name as string, contentType: e.type as string };
         }
       });
       companySignUp(code, second, companyContact, first, {
         businessRegisteredCertificate: {
-          fileName: file?.business[0]?.name as string,
-          contentType: file?.business[0]?.type as string,
+          fileName: file.business[0]?.name as string,
+          contentType: file.business[0]?.type as string,
         },
-        companyIntroductionFile,
+        companyIntroductionFile: {
+          request: companyIntroductionFile as {
+            fileName: string;
+            contentType: string;
+          }[],
+        },
         companyLogo: {
-          fileName: file?.logo[0]?.name as string,
-          contentType: file?.logo[0]?.type as string,
+          fileName: file.logo[0]?.name as string,
+          contentType: file.logo[0]?.type as string,
         },
-        companyPhotoList,
+        companyPhotoList: {
+          request: companyPhotoList as {
+            fileName: string;
+            contentType: string;
+          }[],
+        },
+      }).then((res) => {
+        createNoticeFile(res, [
+          ...(file.business as File[]),
+          ...(file.introduce as File[]),
+          ...(file.logo as File[]),
+          ...(file.photo as File[]),
+        ]);
       });
     }
   };

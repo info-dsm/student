@@ -8,7 +8,7 @@ const CompanySearchResult = () => {
   console.log(id);
   const [getIndex, setIndex] = useState<number>(0);
   const { status, data } = useQuery(
-    ["list", getIndex],
+    ["listSearch", getIndex],
     async () => getSearchCompany(id, getIndex),
     { keepPreviousData: true }
   );
@@ -21,7 +21,14 @@ const CompanySearchResult = () => {
   return (
     <>
       <TeacherCompany
-        {...{ status, data, getIndex, ChangeIndex, result: id }}
+        {...{
+          status,
+          data,
+          getIndex,
+          ChangeIndex,
+          queryKey: "listSearch",
+          result: id,
+        }}
       />
     </>
   );

@@ -1,4 +1,5 @@
 import request from "../..";
+import { createNoticeProps } from "../../notice/create";
 type contactProps =
   | "contactorName"
   | "contactorRank"
@@ -36,37 +37,29 @@ export const companySignUp = async (
     introduction: string;
   },
   photos: {
-    businessRegisteredCertificate:
-      | {
-          fileName: string;
-          contentType: string;
-        }
-      | undefined;
-    companyIntroductionFile:
-      | (
-          | {
-              fileName: string;
-              contentType: string;
-            }
-          | undefined
-        )[];
-    companyLogo:
-      | {
-          fileName: string;
-          contentType: string;
-        }
-      | undefined;
-    companyPhotoList:
-      | (
-          | {
-              fileName: string;
-              contentType: string;
-            }
-          | undefined
-        )[];
+    businessRegisteredCertificate: {
+      fileName: string;
+      contentType: string;
+    };
+    companyIntroductionFile: {
+      request: {
+        fileName: string;
+        contentType: string;
+      }[];
+    };
+    companyLogo: {
+      fileName: string;
+      contentType: string;
+    };
+    companyPhotoList: {
+      request: {
+        fileName: string;
+        contentType: string;
+      }[];
+    };
   }
 ) => {
-  const data = await request({
+  const data: createNoticeProps = await request({
     method: "post",
     url: "company/signup",
     params: {

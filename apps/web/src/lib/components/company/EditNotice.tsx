@@ -16,8 +16,8 @@ import {
   FileManage,
 } from "ui";
 import {
-  createNotice,
   createNoticeFile,
+  editNotice,
   getBaseList,
   getBaseListProps,
 } from "../../../axios/dist";
@@ -32,8 +32,14 @@ interface WriteNoticeProps {
   path: string;
   companyNumber: string;
   post: getBaseListProps;
+  noticeId: string;
 }
-const WriteNotice = ({ menu, companyNumber, post }: WriteNoticeProps) => {
+const WriteNotice = ({
+  menu,
+  companyNumber,
+  post,
+  noticeId,
+}: WriteNoticeProps) => {
   const { status, data } = useQuery(
     ["getNoticedefaultData"],
     () => getBaseList(),
@@ -415,8 +421,9 @@ const WriteNotice = ({ menu, companyNumber, post }: WriteNoticeProps) => {
         delete props.gradeCutLine;
       }
 
-      createNotice(
+      editNotice(
         companyNumber,
+        noticeId,
         certificateList.list[certificateList.now].small
           .map((v) => {
             if (v.on) {
@@ -868,7 +875,7 @@ const WriteNotice = ({ menu, companyNumber, post }: WriteNoticeProps) => {
           </_Lay>
           <_Line />
           <_Submit>
-            <button onClick={() => Submit()}>모집공고 등록</button>
+            <button onClick={() => Submit()}>모집공고 수정</button>
           </_Submit>
         </_Layout>
       </_BackGround>

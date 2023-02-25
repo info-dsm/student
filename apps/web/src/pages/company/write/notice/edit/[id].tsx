@@ -1,16 +1,17 @@
+import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import {
   getBaseList,
   getBaseListProps,
   getCompanyNumber,
-} from "../../../../axios/dist";
-import WriteNotice from "../../../../lib/components/company/WriteNotice";
+} from "../../../../../axios/dist";
+import EditNotice from "../../../../../lib/components/company/EditNotice";
 
-const WriteNoticeCompany = ({ post }: { post: getBaseListProps }) => {
+const EditNoticeCompany = ({ post }: { post: getBaseListProps }) => {
   const router = useRouter();
   return (
     <>
-      <WriteNotice
+      <EditNotice
         {...{ post }}
         {...{
           menu: [
@@ -32,14 +33,15 @@ const WriteNoticeCompany = ({ post }: { post: getBaseListProps }) => {
             },
           ],
           path: "/company",
+          noticeId: router.query.id as string,
           companyNumber: getCompanyNumber() as string,
         }}
       />
     </>
   );
 };
-export default WriteNoticeCompany;
-export async function getStaticProps() {
+export default EditNoticeCompany;
+export const getServerSideProps: GetStaticProps = async () => {
   const posts = await getBaseList();
   return { props: { posts } };
-}
+};

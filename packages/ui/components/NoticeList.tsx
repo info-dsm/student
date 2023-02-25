@@ -79,10 +79,8 @@ export const NoticeList = ({
         </_ListLayout>
         <_ListLayout width={5.5}>
           <_Title>
-            {
-              list.classificationResponse[0].bigClassification
-                .bigClassificationName
-            }
+            {list.classificationResponse[0]?.bigClassification
+              .bigClassificationName ?? ""}
           </_Title>
         </_ListLayout>
         <_ListLayout width={8.5}>
@@ -100,7 +98,7 @@ export const NoticeList = ({
         <_ListLayout width={3}>
           <_Link>{list.applicantCount} 명</_Link>
         </_ListLayout>
-        <_ListLayout width={5.5}>
+        <_ListLayout width={5.5} onClick={onEdit}>
           <_Link>모집공고 수정</_Link>
         </_ListLayout>
         <_ListLayout width={5.5}>

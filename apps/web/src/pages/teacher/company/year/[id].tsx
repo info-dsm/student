@@ -7,7 +7,7 @@ const CompanySearchResult = () => {
   const id = useRouter().query.id as string;
   const [getIndex, setIndex] = useState<number>(0);
   const { status, data } = useQuery(
-    ["list", getIndex],
+    ["listYear", getIndex],
     async () => getYearCompany(id, getIndex),
     { keepPreviousData: true }
   );
@@ -20,7 +20,14 @@ const CompanySearchResult = () => {
   return (
     <>
       <TeacherCompany
-        {...{ status, data, getIndex, ChangeIndex, result: id }}
+        {...{
+          status,
+          data,
+          getIndex,
+          ChangeIndex,
+          queryKey: "listYear",
+          result: id,
+        }}
       />
     </>
   );
