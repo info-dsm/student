@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Arrow from "../../../../public/assets/arrow";
+import Arrow from "../../../public/assets/arrow";
 
 const ArrowText = ({ text, link }: { text: string; link: string }) => {
   return (

@@ -1,4 +1,3 @@
-import { getCookie } from "./cookie/getCookie";
 // axios instance 를 생성해주었습니다.
 import axios from "axios";
 import { reissue } from "./auth/reissue";

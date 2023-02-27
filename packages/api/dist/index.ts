@@ -50,5 +50,4 @@ export {
 export { applyNotice } from "../main/applies/applyNotice";
 
 export { getApplyList, type getApplyListProps } from "../main/applies/applyList";
-export { setCookie } from "../main/cookie/setCookie";
 export { login, type loginProps } from "../main/auth/login/index";

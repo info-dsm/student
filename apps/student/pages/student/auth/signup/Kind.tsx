@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Checked from "../../../../../public/assets/checked";
+import Checked from "../../../../public/assets/checked";
 import failImage from "../../../../../public/assets/failed.png";
 import styled from "styled-components";
 

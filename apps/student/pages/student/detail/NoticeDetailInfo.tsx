@@ -1,7 +1,7 @@
 import { getCompanyDetailProps, getNoticeDetailProps } from "apis";
 import React from "react";
 import styled from "styled-components";
-import Checked2 from "../../../../public/assets/checked2";
+import Checked2 from "../../../public/assets/checked2";
 
 const DetailInfo = ({
   companyInfo,
