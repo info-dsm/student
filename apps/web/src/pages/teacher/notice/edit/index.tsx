@@ -1,10 +1,6 @@
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import {
-  getBaseList,
-  getBaseListProps,
-  getCompanyNumber,
-} from "../../../../axios/dist";
+import { getBaseList, getBaseListProps } from "../../../../axios/dist";
 import EditNotice from "../../../../lib/components/company/EditNotice";
 
 const EditNoticeCompany = ({ post }: { post: getBaseListProps }) => {

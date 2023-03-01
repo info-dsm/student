@@ -209,7 +209,7 @@ const TeacherCompany = ({
                       }}
                       onWrite={() => {
                         router.push(
-                          `/teacher/company/write/${data.content[i].companyNumber}`
+                          `/teacher/company/notice/${data.content[i].companyNumber}`
                         );
                       }}
                       onWatch={() => {}}

@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import {
   getBaseList,
@@ -39,7 +40,7 @@ const WriteNoticeCompany = ({ post }: { post: getBaseListProps }) => {
   );
 };
 export default WriteNoticeCompany;
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const posts = await getBaseList();
   return { props: { posts } };
-}
+};
