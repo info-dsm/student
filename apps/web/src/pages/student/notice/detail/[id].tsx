@@ -10,9 +10,9 @@ import {
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import DetailInfo from "../../../../lib/components/student/NoticeDetailInfo";
-import DetailRecruitmentJob from "./RecruitmentJob";
-import QualificationRequirements from "./Qualification";
-import Welfare from "./Welfare";
+import DetailRecruitmentJob from "../../../../lib/components/student/RecruitmentJob";
+import QualificationRequirements from "../../../../lib/components/student/Qualification";
+import Welfare from "../../../../lib/components/student/Welfare";
 import HeaderComponent from "ui/components/StudentHeader";
 
 const NoticeDetail = ({

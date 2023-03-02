@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import StudentMainNotice from "./Notice";
+import StudentMainNotice from "./mainNotice";
 import {
   getWaitingNoticeList,
   getWaitingNoticeListContentProps,

@@ -5,13 +5,13 @@ import {
   getWaitingNoticeListContentProps,
 } from "apis";
 import styled from "styled-components";
-import StudentNoticeBanner from "./banner";
-import StudentClosedNotice from "./closedNotice";
-import StudentNotice from "./notice";
+import StudentNoticeBanner from "../../../lib/components/student/noticebanner";
+import StudentClosedNotice from "../../../lib/components/student/closedNotice";
+import StudentNotice from "../../../lib/components/student/notice";
 import { useState, useEffect } from "react";
 import HeaderComponent from "ui/components/StudentHeader";
-import NoticePlaceHolder from "./placeholder";
-import ClosedNoticePlaceHolder from "./closedPlaceholder";
+import NoticePlaceHolder from "../../../lib/components/student/placeholder";
+import ClosedNoticePlaceHolder from "../../../lib/components/student/closedPlaceholder";
 
 const StudentNoticeList = () => {
   const [notice, setNotice] = useState<getWaitingNoticeListContentProps[]>([]);

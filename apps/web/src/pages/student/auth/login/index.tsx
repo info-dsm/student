@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import StudentAuthBanner from "../banner";
+import StudentAuthBanner from "../../../../lib/components/student/authbanner";
 import AuthInput from "ui/components/AuthInput";
-import StudentAuthTitle from "../Title";
-import StudentAuthButton from "../Button";
+import StudentAuthTitle from "../../../../lib/components/student/Title";
+import StudentAuthButton from "../../../../lib/components/student/Button";
 import { login } from "apis";
 import { useRouter } from "next/router";
 

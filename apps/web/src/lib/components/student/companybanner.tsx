@@ -1,28 +1,27 @@
-import styled from "styled-components";
 import Image from "next/image";
-import MainImage from "../../../../public/assets/main.png";
-import ArrowText from "./Arrow";
+import styled from "styled-components";
+import BannerImage from "../../../../public/assets/images/main.png";
 
-const StudentBanner = () => {
-  const noticeSize: number = 1000000;
+const StudentCompanyBanner = () => {
+  const companySize: number = 100;
 
   return (
     <>
       <Banner>
         <div>
-          현재 총 {noticeSize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
-          개의 <br /> 모집공고가 있어요
+          이번년도에는 총 {companySize}
+          개의 <br /> 회사와 MOU를 맺었어요.
         </div>
-        <ArrowText text={"모집공고 둘러보기"} link={"notice"} />
+        <div>2022년 12월 12일 기준</div>
       </Banner>
       <BannerImg>
-        <Image src={MainImage} alt="" />
+        <Image src={BannerImage} alt="" />
       </BannerImg>
     </>
   );
 };
 
-export default StudentBanner;
+export default StudentCompanyBanner;
 
 const Banner = styled.div`
   background: linear-gradient(
@@ -31,30 +30,31 @@ const Banner = styled.div`
     #101112 95.05%
   );
   width: 100vw;
-  height: 100vh;
+  height: 370px;
 
   div {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
-    text-align: center;
     font-size: 48px;
+    padding-left: 227px;
     line-height: 57.28px;
     font-weight: 700;
     position: relative;
-  }
-
-  > span {
-    top: 59%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    + div {
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+      font-size: 17px;
+      top: 40%;
+      left: 50%;
+    }
   }
 `;
 
 const BannerImg = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 370px;
   position: absolute;
   top: 0;
   z-index: -1;
@@ -62,6 +62,6 @@ const BannerImg = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: bottom;
   }
 `;

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Checked from "../../../../public/assets/checked";
-import failImage from "../../../../../public/assets/failed.png";
+import Checked from "../../../../public/assets/images/checked";
+import failImage from "../../../../public/assets/images/failed.png";
 import styled from "styled-components";
 
 const StudentAuthKind = ({

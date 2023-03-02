@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import BannerImage from "../../../../public/assets/main.png";
+import BannerImage from "../../../../public/assets/images/main.png";
 const StudentAuthBanner = () => {
   return (
     <Banner>

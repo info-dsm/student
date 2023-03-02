@@ -7,8 +7,8 @@ import {
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import HeaderComponent from "ui/components/StudentHeader";
-import StudentMyPageProfile from "./Profile";
-import StudentSupportStatus from "./SupportStatus";
+import StudentMyPageProfile from "../../../lib/components/student/Profile";
+import StudentSupportStatus from "../../../lib/components/student/SupportStatus";
 
 const StudentMyPage = () => {
   const [info, setInfo] = useState<getUserInfoProps>();

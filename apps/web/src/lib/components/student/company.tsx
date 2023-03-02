@@ -1,6 +1,6 @@
 import { getCompanyListContentProps } from "apis";
 import styled from "styled-components";
-import Checked2 from "../../../public/assets/checked2";
+import Checked2 from "../../../../public/assets/images/checked2";
 
 const StudentCompany = ({ info }: { info: getCompanyListContentProps }) => {
   return (

@@ -1,11 +1,11 @@
 import { getCompanyList, getCompanyListContentProps } from "apis";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import StudentCompany from "./company";
-import StudentCompanyBanner from "./banner";
+import StudentCompany from "../../../lib/components/student/company";
+import StudentCompanyBanner from "../../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
-import StudentCompanyKind from "./Kind";
-import CompanyPlaceHolder from "./placeholder";
+import StudentCompanyKind from "../../../lib/components/student/Kind";
+import CompanyPlaceHolder from "../../../lib/components/student/detailplaceholder";
 
 const StudentCompanyList = () => {
   const [company, setCompany] = useState<getCompanyListContentProps[]>([]);

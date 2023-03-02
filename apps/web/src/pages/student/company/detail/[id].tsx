@@ -7,7 +7,7 @@ import {
   getWaitingNoticeListContentProps,
 } from "apis";
 import DetailInfo from "../../../../lib/components/student/NoticeDetailInfo";
-import StudentCompanyNoticeList from "./noticeList";
+import StudentCompanyNoticeList from "../../../../lib/components/student/noticeList";
 import HeaderComponent from "ui/components/StudentHeader";
 
 const StudentCompanyDetail = ({

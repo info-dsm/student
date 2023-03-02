@@ -1,8 +1,8 @@
 import { getUserInfoProps } from "apis";
 import Image from "next/image";
 import styled from "styled-components";
-import GithubIcon from "../../../../public/assets/github.png";
-import UserIcon from "../../../../public/assets/user.png";
+import GithubIcon from "../../../../public/assets/images/github.png";
+import UserIcon from "../../../../public/assets/images/user.png";
 
 const StudentMyPageProfile = ({ info }: { info: getUserInfoProps }) => {
   return (

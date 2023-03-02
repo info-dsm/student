@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import StudentBanner from "./Banner";
-import StudentMainNoticeContainer from "./NoticeContainer";
-import TextBox from "./TextBox";
+import StudentBanner from "../../../lib/components/student/Banner";
+import StudentMainNoticeContainer from "../../../lib/components/student/NoticeContainer";
+import TextBox from "../../../lib/components/student/TextBox";
 import React, { useEffect, useState } from "react";
 import { getCompanyList, getCompanyListContentProps } from "apis";
 import HeaderComponent from "ui/components/StudentHeader";
