@@ -3,6 +3,7 @@ import { Header, Logo } from "ui";
 import React from "react";
 import { BackImg } from "../../../public/assets";
 import Image from "next/image";
+import cloudflareLoader from "./loader";
 const Background = (props: {
   menu: {
     onClick: () => void;
@@ -12,7 +13,13 @@ const Background = (props: {
 }) => {
   return (
     <>
-      <Image src={BackImg} alt="" placeholder="blur" fill></Image>
+      <Image
+        src={BackImg}
+        alt=""
+        placeholder="blur"
+        fill
+        loader={cloudflareLoader}
+      ></Image>
       <_Layout>
         <Header bgColor="rgba(16, 17, 18, 0.5);" admin={false} {...props}>
           <Logo main={false} onClick={() => {}} />
