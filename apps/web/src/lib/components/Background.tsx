@@ -13,12 +13,13 @@ const Background = (props: {
 }) => {
   return (
     <>
+      {/* 어쩔 수 없는 나중에 로더설정 */}
       <Image
         src={BackImg}
         alt=""
         placeholder="blur"
         fill
-        loader={cloudflareLoader}
+        unoptimized={true}
       ></Image>
       <_Layout>
         <Header bgColor="rgba(16, 17, 18, 0.5);" admin={false} {...props}>
