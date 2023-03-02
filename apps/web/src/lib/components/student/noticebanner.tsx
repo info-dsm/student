@@ -1,16 +1,16 @@
 import Image from "next/image";
 import styled from "styled-components";
-import BannerImage from "../../../../public/assets/main.png";
+import BannerImage from "../../../../public/assets/images/main.png";
 
-const StudentCompanyBanner = () => {
-  const companySize: number = 100;
+const StudentNoticeBanner = () => {
+  const noticeSize: number = 1000000;
 
   return (
     <>
       <Banner>
         <div>
-          이번년도에는 총 {companySize}
-          개의 <br /> 회사와 MOU를 맺었어요.
+          현재 총 {noticeSize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
+          개의 <br /> 모집공고가 있어요
         </div>
         <div>2022년 12월 12일 기준</div>
       </Banner>
@@ -21,7 +21,7 @@ const StudentCompanyBanner = () => {
   );
 };
 
-export default StudentCompanyBanner;
+export default StudentNoticeBanner;
 
 const Banner = styled.div`
   background: linear-gradient(
@@ -37,8 +37,8 @@ const Banner = styled.div`
     top: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
+    text-align: center;
     font-size: 48px;
-    padding-left: 227px;
     line-height: 57.28px;
     font-weight: 700;
     position: relative;

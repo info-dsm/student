@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Logo from "../../../public/assets/logo";
+import Logo from "../../../../public/assets/images/logo";
 
 const StudentAuthTitle = ({
   title,

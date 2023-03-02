@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import AuthInput from "ui/components/AuthInput";
-import StudentAuthBanner from "../banner";
-import StudentAuthTitle from "../Title";
+import StudentAuthBanner from "../../../../lib/components/student/authbanner";
+import StudentAuthTitle from "../../../../lib/components/student/Title";
 import { useState, useEffect } from "react";
-import StudentAuthButton from "../Button";
+import StudentAuthButton from "../../../../lib/components/student/Button";
 import { codeSend, codeCheck, studentSignUp } from "apis";
-import StudentAuthKind from "./Kind";
+import StudentAuthKind from "../../../../lib/components/student/signupKind";
 import { useRouter } from "next/router";
 
 const StudentSignUp = () => {

@@ -5,10 +5,10 @@ import {
 } from "apis";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import StudentCompany from "./company";
-import StudentCompanyBanner from "./banner";
+import StudentCompany from "../../../lib/components/student/company";
+import StudentCompanyBanner from "../../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
-import StudentCompanyKind from "./Kind";
+import StudentCompanyKind from "../../../lib/components/student/Kind";
 
 const StudentSearchCompanyList = ({ q, data }: { q: string; data: string }) => {
   const [company, setCompany] = useState<getCompanyListContentProps[]>(

@@ -1,8 +1,9 @@
-import Image from "next/image";
 import styled from "styled-components";
-import BannerImage from "../../../../public/assets/main.png";
+import Image from "next/image";
+import MainImage from "../../../../public/assets/images/main.png";
+import ArrowText from "./Arrow";
 
-const StudentNoticeBanner = () => {
+const StudentBanner = () => {
   const noticeSize: number = 1000000;
 
   return (
@@ -12,16 +13,16 @@ const StudentNoticeBanner = () => {
           현재 총 {noticeSize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
           개의 <br /> 모집공고가 있어요
         </div>
-        <div>2022년 12월 12일 기준</div>
+        <ArrowText text={"모집공고 둘러보기"} link={"notice"} />
       </Banner>
       <BannerImg>
-        <Image src={BannerImage} alt="" />
+        <Image src={MainImage} alt="" />
       </BannerImg>
     </>
   );
 };
 
-export default StudentNoticeBanner;
+export default StudentBanner;
 
 const Banner = styled.div`
   background: linear-gradient(
@@ -30,7 +31,7 @@ const Banner = styled.div`
     #101112 95.05%
   );
   width: 100vw;
-  height: 370px;
+  height: 100vh;
 
   div {
     left: 50%;
@@ -42,19 +43,18 @@ const Banner = styled.div`
     line-height: 57.28px;
     font-weight: 700;
     position: relative;
-    + div {
-      color: rgba(255, 255, 255, 0.5);
-      font-weight: 600;
-      font-size: 17px;
-      top: 40%;
-      left: 50%;
-    }
+  }
+
+  > span {
+    top: 59%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
 const BannerImg = styled.div`
   width: 100vw;
-  height: 370px;
+  height: 100vh;
   position: absolute;
   top: 0;
   z-index: -1;
@@ -62,6 +62,6 @@ const BannerImg = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: bottom;
+    object-position: top;
   }
 `;
