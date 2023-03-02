@@ -9,7 +9,7 @@ import {
 } from "apis";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import DetailInfo from "../../detail/NoticeDetailInfo";
+import DetailInfo from "../../../../lib/components/student/NoticeDetailInfo";
 import DetailRecruitmentJob from "./RecruitmentJob";
 import QualificationRequirements from "./Qualification";
 import Welfare from "./Welfare";
