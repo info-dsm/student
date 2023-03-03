@@ -26,8 +26,8 @@ import {
   editNotice,
   getBaseList,
   getBaseListProps,
-  getNoticeDetail,
-  getNoticeDetailProps,
+  getNoticeDetail2,
+  getNoticeDetailProps2,
 } from "../../../axios/dist";
 import open from "../../../hooks/addresshook";
 import { AddressProps } from "../../../../@types/interface";
@@ -44,21 +44,21 @@ interface WriteNoticeProps {
 const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
   const data: [
     UseQueryResult<getBaseListProps>,
-    UseQueryResult<getNoticeDetailProps>
+    UseQueryResult<getNoticeDetailProps2>
   ] = useQueries({
     queries: [
       { queryKey: ["getNoticedefaultData"], queryFn: () => getBaseList() },
       {
         queryKey: ["getNoticeDetail", noticeId],
         queryFn: () => {
-          const data = getNoticeDetail(noticeId);
+          const data = getNoticeDetail2(noticeId);
           return data;
         },
       },
     ],
   }) as [
     UseQueryResult<getBaseListProps>,
-    UseQueryResult<getNoticeDetailProps>
+    UseQueryResult<getNoticeDetailProps2>
   ];
   console.log(data);
   const [certificateList, setCertificateList] = useState<{

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { getWaitingNoticeListContentProps } from "apis";
+import { getWaitingNoticeListContentProps } from "../../../axios/dist";
 
 const StudentMainNotice = ({
   condition,
@@ -10,7 +10,7 @@ const StudentMainNotice = ({
   info: getWaitingNoticeListContentProps;
 }) => {
   return (
-    <Notice color={condition ? "#fff" : "#3B3C3D"}>
+    <Notice color={condition ? "1" : "0.3"}>
       <img src={info.company.imageList[0]} alt="" />
       <div>{info.detailBusinessDescription}</div>
       <span>{info.company.companyName}</span>
@@ -22,12 +22,12 @@ const StudentMainNotice = ({
           <div>지원자</div> <div>{info.applicantCount}명</div>
         </div>
         <br />
-        <div>
+        {/* <div>
           <div>학력</div>{" "}
           <div>
             {info.gradeCutLine === 0 ? "무관" : `${info.gradeCutLine}%`}
           </div>
-        </div>
+        </div> */}
       </SubData>
     </Notice>
   );
@@ -47,7 +47,8 @@ const SubData = styled.div`
 const Notice = styled.div<{ color: string }>`
   width: 380px;
   height: 222px;
-  background-color: ${(props) => props.color};
+  background-color: #fff;
+  opacity: ${props =>props.color};
   border-radius: 5px;
   padding: 26px 19px;
 
@@ -61,10 +62,17 @@ const Notice = styled.div<{ color: string }>`
     font-weight: 600;
     font-size: 20px;
     margin-bottom: -6px;
+      display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   > span {
     font-weight: 600;
     font-size: 13px;
     margin-left: 3px;
   }
+
 `;

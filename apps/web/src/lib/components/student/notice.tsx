@@ -1,4 +1,4 @@
-import { getWaitingNoticeListContentProps } from "apis";
+import { getWaitingNoticeListContentProps } from "../../../axios/dist";
 import Image from "next/image";
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ const StudentNotice = ({
   info: getWaitingNoticeListContentProps;
 }) => {
   return (
-    <NoticeDiv href={`notice/detail/${info.noticeId}`}>
+    <NoticeDiv href={`detail/${info.noticeId}`}>
       <img src={info.company.imageList[0]} alt="" />
       <h1>
         {info.classificationResponse.map((t, i, a) => (

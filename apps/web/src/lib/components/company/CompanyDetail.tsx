@@ -33,7 +33,7 @@ const CompanyDetail = ({
     queries: [
       {
         queryKey: ["companyInfo", id],
-        queryFn: () => getCompanyDetail(id),
+        queryFn: () => getCompanyDetail({ id }),
       },
       {
         queryKey: ["companyNoticeEvery", id],

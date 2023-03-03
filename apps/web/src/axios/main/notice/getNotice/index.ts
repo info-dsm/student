@@ -1,6 +1,6 @@
 import request from "../../";
 
-export interface getNoticeDetailProps {
+export interface getNoticeDetailProps2 {
   noticeId: string;
   company: {
     companyNumber: string;
@@ -64,7 +64,7 @@ export interface getNoticeDetailProps {
   isPersonalContact: Boolean;
 }
 
-export const getNoticeDetail = (id: string) => {
+export const getNoticeDetail2 = (id: string) => {
   return request({
     method: "GET",
     url: `notice/${id}`,

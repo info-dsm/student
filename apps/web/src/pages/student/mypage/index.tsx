@@ -3,29 +3,28 @@ import {
   getUserInfoProps,
   getSupportStatus,
   getSupportStatusProps,
-} from "apis";
-import { useEffect, useState } from "react";
+} from "../../../axios/dist";
+import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import HeaderComponent from "ui/components/StudentHeader";
 import StudentMyPageProfile from "../../../lib/components/student/Profile";
 import StudentSupportStatus from "../../../lib/components/student/SupportStatus";
+import cookie from "js-cookie"
 
 const StudentMyPage = () => {
   const [info, setInfo] = useState<getUserInfoProps>();
   const [status, setStatus] = useState<getSupportStatusProps[]>();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (
       typeof window !== "undefined" &&
-      sessionStorage.getItem("accessToken")
-    ) {
+      cookie.get("accessToken")
+      ) {
       getUserInfo().then((res) => {
-        console.log(res)
         setInfo(res as getUserInfoProps);
       });
       getSupportStatus()
         .then((res) => {
-          console.log(res)
           setStatus(res as getSupportStatusProps[]);
         })
         .catch((err) => {

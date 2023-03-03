@@ -1,4 +1,4 @@
-import request from "../../";
+import request from "../..";
 
 export interface getCompanyDetailProps {
   companyNumber: string;
@@ -90,9 +90,11 @@ export interface getCompanyDetailProps {
   };
 }
 
-export const getCompanyDetail = (id: string) => {
-  return request({
+export const getCompanyDetail = async ({ id }: { id: string }) => {
+  const data: getCompanyDetailProps = await request({
     method: "GET",
     url: `/company/${id}`,
   });
+
+  return data;
 };

@@ -1,4 +1,4 @@
-import { getClosedNoticeListContentProps } from "apis";
+import { getClosedNoticeListContentProps } from "../../../axios/dist";
 // import Image from "next/image";
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ const StudentClosedNotice = ({
   info: getClosedNoticeListContentProps;
 }) => {
   return (
-    <Link href={`notice/detail/${info.noticeId}`}>
+    <Link href={`detail/${info.noticeId}`}>
       <NoticeDiv>
         <NoticeLogo>
           <img src={info.company.imageList[0]} alt="" />

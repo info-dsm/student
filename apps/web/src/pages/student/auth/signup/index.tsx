@@ -2,9 +2,9 @@ import styled from "styled-components";
 import AuthInput from "ui/components/AuthInput";
 import StudentAuthBanner from "../../../../lib/components/student/authbanner";
 import StudentAuthTitle from "../../../../lib/components/student/Title";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import StudentAuthButton from "../../../../lib/components/student/Button";
-import { codeSend, codeCheck, studentSignUp } from "apis";
+import { codeSend, codeCheck, studentSignUp } from "../../../../axios/dist";
 import StudentAuthKind from "../../../../lib/components/student/signupKind";
 import { useRouter } from "next/router";
 
@@ -67,7 +67,7 @@ const StudentSignUp = () => {
     setStatus({ ...status, [name]: "normal" });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (request.password !== request.passwordCheck)
       setCheckStatus({ ...checkStatus, password: "failed" });
     else {
@@ -85,11 +85,7 @@ const StudentSignUp = () => {
   return (
     <>
       <StudentAuthBanner />
-      <ModalDiv
-        onClick={() => {
-          movePage();
-        }}
-      >
+      <ModalDiv>
         <StudentAuthTitle
           title={"학생 회원가입"}
           subTitle={{
@@ -107,7 +103,11 @@ const StudentSignUp = () => {
           subClick={{
             content: "인증번호 발송",
             event: () => {
-              if (request.email !== "") codeSend({ email: request.email });
+              if (request.email !== "") { codeSend({ email: request.email }).then(() => {
+                alert("인증번호가 발송되었습니다.")
+              }).catch(()=> {
+                alert("이미 있는 사용자입니다.")
+              })}
               else setStatus({ ...status, email: "error" });
             },
           }}

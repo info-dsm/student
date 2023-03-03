@@ -2,7 +2,7 @@
 import axios from "axios";
 import cookie from "js-cookie";
 const request = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_KEY,
+  baseURL: "https://api.info-dsm.info/",
 });
 const accessToken = cookie.get("accessToken");
 if (accessToken !== undefined) {

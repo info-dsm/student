@@ -1,8 +1,8 @@
 import {
   getCompanyDetail,
   getCompanyDetailProps,
-  getNoticeDetail,
-  getNoticeDetailProps,
+  getNoticeDetail2,
+  getNoticeDetailProps2,
 } from "../../../axios/dist";
 import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
@@ -30,9 +30,11 @@ const NoticeDetail = ({
     ["getNoticeDetail", companyNumber, noticeId],
     async () => {
       const data = (await axios.all([
-        getNoticeDetail(noticeId) as unknown as getNoticeDetailProps,
-        getCompanyDetail(companyNumber) as unknown as getCompanyDetailProps,
-      ])) as [getNoticeDetailProps, getCompanyDetailProps];
+        getNoticeDetail2(noticeId) as unknown as getNoticeDetailProps2,
+        getCompanyDetail({
+          id: companyNumber,
+        }) as unknown as getCompanyDetailProps,
+      ])) as [getNoticeDetailProps2, getCompanyDetailProps];
       return data;
     }
   );

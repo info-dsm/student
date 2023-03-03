@@ -4,8 +4,9 @@ import StudentAuthBanner from "../../../../lib/components/student/authbanner";
 import AuthInput from "ui/components/AuthInput";
 import StudentAuthTitle from "../../../../lib/components/student/Title";
 import StudentAuthButton from "../../../../lib/components/student/Button";
-import { login } from "apis";
+import { login1 } from "../../../../axios/dist";
 import { useRouter } from "next/router";
+import cookie from "js-cookie";
 
 const StudentLogin = () => {
   const router = useRouter();
@@ -78,13 +79,13 @@ const StudentLogin = () => {
             content1: "로그인",
             content2: "info가 처음이신가요?",
             content3: "회원가입",
-            link: "./signup",
+            link: "../signup",
           }}
           clickEvent={() => {
-            login({email: request.email, password: request.password}, "user")
+            login1({email: request.email, password: request.password}, "user")
               .then((res) => {
-                sessionStorage.setItem("accessToken", res.accessToken);
-                sessionStorage.setItem("refreshToken", res.refreshToken);
+                cookie.set("accessToken", res.accessToken, { expires: 7 });
+                cookie.set("refreshToken", res.refreshToken, { expires: 7 });
                 movepage();
               })
               .catch(() => {

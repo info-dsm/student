@@ -5,129 +5,110 @@ import {
   getCompanyDetailProps,
   getNoticeDetail,
   getNoticeDetailProps,
+  presigned,
   reissue,
-} from "apis";
-import React, { useEffect, useRef } from "react";
+} from "../../../../axios/dist";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import DetailInfo from "../../../../lib/components/student/NoticeDetailInfo";
 import DetailRecruitmentJob from "../../../../lib/components/student/RecruitmentJob";
 import QualificationRequirements from "../../../../lib/components/student/Qualification";
 import Welfare from "../../../../lib/components/student/Welfare";
 import HeaderComponent from "ui/components/StudentHeader";
+import { useRouter } from "next/router";
+import axios from "axios";
 
-const NoticeDetail = ({
-  noticeInfo,
-  companyInfo,
-}: {
-  noticeInfo: string;
-  companyInfo: string;
-}) => {
+const NoticeDetail = () => {
+  const query = useRouter().query.id as string;
   const form = useRef(null);
-  const NoticeInfo: getNoticeDetailProps = JSON.parse(noticeInfo);
-  const CompanyInfo: getCompanyDetailProps = JSON.parse(companyInfo);
+  const [NoticeInfo, setNoticeInfo] = useState<getNoticeDetailProps>();
+  const [CompanyInfo, setCompanyInfo] = useState<getCompanyDetailProps>();
 
-  useEffect(() => {
-    // console.log(
-    //   getApplyList({
-    //     number: CompanyInfo.companyNumber,
-    //     id: NoticeInfo.noticeId,
-    //     status: "WAITING",
-    //   })
-    // );
-  }, []);
+  useLayoutEffect(() => {
+    if (query)
+      getNoticeDetail({ id: query }).then((res: getNoticeDetailProps) => {
+        setNoticeInfo(res);
+        getCompanyDetail({ id: res.company.companyNumber }).then((res1) => {
+          setCompanyInfo(res1);
+        });
+      });
+  }, [query]);
 
   const applyNoticeForm = (e: any) => {
-    reissue().then(() => {
-      applyNotice({
-        id: NoticeInfo.noticeId,
-        formData: {
-          fileName: e.target.value,
-          contentType: "application/pdf",
-        },
-      })
-        .then((res) => {
-          console.log(res);
+    if (NoticeInfo)
+      reissue().then(() => {
+        applyNotice({
+          id: NoticeInfo.noticeId,
+          formData: {
+            fileName: e.target.value,
+            contentType: "application/pdf",
+          },
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
+          .then((res) => {
+            const { url } = res as { url: string };
+            presigned(url, e.target.files[0]);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
   };
 
   return (
     <>
       <HeaderComponent />
       <MainDiv>
-        <DetailDiv>
-          <img
-            src={
-              CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
-                ? CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
-                    .fileUrl
-                : ""
-            }
-            alt=""
-          />
-          <h1>
-            {NoticeInfo.classificationResponse.map((t, i, a) => (
-              <>
-                {t.name}
-                {a.length - 1 !== i ? ", " : " "}
-              </>
-            ))}
-            개발자 모집합니다.
-          </h1>
-          <h6>㈜ {NoticeInfo.company.companyName}</h6>
-          <ApplyBtn ref={form}>
-            <label htmlFor="resume">지원하기</label>
-            <input
-              type={"file"}
-              name="resume"
-              id="resume"
-              accept={".pdf"}
-              onChange={(e) => applyNoticeForm(e)}
+        {NoticeInfo && CompanyInfo ? (
+          <DetailDiv>
+            <img
+              src={
+                CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
+                  ? CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
+                      .fileUrl
+                  : ""
+              }
+              alt=""
             />
-          </ApplyBtn>
-          <DetailInfo
-            companyInfo={CompanyInfo}
-            subData={`${NoticeInfo.noticeOpenPeriod.startDate} ~ ${NoticeInfo.noticeOpenPeriod.endDate}`}
-          />
-          <DetailRecruitmentJob
-            noticeInfo={NoticeInfo}
-            companyInfo={CompanyInfo}
-          />
-          <QualificationRequirements noticeInfo={NoticeInfo} />
-          <Welfare noticeInfo={NoticeInfo} />
-        </DetailDiv>
+            <h1>
+              {NoticeInfo.classificationResponse.map((t, i, a) => (
+                <>
+                  {t.name}
+                  {a.length - 1 !== i ? ", " : " "}
+                </>
+              ))}
+              개발자 모집합니다.
+            </h1>
+            <h6>㈜ {NoticeInfo.company.companyName}</h6>
+            <ApplyBtn>
+              <label htmlFor="resume">지원하기</label>
+              <input
+                type={"file"}
+                name="resume"
+                id="resume"
+                // accept={".pdf"}
+                onChange={(e) => applyNoticeForm(e)}
+              />
+            </ApplyBtn>
+            <DetailInfo
+              companyInfo={CompanyInfo}
+              subData={`${NoticeInfo.noticeOpenPeriod.startDate} ~ ${NoticeInfo.noticeOpenPeriod.endDate}`}
+            />
+            <DetailRecruitmentJob
+              noticeInfo={NoticeInfo}
+              companyInfo={CompanyInfo}
+            />
+            <QualificationRequirements noticeInfo={NoticeInfo} />
+            <Welfare noticeInfo={NoticeInfo} />
+          </DetailDiv>
+        ) : (
+          <></>
+        )}
       </MainDiv>
     </>
   );
 };
 
 export default NoticeDetail;
-
-export async function getServerSideProps(context: { query: { id: string } }) {
-  const id = context.query.id as string;
-
-  const noticeData: getNoticeDetailProps = await getNoticeDetail({
-    id: id,
-  }).then((res: getNoticeDetailProps) => {
-    return res;
-  });
-
-  const companyData: getCompanyDetailProps = await getCompanyDetail({
-    id: noticeData.company.companyNumber,
-  }).then((res: getCompanyDetailProps) => {
-    return res;
-  });
-
-  return {
-    props: {
-      noticeInfo: JSON.stringify(noticeData),
-      companyInfo: JSON.stringify(companyData),
-    },
-  };
-}
 
 const MainDiv = styled.div`
   display: flex;

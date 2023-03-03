@@ -5,7 +5,7 @@ import {
   getWaitingNoticeList,
   getWaitingNoticeListContentProps,
   getWaitingNoticeListProps,
-} from "apis";
+} from "../../../axios/dist";
 
 const StudentMainNoticeContainer = () => {
   const [companyKind, setCompanyKind] = useState<
@@ -60,7 +60,6 @@ const StudentMainNoticeContainer = () => {
     getWaitingNoticeList({ idx: 0, size: 8 }).then(
       (res: getWaitingNoticeListProps) => {
         setCompanyKind(res.content);
-        console.log(res);
       }
     );
   }, []);
@@ -68,7 +67,7 @@ const StudentMainNoticeContainer = () => {
   return (
     <NoticeCompany>
       <NoticeContainer sort={"flex-start"}>
-        {chunk({ data: companyKind, size: 2 })[0].map(
+        {chunk({ data: companyKind, size: 4 })[0].map(
           (t: getWaitingNoticeListContentProps, i: number, a) => (
             <StudentMainNotice condition={i >= a.length - 2} info={t} />
           )
@@ -77,7 +76,7 @@ const StudentMainNoticeContainer = () => {
       <NoticeContainer sort={"flex-end"}>
         {chunk({ data: companyKind, size: 2 })[1] ? (
           <>
-            {chunk({ data: companyKind, size: 2 })[1].map((t, i, a) => (
+            {chunk({ data: companyKind, size: 4 })[1].map((t, i, a) => (
               <StudentMainNotice condition={i <= 1} info={t} />
             ))}
           </>

@@ -1,4 +1,4 @@
-import { getCompanyDetailProps, getWaitingNoticeListContentProps } from "apis";
+import { getCompanyDetailProps, getWaitingNoticeListContentProps } from "../../../axios/dist";
 import styled from "styled-components";
 
 const StudentCompanyNoticeList = ({
