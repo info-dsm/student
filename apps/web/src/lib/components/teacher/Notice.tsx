@@ -168,7 +168,16 @@ const TeacherNotice = ({
                         key={i}
                         checked={check[i]}
                         onClick={() => {}}
-                        onWatch={() => {}}
+                        onWatch={() => {
+                          router.push({
+                            pathname: "/teacher/notice/specific",
+                            query: {
+                              companyNumber:
+                                data.content[i].company.companyNumber,
+                              noticeId: data.content[i].noticeId,
+                            },
+                          });
+                        }}
                         onEdit={() => {
                           router.push({
                             pathname: "/teacher/notice/edit",

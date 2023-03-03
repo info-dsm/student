@@ -1,5 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { ChangeEvent, useCallback, useLayoutEffect, useState } from "react";
+import { useQueries, UseQueryResult } from "@tanstack/react-query";
+import {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import styled from "styled-components";
 import {
   CheckBox,
@@ -20,6 +26,8 @@ import {
   editNotice,
   getBaseList,
   getBaseListProps,
+  getNoticeDetail,
+  getNoticeDetailProps,
 } from "../../../axios/dist";
 import open from "../../../hooks/addresshook";
 import { AddressProps } from "../../../../@types/interface";
@@ -31,20 +39,28 @@ interface WriteNoticeProps {
   }[];
   path: string;
   companyNumber: string;
-  post: getBaseListProps;
   noticeId: string;
 }
-const WriteNotice = ({
-  menu,
-  companyNumber,
-  post,
-  noticeId,
-}: WriteNoticeProps) => {
-  const { status, data } = useQuery(
-    ["getNoticedefaultData"],
-    () => getBaseList(),
-    { initialData: post }
-  );
+const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
+  const data: [
+    UseQueryResult<getBaseListProps>,
+    UseQueryResult<getNoticeDetailProps>
+  ] = useQueries({
+    queries: [
+      { queryKey: ["getNoticedefaultData"], queryFn: () => getBaseList() },
+      {
+        queryKey: ["getNoticeDetail", noticeId],
+        queryFn: () => {
+          const data = getNoticeDetail(noticeId);
+          return data;
+        },
+      },
+    ],
+  }) as [
+    UseQueryResult<getBaseListProps>,
+    UseQueryResult<getNoticeDetailProps>
+  ];
+  console.log(data);
   const [certificateList, setCertificateList] = useState<{
     list: {
       bigClassification: string;
@@ -64,7 +80,7 @@ const WriteNotice = ({
     startDate: string;
     endDate: string;
   }>({
-    startDate: new Date().toISOString().substring(0, 10),
+    startDate: "",
     endDate: "",
   });
   const [checkState, setCheckState] = useState<{
@@ -155,41 +171,133 @@ const WriteNotice = ({
       meaning: "클릭 시 선택",
     },
   ]);
-  useLayoutEffect(() => {
-    if (data) {
+  useEffect(() => {
+    if (data[0].status === "success" && data[1].status === "success") {
       let arr = [
         {
-          bigClassification: data[3][0].bigClassification.bigClassificationName,
-          small: [{ name: data[3][0].name, on: false }],
+          bigClassification:
+            data[0].data[3][0].bigClassification.bigClassificationName,
+          small: [{ name: data[0].data[3][0].name, on: false }],
         },
       ];
       let count = 0;
-      for (let i = 1; i < data[3].length; i++) {
+      for (let i = 1; i < data[0].data[3].length; i++) {
         count = arr.findIndex(
           (el) =>
             el.bigClassification ===
-            data[3][i].bigClassification.bigClassificationName
+            data[0].data?.[3][i].bigClassification.bigClassificationName
         );
         if (count === -1) {
           arr.push({
             bigClassification:
-              data[3][i].bigClassification.bigClassificationName,
-            small: [{ name: data[3][i].name, on: false }],
+              data[0].data[3][i].bigClassification.bigClassificationName,
+            small: [
+              {
+                name: data[0].data[3][i].name,
+                on:
+                  data[1].data.classificationResponse.findIndex((e) => {
+                    if (data[0].data?.[3]) {
+                      return e.name === data[0].data[3][i].name;
+                    } else {
+                      return false;
+                    }
+                  }) !== -1,
+              },
+            ],
           });
           count++;
         } else {
-          arr[count].small.push({ name: data[3][i].name, on: false });
+          arr[count].small.push({
+            name: data[0].data[3][i].name,
+            on:
+              data[1].data.classificationResponse.findIndex((e) => {
+                if (data[0].data?.[3]) {
+                  return e.name === data[0].data[3][i].name;
+                } else {
+                  return false;
+                }
+              }) !== -1,
+          });
         }
       }
-      setCertificateList({ ...certificateList, list: arr });
+      console.log(data[1].data.classificationResponse[0]);
+      let now =
+        arr.findIndex((el) => {
+          if (data[1].data?.classificationResponse[0] !== undefined) {
+            return (
+              el.bigClassification ===
+              data[1].data.classificationResponse[0].bigClassification
+                .bigClassificationName
+            );
+          } else {
+            return false;
+          }
+        }) ?? 0;
+      console.log(now);
+      setCertificateList({ list: arr, now });
       setCheckState({
-        technologe: new Array(data[0].length).fill(false),
-        language: new Array(data[1].length).fill(false),
-        certificate: new Array(data[2].length).fill(false),
+        technologe: new Array(data[0].data[0].length)
+          .fill(false)
+          .map((e, i) => {
+            if (data[1].data?.technologyList.length !== 0) {
+              return (
+                data[1].data?.technologyList.findIndex((e) => {
+                  if (data[0].data) {
+                    return (
+                      e.technologyName === data[0].data[0][i].technologyName
+                    );
+                  } else {
+                    return false;
+                  }
+                }) !== -1
+              );
+            } else return e;
+          }),
+        language: new Array(data[0].data[1].length).fill(false).map((e, i) => {
+          if (data[1].data?.languageList.length !== 0) {
+            return (
+              data[1].data?.languageList.findIndex((e) => {
+                if (data[0].data) {
+                  return e.languageName === data[0].data[1][i].languageName;
+                } else {
+                  return false;
+                }
+              }) !== -1
+            );
+          } else return e;
+        }),
+        certificate: new Array(data[0].data[0].length)
+          .fill(false)
+          .map((e, i) => {
+            if (data[1].data?.certificateList.length !== 0) {
+              return (
+                data[1].data?.certificateList.findIndex((e) => {
+                  if (data[0].data?.[2][i]?.certificateName !== undefined) {
+                    return (
+                      e.certificateName === data[0].data[2][i].certificateName
+                    );
+                  } else {
+                    return false;
+                  }
+                }) !== -1
+              );
+            } else return e;
+          }),
       });
+      setDateState({
+        startDate: data[1].data.noticeOpenPeriod.startDate,
+        endDate: data[1].data.noticeOpenPeriod.endDate,
+      });
+      //   setNumber({
+      //     detailBusinessDescription: "",
+      //     numberOfEmployee: "",
+      //     gradeCutLine: "",
+      //     otherFeatures: "",
+      //     check: "",
+      //   });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data[0].data, data[1].data]);
   const handleComplete = (data: AddressProps) => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -268,9 +376,15 @@ const WriteNotice = ({
   }, [setList]);
   const ChangeList = useCallback(
     (props: string, index: number) => {
-      if (data) {
-        const num = data[4].findIndex((v) => v.meaning === props);
-        setList(list.map((v, i) => (i === index ? data[4][num] : v)));
+      if (data && data[0] && data[0].data?.[4] && data[0].data[4]) {
+        const num = data[0].data[4].findIndex((v) => v.meaning === props);
+        setList(
+          list.map((v, i) =>
+            i === index && data[0] && data[0].data?.[4]
+              ? data[0].data[4][num]
+              : v
+          )
+        );
       }
     },
     [data, list]
@@ -347,6 +461,20 @@ const WriteNotice = ({
     },
     [certificateList]
   );
+  const NewCertificate = useCallback(
+    (
+      e:
+        | {
+            bigClassification: string;
+            small: { name: string; on: boolean }[];
+          }[]
+        | number,
+      props: "list" | "now"
+    ) => {
+      setCertificateList({ ...certificateList, [props]: e });
+    },
+    [certificateList]
+  );
   const ChangeDetail = useCallback(
     (index: number) => {
       setCertificateList({
@@ -420,55 +548,56 @@ const WriteNotice = ({
       if (!check) {
         delete props.gradeCutLine;
       }
-
-      editNotice(
-        companyNumber,
-        noticeId,
-        certificateList.list[certificateList.now].small
-          .map((v) => {
-            if (v.on) {
-              return v.name;
-            }
-          })
-          .filter((v) => v !== undefined) as string[],
-        checkState.certificate
-          .map((v, i) => {
-            if (v) {
-              return data[2][i].certificateName;
-            }
-          })
-          .filter((v) => v !== undefined) as string[],
-        checkState.language
-          .map((v, i) => {
-            if (v) {
-              return data[1][i].languageName;
-            }
-          })
-          .filter((v) => v !== undefined) as string[],
-        checkState.technologe
-          .map((v, i) => {
-            if (v) {
-              return data[0][i].technologyName;
-            }
-          })
-          .filter((v) => v !== undefined) as string[],
-        workTime,
-        pay,
-        meal,
-        interProps,
-        dateState,
-        props,
-        elseSupport === "" ? wel : welfare,
-        isSameWithCompanyAddress ? { isSameWithCompanyAddress } : address,
-        file?.map((v) => {
-          return { fileName: v?.name, contentType: v?.type };
-        }) as {
-          fileName: string;
-          contentType: string;
-        }[]
-      ).then((res) => {
-        createNoticeFile(res, file as File[]);
-      });
+      if (data) {
+        editNotice(
+          companyNumber,
+          noticeId,
+          certificateList.list[certificateList.now].small
+            .map((v) => {
+              if (v.on) {
+                return v.name;
+              }
+            })
+            .filter((v) => v !== undefined) as string[],
+          checkState.certificate
+            .map((v, i) => {
+              if (v && data[0].data?.[2]) {
+                return data[0].data[2][i].certificateName;
+              }
+            })
+            .filter((v) => v !== undefined) as string[],
+          checkState.language
+            .map((v, i) => {
+              if (v && data[0].data?.[1]) {
+                return data[0].data[1][i].languageName;
+              }
+            })
+            .filter((v) => v !== undefined) as string[],
+          checkState.technologe
+            .map((v, i) => {
+              if (v && data[0].data?.[0]) {
+                return data[0].data[0][i].technologyName;
+              }
+            })
+            .filter((v) => v !== undefined) as string[],
+          workTime,
+          pay,
+          meal,
+          interProps,
+          dateState,
+          props,
+          elseSupport === "" ? wel : welfare,
+          isSameWithCompanyAddress ? { isSameWithCompanyAddress } : address,
+          file?.map((v) => {
+            return { fileName: v?.name, contentType: v?.type };
+          }) as {
+            fileName: string;
+            contentType: string;
+          }[]
+        ).then((res) => {
+          createNoticeFile(res, file as File[]);
+        });
+      }
     }
   };
   return (
@@ -477,411 +606,429 @@ const WriteNotice = ({
         <Header bgColor="#fff" admin={true} {...{ menu }}>
           <Logo main={true} onClick={() => {}} />
         </Header>
-        <_Layout>
-          <_Title>채용직무</_Title>
-          <NoticeSelect
-            onClick={(i) => ChangeProps("now", i)}
-            onChange={ChangeAll}
-            change={ChangeDetail}
-            {...{ certificateList }}
-          />
-          <_Line />
-          <_Title>채용인원</_Title>
-          <_Flex>
-            <NumberInput
-              text={"전체"}
-              onChange={(e) => {
-                ChangeSecond("numberOfEmployee", ChangeNumber(e));
-              }}
-              value={`${number.numberOfEmployee || ""}`}
-            />
-          </_Flex>
-          <_Line />
-          <_Title>상세직무</_Title>
-          <TextArea
-            onChange={(e) =>
-              ChangeSecond("detailBusinessDescription", e.target.value)
-            }
-            placeholder={"상세직무를 입력해주세요."}
-            defaultValue={number.detailBusinessDescription}
-          />
-          <_Line />
-          <_Title>자격요건</_Title>
-          <_QualifiLayout>
-            <_SmallTitle>필요언어</_SmallTitle>
-            <_FlexWrap>
-              {data ? (
-                data[1].map((item, i) => (
-                  <CheckBox
-                    onChange={() => ChangeCheck("language", i)}
-                    text={item.languageName}
-                    checked={checkState.language[i]}
-                    key={item.languageName}
-                  />
-                ))
-              ) : (
-                <></>
-              )}
-            </_FlexWrap>
-            <_SmallTitle>프레임워크</_SmallTitle>
-            <_FlexWrap>
-              {data ? (
-                data[0].map((item, i) => (
-                  <CheckBox
-                    onChange={() => ChangeCheck("technologe", i)}
-                    text={item.technologyName}
-                    checked={checkState.technologe[i]}
-                    key={item.technologyName}
-                  />
-                ))
-              ) : (
-                <></>
-              )}
-            </_FlexWrap>
-          </_QualifiLayout>
-          <_LayoutDiv>
-            <_SmallTitle>지원자격</_SmallTitle>
-            <_Lay gap={30}>
-              <BigCheck
-                text={"성적"}
-                onChange={(e) => ChangeSecond("check", e.target.checked)}
-                checked={number.check}
+        {data[0].status === "success" && data[1].status === "success" ? (
+          <>
+            <_Layout>
+              <_Title>채용직무</_Title>
+              <NoticeSelect
+                onClick={(i) => ChangeProps("now", i)}
+                onChange={ChangeAll}
+                change={ChangeDetail}
+                {...{ certificateList }}
               />
-              <InputNotice
-                text={"상위"}
-                onChange={(e) =>
-                  ChangeSecond(
-                    "gradeCutLine",
-                    parseInt(ChangeNumber(e)) > 100 ? 100 : ChangeNumber(e)
-                  )
-                }
-                value={`${number.gradeCutLine || ""}`}
-                last={"% 이내"}
-              />
-            </_Lay>
-            <_FlexWrap>
-              국가자격증
-              {data ? (
-                data[2].map((item, i) => (
-                  <CheckBox
-                    onChange={() => ChangeCheck("certificate", i)}
-                    text={item.certificateName}
-                    checked={checkState.certificate[i]}
-                    key={item.certificateName}
-                  />
-                ))
-              ) : (
-                <></>
-              )}
-            </_FlexWrap>
-          </_LayoutDiv>
-          <_Line />
-          <_Title>급여</_Title>
-          <_QualifiLayout>
-            <_Lay gap={20}>
-              <_BlueText>실습수당</_BlueText>
-              <InputNotice
-                text={""}
-                onChange={(e) =>
-                  ChangeMoney("fieldTrainingPayPerMonth", ChangeNumber(e))
-                }
-                value={`${pay.fieldTrainingPayPerMonth || ""}`}
-                last={"만원"}
-              />
-            </_Lay>
-            <_Lay gap={20}>
-              <_BlueText>정규식 전환시(연봉)</_BlueText>
-              <_Lay gap={10}>
-                <InputNotice
-                  text={""}
-                  onChange={(e) =>
-                    ChangeMoney("fullTimeEmploymentPay", {
-                      yearPayStart: ChangeNumber(e),
-                      yearPayEnd: pay.fullTimeEmploymentPay.yearPayEnd,
-                    })
-                  }
-                  value={`${pay.fullTimeEmploymentPay.yearPayStart || ""}`}
-                  last={"~"}
+              <_Line />
+              <_Title>채용인원</_Title>
+              <_Flex>
+                <NumberInput
+                  text={"전체"}
+                  onChange={(e) => {
+                    ChangeSecond("numberOfEmployee", ChangeNumber(e));
+                  }}
+                  value={`${number.numberOfEmployee || ""}`}
                 />
-                <InputNotice
-                  text={""}
-                  onChange={(e) =>
-                    ChangeMoney("fullTimeEmploymentPay", {
-                      yearPayStart: pay.fullTimeEmploymentPay.yearPayStart,
-                      yearPayEnd: ChangeNumber(e),
-                    })
-                  }
-                  value={`${pay.fullTimeEmploymentPay.yearPayEnd || ""}`}
-                  last={"만원"}
-                />
-              </_Lay>
-            </_Lay>
-          </_QualifiLayout>
-          <_Line />
-          <_Title>복리후생</_Title>
-          <_QualifiLayout>
-            <_SmallTitle>식사</_SmallTitle>
-            <_Lay gap={10}>
-              <InputNotice
-                text={"식대지원"}
-                onChange={(e) => ChangeMeal("mealSupportPay", ChangeNumber(e))}
-                value={`${meal.mealSupportPay || ""}`}
-                last={"원(월)"}
-              />
-              <BigCheck
-                text={"조식제공"}
-                onChange={(e) => ChangeMeal("breakfast", e.target.checked)}
-                checked={meal.breakfast}
-                key={"조식제공"}
-              />
-              <BigCheck
-                text={"중식제공"}
-                onChange={(e) => ChangeMeal("lunch", e.target.checked)}
-                checked={meal.lunch}
-                key={"중식제공"}
-              />
-              <BigCheck
-                text={"석식제공"}
-                onChange={(e) => ChangeMeal("dinner", e.target.checked)}
-                checked={meal.dinner}
-                key={"석식제공"}
-              />
-            </_Lay>
-          </_QualifiLayout>
-          <_BokliLay>
-            <_SmallTitle>복리후생</_SmallTitle>
-            <_Lay gap={10}>
-              <BigCheck
-                text={"기숙사 지원"}
+              </_Flex>
+              <_Line />
+              <_Title>상세직무</_Title>
+              <TextArea
                 onChange={(e) =>
-                  ChangeWel("dormitorySupport", e.target.checked)
+                  ChangeSecond("detailBusinessDescription", e.target.value)
                 }
-                checked={welfare.dormitorySupport}
-                key={"기숙사 지원"}
+                placeholder={"상세직무를 입력해주세요."}
+                defaultValue={number.detailBusinessDescription}
               />
-              <BigCheck
-                text={"자기개발비"}
-                onChange={(e) =>
-                  ChangeWel("selfDevelopmentPay", e.target.checked)
-                }
-                checked={welfare.selfDevelopmentPay}
-                key={"자기개발비"}
-              />
-              <BigCheck
-                text={"장비지원"}
-                onChange={(e) =>
-                  ChangeWel("equipmentSupport", e.target.checked)
-                }
-                checked={welfare.equipmentSupport}
-                key={"장비지원"}
-              />
-              <BigCheck
-                text={"청년내일채움공제"}
-                onChange={(e) =>
-                  ChangeWel("youthTomorrowChaeumDeduction", e.target.checked)
-                }
-                checked={welfare.youthTomorrowChaeumDeduction}
-                key={"청년내일채움공제"}
-              />
-              <BigCheck
-                text={"병특신청"}
-                onChange={(e) =>
-                  ChangeWel("alternativeMilitaryPlan", e.target.checked)
-                }
-                checked={welfare.alternativeMilitaryPlan}
-                key={"병특신청"}
-              />
-            </_Lay>
-            <OtherSearch
-              placeholder={"기타 복리후생을 추가해주세요."}
-              onChange={(e) => ChangeWel("elseSupport", e.target.value)}
-              value={welfare.elseSupport || ""}
-            />
-          </_BokliLay>
-          <_Line />
-          <_Title>근무시간</_Title>
-          <_QualifiLayout>
-            <_Lay gap={10}>
-              <BigCheck
-                text={"고정 출근시간"}
-                onChange={(e) => ChangeWork("isFlexible", !workTime.isFlexible)}
-                type={"checkbox"}
-                checked={!workTime.isFlexible}
-                status={true}
-              />
-              <InputNotice
-                text={""}
-                onChange={(e) =>
-                  ChangeWork(
-                    "commuteStartTime",
-                    parseInt(ChangeNumber(e)) > 24 ? 24 : ChangeNumber(e)
-                  )
-                }
-                value={`${workTime.commuteStartTime || ""}`}
-                last={"시"}
-                key={"start"}
-              />
-              <InputNotice
-                text={"~"}
-                onChange={(e) =>
-                  ChangeWork(
-                    "commuteEndTime",
-                    parseInt(ChangeNumber(e)) > 24 ? 24 : ChangeNumber(e)
-                  )
-                }
-                value={`${workTime.commuteEndTime || ""}`}
-                last={"시"}
-                key={"end"}
-              />
-              <NumberInput
-                text={"주당 근무시간"}
-                onChange={(e) =>
-                  ChangeWork(
-                    "workTimePerWeek",
-                    parseInt(ChangeNumber(e)) > 24 ? 24 : ChangeNumber(e)
-                  )
-                }
-                value={`${workTime.workTimePerWeek || ""}`}
-                last={"시"}
-                key={"week"}
-              />
-              <NumberInput
-                text={"일일 근무시간"}
-                onChange={(e) =>
-                  ChangeWork(
-                    "workTimePerDay",
-                    parseInt(ChangeNumber(e)) > 24 ? 24 : ChangeNumber(e)
-                  )
-                }
-                value={`${workTime.workTimePerDay || ""}`}
-                last={"시"}
-                key={"day"}
-              />
-            </_Lay>
-            <BigCheck
-              text={"유연근무제"}
-              onChange={(e) => ChangeWork("isFlexible", !workTime.isFlexible)}
-              type={"checkbox"}
-              checked={workTime.isFlexible}
-              status={true}
-            />
-          </_QualifiLayout>
-          <_Line />
-          <_Title>모집 기간</_Title>
-          <_Lay gap={10}>
-            <_BlueText>시작일</_BlueText>
-            <_Input
-              type={"date"}
-              value={dateState.startDate || ""}
-              onChange={(e) => ChangeDate("startDate", e.target.value)}
-              min={new Date().toISOString().substring(0, 10)}
-              key={"startDate"}
-            />
-            ~<_BlueText>마감일</_BlueText>
-            <_Input
-              type={"date"}
-              value={dateState.endDate || ""}
-              onChange={(e) => ChangeDate("endDate", e.target.value)}
-              min={dateState.startDate}
-              key={"endDate"}
-            />
-          </_Lay>
-          <_Line />
-          <_Lay gap={20}>
-            <_Title>전형절차</_Title>
-            <MiniButton onClick={AddList}>추가</MiniButton>
-          </_Lay>
-          <_FlexWrap>
-            <_BlueTextLay key={1}>1차전형</_BlueTextLay>
-            <_BlackText>서류전형</_BlackText>
-            {list.map((e, i) => (
-              <>
-                <_Lay gap={10} key={i + 2}>
-                  <_BlueTextLay>{i + 2}차전형</_BlueTextLay>
-                  <SelectPrime
-                    list={data ? data[4] : []}
-                    onChange={(props) => ChangeList(props, i)}
-                    write={e.meaning}
-                    onClick={() => RemoveList(i)}
+              <_Line />
+              <_Title>자격요건</_Title>
+              <_QualifiLayout>
+                <_SmallTitle>필요언어</_SmallTitle>
+                <_FlexWrap>
+                  {data && data[0].data?.[1] ? (
+                    data[0].data[1].map((item, i) => (
+                      <CheckBox
+                        onChange={() => ChangeCheck("language", i)}
+                        text={item.languageName}
+                        checked={checkState.language[i]}
+                        key={item.languageName}
+                      />
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                </_FlexWrap>
+                <_SmallTitle>프레임워크</_SmallTitle>
+                <_FlexWrap>
+                  {data && data[0].data?.[0] ? (
+                    data[0].data[0].map((item, i) => (
+                      <CheckBox
+                        onChange={() => ChangeCheck("technologe", i)}
+                        text={item.technologyName}
+                        checked={checkState.technologe[i]}
+                        key={item.technologyName}
+                      />
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                </_FlexWrap>
+              </_QualifiLayout>
+              <_LayoutDiv>
+                <_SmallTitle>지원자격</_SmallTitle>
+                <_Lay gap={30}>
+                  <BigCheck
+                    text={"성적"}
+                    onChange={(e) => ChangeSecond("check", e.target.checked)}
+                    checked={number.check}
+                  />
+                  <InputNotice
+                    text={"상위"}
+                    onChange={(e) =>
+                      ChangeSecond(
+                        "gradeCutLine",
+                        parseInt(ChangeNumber(e)) > 100 ? 100 : ChangeNumber(e)
+                      )
+                    }
+                    value={`${number.gradeCutLine || ""}`}
+                    last={"% 이내"}
                   />
                 </_Lay>
-              </>
-            ))}
-          </_FlexWrap>
-          <_Line />
-          <_Title>제출양식</_Title>
-          <FileManage
-            multiple={true}
-            accept={".pdf, .doc, .docx, .hwp"}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              AddFile(changeFileArray(e.target.files))
-            }
-            title={" "}
-            list={file}
-            onClick={RemoveFile}
-          />
-          <_Line />
-          <_Lay gap={10}>
-            <_Title>우대사항</_Title>
-            <_BlueText>
-              *선택사항이므로 반드시 입력하지 않으셔도 괜찮습니다.
-            </_BlueText>
-          </_Lay>
-          <TextArea
-            onChange={(e) => ChangeSecond("otherFeatures", e.target.value)}
-            placeholder={"우대사항을 입력해주세요."}
-            defaultValue={number.otherFeatures}
-          />
-          <_Line />
-          <_Title>근무지</_Title>
-          <_Lay gap={30}>
-            <BigCheck
-              text={"회사 주소와 동일"}
-              onChange={(e) =>
-                ChangeAddress("isSameWithCompanyAddress", e.target.checked)
-              }
-              type={"checkbox"}
-              checked={address.isSameWithCompanyAddress}
-              status={false}
-              id={"2"}
-            />
-            <BigCheck
-              text={"다른 주소"}
-              onChange={(e) =>
-                ChangeAddress("isSameWithCompanyAddress", !e.target.checked)
-              }
-              type={"checkbox"}
-              checked={!address.isSameWithCompanyAddress}
-              status={false}
-              id={"2"}
-            />
-            <_Address
-              type={"text"}
-              placeholder={"클릭하신 후 팝업 창에 주소 입력 후 선택해주세요."}
-              onClick={() => {
-                if (!address.isSameWithCompanyAddress) {
-                  open({
-                    onComplete: handleComplete,
-                    width: 700,
-                    height: 700,
-                    left: 200,
-                    animation: true,
-                  });
+                <_FlexWrap>
+                  국가자격증
+                  {data && data[0].data?.[2] ? (
+                    data[0].data[2].map((item, i) => (
+                      <CheckBox
+                        onChange={() => ChangeCheck("certificate", i)}
+                        text={item.certificateName}
+                        checked={checkState.certificate[i]}
+                        key={item.certificateName}
+                      />
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                </_FlexWrap>
+              </_LayoutDiv>
+              <_Line />
+              <_Title>급여</_Title>
+              <_QualifiLayout>
+                <_Lay gap={20}>
+                  <_BlueText>실습수당</_BlueText>
+                  <InputNotice
+                    text={""}
+                    onChange={(e) =>
+                      ChangeMoney("fieldTrainingPayPerMonth", ChangeNumber(e))
+                    }
+                    value={`${pay.fieldTrainingPayPerMonth || ""}`}
+                    last={"만원"}
+                  />
+                </_Lay>
+                <_Lay gap={20}>
+                  <_BlueText>정규식 전환시(연봉)</_BlueText>
+                  <_Lay gap={10}>
+                    <InputNotice
+                      text={""}
+                      onChange={(e) =>
+                        ChangeMoney("fullTimeEmploymentPay", {
+                          yearPayStart: ChangeNumber(e),
+                          yearPayEnd: pay.fullTimeEmploymentPay.yearPayEnd,
+                        })
+                      }
+                      value={`${pay.fullTimeEmploymentPay.yearPayStart || ""}`}
+                      last={"~"}
+                    />
+                    <InputNotice
+                      text={""}
+                      onChange={(e) =>
+                        ChangeMoney("fullTimeEmploymentPay", {
+                          yearPayStart: pay.fullTimeEmploymentPay.yearPayStart,
+                          yearPayEnd: ChangeNumber(e),
+                        })
+                      }
+                      value={`${pay.fullTimeEmploymentPay.yearPayEnd || ""}`}
+                      last={"만원"}
+                    />
+                  </_Lay>
+                </_Lay>
+              </_QualifiLayout>
+              <_Line />
+              <_Title>복리후생</_Title>
+              <_QualifiLayout>
+                <_SmallTitle>식사</_SmallTitle>
+                <_Lay gap={10}>
+                  <InputNotice
+                    text={"식대지원"}
+                    onChange={(e) =>
+                      ChangeMeal("mealSupportPay", ChangeNumber(e))
+                    }
+                    value={`${meal.mealSupportPay || ""}`}
+                    last={"원(월)"}
+                  />
+                  <BigCheck
+                    text={"조식제공"}
+                    onChange={(e) => ChangeMeal("breakfast", e.target.checked)}
+                    checked={meal.breakfast}
+                    key={"조식제공"}
+                  />
+                  <BigCheck
+                    text={"중식제공"}
+                    onChange={(e) => ChangeMeal("lunch", e.target.checked)}
+                    checked={meal.lunch}
+                    key={"중식제공"}
+                  />
+                  <BigCheck
+                    text={"석식제공"}
+                    onChange={(e) => ChangeMeal("dinner", e.target.checked)}
+                    checked={meal.dinner}
+                    key={"석식제공"}
+                  />
+                </_Lay>
+              </_QualifiLayout>
+              <_BokliLay>
+                <_SmallTitle>복리후생</_SmallTitle>
+                <_Lay gap={10}>
+                  <BigCheck
+                    text={"기숙사 지원"}
+                    onChange={(e) =>
+                      ChangeWel("dormitorySupport", e.target.checked)
+                    }
+                    checked={welfare.dormitorySupport}
+                    key={"기숙사 지원"}
+                  />
+                  <BigCheck
+                    text={"자기개발비"}
+                    onChange={(e) =>
+                      ChangeWel("selfDevelopmentPay", e.target.checked)
+                    }
+                    checked={welfare.selfDevelopmentPay}
+                    key={"자기개발비"}
+                  />
+                  <BigCheck
+                    text={"장비지원"}
+                    onChange={(e) =>
+                      ChangeWel("equipmentSupport", e.target.checked)
+                    }
+                    checked={welfare.equipmentSupport}
+                    key={"장비지원"}
+                  />
+                  <BigCheck
+                    text={"청년내일채움공제"}
+                    onChange={(e) =>
+                      ChangeWel(
+                        "youthTomorrowChaeumDeduction",
+                        e.target.checked
+                      )
+                    }
+                    checked={welfare.youthTomorrowChaeumDeduction}
+                    key={"청년내일채움공제"}
+                  />
+                  <BigCheck
+                    text={"병특신청"}
+                    onChange={(e) =>
+                      ChangeWel("alternativeMilitaryPlan", e.target.checked)
+                    }
+                    checked={welfare.alternativeMilitaryPlan}
+                    key={"병특신청"}
+                  />
+                </_Lay>
+                <OtherSearch
+                  placeholder={"기타 복리후생을 추가해주세요."}
+                  onChange={(e) => ChangeWel("elseSupport", e.target.value)}
+                  value={welfare.elseSupport || ""}
+                />
+              </_BokliLay>
+              <_Line />
+              <_Title>근무시간</_Title>
+              <_QualifiLayout>
+                <_Lay gap={10}>
+                  <BigCheck
+                    text={"고정 출근시간"}
+                    onChange={(e) =>
+                      ChangeWork("isFlexible", !workTime.isFlexible)
+                    }
+                    type={"checkbox"}
+                    checked={!workTime.isFlexible}
+                    status={true}
+                  />
+                  <InputNotice
+                    text={""}
+                    onChange={(e) =>
+                      ChangeWork(
+                        "commuteStartTime",
+                        parseInt(ChangeNumber(e)) > 24 ? 24 : ChangeNumber(e)
+                      )
+                    }
+                    value={`${workTime.commuteStartTime || ""}`}
+                    last={"시"}
+                    key={"start"}
+                  />
+                  <InputNotice
+                    text={"~"}
+                    onChange={(e) =>
+                      ChangeWork(
+                        "commuteEndTime",
+                        parseInt(ChangeNumber(e)) > 24 ? 24 : ChangeNumber(e)
+                      )
+                    }
+                    value={`${workTime.commuteEndTime || ""}`}
+                    last={"시"}
+                    key={"end"}
+                  />
+                  <NumberInput
+                    text={"주당 근무시간"}
+                    onChange={(e) =>
+                      ChangeWork(
+                        "workTimePerWeek",
+                        parseInt(ChangeNumber(e)) > 24 ? 24 : ChangeNumber(e)
+                      )
+                    }
+                    value={`${workTime.workTimePerWeek || ""}`}
+                    last={"시"}
+                    key={"week"}
+                  />
+                  <NumberInput
+                    text={"일일 근무시간"}
+                    onChange={(e) =>
+                      ChangeWork(
+                        "workTimePerDay",
+                        parseInt(ChangeNumber(e)) > 24 ? 24 : ChangeNumber(e)
+                      )
+                    }
+                    value={`${workTime.workTimePerDay || ""}`}
+                    last={"시"}
+                    key={"day"}
+                  />
+                </_Lay>
+                <BigCheck
+                  text={"유연근무제"}
+                  onChange={(e) =>
+                    ChangeWork("isFlexible", !workTime.isFlexible)
+                  }
+                  type={"checkbox"}
+                  checked={workTime.isFlexible}
+                  status={true}
+                />
+              </_QualifiLayout>
+              <_Line />
+              <_Title>모집 기간</_Title>
+              <_Lay gap={10}>
+                <_BlueText>시작일</_BlueText>
+                <_Input
+                  type={"date"}
+                  value={dateState.startDate || ""}
+                  onChange={(e) => ChangeDate("startDate", e.target.value)}
+                  min={new Date().toISOString().substring(0, 10)}
+                  key={"startDate"}
+                />
+                ~<_BlueText>마감일</_BlueText>
+                <_Input
+                  type={"date"}
+                  value={dateState.endDate || ""}
+                  onChange={(e) => ChangeDate("endDate", e.target.value)}
+                  min={dateState.startDate}
+                  key={"endDate"}
+                />
+              </_Lay>
+              <_Line />
+              <_Lay gap={20}>
+                <_Title>전형절차</_Title>
+                <MiniButton onClick={AddList}>추가</MiniButton>
+              </_Lay>
+              <_FlexWrap>
+                <_BlueTextLay key={1}>1차전형</_BlueTextLay>
+                <_BlackText>서류전형</_BlackText>
+                {list.map((e, i) => (
+                  <>
+                    <_Lay gap={10} key={i + 2}>
+                      <_BlueTextLay>{i + 2}차전형</_BlueTextLay>
+                      <SelectPrime
+                        list={data && data[0].data?.[4] ? data[0].data[4] : []}
+                        onChange={(props) => ChangeList(props, i)}
+                        write={e.meaning}
+                        onClick={() => RemoveList(i)}
+                      />
+                    </_Lay>
+                  </>
+                ))}
+              </_FlexWrap>
+              <_Line />
+              <_Title>제출양식</_Title>
+              <FileManage
+                multiple={true}
+                accept={".pdf, .doc, .docx, .hwp"}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  AddFile(changeFileArray(e.target.files))
                 }
-              }}
-              readOnly
-              value={address.otherPlace || ""}
-            />
-          </_Lay>
-          <_Line />
-          <_Submit>
-            <button onClick={() => Submit()}>모집공고 수정</button>
-          </_Submit>
-        </_Layout>
+                title={" "}
+                list={file}
+                onClick={RemoveFile}
+              />
+              <_Line />
+              <_Lay gap={10}>
+                <_Title>우대사항</_Title>
+                <_BlueText>
+                  *선택사항이므로 반드시 입력하지 않으셔도 괜찮습니다.
+                </_BlueText>
+              </_Lay>
+              <TextArea
+                onChange={(e) => ChangeSecond("otherFeatures", e.target.value)}
+                placeholder={"우대사항을 입력해주세요."}
+                defaultValue={number.otherFeatures}
+              />
+              <_Line />
+              <_Title>근무지</_Title>
+              <_Lay gap={30}>
+                <BigCheck
+                  text={"회사 주소와 동일"}
+                  onChange={(e) =>
+                    ChangeAddress("isSameWithCompanyAddress", e.target.checked)
+                  }
+                  type={"checkbox"}
+                  checked={address.isSameWithCompanyAddress}
+                  status={false}
+                  id={"2"}
+                />
+                <BigCheck
+                  text={"다른 주소"}
+                  onChange={(e) =>
+                    ChangeAddress("isSameWithCompanyAddress", !e.target.checked)
+                  }
+                  type={"checkbox"}
+                  checked={!address.isSameWithCompanyAddress}
+                  status={false}
+                  id={"2"}
+                />
+                <_Address
+                  type={"text"}
+                  placeholder={
+                    "클릭하신 후 팝업 창에 주소 입력 후 선택해주세요."
+                  }
+                  onClick={() => {
+                    if (!address.isSameWithCompanyAddress) {
+                      open({
+                        onComplete: handleComplete,
+                        width: 700,
+                        height: 700,
+                        left: 200,
+                        animation: true,
+                      });
+                    }
+                  }}
+                  readOnly
+                  value={address.otherPlace || ""}
+                />
+              </_Lay>
+              <_Line />
+              <_Submit>
+                <button onClick={() => Submit()}>모집공고 수정</button>
+              </_Submit>
+            </_Layout>
+          </>
+        ) : (
+          <></>
+        )}
       </_BackGround>
     </>
   );
 };
+
 export default WriteNotice;
 const _BackGround = styled.div`
   width: 100vw;

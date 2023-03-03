@@ -56,12 +56,20 @@ const ShowCompanyNotice = ({ status, data }: ShowCompnayNoticeProps) => {
               },
               {
                 onClick: () => {
-                  router.push("/company/write/notice");
+                  router.push("/company/notice/write");
                 },
                 key: "모집공고 작성",
                 selected:
                   router.asPath ===
                   ("/company/write/notice/" || "/company/write/notice"),
+              },
+              {
+                onClick: () => {
+                  router.push("/company/mypage");
+                },
+                key: "내 정보",
+                selected:
+                  router.asPath === ("/company/mypage/" || "/company/mypage"),
               },
             ],
           }}
@@ -99,10 +107,19 @@ const ShowCompanyNotice = ({ status, data }: ShowCompnayNoticeProps) => {
                         {...{ list }}
                         key={i}
                         onClick={() => {}}
-                        onWatch={() => {}}
+                        onWatch={() => {
+                          router.push({
+                            pathname: "/company/notice/info",
+                            query: {
+                              companyNumber:
+                                data[i].notice.company.companyNumber,
+                              noticeId: data[i].notice.noticeId,
+                            },
+                          });
+                        }}
                         onEdit={() => {
                           router.push(
-                            `/company/write/notice/edit/${data[i].notice.noticeId}`
+                            `/company/notice/edit/${data[i].notice.noticeId}`
                           );
                         }}
                       />

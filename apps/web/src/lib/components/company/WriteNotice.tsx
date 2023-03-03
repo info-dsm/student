@@ -31,13 +31,10 @@ interface WriteNoticeProps {
   }[];
   path: string;
   companyNumber: string;
-  post: getBaseListProps;
 }
-const WriteNotice = ({ menu, companyNumber, post }: WriteNoticeProps) => {
-  const { status, data } = useQuery(
-    ["getNoticedefaultData"],
-    () => getBaseList(),
-    { initialData: post }
+const WriteNotice = ({ menu, companyNumber }: WriteNoticeProps) => {
+  const { status, data } = useQuery(["getNoticedefaultData"], () =>
+    getBaseList()
   );
   const [certificateList, setCertificateList] = useState<{
     list: {

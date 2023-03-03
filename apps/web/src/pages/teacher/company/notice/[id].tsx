@@ -1,14 +1,12 @@
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { getBaseList, getBaseListProps } from "../../../../axios/dist";
 import WriteNotice from "../../../../lib/components/company/WriteNotice";
 
-const WriteNoticeCompany = ({ post }: { post: getBaseListProps }) => {
+const WriteNoticeCompany = () => {
   const router = useRouter();
   return (
     <>
       <WriteNotice
-        {...{ post }}
         {...{
           menu: [
             {
@@ -30,7 +28,3 @@ const WriteNoticeCompany = ({ post }: { post: getBaseListProps }) => {
   );
 };
 export default WriteNoticeCompany;
-export const getServerSideProps: GetServerSideProps = async () => {
-  const posts = await getBaseList();
-  return { props: { posts } };
-};

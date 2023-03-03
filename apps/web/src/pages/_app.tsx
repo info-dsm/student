@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </CustomThemeProvider>
           </RecoilRoot>
         </Hydrate>
-        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
+        <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </>
   );

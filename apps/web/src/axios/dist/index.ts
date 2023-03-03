@@ -1,3 +1,4 @@
+import { getCompanyDetailProps } from 'apis';
 export {
   getCompanyList,
   type getCompanyListProps,
@@ -27,4 +28,5 @@ export { teacherSignUp } from '../main/auth/teacher';
 export { presigned } from '../main/presigned';
 export { createNoticeFile } from '../main/presigned/createNotice';
 export {editNotice} from '../main/notice/edit';
-
+export { getNoticeDetail, type getNoticeDetailProps } from "../main/notice/getNotice"
+export { getCompanyDetail, type getCompanyDetailProps} from "../main/company/getCompanyDetail";

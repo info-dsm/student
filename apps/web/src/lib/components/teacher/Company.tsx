@@ -212,7 +212,11 @@ const TeacherCompany = ({
                           `/teacher/company/notice/${data.content[i].companyNumber}`
                         );
                       }}
-                      onWatch={() => {}}
+                      onWatch={() => {
+                        router.push(
+                          `/teacher/company/info/${data.content[i].companyNumber}`
+                        );
+                      }}
                     />
                   ))}
                   {remainCount && data ? (

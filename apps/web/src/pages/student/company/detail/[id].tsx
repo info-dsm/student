@@ -9,8 +9,9 @@ import {
 import DetailInfo from "../../../../lib/components/student/NoticeDetailInfo";
 import StudentCompanyNoticeList from "../../../../lib/components/student/noticeList";
 import HeaderComponent from "ui/components/StudentHeader";
+import Image from "next/image";
 
-const StudentCompanyDetail = ({
+const CompanyDetail = ({
   data,
   noticeData,
 }: {
@@ -25,13 +26,14 @@ const StudentCompanyDetail = ({
       <HeaderComponent />
       <MainDiv>
         <DetailDiv>
-          <img
+          <Image
             src={
               info.companyIntroductionResponse.companyLogo.fileUrl
                 ? info.companyIntroductionResponse.companyLogo.fileUrl
                 : ""
             }
             alt="company logo"
+            placeholder="blur"
           />
           <h1>㈜ {info.companyName}</h1>
           <DetailInfo companyInfo={info} subData={""} />
@@ -42,7 +44,7 @@ const StudentCompanyDetail = ({
   );
 };
 
-export default StudentCompanyDetail;
+export default CompanyDetail;
 
 export async function getServerSideProps(context: { query: { id: string } }) {
   const id = context.query.id as string;

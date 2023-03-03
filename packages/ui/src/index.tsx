@@ -46,3 +46,6 @@ export { OtherSearch, type OtherSearchProps } from "../components/OthersSearch";
 export { SelectPrime, type SelectPrimeProps } from "../components/SelectPrime";
 export { NoticeCompanyList,CompanyTitle,type NoticeCompanyListProps,type CompanyTitleProps } from "../components/CompanyNoticeList";
 export { CompanyTable } from "../components/TableCompany";
+export { DetailRecruitmentJob } from "../components/noticeprops/Detail"
+export { Welfare } from "../components/noticeprops/Welfare"
+export { QualificationRequirements} from "../components/noticeprops/Qualification"

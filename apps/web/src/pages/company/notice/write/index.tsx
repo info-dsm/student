@@ -1,4 +1,3 @@
-import { GetServerSideProps, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import {
   getBaseList,
@@ -7,12 +6,11 @@ import {
 } from "../../../../axios/dist";
 import WriteNotice from "../../../../lib/components/company/WriteNotice";
 
-const WriteNoticeCompany = ({ post }: { post: getBaseListProps }) => {
+const WriteNoticeCompany = () => {
   const router = useRouter();
   return (
     <>
       <WriteNotice
-        {...{ post }}
         {...{
           menu: [
             {
@@ -24,12 +22,20 @@ const WriteNoticeCompany = ({ post }: { post: getBaseListProps }) => {
             },
             {
               onClick: () => {
-                router.push("/company/write/notice");
+                router.push("/company/notice/write");
               },
               key: "모집공고 작성",
               selected:
                 router.asPath ===
-                ("/company/write/notice/" || "/company/write/notice"),
+                ("/company/notice/write/" || "/company/notice/write"),
+            },
+            {
+              onClick: () => {
+                router.push("/company/mypage");
+              },
+              key: "내 정보",
+              selected:
+                router.asPath === ("/company/mypage/" || "/company/mypage"),
             },
           ],
           path: "/company",
@@ -40,7 +46,3 @@ const WriteNoticeCompany = ({ post }: { post: getBaseListProps }) => {
   );
 };
 export default WriteNoticeCompany;
-export const getServerSideProps: GetServerSideProps = async () => {
-  const posts = await getBaseList();
-  return { props: { posts } };
-};

@@ -33,12 +33,12 @@ const _Container = styled.div<{ bgColor: string }>`
   background-color: ${(props) => props.bgColor};
   backdrop-filter: blur(9px);
   width: 100vw;
-  height: 100px;
+  height: 80px;
   display: flex;
 `;
 const _Shape = styled.div`
   width: 65rem;
-  height: 100px;
+  height: 80px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -47,13 +47,13 @@ const _Layout = styled.div`
   width: auto;
   height: min-content;
   div {
-    line-height: 100px;
+    line-height: 80px;
   }
 `;
 const _Menu = styled.div<{ admin: boolean; selected: boolean }>`
   width: max-content;
   height: min-content;
-  line-height: 100px;
+  line-height: 80px;
   span {
     font: 500 20px "pretendard";
     cursor: pointer;

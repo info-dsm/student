@@ -37,10 +37,10 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta
+          {/* <meta
             http-equiv="Content-Security-Policy"
             content="upgrade-insecure-requests"
-          />
+          /> */}
         </Head>
         <body>
           <Main />

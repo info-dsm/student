@@ -1,9 +1,8 @@
-import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { getBaseList, getBaseListProps } from "../../../../axios/dist";
 import EditNotice from "../../../../lib/components/company/EditNotice";
 
-const EditNoticeCompany = ({ post }: { post: getBaseListProps }) => {
+const EditNoticeCompany = () => {
   const router = useRouter();
   return (
     <>
@@ -21,7 +20,6 @@ const EditNoticeCompany = ({ post }: { post: getBaseListProps }) => {
               selected: false,
             },
           ],
-          post,
           path: "/teacher/company",
         }}
         {...(router.query as { companyNumber: string; noticeId: string })}
@@ -30,7 +28,3 @@ const EditNoticeCompany = ({ post }: { post: getBaseListProps }) => {
   );
 };
 export default EditNoticeCompany;
-export const getServerSideProps: GetStaticProps = async () => {
-  const posts = await getBaseList();
-  return { props: { posts } };
-};

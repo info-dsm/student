@@ -92,10 +92,10 @@ export const NoticeCompanyList = ({
         <_ListLayout width={3.5}>
           <_Link>{list.notice.applicantCount} 명</_Link>
         </_ListLayout>
-        <_ListLayout width={6}>
+        <_ListLayout width={6} onClick={onEdit}>
           <_Link>모집공고 수정</_Link>
         </_ListLayout>
-        <_ListLayout width={5.5}>
+        <_ListLayout width={5.5} onClick={onWatch}>
           <_Link>모집공고 보기</_Link>
         </_ListLayout>
       </_Layout>

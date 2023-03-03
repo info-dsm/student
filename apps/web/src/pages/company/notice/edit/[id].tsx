@@ -1,18 +1,12 @@
-import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import {
-  getBaseList,
-  getBaseListProps,
-  getCompanyNumber,
-} from "../../../../../axios/dist";
-import EditNotice from "../../../../../lib/components/company/EditNotice";
+import { getBaseList, getCompanyNumber } from "../../../../axios/dist";
+import EditNotice from "../../../../lib/components/company/EditNotice";
 
-const EditNoticeCompany = ({ post }: { post: getBaseListProps }) => {
+const EditNoticeCompany = () => {
   const router = useRouter();
   return (
     <>
       <EditNotice
-        {...{ post }}
         {...{
           menu: [
             {
@@ -24,12 +18,20 @@ const EditNoticeCompany = ({ post }: { post: getBaseListProps }) => {
             },
             {
               onClick: () => {
-                router.push("/company/write/notice");
+                router.push("/company/notice/write");
               },
               key: "모집공고 작성",
               selected:
                 router.asPath ===
                 ("/company/write/notice/" || "/company/write/notice"),
+            },
+            {
+              onClick: () => {
+                router.push("/company/mypage");
+              },
+              key: "내 정보",
+              selected:
+                router.asPath === ("/company/mypage/" || "/company/mypage"),
             },
           ],
           path: "/company",
@@ -41,7 +43,3 @@ const EditNoticeCompany = ({ post }: { post: getBaseListProps }) => {
   );
 };
 export default EditNoticeCompany;
-export const getServerSideProps: GetStaticProps = async () => {
-  const posts = await getBaseList();
-  return { props: { posts } };
-};

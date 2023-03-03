@@ -3,7 +3,7 @@ import { getCompanyNoticeEvery, getCompanyNumber } from "../../axios/dist";
 import { useQuery } from "@tanstack/react-query";
 const Main = () => {
   const { status, data } = useQuery(
-    ["getNotice", getCompanyNumber()],
+    ["companyNoticeEvery", getCompanyNumber()],
     () => getCompanyNoticeEvery(getCompanyNumber() as string),
     {
       keepPreviousData: true,

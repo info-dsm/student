@@ -119,10 +119,10 @@ export const List = ({
         <_ListLayout width={4.5} {...{ onClick }}>
           <_Link>{list.totalEmployedCount} 명</_Link>
         </_ListLayout>
-        <_ListLayout width={5.5}>
+        <_ListLayout width={5.5} onClick={onWrite}>
           <_Link onClick={onWrite}>모집공고 등록</_Link>
         </_ListLayout>
-        <_ListLayout width={5.5}>
+        <_ListLayout width={5.5} onClick={onWatch}>
           <_Link>회사정보 보기</_Link>
         </_ListLayout>
         <_ListLayout width={5.5}>
