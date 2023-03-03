@@ -3,12 +3,12 @@ import {
   getClosedNoticeListContentProps,
   getWaitingNoticeList,
   getWaitingNoticeListContentProps,
-} from "apis";
+} from "../../../axios/dist";
 import styled from "styled-components";
 import StudentNoticeBanner from "../../../lib/components/student/noticebanner";
 import StudentClosedNotice from "../../../lib/components/student/closedNotice";
 import StudentNotice from "../../../lib/components/student/notice";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import HeaderComponent from "ui/components/StudentHeader";
 import NoticePlaceHolder from "../../../lib/components/student/placeholder";
 import ClosedNoticePlaceHolder from "../../../lib/components/student/closedPlaceholder";
@@ -21,7 +21,7 @@ const StudentNoticeList = () => {
   const [cnt, setCnt] = useState<number>(0);
   const [scrolled, setScrolled] = useState<boolean>(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const getNotice = () => {
       if (typeof document !== "undefined") {
         const companyContainer = document.getElementById(

@@ -1,18 +1,21 @@
-import { getCompanyList, getCompanyListContentProps } from "apis";
+import { getCompanyList1, getCompanyList1ContentProps } from "../../../axios/dist";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import StudentCompany from "../../../lib/components/student/company";
 import StudentCompanyBanner from "../../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "../../../lib/components/student/Kind";
 import CompanyPlaceHolder from "../../../lib/components/student/detailplaceholder";
+import { useRouter } from 'next/router';
 
 const StudentCompanyList = () => {
-  const [company, setCompany] = useState<getCompanyListContentProps[]>([]);
+  const router = useRouter();
+  console.log(router)
+  const [company, setCompany] = useState<getCompanyList1ContentProps[]>([]);
   const [cnt, setCnt] = useState<number>(0);
   const [scrolled, setScrolled] = useState<boolean>(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const getCompany = () => {
       if (typeof document !== "undefined") {
         const companyContainer = document.getElementById(
@@ -20,7 +23,7 @@ const StudentCompanyList = () => {
         ) as HTMLDivElement;
 
         if (cnt * 15 === companyContainer.children.length)
-          getCompanyList({ idx: cnt, size: 15 }).then((res) => {
+          getCompanyList1({ idx: cnt, size: 15 }).then((res) => {
             setCompany((list) => list?.concat(res.content));
             setCnt(cnt + 1);
             setScrolled(false);

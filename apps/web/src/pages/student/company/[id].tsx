@@ -1,23 +1,23 @@
 import {
-  getCompanyListContentProps,
-  getCompanyListProps,
+  getCompanyList1ContentProps,
+  getCompanyList1Props,
   getCompanySearch,
-} from "apis";
+} from "../../../axios/dist";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import StudentCompany from "../../../lib/components/student/company";
 import StudentCompanyBanner from "../../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "../../../lib/components/student/Kind";
+import { useRouter } from "next/router";
 
-const StudentSearchCompanyList = ({ q, data }: { q: string; data: string }) => {
-  const [company, setCompany] = useState<getCompanyListContentProps[]>(
-    JSON.parse(data)
-  );
+const StudentSearchCompanyList = () => {
+  const q = useRouter().query.id as string;
+  const [company, setCompany] = useState<getCompanyList1ContentProps[]>();
   const [cnt, setCnt] = useState<number>(1);
   const [scrolled, setScrolled] = useState<boolean>(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const getCompany = () => {
       if (typeof document !== "undefined") {
         const companyContainer = document.getElementById(
@@ -76,25 +76,6 @@ const StudentSearchCompanyList = ({ q, data }: { q: string; data: string }) => {
 };
 
 export default StudentSearchCompanyList;
-
-export async function getServerSideProps(context: { query: { id: string } }) {
-  const id = context.query.id as string;
-
-  const data: getCompanyListContentProps[] = await getCompanySearch({
-    name: id,
-    idx: 0,
-    size: 15,
-  }).then((res: getCompanyListProps) => {
-    return res.content;
-  });
-
-  return {
-    props: {
-      q: id,
-      data: JSON.stringify(data),
-    },
-  };
-}
 
 const MainDiv = styled.div`
   width: 100%;

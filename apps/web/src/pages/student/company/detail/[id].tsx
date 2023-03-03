@@ -1,30 +1,44 @@
 import styled from "styled-components";
-import React from "react";
+import React, {useState, useLayoutEffect} from "react";
 import {
   getCompanyDetail,
   getCompanyDetailProps,
   getCompanyNotice,
   getWaitingNoticeListContentProps,
-} from "apis";
+  getWaitingNoticeListProps,
+} from "../../../../axios/dist";
 import DetailInfo from "../../../../lib/components/student/NoticeDetailInfo";
 import StudentCompanyNoticeList from "../../../../lib/components/student/noticeList";
 import HeaderComponent from "ui/components/StudentHeader";
+import { useRouter } from "next/router";
 
 const StudentCompanyDetail = ({
-  data,
-  noticeData,
 }: {
-  data: string;
-  noticeData: string;
 }) => {
-  const info: getCompanyDetailProps = JSON.parse(data);
-  const noticeInfo: getWaitingNoticeListContentProps[] = JSON.parse(noticeData);
+  const query = useRouter().query.id as string;
+  const [info, setInfo] = useState<getCompanyDetailProps>()
+  const [noticeInfo, setNoticeInfo] = useState<getWaitingNoticeListContentProps[]>()
+  
+  useLayoutEffect(() => {
+    if (query) {
+      getCompanyDetail({ id: query }).then(
+        (res: getCompanyDetailProps) => {
+          setInfo(res)
+        }
+      );
+      getCompanyNotice({id: query}).then((res: getWaitingNoticeListContentProps[])=>{
+        setNoticeInfo(res)
+      })
+    }
+  },[query])
 
   return (
     <>
       <HeaderComponent />
       <MainDiv>
         <DetailDiv>
+          {info && noticeInfo ?
+          <>
           <img
             src={
               info.companyIntroductionResponse.companyLogo.fileUrl
@@ -36,6 +50,8 @@ const StudentCompanyDetail = ({
           <h1>㈜ {info.companyName}</h1>
           <DetailInfo companyInfo={info} subData={""} />
           <StudentCompanyNoticeList companyInfo={info} info={noticeInfo} />
+          </>: <></>
+          }
         </DetailDiv>
       </MainDiv>
     </>
@@ -43,29 +59,6 @@ const StudentCompanyDetail = ({
 };
 
 export default StudentCompanyDetail;
-
-export async function getServerSideProps(context: { query: { id: string } }) {
-  const id = context.query.id as string;
-
-  const data: getCompanyDetailProps = await getCompanyDetail({ id: id }).then(
-    (res: getCompanyDetailProps) => {
-      return res;
-    }
-  );
-
-  const notice: getWaitingNoticeListContentProps[] = await getCompanyNotice({
-    id: id,
-  }).then((res: getWaitingNoticeListContentProps[]) => {
-    return res;
-  });
-
-  return {
-    props: {
-      data: JSON.stringify(data),
-      noticeData: JSON.stringify(notice),
-    },
-  };
-}
 
 const MainDiv = styled.div`
   display: flex;

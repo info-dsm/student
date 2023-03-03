@@ -1,4 +1,4 @@
-import { getUserInfoProps } from "apis";
+import { getUserInfoProps } from "../../../axios/dist";
 import Image from "next/image";
 import styled from "styled-components";
 import GithubIcon from "../../../../public/assets/images/github.png";

@@ -1,4 +1,4 @@
-import { getSupportStatusProps,getNoticeDetail,getNoticeDetailProps } from "apis";
+import { getSupportStatusProps,getNoticeDetail,getNoticeDetailProps } from "../../../axios/dist";
 import styled from "styled-components";
 import {useState, useEffect} from "react"
 

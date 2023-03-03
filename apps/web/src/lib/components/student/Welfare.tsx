@@ -1,4 +1,4 @@
-import { getNoticeDetailProps } from "apis";
+import { getNoticeDetailProps } from "../../../axios/dist";
 import React from "react";
 import styled from "styled-components";
 import NoticeDetailClassification from "./Classification";

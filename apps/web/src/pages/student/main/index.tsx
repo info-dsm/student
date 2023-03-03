@@ -2,16 +2,16 @@ import styled from "styled-components";
 import StudentBanner from "../../../lib/components/student/Banner";
 import StudentMainNoticeContainer from "../../../lib/components/student/NoticeContainer";
 import TextBox from "../../../lib/components/student/TextBox";
-import React, { useEffect, useState } from "react";
-import { getCompanyList, getCompanyListContentProps } from "apis";
+import React, { useLayoutEffect, useState } from "react";
+import { getCompanyList1, getCompanyList1ContentProps } from "../../../axios/dist";
 import HeaderComponent from "ui/components/StudentHeader";
 
 const StudentPage = () => {
   const [companyKind, setCompanyKind] =
-    useState<getCompanyListContentProps[]>();
+    useState<getCompanyList1ContentProps[]>();
 
-  useEffect(() => {
-    getCompanyList({ idx: 0, size: 12 }).then((res) => {
+  useLayoutEffect(() => {
+    getCompanyList1({ idx: 0, size: 12 }).then((res) => {
       setCompanyKind(res.content);
     });
   }, []);
