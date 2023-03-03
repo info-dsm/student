@@ -5,7 +5,7 @@ const StudentAuthBanner = () => {
   return (
     <Banner>
       <BannerImg>
-        <Image src={BannerImage} alt="" />
+        <Image src={BannerImage} alt="" fill object-fit="contain" />
       </BannerImg>
     </Banner>
   );
