@@ -7,17 +7,16 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     transpilePackages: ["ui"],
-    runtime: "edge",
   },
   trailingSlash: true,
-  async rewrites() {
-    return [
-      {
-        source: "/company/signup/1",
-        destination: "https://postcode.map.daum.net/:path*/",
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/company/signup/1",
+  //       destination: "https://postcode.map.daum.net/:path*/",
+  //     },
+  //   ];
+  // },
   images: {
     unoptimized: true,
   },
