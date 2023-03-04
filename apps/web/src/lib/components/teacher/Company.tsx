@@ -12,6 +12,7 @@ import {
   LittleSelectComplete,
   Wait,
   Button,
+  Footer,
 } from "ui";
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useState, useCallback, useLayoutEffect } from "react";
@@ -246,6 +247,7 @@ const TeacherCompany = ({
             />
           </Toast>
         </_Layout>
+        <Footer />
       </_BackGround>
       {modal !== "" ? (
         <TeahcerCompanyModal

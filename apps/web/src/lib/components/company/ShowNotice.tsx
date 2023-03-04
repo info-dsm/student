@@ -3,6 +3,7 @@ import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import {
   CompanyTitle,
+  Footer,
   Header,
   LabelButton,
   Logo,
@@ -137,6 +138,7 @@ const ShowCompanyNotice = ({ status, data }: ShowCompnayNoticeProps) => {
             </Toast>
           </div>
         </_Layout>
+        <Footer />
       </_BackGround>
     </>
   );

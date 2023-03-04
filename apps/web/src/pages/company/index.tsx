@@ -13,7 +13,6 @@ const Main = () => {
   return (
     <>
       <ShowCompanyNotice {...{ data, status }} />
-      <Footer />
     </>
   );
 };

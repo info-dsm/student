@@ -70,7 +70,6 @@ const TeacherNoticePage = () => {
           listStatus: "APPROVE",
         }}
       />
-      <Footer />
     </>
   );
 };

@@ -12,6 +12,7 @@ import {
   LabelButton,
   NoticeList,
   ChangeSelect,
+  Footer,
 } from "ui";
 import React, { useState, useCallback, useLayoutEffect } from "react";
 import { NoticeTitleData } from "../../../data/teacher/notice";
@@ -220,6 +221,7 @@ const TeacherNotice = ({
             </Toast>
           </div>
         </_Layout>
+        <Footer />
       </_BackGround>
       {modal !== "" ? (
         <TeahcerCompanyModal

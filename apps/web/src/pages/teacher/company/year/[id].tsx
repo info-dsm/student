@@ -30,7 +30,6 @@ const CompanySearchResult = () => {
           result: id,
         }}
       />
-      <Footer />
     </>
   );
 };

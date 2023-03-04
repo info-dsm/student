@@ -81,7 +81,6 @@ const TeacherNoticePage = () => {
           listStatus: "WAITING",
         }}
       />
-      <Footer />
     </>
   );
 };

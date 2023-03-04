@@ -52,7 +52,6 @@ const CompanySpecificNoticeDetail = () => {
           </_Button>
         </_ButtonLayout>
       </NoticeDetail>
-      <Footer />
     </>
   );
 };
