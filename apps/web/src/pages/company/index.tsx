@@ -1,19 +1,27 @@
-import ShowCompanyNotice from "../../lib/components/company/ShowNotice";
-import { getCompanyNoticeEvery, getCompanyNumber } from "../../axios/dist";
+import { NextPage } from "next";
+import TeacherCompany from "../../lib/components/teacher/Company";
 import { useQuery } from "@tanstack/react-query";
-import { Footer } from "ui";
-const Main = () => {
+import { useCallback, useState } from "react";
+import { getCompanyList } from "../../axios/dist";
+const TeacherCompanyPage: NextPage = () => {
+  const [getIndex, setIndex] = useState<number>(0);
   const { status, data } = useQuery(
-    ["companyNoticeEvery", getCompanyNumber()],
-    () => getCompanyNoticeEvery(getCompanyNumber() as string),
-    {
-      keepPreviousData: true,
-    }
+    ["list", getIndex],
+    async () => getCompanyList(getIndex),
+    { keepPreviousData: true }
+  );
+  const ChangeIndex = useCallback(
+    (num: number) => {
+      setIndex(num - 1);
+    },
+    [setIndex]
   );
   return (
     <>
-      <ShowCompanyNotice {...{ data, status }} />
+      <TeacherCompany
+        {...{ status, data, getIndex, queryKey: "list", ChangeIndex }}
+      />
     </>
   );
 };
-export default Main;
+export default TeacherCompanyPage;

@@ -50,9 +50,9 @@ const TeacherCompany = ({
   }, [data]);
   const onClick = () => {
     if (now === "기본") {
-      router.push(`/teacher/company/search/${id}`);
+      router.push(`/company/search/${id}`);
     } else {
-      router.push(`/teacher/company/year/${id}`);
+      router.push(`/company/year/${id}`);
     }
   };
   const ChangeProps = useCallback(
@@ -130,18 +130,18 @@ const TeacherCompany = ({
           admin={true}
           menu={[
             {
-              onClick: () => router.push("/teacher/notice"),
+              onClick: () => router.push("/notice"),
               key: "모집공고",
               selected: false,
             },
             {
-              onClick: () => router.push("/teacher/company"),
+              onClick: () => router.push("/company"),
               key: "회사",
               selected: true,
             },
           ]}
         >
-          <Logo main={true} onClick={() => router.push("/teacher/notice")} />
+          <Logo main={true} onClick={() => router.push("/notice")} />
         </Header>
         <_Layout>
           <_Sort>
@@ -210,12 +210,12 @@ const TeacherCompany = ({
                       }}
                       onWrite={() => {
                         router.push(
-                          `/teacher/company/notice/${data.content[i].companyNumber}`
+                          `/company/notice/${data.content[i].companyNumber}`
                         );
                       }}
                       onWatch={() => {
                         router.push(
-                          `/teacher/company/info/${data.content[i].companyNumber}`
+                          `/company/info/${data.content[i].companyNumber}`
                         );
                       }}
                     />

@@ -33,6 +33,7 @@ import {
 } from "../../../axios/dist";
 import open from "../../../hooks/addresshook";
 import { AddressProps } from "../../../../@types/interface";
+import { useRouter } from "next/router";
 interface WriteNoticeProps {
   menu: {
     onClick: () => void;
@@ -44,6 +45,7 @@ interface WriteNoticeProps {
   noticeId: string;
 }
 const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
+  const router = useRouter();
   const data: [
     UseQueryResult<getBaseListProps>,
     UseQueryResult<getNoticeDetailProps2>
@@ -625,6 +627,7 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
         ).then((res) => {
           console.log(res);
           createNoticeFile(res, file as File[]);
+          router.back();
         });
       }
     }

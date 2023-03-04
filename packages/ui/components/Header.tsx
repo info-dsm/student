@@ -51,7 +51,6 @@ const _Layout = styled.div`
   }
 `;
 const _Menu = styled.div<{ admin: boolean; selected: boolean }>`
-  width: max-content;
   height: min-content;
   line-height: 80px;
   span {

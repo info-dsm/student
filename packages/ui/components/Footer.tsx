@@ -40,6 +40,8 @@ export const Footer = () => {
                 <div>Designer</div>
               </_OutLayout>
               <_FlexProps>
+                <div>김진건</div>
+                <div>안진형</div>
                 <div>임수빈</div>
               </_FlexProps>
             </_Box>
@@ -76,6 +78,7 @@ const _BackGround = styled.div`
   width: 100vw;
   height: 300px;
   display: flex;
+  align-items: baseline;
   justify-content: space-around;
 `;
 const _Box = styled.div`
@@ -111,11 +114,11 @@ const _FlexIcon = styled.div`
   gap: 25px;
 `;
 const _Layout = styled.div`
-  padding: 60px 0 90px 0;
-  width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 20px;
+  padding: 60px 0 90px 0;
+  width: 400px;
 `;
 const _OutLayout = styled.div`
   width: 200px;
@@ -138,5 +141,5 @@ const _OutFlex = styled.div`
   padding: 60px 0 90px 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 20px;
 `;
