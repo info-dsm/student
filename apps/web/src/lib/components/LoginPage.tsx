@@ -91,7 +91,7 @@ const LoginPage = ({
         request.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${res.accessToken}`;
-        if (member) {
+        if (!member) {
           localStorage.setItem("companyNumber", data.companyNumber);
         }
         cookie.set("accessToken", res.accessToken, { expires: 7 });
