@@ -4,6 +4,7 @@ const nextConfig = {
     styledComponents: true,
   },
   reactStrictMode: false,
+  swcMinify: true,
   experimental: {
     transpilePackages: ["ui"],
     runtime: "edge",
