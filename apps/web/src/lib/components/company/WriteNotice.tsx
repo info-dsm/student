@@ -24,6 +24,7 @@ import {
 } from "../../../axios/dist";
 import open from "../../../hooks/addresshook";
 import { AddressProps } from "../../../../@types/interface";
+import { useRouter } from "next/router";
 interface WriteNoticeProps {
   menu: {
     onClick: () => void;
@@ -33,7 +34,8 @@ interface WriteNoticeProps {
   path: string;
   companyNumber: string;
 }
-const WriteNotice = ({ menu, companyNumber }: WriteNoticeProps) => {
+const WriteNotice = ({ menu, companyNumber, path }: WriteNoticeProps) => {
+  const router = useRouter();
   const { status, data } = useQuery(["getNoticedefaultData"], () =>
     getBaseList()
   );
@@ -459,6 +461,7 @@ const WriteNotice = ({ menu, companyNumber }: WriteNoticeProps) => {
         }[]
       ).then((res) => {
         createNoticeFile(res, file as File[]);
+        router.push(path);
       });
     }
   };

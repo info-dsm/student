@@ -623,6 +623,7 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
             contentType: string;
           }[]
         ).then((res) => {
+          console.log(res);
           createNoticeFile(res, file as File[]);
         });
       }
