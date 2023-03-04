@@ -6,6 +6,7 @@ const nextConfig = {
   reactStrictMode: false,
   experimental: {
     transpilePackages: ["ui"],
+    runtime: "edge",
   },
   trailingSlash: true,
   async rewrites() {
