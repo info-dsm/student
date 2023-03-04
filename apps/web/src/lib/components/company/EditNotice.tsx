@@ -323,20 +323,20 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
         alternativeMilitaryPlan: data[1].data.welfare.alternativeMilitaryPlan,
         elseSupport: data[1].data.welfare.elseSupport || "",
       });
-      let ar = Object.values(
-        data[1].data.interviewProcessList as { [key: number]: string }
-      ).map((e: string, i: number) => {
-        if (i > 0 && data[0].data?.[4]) {
-          return {
-            process: e,
-            meaning:
-              data[0].data?.[4][
-                data[0].data?.[4].findIndex((el) => el.process === e)
-              ] || "클릭 시 선택",
-          };
-        }
-      }) as unknown as { process: string; meaning: string }[];
-      setList(ar);
+      //   let ar = Object.values(
+      //     data[1].data.interviewProcessList as { [key: number]: string }
+      //   ).map((e: string, i: number) => {
+      //     if (i > 0 && data[0].data?.[4]) {
+      //       return {
+      //         process: e,
+      //         meaning:
+      //           data[0].data?.[4][
+      //             data[0].data?.[4].findIndex((el) => el.process === e)
+      //           ] || "클릭 시 선택",
+      //       };
+      //     }
+      //   }) as unknown as { process: string; meaning: string }[];
+      //   setList(ar);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data[0].data, data[1].data]);

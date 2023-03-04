@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { Footer } from "ui";
 import { getCompanyNumber } from "../../../axios/dist";
 import CompanyDetail from "../../../lib/components/company/CompanyDetail";
 
@@ -46,6 +47,7 @@ const MyCompany = () => {
           </_Button>
         </_ButtonLayout> */}
       </CompanyDetail>
+      <Footer />
     </>
   );
 };
