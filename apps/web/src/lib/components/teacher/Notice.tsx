@@ -79,24 +79,22 @@ const TeacherNotice = ({
   );
   const LabelData = [
     {
-      onClick: () => router.push("/teacher/notice"),
+      onClick: () => router.push("/notice"),
       text: "대기 중인 모집공고",
-      status:
-        (router.asPath as string) === ("/teacher/notice/" || "/teacher/notice"),
+      status: (router.asPath as string) === ("/notice/" || "/notice"),
     },
     {
-      onClick: () => router.push("/teacher/notice/progress"),
+      onClick: () => router.push("/notice/progress"),
       text: "모집 중인 모집공고",
       status:
         (router.asPath as string) ===
-        ("/teacher/notice/progress/" || "/teacher/notice/progress"),
+        ("/notice/progress/" || "/notice/progress"),
     },
     {
-      onClick: () => router.push("/teacher/notice/gone"),
+      onClick: () => router.push("/notice/gone"),
       text: "마감 된 모집공고",
       status:
-        (router.asPath as string) ===
-        ("/teacher/notice/gone/" || "/teacher/notice/gone"),
+        (router.asPath as string) === ("/notice/gone/" || "r/notice/gone"),
     },
   ];
   return (
@@ -107,18 +105,18 @@ const TeacherNotice = ({
           admin={true}
           menu={[
             {
-              onClick: () => router.push("/teacher/notice"),
+              onClick: () => router.push("/notice"),
               key: "모집공고",
               selected: true,
             },
             {
-              onClick: () => router.push("/teacher/company"),
+              onClick: () => router.push("/company"),
               key: "회사",
               selected: false,
             },
           ]}
         >
-          <Logo main={true} onClick={() => router.push("/teacher/notice")} />
+          <Logo main={true} onClick={() => router.push("/notice")} />
         </Header>
         <_Layout>
           <_Result>
@@ -171,7 +169,7 @@ const TeacherNotice = ({
                         onClick={() => {}}
                         onWatch={() => {
                           router.push({
-                            pathname: "/teacher/notice/specific",
+                            pathname: "/notice/specific",
                             query: {
                               companyNumber:
                                 data.content[i].company.companyNumber,
@@ -181,7 +179,7 @@ const TeacherNotice = ({
                         }}
                         onEdit={() => {
                           router.push({
-                            pathname: "/teacher/notice/edit",
+                            pathname: "/notice/edit",
                             query: {
                               compayNumber:
                                 data.content[i].company.companyNumber,
