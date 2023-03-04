@@ -48,4 +48,7 @@ export { NoticeCompanyList,CompanyTitle,type NoticeCompanyListProps,type Company
 export { CompanyTable } from "../components/TableCompany";
 export { DetailRecruitmentJob } from "../components/noticeprops/Detail"
 export { Welfare } from "../components/noticeprops/Welfare"
-export { QualificationRequirements} from "../components/noticeprops/Qualification"
+export { QualificationRequirements } from "../components/noticeprops/Qualification"
+export { Footer } from "../components/Footer"
+export { Spinner } from "../components/Spinner"
+

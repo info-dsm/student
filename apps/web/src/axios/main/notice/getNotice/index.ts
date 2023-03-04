@@ -24,20 +24,20 @@ export interface getNoticeDetailProps2 {
     commuteEndTime?: number;
     workTimePerDay: number;
     workTimePerWeek: number;
-    isFlexible: Boolean;
+    isFlexible: boolean;
   };
   mealSupport: {
     mealSupportPay: number;
-    breakfast: Boolean;
-    lunch: Boolean;
-    dinner: Boolean;
+    breakfast: boolean;
+    lunch: boolean;
+    dinner: boolean;
   };
   welfare: {
-    dormitorySupport: Boolean;
-    selfDevelopmentPay: Boolean;
-    equipmentSupport: Boolean;
-    youthTomorrowChaeumDeduction: Boolean;
-    alternativeMilitaryPlan: Boolean;
+    dormitorySupport: boolean;
+    selfDevelopmentPay: boolean;
+    equipmentSupport: boolean;
+    youthTomorrowChaeumDeduction: boolean;
+    alternativeMilitaryPlan: boolean;
     elseSupport?: string;
   };
   noticeOpenPeriod: {
@@ -47,7 +47,7 @@ export interface getNoticeDetailProps2 {
   needDocuments?: string;
   otherFeatures?: string;
   workPlace: {
-    isSameWithCompanyAddress: Boolean;
+    isSameWithCompanyAddress: boolean;
     otherPlace?: string;
   };
   applicantCount: number;
@@ -61,7 +61,7 @@ export interface getNoticeDetailProps2 {
       noticeId: string;
     }
   ];
-  isPersonalContact: Boolean;
+  isPersonalContact: boolean;
 }
 
 export const getNoticeDetail2 = (id: string) => {

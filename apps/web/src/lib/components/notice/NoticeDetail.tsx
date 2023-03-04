@@ -7,7 +7,12 @@ import {
 import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 import DetailInfo from "../student/NoticeDetailInfo";
-import { DetailRecruitmentJob, Welfare, QualificationRequirements } from "ui";
+import {
+  DetailRecruitmentJob,
+  Welfare,
+  QualificationRequirements,
+  Spinner,
+} from "ui";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -93,7 +98,9 @@ const NoticeDetail = ({
               <Welfare noticeInfo={data[0]} />
             </>
           ) : (
-            <></>
+            <>
+              <Spinner />
+            </>
           )}
           {children}
         </DetailDiv>

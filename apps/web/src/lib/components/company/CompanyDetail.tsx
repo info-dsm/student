@@ -10,7 +10,7 @@ import DetailInfo from "../student/NoticeDetailInfo";
 import CompanyNoticeList from "./NoticeList";
 import Image from "next/image";
 import { useQueries, UseQueryResult } from "@tanstack/react-query";
-import { Header, Logo } from "ui";
+import { Header, Logo, Spinner } from "ui";
 
 const CompanyDetail = ({
   id,
@@ -85,7 +85,9 @@ const CompanyDetail = ({
             {children}
           </DetailDiv>
         ) : (
-          <></>
+          <>
+            <Spinner />
+          </>
         )}
       </MainDiv>
     </>

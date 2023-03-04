@@ -14,6 +14,7 @@ import {
   SelectPrime,
   MiniButton,
   FileManage,
+  Footer,
 } from "ui";
 import {
   createNotice,
@@ -615,7 +616,7 @@ const WriteNotice = ({ menu, companyNumber }: WriteNoticeProps) => {
               <InputNotice
                 text={"식대지원"}
                 onChange={(e) => ChangeMeal("mealSupportPay", ChangeNumber(e))}
-                value={`${meal.mealSupportPay || ""}`}
+                value={`${meal.mealSupportPay}`}
                 last={"원(월)"}
               />
               <BigCheck
@@ -868,6 +869,7 @@ const WriteNotice = ({ menu, companyNumber }: WriteNoticeProps) => {
             <button onClick={() => Submit()}>모집공고 등록</button>
           </_Submit>
         </_Layout>
+        <Footer />
       </_BackGround>
     </>
   );

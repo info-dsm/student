@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { Footer } from "ui";
 import CompanyDetail from "../../../../lib/components/company/CompanyDetail";
 
 const TeacherCompanyInfo = () => {
@@ -30,6 +31,7 @@ const TeacherCompanyInfo = () => {
           </_Button>
         </_ButtonLayout>
       </CompanyDetail>
+      <Footer />
     </>
   );
 };

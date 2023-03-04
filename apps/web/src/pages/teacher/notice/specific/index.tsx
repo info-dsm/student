@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { Footer } from "ui";
 import NoticeDetail from "../../../../lib/components/notice/NoticeDetail";
 const SpecificNoticeDetail = () => {
   const router = useRouter();
@@ -42,6 +43,7 @@ const SpecificNoticeDetail = () => {
           </_Button>
         </_ButtonLayout>
       </NoticeDetail>
+      <Footer />
     </>
   );
 };

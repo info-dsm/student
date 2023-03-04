@@ -20,6 +20,8 @@ import {
   SelectPrime,
   MiniButton,
   FileManage,
+  Spinner,
+  Footer,
 } from "ui";
 import {
   createNoticeFile,
@@ -171,7 +173,7 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
       meaning: "클릭 시 선택",
     },
   ]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (data[0].status === "success" && data[1].status === "success") {
       let arr = [
         {
@@ -233,7 +235,6 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
             return false;
           }
         }) ?? 0;
-      console.log(now);
       setCertificateList({ list: arr, now });
       setCheckState({
         technologe: new Array(data[0].data[0].length)
@@ -288,13 +289,54 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
         startDate: data[1].data.noticeOpenPeriod.startDate,
         endDate: data[1].data.noticeOpenPeriod.endDate,
       });
-      //   setNumber({
-      //     detailBusinessDescription: "",
-      //     numberOfEmployee: "",
-      //     gradeCutLine: "",
-      //     otherFeatures: "",
-      //     check: "",
-      //   });
+      setNumber({
+        detailBusinessDescription: data[1].data.detailBusinessDescription || "",
+        numberOfEmployee: data[1].data.numberOfEmployee,
+        gradeCutLine: data[1].data.gradeCutLine,
+        otherFeatures: data[1].data.otherFeatures || "",
+        check: data[1].data.gradeCutLine !== undefined,
+      });
+      setWorkTime({
+        commuteStartTime: data[1].data.workTime.commuteStartTime || 0,
+        commuteEndTime: data[1].data.workTime.commuteEndTime || 0,
+        workTimePerDay: data[1].data.workTime.workTimePerDay || 0,
+        workTimePerWeek: data[1].data.workTime.workTimePerWeek,
+        isFlexible: data[1].data.workTime.isFlexible,
+      });
+      setAddress({
+        isSameWithCompanyAddress:
+          data[1].data.workPlace.isSameWithCompanyAddress,
+        otherPlace: data[1].data.workPlace.otherPlace || "",
+      });
+      setMeal({
+        mealSupportPay: data[1].data.mealSupport.mealSupportPay,
+        breakfast: data[1].data.mealSupport.breakfast,
+        lunch: data[1].data.mealSupport.lunch,
+        dinner: data[1].data.mealSupport.dinner,
+      });
+      setWelfare({
+        dormitorySupport: data[1].data.welfare.dormitorySupport,
+        selfDevelopmentPay: data[1].data.welfare.selfDevelopmentPay,
+        equipmentSupport: data[1].data.welfare.equipmentSupport,
+        youthTomorrowChaeumDeduction:
+          data[1].data.welfare.youthTomorrowChaeumDeduction,
+        alternativeMilitaryPlan: data[1].data.welfare.alternativeMilitaryPlan,
+        elseSupport: data[1].data.welfare.elseSupport || "",
+      });
+      let ar = Object.values(
+        data[1].data.interviewProcessList as { [key: number]: string }
+      ).map((e: string, i: number) => {
+        if (i > 0 && data[0].data?.[4]) {
+          return {
+            process: e,
+            meaning:
+              data[0].data?.[4][
+                data[0].data?.[4].findIndex((el) => el.process === e)
+              ] || "클릭 시 선택",
+          };
+        }
+      }) as unknown as { process: string; meaning: string }[];
+      setList(ar);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data[0].data, data[1].data]);
@@ -461,20 +503,6 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
     },
     [certificateList]
   );
-  const NewCertificate = useCallback(
-    (
-      e:
-        | {
-            bigClassification: string;
-            small: { name: string; on: boolean }[];
-          }[]
-        | number,
-      props: "list" | "now"
-    ) => {
-      setCertificateList({ ...certificateList, [props]: e });
-    },
-    [certificateList]
-  );
   const ChangeDetail = useCallback(
     (index: number) => {
       setCertificateList({
@@ -544,7 +572,7 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
         });
       let { check, ...props } = number;
       let { elseSupport, ...wel } = welfare;
-      let { otherPlace, isSameWithCompanyAddress } = address;
+      let { isSameWithCompanyAddress } = address;
       if (!check) {
         delete props.gradeCutLine;
       }
@@ -758,7 +786,7 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
                     onChange={(e) =>
                       ChangeMeal("mealSupportPay", ChangeNumber(e))
                     }
-                    value={`${meal.mealSupportPay || ""}`}
+                    value={`${meal.mealSupportPay}`}
                     last={"원(월)"}
                   />
                   <BigCheck
@@ -1022,8 +1050,11 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
             </_Layout>
           </>
         ) : (
-          <></>
+          <>
+            <Spinner />
+          </>
         )}
+        <Footer />
       </_BackGround>
     </>
   );

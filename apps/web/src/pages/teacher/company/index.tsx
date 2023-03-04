@@ -3,6 +3,7 @@ import TeacherCompany from "../../../lib/components/teacher/Company";
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 import { getCompanyList } from "../../../axios/dist";
+import { Footer } from "ui";
 const TeacherCompanyPage: NextPage = () => {
   const [getIndex, setIndex] = useState<number>(0);
   const { status, data } = useQuery(
@@ -21,6 +22,7 @@ const TeacherCompanyPage: NextPage = () => {
       <TeacherCompany
         {...{ status, data, getIndex, queryKey: "list", ChangeIndex }}
       />
+      <Footer />
     </>
   );
 };

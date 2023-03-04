@@ -2,6 +2,7 @@ import TeacherNotice from "../../../../lib/components/teacher/Notice";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
 import { deleteNoRemainNotice, getGoneList } from "../../../../axios/dist";
+import { Footer } from "ui";
 const TeacherNoticePage = () => {
   const [getIndex, setIndex] = useState<number>(0);
   const [now, setNow] = useState<"승인된" | "미승인">("승인된");
@@ -67,6 +68,7 @@ const TeacherNoticePage = () => {
           },
         }}
       />
+      <Footer />
     </>
   );
 };

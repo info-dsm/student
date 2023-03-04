@@ -3,9 +3,9 @@ import { useCallback, useState } from "react";
 import TeacherCompany from "../../../../lib/components/teacher/Company";
 import { useRouter } from "next/router";
 import { getSearchCompany } from "../../../../axios/dist";
+import { Footer } from "ui";
 const CompanySearchResult = () => {
   const id = useRouter().query.id as string;
-  console.log(id);
   const [getIndex, setIndex] = useState<number>(0);
   const { status, data } = useQuery(
     ["listSearch", getIndex],
@@ -30,6 +30,7 @@ const CompanySearchResult = () => {
           result: id,
         }}
       />
+      <Footer />
     </>
   );
 };

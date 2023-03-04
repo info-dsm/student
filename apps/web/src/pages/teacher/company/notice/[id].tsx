@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { Footer } from "ui";
 import { getBaseList, getBaseListProps } from "../../../../axios/dist";
 import WriteNotice from "../../../../lib/components/company/WriteNotice";
 

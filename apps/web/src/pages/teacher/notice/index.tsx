@@ -7,6 +7,7 @@ import {
   getWaitList,
   postAcceptNotice,
 } from "../../../axios/dist";
+import { Footer } from "ui";
 const TeacherNoticePage = () => {
   const [getIndex, setIndex] = useState<number>(0);
   const { status, data } = useQuery(
@@ -80,6 +81,7 @@ const TeacherNoticePage = () => {
           listStatus: "WAITING",
         }}
       />
+      <Footer />
     </>
   );
 };

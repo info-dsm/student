@@ -6,6 +6,7 @@ import {
   deleteNoRemainNotice,
   deleteNotice,
 } from "../../../../axios/dist";
+import { Footer } from "ui";
 const TeacherNoticePage = () => {
   const [getIndex, setIndex] = useState<number>(0);
   const queryClient = useQueryClient();
@@ -69,6 +70,7 @@ const TeacherNoticePage = () => {
           listStatus: "APPROVE",
         }}
       />
+      <Footer />
     </>
   );
 };
