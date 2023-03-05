@@ -37,10 +37,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* <meta
-            http-equiv="Content-Security-Policy"
-            content="upgrade-insecure-requests"
-          /> */}
+          <link rel="shortcut icon" href="/assets/images/favicon.ico" />
         </Head>
         <body>
           <Main />

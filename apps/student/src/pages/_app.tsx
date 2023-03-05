@@ -8,6 +8,7 @@ import { CustomThemeProvider } from "ui";
 import React, { useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RecoilRoot } from "recoil";
+import Head from "next/head";
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
     () =>
@@ -26,6 +27,14 @@ export default function App({ Component, pageProps }: AppProps) {
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
             <CustomThemeProvider>
+              <Head>
+                <title>info</title>
+                <meta name="description" content="teacher page by info" />
+                <meta
+                  name="viewport"
+                  content="width=device-width, initial-scale=1"
+                />
+              </Head>
               <Component {...pageProps} />
             </CustomThemeProvider>
           </RecoilRoot>
