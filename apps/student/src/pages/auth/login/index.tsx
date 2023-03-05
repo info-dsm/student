@@ -45,7 +45,7 @@ const StudentLogin = () => {
     setStatus({ ...status, [name]: "normal" });
   };
 
-  const movepage = () => router.push("../main");
+  const movepage = () => router.push("../");
 
   return (
     <>

@@ -4,15 +4,15 @@ import TitleIcon from "../images/title";
 
 const HeaderComponent = () => {
   const nav = [
-    { content: "회사", link: "/student/company" },
-    { content: "모집공고", link: "/student/notice" },
+    { content: "회사", link: "/company" },
+    { content: "모집공고", link: "/notice" },
     {
       content: "내정보",
-      link: "/student/mypage",
+      link: "/mypage",
     },
     {
       content: "로그인",
-      link: "/student/auth/login",
+      link: "/auth/login",
     },
     // { content: "개발팀", link: "" },
   ];
@@ -20,7 +20,7 @@ const HeaderComponent = () => {
   return (
     <>
       <MainDiv>
-        <a href="/student/main">
+        <a href="/">
           <TitleIcon />
         </a>
         <div>

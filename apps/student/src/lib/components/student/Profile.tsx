@@ -13,7 +13,7 @@ const StudentMyPageProfile = ({ info }: { info: getUserInfoProps }) => {
           alt=""
           width={140}
           height={140}
-          objectFit={"cover"}
+          object-fit={"cover"}
         />
       </ProfileImage>
       <div>
@@ -34,7 +34,7 @@ const Profile = styled.div`
   box-shadow: 2px 2px 12px -1px rgba(0, 0, 0, 0.22);
   display: inline-flex;
   justify-content: center;
-    border-radius: 5px;
+  border-radius: 5px;
   align-items: center;
   gap: 36px;
 `;
