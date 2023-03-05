@@ -1,10 +1,9 @@
 import {
   getCompanyList1ContentProps,
-  getCompanyList1Props,
   getCompanySearch,
 } from "../../axios/dist";
 import styled from "styled-components";
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import StudentCompany from "../../lib/components/student/company";
 import StudentCompanyBanner from "../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
@@ -17,7 +16,7 @@ const StudentSearchCompanyList = () => {
   const [cnt, setCnt] = useState<number>(1);
   const [scrolled, setScrolled] = useState<boolean>(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const getCompany = () => {
       if (typeof document !== "undefined") {
         const companyContainer = document.getElementById(

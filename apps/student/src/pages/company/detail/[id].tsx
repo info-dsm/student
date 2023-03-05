@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   getCompanyDetail,
   getCompanyDetailProps,
   getCompanyNotice,
   getWaitingNoticeListContentProps,
-  getWaitingNoticeListProps,
 } from "../../../axios/dist";
 import DetailInfo from "../../../lib/components/student/NoticeDetailInfo";
 import StudentCompanyNoticeList from "../../../lib/components/student/noticeList";
@@ -18,7 +17,7 @@ const StudentCompanyDetail = ({}: {}) => {
   const [noticeInfo, setNoticeInfo] =
     useState<getWaitingNoticeListContentProps[]>();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (query) {
       getCompanyDetail({ id: query }).then((res: getCompanyDetailProps) => {
         setInfo(res);

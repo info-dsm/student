@@ -8,7 +8,7 @@ import {
   presigned,
   reissue,
 } from "../../../axios/dist";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import DetailInfo from "../../../lib/components/student/NoticeDetailInfo";
 import DetailRecruitmentJob from "../../../lib/components/student/RecruitmentJob";
@@ -24,7 +24,7 @@ const NoticeDetail = () => {
   const [NoticeInfo, setNoticeInfo] = useState<getNoticeDetailProps>();
   const [CompanyInfo, setCompanyInfo] = useState<getCompanyDetailProps>();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (query)
       getNoticeDetail({ id: query }).then((res: getNoticeDetailProps) => {
         setNoticeInfo(res);
