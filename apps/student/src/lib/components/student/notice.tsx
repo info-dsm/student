@@ -1,14 +1,20 @@
 import { getWaitingNoticeListContentProps } from "../../../axios/dist";
 import Image from "next/image";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const StudentNotice = ({
   info,
 }: {
   info: getWaitingNoticeListContentProps;
 }) => {
+  const router = useRouter();
   return (
-    <NoticeDiv href={`detail/${info.noticeId}`}>
+    <NoticeDiv
+      onClick={() => {
+        router.push(`/notice/detail/${info.noticeId}`);
+      }}
+    >
       <img src={info.company.imageList[0]} alt="" />
       <h1>
         {info.classificationResponse.map((t, i, a) => (
