@@ -10,11 +10,14 @@ const StudentMainNotice = ({
   condition: boolean;
   info: getWaitingNoticeListContentProps;
 }) => {
-  const router = useRouter()
+  const router = useRouter();
   return (
-    <Notice color={condition ? "1" : "0.3"} onClick={() => {
-      router.push(`/notice/detail/${info.noticeId}`)
-    }}>
+    <Notice
+      color={condition ? "1" : "0.3"}
+      onClick={() => {
+        router.push(`/notice/detail/${info.noticeId}`);
+      }}
+    >
       <img src={info.company.imageList[0]} alt="" />
       <div>{info.detailBusinessDescription}</div>
       <span>{info.company.companyName}</span>
@@ -52,7 +55,8 @@ const Notice = styled.div<{ color: string }>`
   width: 380px;
   height: 222px;
   background-color: #fff;
-  opacity: ${props =>props.color};
+  opacity: ${(props) => props.color};
+  cursor: pointer;
   border-radius: 5px;
   padding: 26px 19px;
 
@@ -66,7 +70,7 @@ const Notice = styled.div<{ color: string }>`
     font-weight: 600;
     font-size: 20px;
     margin-bottom: -6px;
-      display: -webkit-box;
+    display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     word-break: break-all;
@@ -78,5 +82,4 @@ const Notice = styled.div<{ color: string }>`
     font-size: 13px;
     margin-left: 3px;
   }
-
 `;

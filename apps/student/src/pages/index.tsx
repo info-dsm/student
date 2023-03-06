@@ -86,6 +86,7 @@ const ImageDiv = styled.div<{ url: string }>`
   background-image: url(${(props) => props.url});
   width: 224px;
   height: 105px;
+  cursor: pointer;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
