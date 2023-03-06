@@ -46,11 +46,11 @@ const StudentNoticeList = () => {
     }
   }, [scrolled, setScrolled]);
 
-  window.addEventListener("scroll", (e) => {
-    if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
-      setScrolled(true);
-    }
-  });
+  // window.addEventListener("scroll", (e) => {
+  //   if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
+  //     setScrolled(true);
+  //   }
+  // });
 
   return (
     <>
