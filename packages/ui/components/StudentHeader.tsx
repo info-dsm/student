@@ -96,6 +96,17 @@ const MainDiv = styled.div`
       color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
       cursor: pointer;
+
+      background-size: 0% 100%;
+      background-image: linear-gradient(
+        transparent calc(100% - 2px),
+        ${(props) => props.theme.colors.white} 2px
+      );
+      background-repeat: no-repeat;
+      transition: background-size 0.3s;
+      &:hover {
+        background-size: 100% 100%;
+      }
     }
   }
 `;
