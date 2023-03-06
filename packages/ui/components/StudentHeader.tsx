@@ -1,20 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import TitleIcon from "../images/title";
+import cookie from "js-cookie";
 
 const HeaderComponent = () => {
   const nav = [
     { content: "회사", link: "/company" },
     { content: "모집공고", link: "/notice" },
-    // {
-    //   content: "내정보",
-    //   link: "/mypage",
-    // },
     {
-      content: "로그인",
-      link: "/auth/login",
+      content: cookie.get("accessToken") ? "내정보" : "로그인",
+      link: cookie.get("accessToken") ? "/mypage" : "/auth/login",
     },
-    // { content: "개발팀", link: "" },
   ];
 
   return (

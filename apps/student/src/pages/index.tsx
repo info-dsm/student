@@ -5,6 +5,7 @@ import TextBox from "../lib/components/student/TextBox";
 import React, { useLayoutEffect, useState } from "react";
 import { getCompanyList1, getCompanyList1ContentProps } from "../axios/dist";
 import HeaderComponent from "ui/components/StudentHeader";
+import { Footer } from "ui/components/Footer";
 
 const StudentPage = () => {
   const [companyKind, setCompanyKind] =
@@ -61,6 +62,7 @@ const StudentPage = () => {
         />
       </ContainerDiv>
       <StudentMainNoticeContainer />
+      <Footer />
     </>
   );
 };
