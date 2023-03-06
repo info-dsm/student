@@ -35,13 +35,14 @@ const StudentPage = () => {
             link: "company",
           }}
         />
-
         <GridDiv>
           {companyKind?.map((t) => (
             // eslint-disable-next-line react/jsx-key
-            <a onClick={() => {
-              router.push(`/company/detail/${t.companyNumber}`)
-            }}>
+            <a
+              onClick={() => {
+                router.push(`/company/detail/${t.companyNumber}`);
+              }}
+            >
               <ImageDiv
                 url={
                   t.companyIntroductionResponse.companyLogo.fileUrl
@@ -74,6 +75,7 @@ const StudentPage = () => {
 export default StudentPage;
 
 const GridDiv = styled.div`
+  width: 1000px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 55px;
@@ -93,6 +95,9 @@ const ImageDiv = styled.div<{ url: string }>`
 
 const ContainerDiv = styled.div`
   width: 100vw;
-  padding: 0px 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 0px 440px; */
   background-color: #101112;
 `;
