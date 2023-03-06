@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Arrow from "../../../../public/assets/images/arrow";
+import { useRouter } from "next/router";
 
 const ArrowText = ({ text, link }: { text: string; link: string }) => {
+  const router = useRouter()
   return (
     <ArrowDiv>
-      <a href={link}>{text}</a>
+      <a onClick={() => {router.push(link)}}>{text}</a>
       <Arrow color={"#fff"} />
     </ArrowDiv>
   );
