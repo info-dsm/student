@@ -10,7 +10,7 @@ import DetailInfo from "../../../lib/components/student/NoticeDetailInfo";
 import StudentCompanyNoticeList from "../../../lib/components/student/noticeList";
 import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
-import { Footer } from "ui/components/Footer";
+// import { Footer } from "ui/components/Footer";
 
 const StudentCompanyDetail = ({}: {}) => {
   const query = useRouter().query.id as string;
@@ -56,7 +56,7 @@ const StudentCompanyDetail = ({}: {}) => {
           )}
         </DetailDiv>
       </MainDiv>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -98,7 +98,9 @@ const StudentNoticeList = () => {
           </Kind2>
 
           <Kind2>
-            <div><span>마감된 공고</span></div>
+            <div>
+              <span>마감된 공고</span>
+            </div>
             {closedNotice.length > 0 ? (
               <>
                 {closedNotice.map((t) => (
@@ -150,8 +152,6 @@ const Kind2 = styled.div`
     }
   }
 `;
-
-const ClosedNoticeContainer = styled.div``;
 
 const NoticeContainer = styled.div`
   width: 1156px;
