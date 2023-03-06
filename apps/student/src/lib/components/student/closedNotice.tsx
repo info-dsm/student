@@ -8,7 +8,7 @@ const StudentClosedNotice = ({
   info: getClosedNoticeListContentProps;
 }) => {
   return (
-    <Link href={`detail/${info.noticeId}`}>
+    <Link>
       <NoticeDiv>
         <NoticeLogo>
           <img src={info.company.imageList[0]} alt="" />
