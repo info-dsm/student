@@ -12,7 +12,6 @@ import { useState, useLayoutEffect } from "react";
 import HeaderComponent from "ui/components/StudentHeader";
 import NoticePlaceHolder from "../../lib/components/student/placeholder";
 import ClosedNoticePlaceHolder from "../../lib/components/student/closedPlaceholder";
-import { Footer } from "ui";
 
 const StudentNoticeList = () => {
   const [notice, setNotice] = useState<getWaitingNoticeListContentProps[]>([]);
@@ -107,7 +106,6 @@ const StudentNoticeList = () => {
           </div>
         </Content>
       </MainDiv>
-      <Footer/>
     </>
   );
 };
