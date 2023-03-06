@@ -43,10 +43,10 @@ const TextDiv = styled.div<{ top: number; bottom: number }>`
       margin-top: 20px;
       font-size: 22px;
       font-weight: 600;
-      line-height: 15.25px;
+      line-height: 1.5vh;
+      text-align: start;
       color: rgba(255, 255, 255, 0.58);
       white-space: pre-wrap;
-      text-align: start;
     }
   }
 

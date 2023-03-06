@@ -148,4 +148,8 @@ const NoticeContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding-bottom: 10%;
+  @media (max-width: 1700px) {
+    width: 950px;
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;

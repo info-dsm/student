@@ -67,7 +67,7 @@ const StudentMainNoticeContainer = () => {
   return (
     <NoticeCompany>
       <NoticeContainer sort={"flex-start"}>
-        {chunk({ data: companyKind, size: 4 })[0].map(
+        {chunk({ data: companyKind, size: typeof window !== "undefined" ? window.innerWidth <1600 ? 3 : 4 : 4 })[0].map(
           (t: getWaitingNoticeListContentProps, i: number, a) => (
             <StudentMainNotice condition={i >= a.length - 2} info={t} />
           )
@@ -76,7 +76,7 @@ const StudentMainNoticeContainer = () => {
       <NoticeContainer sort={"flex-end"}>
         {chunk({ data: companyKind, size: 2 })[1] ? (
           <>
-            {chunk({ data: companyKind, size: 4 })[1].map((t, i, a) => (
+            {chunk({ data: companyKind, size: typeof window !== "undefined" ? window.innerWidth <1600 ? 3 : 4 : 4 })[1].map((t, i, a) => (
               <StudentMainNotice condition={i <= 1} info={t} />
             ))}
           </>

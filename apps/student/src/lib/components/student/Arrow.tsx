@@ -19,6 +19,7 @@ const ArrowDiv = styled.span`
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);
   }
+  margin-top: 1vh;
   position: absolute;
   font-size: 16px;
   font-weight: 600;
