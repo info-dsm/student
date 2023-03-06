@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { getWaitingNoticeListContentProps } from "../../../axios/dist";
+import { useRouter } from "next/router";
 
 const StudentMainNotice = ({
   condition,
@@ -9,8 +10,11 @@ const StudentMainNotice = ({
   condition: boolean;
   info: getWaitingNoticeListContentProps;
 }) => {
+  const router = useRouter()
   return (
-    <Notice color={condition ? "1" : "0.3"}>
+    <Notice color={condition ? "1" : "0.3"} onClick={() => {
+      router.push(`/notice/detail/${info.noticeId}`)
+    }}>
       <img src={info.company.imageList[0]} alt="" />
       <div>{info.detailBusinessDescription}</div>
       <span>{info.company.companyName}</span>
