@@ -1,5 +1,9 @@
-import { getCompanyDetailProps, getWaitingNoticeListContentProps } from "../../../axios/dist";
+import {
+  getCompanyDetailProps,
+  getWaitingNoticeListContentProps,
+} from "../../../axios/dist";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const StudentCompanyNoticeList = ({
   companyInfo,
@@ -8,41 +12,59 @@ const StudentCompanyNoticeList = ({
   companyInfo: getCompanyDetailProps;
   info: getWaitingNoticeListContentProps[];
 }) => {
-  console.log(info);
+  const router = useRouter();
   return (
     <NoticeList>
       <span>모집공고</span>
       <div>
-        {info.map((t) => (
-          <a href={`../../notice/detail/${t.noticeId}`}>
-            <div>
-              <img
-                src={
-                  companyInfo.companyIntroductionResponse.companyLogo.fileUrl
-                    ? companyInfo.companyIntroductionResponse.companyLogo
+        {info.length > 0 ? (
+          <>
+            {info.map((t) => (
+              <a
+                onClick={() => {
+                  if (
+                    new Date(t.noticeOpenPeriod.endDate).getTime() + 86400000 >
+                    new Date().getTime()
+                  )
+                    router.push(`/notice/detail/${t.noticeId}`);
+                  else {
+                    alert("마감된 공고입니다.");
+                  }
+                }}
+              >
+                <div>
+                  <img
+                    src={
+                      companyInfo.companyIntroductionResponse.companyLogo
                         .fileUrl
-                    : ""
-                }
-                alt="Company Logo"
-              />
-              <h1>
-                {t.classificationResponse.map((_t, _i, _a) => (
-                  <>
-                    {_t.name}
-                    {_a.length - 1 !== _i ? ", " : " "}
-                  </>
-                ))}
-                개발자 모집합니다.
-              </h1>
-              <h6>{t.company.companyName}</h6>
-              <Part>
-                {t.classificationResponse.map((_t) => (
-                  <div>{_t.name}</div>
-                ))}
-              </Part>
-            </div>
-          </a>
-        ))}
+                        ? companyInfo.companyIntroductionResponse.companyLogo
+                            .fileUrl
+                        : ""
+                    }
+                    alt="Company Logo"
+                  />
+                  <h1>
+                    {t.classificationResponse.map((_t, _i, _a) => (
+                      <>
+                        {_t.name}
+                        {_a.length - 1 !== _i ? ", " : " "}
+                      </>
+                    ))}
+                    개발자 모집합니다.
+                  </h1>
+                  <h6>{t.company.companyName}</h6>
+                  <Part>
+                    {t.classificationResponse.map((_t) => (
+                      <div>{_t.name}</div>
+                    ))}
+                  </Part>
+                </div>
+              </a>
+            ))}
+          </>
+        ) : (
+          <>모집공고가 없습니다.</>
+        )}
       </div>
     </NoticeList>
   );

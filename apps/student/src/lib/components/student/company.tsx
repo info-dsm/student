@@ -4,7 +4,6 @@ import Checked2 from "../../../../public/assets/images/checked2";
 import { useRouter } from "next/router";
 
 const StudentCompany = ({ info }: { info: getCompanyList1ContentProps }) => {
-  // href={`detail/${info.companyNumber}`}
   const router = useRouter()
   return (
     <NoticeDiv onClick={() => {

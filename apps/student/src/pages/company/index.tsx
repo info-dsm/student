@@ -57,7 +57,6 @@ const StudentCompanyList = () => {
           {company.length > 0 ? (
             <CompanyContainer id="companyContainer">
               {company.map((t) => (
-                // eslint-disable-next-line react/jsx-key
                 <StudentCompany info={t} />
               ))}
             </CompanyContainer>
@@ -79,8 +78,11 @@ const StudentCompanyList = () => {
 export default StudentCompanyList;
 
 const MainDiv = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #f8f8f9;
 `;
 
