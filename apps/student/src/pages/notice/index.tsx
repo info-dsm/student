@@ -61,16 +61,6 @@ const StudentNoticeList = () => {
       <HeaderComponent />
       <StudentNoticeBanner />
       <MainDiv>
-        {/* <Kind>
-          <div>
-            <div>모집공고</div>
-            <span>마감 일자순 정렬</span>
-          </div>
-          <div>
-            <div>마감된 공고</div>
-          </div>
-        </Kind> */}
-
         <Content>
           <Kind2>
             <div>
@@ -98,7 +88,9 @@ const StudentNoticeList = () => {
           </Kind2>
 
           <Kind2>
-            <div><span>마감된 공고</span></div>
+            <div>
+              <span>마감된 공고</span>
+            </div>
             {closedNotice.length > 0 ? (
               <>
                 {closedNotice.map((t) => (
@@ -151,45 +143,9 @@ const Kind2 = styled.div`
   }
 `;
 
-const ClosedNoticeContainer = styled.div``;
-
 const NoticeContainer = styled.div`
   width: 1156px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding-bottom: 10%;
-`;
-
-const Kind = styled.div`
-  padding: 80px 256px 30px 236px;
-  width: 100vw;
-  display: inline-flex;
-  justify-content: space-between;
-  > div {
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
-    font-weight: 600;
-    font-size: 24px;
-    color: #101112;
-    span {
-      font-weight: 400;
-      font-size: 17px;
-    }
-    + div {
-      width: 274px;
-      display: inline-flex;
-      justify-content: space-between;
-      div {
-        display: inline-flex;
-        align-items: center;
-        + div {
-          gap: 5px;
-          svg:nth-child(1) {
-            transform: scale(-1, 1);
-          }
-        }
-      }
-    }
-  }
 `;

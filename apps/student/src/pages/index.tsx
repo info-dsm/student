@@ -6,8 +6,10 @@ import React, { useLayoutEffect, useState } from "react";
 import { getCompanyList1, getCompanyList1ContentProps } from "../axios/dist";
 import HeaderComponent from "ui/components/StudentHeader";
 import { Footer } from "ui/components/Footer";
+import { useRouter } from "next/router";
 
 const StudentPage = () => {
+  const router = useRouter();
   const [companyKind, setCompanyKind] =
     useState<getCompanyList1ContentProps[]>();
 
@@ -37,7 +39,9 @@ const StudentPage = () => {
         <GridDiv>
           {companyKind?.map((t) => (
             // eslint-disable-next-line react/jsx-key
-            <a href={`company/detail/${t.companyNumber}`}>
+            <a onClick={() => {
+              router.push(`/company/detail/${t.companyNumber}`)
+            }}>
               <ImageDiv
                 url={
                   t.companyIntroductionResponse.companyLogo.fileUrl
