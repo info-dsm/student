@@ -1,15 +1,17 @@
 import cookie from "js-cookie";
 import request from "../../";
+import { useRouter } from "next/router";
 
 export const reissue = async () => {
-  const res: { accessToken: string; refreshToken: string } = await request.put(
-    "/auth/reissue",
-    {
+  const router = useRouter();
+  const res: any = await request
+    .put("/auth/reissue", {
       accessToken: cookie.get("accessToken"),
       refreshToken: cookie.get("refreshToken"),
-    }
-  );
-  console.log(res, "fltmdldp리승버야메");
+    })
+    .catch(() => {
+      router.push("/auth/login");
+    });
   request.defaults.headers.common[
     "Authorization"
   ] = `Bearer ${res.accessToken}`;

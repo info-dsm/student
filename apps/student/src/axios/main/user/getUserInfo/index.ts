@@ -1,5 +1,4 @@
-import Cookies from 'js-cookie';
-import  cookie  from 'js-cookie';
+import cookie from "js-cookie";
 import request from "../..";
 import { reissue } from "../../auth/reissue";
 
@@ -20,6 +19,7 @@ export const getUserInfo = async () => {
           },
         });
       });
+
       return data;
     }
   }
