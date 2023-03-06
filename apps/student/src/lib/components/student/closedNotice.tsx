@@ -1,5 +1,4 @@
 import { getClosedNoticeListContentProps } from "../../../axios/dist";
-// import Image from "next/image";
 import styled from "styled-components";
 
 const StudentClosedNotice = ({
@@ -8,7 +7,7 @@ const StudentClosedNotice = ({
   info: getClosedNoticeListContentProps;
 }) => {
   return (
-    <Link href={`detail/${info.noticeId}`}>
+    <a>
       <NoticeDiv>
         <NoticeLogo>
           <img src={info.company.imageList[0]} alt="" />
@@ -43,15 +42,11 @@ const StudentClosedNotice = ({
           </div> */}
         </SubData>
       </NoticeDiv>
-    </Link>
+    </a>
   );
 };
 
 export default StudentClosedNotice;
-
-const Link = styled.a`
-  text-decoration: none;
-`;
 
 const SubData = styled.div`
   gap: 20px;
@@ -70,7 +65,6 @@ const NoticeDiv = styled.div`
   * {
     color: #101112;
   }
-  cursor: pointer;
 
   width: 280px;
   height: 180px;
