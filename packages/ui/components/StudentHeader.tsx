@@ -11,8 +11,8 @@ const HeaderComponent = () => {
     { content: "회사", link: "/company" },
     { content: "모집공고", link: "/notice" },
     {
-      content: cookie.get("accessToken") ? "내정보" : "로그인",
-      link: cookie.get("accessToken") ? "/mypage" : "/auth/login",
+      content: !cookie.get("accessToken") ? "로그인" : "내정보",
+      link: !cookie.get("accessToken") ? "/auth/login" : "/mypage",
     },
   ];
 
@@ -84,6 +84,7 @@ const MainDiv = styled.div`
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
   }
 
   > div {
@@ -94,6 +95,7 @@ const MainDiv = styled.div`
     a {
       color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
+      cursor: pointer;
     }
   }
 `;
