@@ -2,9 +2,17 @@ import styled from "styled-components";
 import Image from "next/image";
 import MainImage from "../../../../public/assets/images/main.png";
 import ArrowText from "./Arrow";
+import { useEffect, useState } from "react";
+import { NoticeCount } from "@/src/axios/dist";
 
 const StudentBanner = () => {
-  const noticeSize: number = 1000000;
+  const [noticeSize, setNoticeSize] = useState<number>(1000000);
+
+  useEffect(() => {
+    NoticeCount().then((res: number) => {
+      setNoticeSize(res);
+    });
+  }, []);
 
   return (
     <>
