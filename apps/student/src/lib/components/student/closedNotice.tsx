@@ -8,40 +8,42 @@ const StudentClosedNotice = ({
   info: getClosedNoticeListContentProps;
 }) => {
   return (
-    <NoticeDiv>
-      <NoticeLogo>
-        <img src={info.company.imageList[0]} alt="" />
-        <span>마감</span>
-      </NoticeLogo>
-      <div>
+    <Link href={`detail/${info.noticeId}`}>
+      <NoticeDiv>
+        <NoticeLogo>
+          <img src={info.company.imageList[0]} alt="" />
+          <span>마감</span>
+        </NoticeLogo>
         <div>
-          {info.classificationResponse.map((t, i, a) => (
-            <>
-              {t.name}
-              {a.length - 1 !== i ? ", " : " "}
-            </>
-          ))}
-          개발자 모집합니다.
+          <div>
+            {info.classificationResponse.map((t, i, a) => (
+              <>
+                {t.name}
+                {a.length - 1 !== i ? ", " : " "}
+              </>
+            ))}
+            개발자 모집합니다.
+          </div>
+          <span>{info.company.companyName}</span>
         </div>
-        <span>{info.company.companyName}</span>
-      </div>
-      <SubData>
-        {/* <div>
+        <SubData>
+          {/* <div>
             <span>경력</span>
             <span>무관</span>
           </div> */}
-        <div>
-          <span>학력</span>
-          <span>
-            {info.gradeCutLine === 0 ? "무관" : `${info.gradeCutLine}%`}
-          </span>
-        </div>
-        {/* <div>
+          <div>
+            <span>학력</span>
+            <span>
+              {info.gradeCutLine === 0 ? "무관" : `${info.gradeCutLine}%`}
+            </span>
+          </div>
+          {/* <div>
             <span>주소</span>
             <span>강남</span>
           </div> */}
-      </SubData>
-    </NoticeDiv>
+        </SubData>
+      </NoticeDiv>
+    </Link>
   );
 };
 
@@ -68,7 +70,7 @@ const NoticeDiv = styled.div`
   * {
     color: #101112;
   }
-  /* cursor: pointer; */
+  cursor: pointer;
 
   width: 280px;
   height: 180px;
