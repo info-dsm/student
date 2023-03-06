@@ -62,7 +62,7 @@ const StudentPage = () => {
         />
       </ContainerDiv>
       <StudentMainNoticeContainer />
-      <Footer />
+      <Footer/>
     </>
   );
 };
@@ -89,6 +89,8 @@ const ImageDiv = styled.div<{ url: string }>`
 
 const ContainerDiv = styled.div`
   width: 100vw;
-  padding: 0px 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #101112;
 `;
