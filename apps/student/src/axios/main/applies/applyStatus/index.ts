@@ -19,17 +19,15 @@ export interface getSupportStatusProps {
 }
 
 export const getSupportStatus = async () => {
-  if (typeof window !== "undefined") {
-    if (sessionStorage.getItem("accessToken")) {
-      const data = await request({
-        method: "get",
-        url: "/applies/student",
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-        },
-      });
-      return data;
-    }
+  if (sessionStorage.getItem("accessToken")) {
+    const data = await request({
+      method: "get",
+      url: "/applies/student",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+      },
+    });
+    return data;
   }
   return [];
 };

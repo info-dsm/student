@@ -23,24 +23,22 @@ const StudentNoticeList = () => {
 
   useLayoutEffect(() => {
     const getNotice = () => {
-      if (typeof document !== "undefined") {
-        const companyContainer = document.getElementById(
-          "noticeContainer"
-        ) as HTMLDivElement;
+      const companyContainer = document.getElementById(
+        "noticeContainer"
+      ) as HTMLDivElement;
 
-        if (cnt * 12 === companyContainer.children.length)
-          getWaitingNoticeList({ idx: cnt, size: 12 }).then((res) => {
-            setNotice((list) => list?.concat(res.content));
-            setCnt(cnt + 1);
-            setScrolled(false);
-            getClosedNoticeList({ idx: cnt, size: 5, status: "APPROVE" }).then(
-              (res) => {
-                setClosedNotice((list) => list?.concat(res.content));
-              }
-            );
-          });
-        else setScrolled(false);
-      }
+      if (cnt * 12 === companyContainer.children.length)
+        getWaitingNoticeList({ idx: cnt, size: 12 }).then((res) => {
+          setNotice((list) => list?.concat(res.content));
+          setCnt(cnt + 1);
+          setScrolled(false);
+          getClosedNoticeList({ idx: cnt, size: 5, status: "APPROVE" }).then(
+            (res) => {
+              setClosedNotice((list) => list?.concat(res.content));
+            }
+          );
+        });
+      else setScrolled(false);
     };
 
     if (scrolled) {
@@ -48,13 +46,11 @@ const StudentNoticeList = () => {
     }
   }, [scrolled, setScrolled]);
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", (e) => {
-      if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
-        setScrolled(true);
-      }
-    });
-  }
+  // window.addEventListener("scroll", (e) => {
+  //   if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
+  //     setScrolled(true);
+  //   }
+  // });
 
   return (
     <>
@@ -98,7 +94,9 @@ const StudentNoticeList = () => {
           </Kind2>
 
           <Kind2>
-            <div><span>마감된 공고</span></div>
+            <div>
+              <span>마감된 공고</span>
+            </div>
             {closedNotice.length > 0 ? (
               <>
                 {closedNotice.map((t) => (
@@ -150,8 +148,6 @@ const Kind2 = styled.div`
     }
   }
 `;
-
-const ClosedNoticeContainer = styled.div``;
 
 const NoticeContainer = styled.div`
   width: 1156px;

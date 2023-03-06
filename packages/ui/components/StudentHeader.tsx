@@ -33,14 +33,22 @@ export default HeaderComponent;
 
 const MainDiv = styled.div`
   width: 100vw;
-  padding: 22px 136px;
+  padding: 22px 116px;
   display: inline-flex;
   justify-content: space-between;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 0;
   background: rgba(16, 17, 18, 0.5);
   backdrop-filter: blur(9px);
+
+  > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   > div {
     font-size: 15px;
     font-weight: 600;

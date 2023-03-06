@@ -16,7 +16,7 @@ import QualificationRequirements from "../../../lib/components/student/Qualifica
 import Welfare from "../../../lib/components/student/Welfare";
 import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
-import { Footer } from "ui/components/Footer";
+// import { Footer } from "ui/components/Footer";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
@@ -103,7 +103,7 @@ const NoticeDetail = () => {
           <></>
         )}
       </MainDiv>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 };

@@ -18,19 +18,17 @@ const StudentSearchCompanyList = () => {
 
   useEffect(() => {
     const getCompany = () => {
-      if (typeof document !== "undefined") {
-        const companyContainer = document.getElementById(
-          "companyContainer"
-        ) as HTMLDivElement;
+      const companyContainer = document.getElementById(
+        "companyContainer"
+      ) as HTMLDivElement;
 
-        if (cnt * 15 === companyContainer.children.length)
-          getCompanySearch({ name: q, idx: cnt, size: 15 }).then((res) => {
-            setCompany((list) => list?.concat(res.content));
-            setCnt(cnt + 1);
-            setScrolled(false);
-          });
-        else setScrolled(false);
-      }
+      if (cnt * 15 === companyContainer.children.length)
+        getCompanySearch({ name: q, idx: cnt, size: 15 }).then((res) => {
+          setCompany((list) => list?.concat(res.content));
+          setCnt(cnt + 1);
+          setScrolled(false);
+        });
+      else setScrolled(false);
     };
 
     if (scrolled) {
@@ -38,13 +36,11 @@ const StudentSearchCompanyList = () => {
     }
   }, [scrolled, setScrolled]);
 
-  if (typeof window !== "undefined" && typeof document !== "undefined") {
-    window.addEventListener("scroll", (e) => {
-      if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
-        setScrolled(true);
-      }
-    });
-  }
+  window.addEventListener("scroll", (e) => {
+    if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
+      setScrolled(true);
+    }
+  });
 
   return (
     <>
