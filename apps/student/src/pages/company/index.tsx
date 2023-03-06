@@ -7,6 +7,7 @@ import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "../../lib/components/student/Kind";
 import CompanyPlaceHolder from "../../lib/components/student/detailplaceholder";
 import { useRouter } from "next/router";
+import { Footer } from "ui";
 
 const StudentCompanyList = () => {
   const router = useRouter();
@@ -72,6 +73,7 @@ const StudentCompanyList = () => {
           )}
         </Content>
       </MainDiv>
+      <Footer/>
     </>
   );
 };

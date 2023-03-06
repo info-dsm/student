@@ -9,6 +9,7 @@ import StudentCompanyBanner from "../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "../../lib/components/student/Kind";
 import { useRouter } from "next/router";
+import { Footer } from "ui";
 
 const StudentSearchCompanyList = () => {
   const q = useRouter().query.id as string;
@@ -70,6 +71,7 @@ const StudentSearchCompanyList = () => {
           </CompanyContainer>
         </Content>
       </MainDiv>
+      <Footer/>
     </>
   );
 };

@@ -8,7 +8,7 @@ import {
   presigned,
   reissue,
 } from "../../../axios/dist";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import DetailInfo from "../../../lib/components/student/NoticeDetailInfo";
 import DetailRecruitmentJob from "../../../lib/components/student/RecruitmentJob";
@@ -16,11 +16,10 @@ import QualificationRequirements from "../../../lib/components/student/Qualifica
 import Welfare from "../../../lib/components/student/Welfare";
 import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
-import axios from "axios";
+import { Footer } from "ui";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
-  const form = useRef(null);
   const [NoticeInfo, setNoticeInfo] = useState<getNoticeDetailProps>();
   const [CompanyInfo, setCompanyInfo] = useState<getCompanyDetailProps>();
 
@@ -85,7 +84,7 @@ const NoticeDetail = () => {
                 type={"file"}
                 name="resume"
                 id="resume"
-                // accept={".pdf"}
+                accept={".pdf"}
                 onChange={(e) => applyNoticeForm(e)}
               />
             </ApplyBtn>
@@ -104,6 +103,7 @@ const NoticeDetail = () => {
           <></>
         )}
       </MainDiv>
+      <Footer/>
     </>
   );
 };
