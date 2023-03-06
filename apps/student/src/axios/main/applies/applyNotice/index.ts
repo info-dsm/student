@@ -12,18 +12,16 @@ export const applyNotice = async ({
   };
   id: string;
 }) => {
-  if (typeof window !== "undefined") {
-    if (cookie.get("accessToken")) {
-      const data: { url: string; fileName: string } = await request({
-        method: "POST",
-        url: `/applies/${id}`,
-        headers: {
-          Authorization: `Bearer ${cookie.get("accessToken")}`,
-        },
-        data: formData,
-      });
+  if (cookie.get("accessToken")) {
+    const data: { url: string; fileName: string } = await request({
+      method: "POST",
+      url: `/applies/${id}`,
+      headers: {
+        Authorization: `Bearer ${cookie.get("accessToken")}`,
+      },
+      data: formData,
+    });
 
-      return data;
-    }
+    return data;
   }
 };

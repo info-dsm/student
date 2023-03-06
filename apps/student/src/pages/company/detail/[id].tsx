@@ -15,19 +15,16 @@ import { useRouter } from "next/router";
 const StudentCompanyDetail = ({}: {}) => {
   const query = useRouter().query.id as string;
   const [info, setInfo] = useState<getCompanyDetailProps>();
-  const [noticeInfo, setNoticeInfo] =
-    useState<getWaitingNoticeListContentProps[]>();
+  const [noticeInfo, setNoticeInfo] = useState();
 
   useEffect(() => {
     if (query) {
       getCompanyDetail({ id: query }).then((res: getCompanyDetailProps) => {
         setInfo(res);
       });
-      getCompanyNotice({ id: query }).then(
-        (res: getWaitingNoticeListContentProps[]) => {
-          setNoticeInfo(res);
-        }
-      );
+      getCompanyNotice({ id: query }).then((res: any) => {
+        setNoticeInfo(res);
+      });
     }
   }, [query]);
 
