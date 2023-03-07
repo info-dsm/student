@@ -91,3 +91,5 @@ export {
 } from "../main/notice/getNotice";
 
 export { NoticeCount } from "../main/notice/count";
+
+export { CompanyCount } from "../main/company/count";
