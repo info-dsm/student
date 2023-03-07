@@ -1,15 +1,22 @@
 import Image from "next/image";
 import styled from "styled-components";
 import BannerImage from "../../../../public/assets/images/main.png";
+import { useEffect, useState } from "react";
+import { CompanyCount } from "@/src/axios/dist";
 
 const StudentCompanyBanner = () => {
-  const companySize: number = 100;
+  const [companySize, setCompanySize] = useState<number>(0);
+  useEffect(() => {
+    CompanyCount().then((res: number) => {
+      setCompanySize(res);
+    });
+  }, []);
 
   return (
     <>
       <Banner>
         <div>
-          이번년도에는 총 {companySize}
+          이번년도에는 총 {companySize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
           개의 <br /> 회사와 MOU를 맺었어요.
         </div>
         <div>2022년 12월 12일 기준</div>
