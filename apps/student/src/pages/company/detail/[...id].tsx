@@ -40,7 +40,8 @@ const StudentCompanyDetail = ({}: {}) => {
           {info && noticeInfo ? (
             <>
               <Carousel>
-                <div
+                <Arrow
+                  scale={1}
                   onClick={() => {
                     if (current === 0)
                       setCurrent(
@@ -50,8 +51,8 @@ const StudentCompanyDetail = ({}: {}) => {
                     else setCurrent(current - 1);
                   }}
                 >
-                  {"<"}
-                </div>
+                  <div />
+                </Arrow>
                 {info.companyIntroductionResponse.companyPhotoList.map((t) => (
                   <span>
                     <CarouselImg
@@ -62,7 +63,8 @@ const StudentCompanyDetail = ({}: {}) => {
                     />
                   </span>
                 ))}
-                <div
+                <Arrow
+                  scale={-1}
                   onClick={() => {
                     if (
                       current <
@@ -73,8 +75,8 @@ const StudentCompanyDetail = ({}: {}) => {
                     else setCurrent(0);
                   }}
                 >
-                  {">"}
-                </div>
+                  <div />
+                </Arrow>
               </Carousel>
               <h1>㈜ {info.companyName}</h1>
               <DetailInfo companyInfo={info} subData={""} />
@@ -92,6 +94,33 @@ const StudentCompanyDetail = ({}: {}) => {
 
 export default StudentCompanyDetail;
 
+const Arrow = styled.div<{ scale: number }>`
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  left: ${(props) => (props.scale === 1 ? 3 : 90)}%;
+  transform: scale(${(props) => props.scale}, 1);
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 3px rgba(0,0,0, .1);
+  div {
+    width: 30px;
+    height: 60px;
+    margin-top: 12px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='22' viewBox='0 0 14 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.8799 18.6126L5.86488 10.5801L13.8799 2.54758L11.4124 0.0800781L0.912383 10.5801L11.4124 21.0801L13.8799 18.6126Z' fill='%23242424'/%3E%3C/svg%3E%0A");
+    transition: all 0.2s ease;
+  }
+`;
+
 const Carousel = styled.div`
   display: inline-flex;
   white-space: nowrap;
@@ -104,20 +133,6 @@ const Carousel = styled.div`
 
   span {
     text-align: center;
-  }
-
-  div {
-    z-index: 2;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 50px;
-    font-weight: 900;
-    left: 30px;
-    cursor: pointer;
-    ~ div {
-      left: 940px;
-    }
   }
 `;
 

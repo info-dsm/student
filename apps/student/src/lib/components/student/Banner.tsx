@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { NoticeCount } from "@/src/axios/dist";
 
 const StudentBanner = () => {
-  const [noticeSize, setNoticeSize] = useState<number>(1000000);
+  const [noticeSize, setNoticeSize] = useState<number>(0);
 
   useEffect(() => {
     NoticeCount().then((res: number) => {
@@ -19,7 +19,7 @@ const StudentBanner = () => {
       <Banner>
         <div>
           현재 총 {noticeSize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
-          개의 <br /> 모집공고가 있어요
+          개의 <br /> 모집공고가 있어요.
         </div>
         <ArrowText text={"모집공고 둘러보기"} link={"notice"} />
       </Banner>
