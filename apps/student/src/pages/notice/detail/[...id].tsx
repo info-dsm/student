@@ -46,9 +46,7 @@ const NoticeDetail = () => {
             },
           }).then((res) => {
             const { url } = res as { url: string };
-            presigned(url, e.target.files[0]).then(() => {
-              console.log("success");
-            });
+            presigned(url, e.target.files[0]);
           });
       })
       .catch(() => {
