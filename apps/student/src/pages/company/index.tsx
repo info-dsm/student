@@ -9,8 +9,6 @@ import CompanyPlaceHolder from "../../lib/components/student/detailplaceholder";
 import { useRouter } from "next/router";
 
 const StudentCompanyList = () => {
-  const router = useRouter();
-  console.log(router);
   const [company, setCompany] = useState<getCompanyList1ContentProps[]>([]);
   const [cnt, setCnt] = useState<number>(0);
   const [scrolled, setScrolled] = useState<boolean>(true);
@@ -22,7 +20,7 @@ const StudentCompanyList = () => {
           "companyContainer"
         ) as HTMLDivElement;
 
-        if (cnt * 15 === companyContainer.children.length)
+        if (cnt * 15 >= companyContainer.children.length)
           getCompanyList1({ idx: cnt, size: 15 }).then(
             (res: { content: any }) => {
               setCompany((list) => list?.concat(res.content));

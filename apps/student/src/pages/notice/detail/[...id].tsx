@@ -17,6 +17,8 @@ import Welfare from "../../../lib/components/student/Welfare";
 import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
 import { Footer } from "ui/components/Footer";
+import Attachment from "@/src/lib/components/student/attachment";
+import Portpoilo from "@/src/lib/components/student/portpolio";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
@@ -29,6 +31,7 @@ const NoticeDetail = () => {
     if (query)
       getNoticeDetail({ id: query }).then((res: getNoticeDetailProps) => {
         setNoticeInfo(res);
+        console.log(res);
         getCompanyDetail({ id: res.company.companyNumber }).then((res1) => {
           setCompanyInfo(res1);
         });
@@ -36,32 +39,13 @@ const NoticeDetail = () => {
   }, [query]);
 
   useEffect(() => {
+    getStatus();
+  }, []);
+
+  const getStatus = () => {
     getSupportStatus().then((res) => {
       setNoticeID(res.map((e) => e.noticeId));
     });
-  }, []);
-
-  const applyNoticeForm = (e: any) => {
-    reissue()
-      .then(() => {
-        if (NoticeInfo && !NoticeID.includes(NoticeInfo.noticeId))
-          applyNotice({
-            id: NoticeInfo.noticeId,
-            formData: {
-              fileName: e.target.value,
-              contentType: "application/pdf",
-            },
-          }).then((res) => {
-            const { url } = res as { url: string };
-            presigned(url, e.target.files[0]).then(() => {
-              console.log("success");
-            });
-          });
-      })
-      .catch(() => {
-        alert("로그인이 만료되었습니다.");
-        router.push("/auth/login");
-      });
   };
 
   return (
@@ -89,24 +73,33 @@ const NoticeDetail = () => {
               개발자 모집합니다.
             </h1>
             <h6>㈜ {NoticeInfo.company.companyName}</h6>
-            {NoticeID.includes(NoticeInfo.noticeId) ? (
-              <ApplyBtn>
+            {/* {NoticeID.includes(NoticeInfo.noticeId) ? (
+              <ApplyBtn href="#apply">
                 <label htmlFor="resume" style={{ cursor: "auto" }}>
                   지원 중
                 </label>
               </ApplyBtn>
             ) : (
-              <ApplyBtn>
+              <ApplyBtn href="#apply">
                 <label htmlFor="resume">지원하기</label>
-                <input
-                  type={"file"}
-                  name="resume"
-                  id="resume"
-                  accept={".pdf"}
-                  onChange={(e) => applyNoticeForm(e)}
-                />
               </ApplyBtn>
-            )}
+            )} */}
+            <ApplyBtn
+              href={"#resume"}
+              point={NoticeID.includes(NoticeInfo.noticeId)}
+            >
+              <label
+                style={{
+                  cursor: `${
+                    NoticeID.includes(NoticeInfo.noticeId) ? "auto" : "pointer"
+                  }`,
+                }}
+              >
+                {NoticeID.includes(NoticeInfo.noticeId)
+                  ? "지원완료"
+                  : "지원하기"}
+              </label>
+            </ApplyBtn>
             <DetailInfo
               companyInfo={CompanyInfo}
               subData={`${NoticeInfo.noticeOpenPeriod.startDate} ~ ${NoticeInfo.noticeOpenPeriod.endDate}`}
@@ -117,6 +110,12 @@ const NoticeDetail = () => {
             />
             <QualificationRequirements noticeInfo={NoticeInfo} />
             <Welfare noticeInfo={NoticeInfo} />
+            <Portpoilo noticeInfo={NoticeInfo} />
+            <Attachment
+              NoticeID={NoticeID}
+              NoticeInfo={NoticeInfo}
+              getStatus={() => getStatus}
+            />
           </DetailDiv>
         ) : (
           <></>
@@ -137,10 +136,12 @@ const MainDiv = styled.div`
   background-color: #f4f4f5;
 `;
 
-const ApplyBtn = styled.form`
+const ApplyBtn = styled.a<{ point: boolean }>`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  text-decoration: none;
+  pointer-events: ${(props) => (props.point ? "none" : "all")};
 
   label {
     display: inline-block;

@@ -81,7 +81,7 @@ export default StudentPage;
 const MainDiv = styled.div`
   overflow: auto;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
+  /* scroll-snap-type: y mandatory; */
   width: 100vw;
   height: 100vh;
   hr {
