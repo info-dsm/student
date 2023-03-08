@@ -16,10 +16,11 @@ import QualificationRequirements from "../../../lib/components/student/Qualifica
 import Welfare from "../../../lib/components/student/Welfare";
 import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
-// import { Footer } from "ui/components/Footer";
+import { Footer } from "ui/components/Footer";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
+  const router = useRouter();
   const [NoticeInfo, setNoticeInfo] = useState<getNoticeDetailProps>();
   const [CompanyInfo, setCompanyInfo] = useState<getCompanyDetailProps>();
 
@@ -34,22 +35,25 @@ const NoticeDetail = () => {
   }, [query]);
 
   const applyNoticeForm = (e: any) => {
-    if (NoticeInfo)
-      reissue().then(() => {
-        applyNotice({
-          id: NoticeInfo.noticeId,
-          formData: {
-            fileName: e.target.value,
-            contentType: "application/pdf",
-          },
-        })
-          .then((res) => {
+    reissue()
+      .then(() => {
+        if (NoticeInfo)
+          applyNotice({
+            id: NoticeInfo.noticeId,
+            formData: {
+              fileName: e.target.value,
+              contentType: "application/pdf",
+            },
+          }).then((res) => {
             const { url } = res as { url: string };
-            presigned(url, e.target.files[0]);
-          })
-          .catch((err) => {
-            console.log(err);
+            presigned(url, e.target.files[0]).then(() => {
+              console.log("success");
+            });
           });
+      })
+      .catch(() => {
+        alert("로그인이 만료되었습니다.");
+        router.push("/auth/login");
       });
   };
 
@@ -103,7 +107,7 @@ const NoticeDetail = () => {
           <></>
         )}
       </MainDiv>
-      {/* <Footer/> */}
+      <Footer />
     </>
   );
 };

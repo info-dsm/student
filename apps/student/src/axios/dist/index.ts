@@ -1,4 +1,7 @@
-import { getNoticeDetailProps2, getNoticeDetail2 } from './../main/notice/getNotice/index';
+import {
+  getNoticeDetailProps2,
+  getNoticeDetail2,
+} from "./../main/notice/getNotice/index";
 export {
   getCompanyList,
   type getCompanyListProps,
@@ -9,25 +12,25 @@ export { getEmployList, type getEmployProps } from "../main/employment/index";
 export { companyAssosiate } from "../main/company/grant";
 export { getSearchCompany } from "../main/company/search";
 export { getYearCompany } from "../main/company/year";
-export { type NoticeProps } from "../main/notice"
-export { postAcceptNotice } from '../main/notice/accept';
+export { type NoticeProps } from "../main/notice";
+export { postAcceptNotice } from "../main/notice/accept";
 export { deleteNotice } from "../main/notice/delete";
 export { deleteNoRemainNotice } from "../main/notice/remove";
-export { getOnList } from '../main/notice/on';
-export { getWaitList } from '../main/notice/wait';
+export { getOnList } from "../main/notice/on";
+export { getWaitList } from "../main/notice/wait";
 export { getGoneList } from "../main/notice/gone";
 export { getCompanyNoticeEvery } from "../main/notice/company";
-export { getBusiness, type TagProps } from '../main/company/businessTag';
-export { companySignUp, type companySignUpProps } from '../main/auth/company';
-export { getBaseList, type getBaseListProps } from '../main/notice/baseList';
+export { getBusiness, type TagProps } from "../main/company/businessTag";
+export { companySignUp, type companySignUpProps } from "../main/auth/company";
+export { getBaseList, type getBaseListProps } from "../main/notice/baseList";
 export { getCompanyNumber } from "../main/storage";
-export { type NoticeCompanyDtoType } from '../main/notice/company/data';
-export { createNotice,type createNoticeProps } from '../main/notice/create';
-export { reissue } from '../main/auth/reissue';
-export { teacherSignUp } from '../main/auth/teacher';
-export { presigned } from '../main/presigned';
-export { createNoticeFile } from '../main/presigned/createNotice';
-export { editNotice } from '../main/notice/edit';
+export { type NoticeCompanyDtoType } from "../main/notice/company/data";
+export { createNotice, type createNoticeProps } from "../main/notice/create";
+export { reissue } from "../main/auth/reissue";
+export { teacherSignUp } from "../main/auth/teacher";
+export { presigned } from "../main/presigned";
+export { createNoticeFile } from "../main/presigned/createNotice";
+export { editNotice } from "../main/notice/edit";
 export {
   getCompanyList1,
   type getCompanyList1Props,
@@ -42,7 +45,6 @@ export {
 export { codeCheck } from "../main/auth/codeCheck";
 
 export { codeSend } from "../main/auth/codeSend";
-
 
 export { studentKeyCheck } from "../main/auth/studentKeyCheck";
 
@@ -77,7 +79,17 @@ export {
 
 export { applyNotice } from "../main/applies/applyNotice";
 
-export { getApplyList, type getApplyListProps } from "../main/applies/applyList";
+export {
+  getApplyList,
+  type getApplyListProps,
+} from "../main/applies/applyList";
 export { login1, type login1Props } from "../main/auth/login copy/index";
 
-export { getNoticeDetail2, type getNoticeDetailProps2 } from "../main/notice/getNotice"
+export {
+  getNoticeDetail2,
+  type getNoticeDetailProps2,
+} from "../main/notice/getNotice";
+
+export { NoticeCount } from "../main/notice/count";
+
+export { CompanyCount } from "../main/company/count";

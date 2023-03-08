@@ -5,8 +5,8 @@ import TextBox from "../lib/components/student/TextBox";
 import React, { useLayoutEffect, useState } from "react";
 import { getCompanyList1, getCompanyList1ContentProps } from "../axios/dist";
 import HeaderComponent from "ui/components/StudentHeader";
+import { Footer } from "ui/components/Footer";
 import { useRouter } from "next/router";
-// import { Footer } from "ui/components/Footer";
 
 const StudentPage = () => {
   const router = useRouter();
@@ -35,12 +35,14 @@ const StudentPage = () => {
             link: "company",
           }}
         />
-
         <GridDiv>
           {companyKind?.map((t) => (
-            <a onClick={() => {
-              router.push(`/company/detail/${t.companyNumber}`)
-            }}>
+            // eslint-disable-next-line react/jsx-key
+            <a
+              onClick={() => {
+                router.push(`/company/detail/${t.companyNumber}`);
+              }}
+            >
               <ImageDiv
                 url={
                   t.companyIntroductionResponse.companyLogo.fileUrl
@@ -65,7 +67,7 @@ const StudentPage = () => {
         />
       </ContainerDiv>
       <StudentMainNoticeContainer />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
@@ -73,6 +75,7 @@ const StudentPage = () => {
 export default StudentPage;
 
 const GridDiv = styled.div`
+  width: 1000px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 55px;
@@ -83,6 +86,7 @@ const ImageDiv = styled.div<{ url: string }>`
   background-image: url(${(props) => props.url});
   width: 224px;
   height: 105px;
+  cursor: pointer;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -95,5 +99,6 @@ const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* padding: 0px 440px; */
   background-color: #101112;
 `;

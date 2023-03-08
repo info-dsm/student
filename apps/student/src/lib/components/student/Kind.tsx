@@ -15,6 +15,9 @@ export default StudentCompanyKind;
 
 const Kind = styled.div`
   padding: 80px 256px 30px 236px;
+  @media (max-width: 1700px) {
+    padding: 80px 256px 30px 176px;
+  }
   width: 100vw;
   display: inline-flex;
   justify-content: space-between;

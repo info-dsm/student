@@ -91,4 +91,8 @@ const CompanyContainer = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 12px;
   padding-bottom: 10%;
+  @media (max-width: 1700px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px;
+  }
 `;

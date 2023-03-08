@@ -46,23 +46,15 @@ export const Footer = () => {
               </_FlexProps>
             </_Box>
           </_Flex>
-          <_FlexIcon>
-            <div key={"Github"}>
-              <GithubIcon />
-            </div>
-            <div key={"Discord"}>
-              <DiscordIcon />
-            </div>
-          </_FlexIcon>
         </_OutFlex>
         <_Layout>
           <_Title>Contact</_Title>
           <_FlexSc>
             <div>
-              <span>산학협력부 연락처: 000-0000-0000</span>
+              <span>산학협력부 연락처: 042-866-8843</span>
             </div>
             <div>
-              <span>산학협력부 email: 0000@dsm.hs.kr</span>
+              <span>산학협력부 email: sjlee1514@naver.com</span>
             </div>
             <div>
               <span>문의: support@info-dsm.info</span>
