@@ -20,6 +20,8 @@ const HeaderComponent = () => {
     reissue().catch(() => {
       cookie.remove("accessToken");
       cookie.remove("refreshToken");
+      alert("로그인이 만료되었습니다.");
+      router.push("/auth/login");
     });
   }, []);
 
