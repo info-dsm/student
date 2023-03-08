@@ -54,13 +54,7 @@ const HeaderComponent = () => {
         </a>
         <div>
           {nav.map((t) => (
-            <a
-              onClick={() => {
-                router.push(t.link);
-              }}
-            >
-              {t.content}
-            </a>
+            <a onClick={() => router.push(t.link)}>{t.content}</a>
           ))}
         </div>
       </MainDiv>
