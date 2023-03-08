@@ -33,6 +33,7 @@ const StudentBanner = () => {
 export default StudentBanner;
 
 const Banner = styled.div`
+  scroll-snap-align: start;
   background: linear-gradient(
     180deg,
     rgba(16, 17, 18, 0.2) 4.95%,
@@ -40,6 +41,7 @@ const Banner = styled.div`
   );
   width: 100vw;
   height: 100vh;
+  position: relative;
 
   div {
     left: 50%;
@@ -64,6 +66,7 @@ const BannerImg = styled.div`
   width: 100vw;
   height: 100vh;
   position: absolute;
+  overflow-y: hidden;
   top: 0;
   z-index: -1;
   img {

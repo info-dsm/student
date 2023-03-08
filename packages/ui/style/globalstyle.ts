@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   html {  
     font-size: 20px;
+    scroll-behavior: smooth;
     @media (max-width: 1000px) {
       font-size: 12px;
     }

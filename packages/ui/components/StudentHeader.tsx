@@ -81,6 +81,7 @@ const MainDiv = styled.div`
   left: 0;
   background: rgba(16, 17, 18, 0.5);
   backdrop-filter: blur(9px);
+  z-index: 99;
 
   > a {
     display: inline-flex;
