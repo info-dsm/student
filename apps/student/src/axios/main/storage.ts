@@ -1,3 +1,5 @@
 export const getCompanyNumber = () => {
-  return localStorage.getItem("companyNumber");
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("companyNumber");
+  }
 };

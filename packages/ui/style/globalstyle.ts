@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
      margin: 0;
     ::-webkit-scrollbar {
-    background-color: #EAEAEA;
+    background-color: ${(props) => props.theme.colors.gray};
     width: 10px;
    
     }

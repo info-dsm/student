@@ -4,7 +4,7 @@ export interface login1Props {
   refreshToken: "string";
 }
 export const login1 = async (
-  data: { company?: string; email?: string; password: string },
+  data: { email?: string; password: string },
   endpoint: string
 ) => {
   const res: login1Props = await request({
