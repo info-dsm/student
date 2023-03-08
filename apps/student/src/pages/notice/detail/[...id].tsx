@@ -34,6 +34,10 @@ const NoticeDetail = () => {
       });
   }, [query]);
 
+  useEffect(() => {
+    
+  }, [])
+
   const applyNoticeForm = (e: any) => {
     reissue()
       .then(() => {
