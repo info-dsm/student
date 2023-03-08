@@ -1,10 +1,10 @@
 import {
   applyNotice,
-  getApplyList,
   getCompanyDetail,
   getCompanyDetailProps,
   getNoticeDetail,
   getNoticeDetailProps,
+  getSupportStatus,
   presigned,
   reissue,
 } from "../../../axios/dist";
@@ -23,6 +23,7 @@ const NoticeDetail = () => {
   const router = useRouter();
   const [NoticeInfo, setNoticeInfo] = useState<getNoticeDetailProps>();
   const [CompanyInfo, setCompanyInfo] = useState<getCompanyDetailProps>();
+  const [NoticeID, setNoticeID] = useState<string[]>([]);
 
   useEffect(() => {
     if (query)
@@ -34,10 +35,16 @@ const NoticeDetail = () => {
       });
   }, [query]);
 
+  useEffect(() => {
+    getSupportStatus().then((res) => {
+      setNoticeID(res.map((e) => e.noticeId));
+    });
+  }, []);
+
   const applyNoticeForm = (e: any) => {
     reissue()
       .then(() => {
-        if (NoticeInfo)
+        if (NoticeInfo && !NoticeID.includes(NoticeInfo.noticeId))
           applyNotice({
             id: NoticeInfo.noticeId,
             formData: {
@@ -82,16 +89,24 @@ const NoticeDetail = () => {
               개발자 모집합니다.
             </h1>
             <h6>㈜ {NoticeInfo.company.companyName}</h6>
-            <ApplyBtn>
-              <label htmlFor="resume">지원하기</label>
-              <input
-                type={"file"}
-                name="resume"
-                id="resume"
-                accept={".pdf"}
-                onChange={(e) => applyNoticeForm(e)}
-              />
-            </ApplyBtn>
+            {NoticeID.includes(NoticeInfo.noticeId) ? (
+              <ApplyBtn>
+                <label htmlFor="resume" style={{ cursor: "auto" }}>
+                  지원 중
+                </label>
+              </ApplyBtn>
+            ) : (
+              <ApplyBtn>
+                <label htmlFor="resume">지원하기</label>
+                <input
+                  type={"file"}
+                  name="resume"
+                  id="resume"
+                  accept={".pdf"}
+                  onChange={(e) => applyNoticeForm(e)}
+                />
+              </ApplyBtn>
+            )}
             <DetailInfo
               companyInfo={CompanyInfo}
               subData={`${NoticeInfo.noticeOpenPeriod.startDate} ~ ${NoticeInfo.noticeOpenPeriod.endDate}`}

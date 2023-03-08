@@ -1,5 +1,5 @@
 import request from "../..";
-import cookie from "js-cookie"
+import cookie from "js-cookie";
 
 export interface getSupportStatusProps {
   appliesId: string;
@@ -21,7 +21,7 @@ export interface getSupportStatusProps {
 export const getSupportStatus = async () => {
   if (typeof window !== "undefined") {
     if (cookie.get("accessToken")) {
-      const data = await request({
+      const data: getSupportStatusProps[] = await request({
         method: "get",
         url: "/applies/student",
         headers: {
