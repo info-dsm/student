@@ -1,5 +1,6 @@
 import request from "../..";
 import { reissue } from "../../auth/reissue";
+import cookie from "js-cookie"
 
 export interface getSupportStatusProps {
   appliesId: string;
@@ -19,12 +20,12 @@ export interface getSupportStatusProps {
 }
 
 export const getSupportStatus = async () => {
-  if (sessionStorage.getItem("accessToken")) {
+  if (cookie.get("accessToken")) {
     const data = await request({
       method: "get",
       url: "/applies/student",
       headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${cookie.get("accessToken")}`,
       },
     });
     return data;
