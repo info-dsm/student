@@ -4,7 +4,7 @@ import {
   QueryClientProvider,
   QueryClient,
 } from "@tanstack/react-query";
-import { CustomThemeProvider } from "ui/style/CustomThemeProvider";
+import { CustomThemeProvider } from "ui";
 import React, { useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RecoilRoot } from "recoil";
