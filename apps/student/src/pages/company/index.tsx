@@ -10,28 +10,25 @@ import { useRouter } from "next/router";
 
 const StudentCompanyList = () => {
   const router = useRouter();
-  console.log(router);
   const [company, setCompany] = useState<getCompanyList1ContentProps[]>([]);
   const [cnt, setCnt] = useState<number>(0);
   const [scrolled, setScrolled] = useState<boolean>(true);
 
   useLayoutEffect(() => {
     const getCompany = () => {
-      if (typeof document !== "undefined") {
-        const companyContainer = document.getElementById(
-          "companyContainer"
-        ) as HTMLDivElement;
+      const companyContainer = document.getElementById(
+        "companyContainer"
+      ) as HTMLDivElement;
 
-        if (cnt * 15 === companyContainer.children.length)
-          getCompanyList1({ idx: cnt, size: 15 }).then(
-            (res: { content: any }) => {
-              setCompany((list) => list?.concat(res.content));
-              setCnt(cnt + 1);
-              setScrolled(false);
-            }
-          );
-        else setScrolled(false);
-      }
+      if (cnt * 15 === companyContainer.children.length)
+        getCompanyList1({ idx: cnt, size: 15 }).then(
+          (res: { content: any }) => {
+            setCompany((list) => list?.concat(res.content));
+            setCnt(cnt + 1);
+            setScrolled(false);
+          }
+        );
+      else setScrolled(false);
     };
 
     if (scrolled) {
@@ -39,13 +36,11 @@ const StudentCompanyList = () => {
     }
   }, [scrolled, setScrolled]);
 
-  if (typeof window !== "undefined" && typeof document !== "undefined") {
-    window.addEventListener("scroll", (e) => {
-      if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
-        setScrolled(true);
-      }
-    });
-  }
+  window.addEventListener("scroll", (e) => {
+    if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
+      setScrolled(true);
+    }
+  });
 
   return (
     <>

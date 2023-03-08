@@ -10,7 +10,7 @@ import HeaderComponent from "ui/components/StudentHeader";
 import StudentMyPageProfile from "../../lib/components/student/Profile";
 import StudentSupportStatus from "../../lib/components/student/SupportStatus";
 import cookie from "js-cookie";
-import { Footer } from "ui/components/Footer";
+// import { Footer } from "ui/components/Footer";
 
 const StudentMyPage = () => {
   const [info, setInfo] = useState<getUserInfoProps>();
@@ -53,7 +53,7 @@ const StudentMyPage = () => {
           </div>
         )}
       </MainDiv>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 };
