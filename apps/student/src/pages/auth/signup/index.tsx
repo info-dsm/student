@@ -79,7 +79,7 @@ const StudentSignUp = () => {
   }, [request, setRequest]);
 
   const movePage = () => {
-    router.push("login");
+    router.push("/auth/login");
   };
 
   return (
@@ -186,7 +186,7 @@ const StudentSignUp = () => {
             content1: "가입",
             content2: "기존 회원이신가요?",
             content3: "로그인",
-            link: "./login",
+            link: "/auth/login",
           }}
           check={checkStatus}
           clickEvent={() => {

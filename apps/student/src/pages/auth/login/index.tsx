@@ -79,7 +79,7 @@ const StudentLogin = () => {
             content1: "로그인",
             content2: "info가 처음이신가요?",
             content3: "회원가입",
-            link: "../signup",
+            link: "/auth/signup",
           }}
           clickEvent={() => {
             login1({ email: request.email, password: request.password }, "user")

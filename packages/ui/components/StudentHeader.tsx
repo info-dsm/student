@@ -16,17 +16,17 @@ const HeaderComponent = () => {
     },
   ];
 
-  useEffect(() => {
-    reissue().catch(() => {
-      cookie.remove("accessToken");
-      cookie.remove("refreshToken");
-      if (confirm("로그인이 만료되었습니다.")) router.push("/auth/login");
-      else {
-        cookie.remove("accessToken");
-        cookie.remove("refreshToken");
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  // reissue().catch(() => {
+  //   cookie.remove("accessToken");
+  //   cookie.remove("refreshToken");
+  //   if (confirm("로그인이 만료되었습니다.")) router.push("/auth/login");
+  //   else {
+  //     cookie.remove("accessToken");
+  //     cookie.remove("refreshToken");
+  //   }
+  // });
+  // }, []);
 
   return (
     <>
