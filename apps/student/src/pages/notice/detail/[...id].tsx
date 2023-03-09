@@ -18,6 +18,7 @@ import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
 import { Footer } from "ui/components/Footer";
 import Portpoilo from "../../../lib/components/student/portpolio";
+import Attachment from "@/src/lib/components/student/attachment";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
@@ -97,7 +98,12 @@ const NoticeDetail = () => {
             />
             <QualificationRequirements noticeInfo={NoticeInfo} />
             <Welfare noticeInfo={NoticeInfo} />
-            <Portpoilo noticeInfo={NoticeInfo}/>
+            <Portpoilo noticeInfo={NoticeInfo} />
+            <Attachment
+              NoticeID={NoticeID}
+              NoticeInfo={NoticeInfo}
+              getStatus={getStatus}
+            />
           </DetailDiv>
         ) : (
           <></>
