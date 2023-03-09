@@ -70,10 +70,7 @@ const NoticeDetail = () => {
               개발자 모집합니다.
             </h1>
             <h6>㈜ {NoticeInfo.company.companyName}</h6>
-            <ApplyBtn
-              href={"#resume"}
-              point={NoticeID.includes(NoticeInfo.noticeId)}
-            >
+            {/* <ApplyBtn>
               <label
                 style={{
                   cursor: `${
@@ -85,7 +82,7 @@ const NoticeDetail = () => {
                   ? "지원완료"
                   : "지원하기"}
               </label>
-            </ApplyBtn>
+            </ApplyBtn> */}
             <DetailInfo
               companyInfo={CompanyInfo}
               subData={`${NoticeInfo.noticeOpenPeriod.startDate} ~ ${NoticeInfo.noticeOpenPeriod.endDate}`}
@@ -116,12 +113,10 @@ const MainDiv = styled.div`
   background-color: #f4f4f5;
 `;
 
-const ApplyBtn = styled.a<{ point: boolean }>`
+const ApplyBtn = styled.form`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  text-decoration: none;
-  pointer-events: ${(props) => (props.point ? "none" : "all")};
 
   label {
     display: inline-block;
