@@ -91,7 +91,7 @@ const StudentNoticeList = () => {
             <div>
               <span>마감된 공고</span>
             </div>
-            {closedNotice.length > 0 ? (
+            {closedNotice.length > 0? (
               <>
                 {closedNotice.map((t) => (
                   // eslint-disable-next-line react/jsx-key
@@ -99,7 +99,11 @@ const StudentNoticeList = () => {
                 ))}
               </>
             ) : (
+              <>
+              {notice.length > 0 ? <><div>마감된 공고가 없습니다.</div></>: <>
               <ClosedNoticePlaceHolder />
+              </>}
+              </>
             )}
           </Kind2>
         </Content>
