@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { stringify } from "querystring";
 import styled from "styled-components";
 
@@ -33,6 +35,7 @@ const StudentAuthButton = ({
   };
   clickEvent: () => void;
 }) => {
+  const router = useRouter();
   return (
     <>
       <LoginBtn top={top}>
@@ -78,7 +81,13 @@ const StudentAuthButton = ({
         <div>or</div>
         <span>
           <span>{content.content2}</span>
-          <a href={content.link}>{content.content3}</a>
+          <a
+            onClick={() => {
+              router.push(content.link);
+            }}
+          >
+            {content.content3}
+          </a>
         </span>
       </LoginBtn>
     </>

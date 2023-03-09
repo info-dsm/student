@@ -1,15 +1,14 @@
-import { reissue } from "../../auth/reissue";
 import request from "../..";
 import cookie from "js-cookie";
 
 export const applyNotice = async ({
   id,
-  formData,
+  form,
 }: {
-  formData: {
+  form: {
     fileName: string;
     contentType: string;
-  };
+  }[];
   id: string;
 }) => {
   if (typeof window !== "undefined") {
@@ -20,7 +19,9 @@ export const applyNotice = async ({
         headers: {
           Authorization: `Bearer ${cookie.get("accessToken")}`,
         },
-        data: formData,
+        data: {
+          request: form,
+        },
       });
 
       return data;

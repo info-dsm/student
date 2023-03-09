@@ -5,9 +5,8 @@ import Image from "next/image";
 import UploadImg from "@/public/assets/images/upload.png";
 import {
   applyNotice,
+  createNoticeFile,
   getNoticeDetailProps,
-  getSupportStatus,
-  presigned,
   reissue,
 } from "@/src/axios/dist";
 import { useRouter } from "next/router";
@@ -15,11 +14,9 @@ import { useRouter } from "next/router";
 const Attachment = ({
   NoticeInfo,
   NoticeID,
-  getStatus,
 }: {
   NoticeInfo: getNoticeDetailProps;
   NoticeID: string[];
-  getStatus: () => void;
 }) => {
   const [file, setFile] = useState<File[]>([]);
   const router = useRouter();
@@ -27,24 +24,25 @@ const Attachment = ({
   const applyNoticeForm = () => {
     reissue()
       .then(() => {
-        if (NoticeInfo && !NoticeID.includes(NoticeInfo.noticeId))
+        if (NoticeInfo && !NoticeID.includes(NoticeInfo.noticeId)) {
+          const form = file.map((t) => ({
+            fileName: t.name,
+            contentType: t.type,
+          }));
           applyNotice({
             id: NoticeInfo.noticeId,
-            formData: {
-              fileName: file[0].name,
-              contentType: "application/pdf",
-            },
-          }).then((res) => {
-            const { url } = res as { url: string };
-            presigned(url, file[0])
+            form: form,
+          }).then((res: any) => {
+            createNoticeFile(res, file)
               .then(() => {
-                getStatus();
                 console.log("success");
+                router.push("/")
               })
               .catch(() => {
                 console.log("error");
               });
           });
+        }
       })
       .catch(() => {
         alert("로그인이 만료되었습니다.");
@@ -67,7 +65,7 @@ const Attachment = ({
             </label>
             <input
               type={"file"}
-              accept={".pdf"}
+              accept={".pdf, .hwp"}
               id="resume"
               multiple
               onChange={(e: any) =>
