@@ -22,7 +22,6 @@ import Portpoilo from "../../../lib/components/student/portpolio";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
-  const router = useRouter();
   const [NoticeInfo, setNoticeInfo] = useState<getNoticeDetailProps>();
   const [CompanyInfo, setCompanyInfo] = useState<getCompanyDetailProps>();
   const [NoticeID, setNoticeID] = useState<string[]>([]);
@@ -73,17 +72,6 @@ const NoticeDetail = () => {
               개발자 모집합니다.
             </h1>
             <h6>㈜ {NoticeInfo.company.companyName}</h6>
-            {/* {NoticeID.includes(NoticeInfo.noticeId) ? (
-              <ApplyBtn href="#apply">
-                <label htmlFor="resume" style={{ cursor: "auto" }}>
-                  지원 중
-                </label>
-              </ApplyBtn>
-            ) : (
-              <ApplyBtn href="#apply">
-                <label htmlFor="resume">지원하기</label>
-              </ApplyBtn>
-            )} */}
             <ApplyBtn
               href={"#resume"}
               point={NoticeID.includes(NoticeInfo.noticeId)}
@@ -114,7 +102,7 @@ const NoticeDetail = () => {
             <Attachment
               NoticeID={NoticeID}
               NoticeInfo={NoticeInfo}
-              getStatus={() => getStatus}
+              getStatus={getStatus}
             />
           </DetailDiv>
         ) : (

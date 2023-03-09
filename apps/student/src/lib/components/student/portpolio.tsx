@@ -1,4 +1,3 @@
-// import { getNoticeDetailProps } from "@/src/axios/dist";
 import { getNoticeDetailProps } from "../../../axios/dist";
 import React from "react";
 import NoticeDetailClassification from "./Classification";

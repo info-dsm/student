@@ -6,7 +6,6 @@ import StudentCompanyBanner from "../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "../../lib/components/student/Kind";
 import CompanyPlaceHolder from "../../lib/components/student/detailplaceholder";
-import { useRouter } from "next/router";
 
 const StudentCompanyList = () => {
   const [company, setCompany] = useState<getCompanyList1ContentProps[]>([]);

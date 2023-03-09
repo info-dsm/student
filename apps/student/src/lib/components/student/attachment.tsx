@@ -19,7 +19,7 @@ const Attachment = ({
 }: {
   NoticeInfo: getNoticeDetailProps;
   NoticeID: string[];
-  getStatus: () => {};
+  getStatus: () => void;
 }) => {
   const [file, setFile] = useState<File[]>([]);
   const router = useRouter();
