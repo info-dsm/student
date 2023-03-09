@@ -15,7 +15,6 @@ const StudentPage = () => {
     useState<getCompanyList1ContentProps[]>();
 
   useLayoutEffect(() => {
-    if (!cookie.get("accessToken")) router.push("/auth/login");
     getCompanyList1({ idx: 0, size: 12 }).then((res) => {
       setCompanyKind(res.content);
     });

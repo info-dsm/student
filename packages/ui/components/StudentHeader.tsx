@@ -10,10 +10,25 @@ const HeaderComponent = () => {
   const nav = [
     { content: "회사", link: "/company" },
     { content: "모집공고", link: "/notice" },
-    {
-      content: !cookie.get("accessToken") ? "로그인" : "내정보",
-      link: !cookie.get("accessToken") ? "/auth/login" : "/mypage",
-    },
+    // {
+    //   content: !cookie.get("accessToken") ? "로그인" : "내정보",
+    //   link: !cookie.get("accessToken") ? "/auth/login" : "/mypage",
+    // },
+    !cookie.get("accessToken")
+      ? {
+          content: "로그인",
+          link: "/auth/login",
+        }
+      : {
+          content: "내정보",
+          link: "/mypage",
+        },
+    cookie.get("accessToken")
+      ? {
+          content: "로그아웃",
+          link: "",
+        }
+      : {},
   ];
 
   // useEffect(() => {
@@ -59,7 +74,10 @@ const HeaderComponent = () => {
           {nav.map((t) => (
             <a
               onClick={() => {
-                router.push(t.link);
+                if (t.content === "로그아웃") {
+                  cookie.remove("accessToken")
+                  cookie.remove("refreshToken")
+                } else router.push(t.link);
               }}
             >
               {t.content}
