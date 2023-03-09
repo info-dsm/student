@@ -4,6 +4,7 @@ import NoticeDetailClassification from "./Classification";
 import styled from "styled-components";
 import Image from "next/image";
 import DownLoadImg from "@/public/assets/images/download.png";
+import Link from "next/link";
 
 const Portpoilo = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
   return (
@@ -13,10 +14,10 @@ const Portpoilo = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
         <>
           {noticeInfo.attachmentFileList.map((t) => (
             <div>
-              <a href={t.fileUrl}>
+              <Link href={t.fileUrl}>
                 • {t.fileName}
                 <Image src={DownLoadImg} alt="download" />
-              </a>
+              </Link>
             </div>
           ))}
         </>

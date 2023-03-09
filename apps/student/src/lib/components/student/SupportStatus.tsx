@@ -39,6 +39,7 @@ const SupportStatusDiv = styled.div`
   }
   > div {
     background-color: #f6f6f6;
+    border: 5px solid #f6f6f6;
     border-radius: 5px;
     margin-top: 20px;
     width: 100%;
