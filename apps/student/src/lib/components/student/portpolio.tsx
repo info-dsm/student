@@ -9,20 +9,6 @@ const Portpoilo = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
   return (
     <MainDiv>
       <NoticeDetailClassification name={"이력서"} />
-      {noticeInfo.attachmentFileList.length > 0 ? (
-        <>
-          {noticeInfo.attachmentFileList.map((t) => (
-            <div>
-              <a href={t.fileUrl} target="_blank">
-                • {t.fileName}
-                <Image src={DownLoadImg} alt="" />
-              </a>
-            </div>
-          ))}
-        </>
-      ) : (
-        <div>양식이 지정되어 있지 않습니다.</div>
-      )}
     </MainDiv>
   );
 };
