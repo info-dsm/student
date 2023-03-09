@@ -6,12 +6,6 @@ export const createNoticeFile = async (
   files: File[]
 ) => {
   await axios.all([
-    data.response.map((data) => {
-      const file: [File] = files.splice(
-        files.findIndex((e) => e.name === data.fileName),
-        1
-      ) as [File];
-      presigned(data.url, ...file);
-    }),
+    data.response.map((data, i) => presigned(data.url, files[i])),
   ]);
 };
