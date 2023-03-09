@@ -17,8 +17,8 @@ import Welfare from "../../../lib/components/student/Welfare";
 import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
 import { Footer } from "ui/components/Footer";
-import Attachment from "@/src/lib/components/student/attachment";
-import Portpoilo from "@/src/lib/components/student/portpolio";
+import Attachment from "../../../lib/components/student/attachment";
+import Portpoilo from "../../../lib/components/student/portpolio";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
