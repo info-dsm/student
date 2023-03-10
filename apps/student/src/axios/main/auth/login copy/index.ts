@@ -10,7 +10,7 @@ export const login1 = async (
   const res: login1Props = await request({
     method: "post",
     url: `/auth/login/${endpoint}`,
-    data,
+    data: data,
   });
   return res;
 };
