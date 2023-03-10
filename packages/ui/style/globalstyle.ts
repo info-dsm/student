@@ -7,11 +7,11 @@ export const GlobalStyle = createGlobalStyle`
     -ms-user-select:none;
     overflow-x: hidden;
     scroll-behavior: smooth;
-     margin: 0;
+    margin: 0;
+    background-color: #F8F8F9;
     ::-webkit-scrollbar {
-    background-color: ${(props) => props.theme.colors.gray};
-    width: 10px;
-   
+      background-color: ${(props) => props.theme.colors.gray};
+      width: 10px; 
     }
     ::-webkit-scrollbar-thumb {
       background-color: #6141cc;

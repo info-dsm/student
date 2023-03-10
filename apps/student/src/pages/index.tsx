@@ -7,7 +7,6 @@ import { getCompanyList1, getCompanyList1ContentProps } from "../axios/dist";
 import HeaderComponent from "ui/components/StudentHeader";
 import { Footer } from "ui/components/Footer";
 import { useRouter } from "next/router";
-import cookie from "js-cookie";
 
 const StudentPage = () => {
   const router = useRouter();
