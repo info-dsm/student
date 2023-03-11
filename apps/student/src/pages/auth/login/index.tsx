@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import StudentAuthBanner from "../../../lib/components/student/authbanner";
 import AuthInput from "ui/components/AuthInput";
 import StudentAuthTitle from "../../../lib/components/student/Title";
 import StudentAuthButton from "../../../lib/components/student/Button";
-import { login1 } from "../../../axios/dist";
+import { login1, reissue } from "../../../axios/dist";
 import { useRouter } from "next/router";
 import cookie from "js-cookie";
 
@@ -46,6 +46,12 @@ const StudentLogin = () => {
   };
 
   const movepage = () => router.push("../");
+
+  useEffect(() => {
+    reissue().then(() => {
+      movepage();
+    });
+  }, []);
 
   return (
     <>
