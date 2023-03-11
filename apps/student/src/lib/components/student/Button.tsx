@@ -38,7 +38,7 @@ const StudentAuthButton = ({
   const router = useRouter();
   return (
     <>
-      <LoginBtn top={top}>
+      <LoginBtn top={top} color={Object.values(request).includes("") ? "#888888" : "#6750f8"}>
         <button
           onClick={() => {
             if (Object.values(request).includes("")) {
@@ -95,19 +95,19 @@ const StudentAuthButton = ({
 };
 export default StudentAuthButton;
 
-const LoginBtn = styled.div<{ top: number }>`
+const LoginBtn = styled.div<{ top: number; color: string }>`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 12px;
   button {
+    background-color: ${props => props.color};
     cursor: pointer;
     width: 100%;
     height: 48px;
     border: none;
     outline: none;
-    background-color: #6750f8;
     border-radius: 5px;
     margin-top: ${(props) => props.top}px;
     color: #f8f8f9;

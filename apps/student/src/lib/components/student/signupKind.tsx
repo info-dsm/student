@@ -37,8 +37,8 @@ const Kind = styled.div`
   gap: 5.5px;
   margin-top: 10px;
   font-size: 15px;
-  font-weight: 500;
-  color: rgba(16, 17, 18, 0.4);
+  font-weight: 700;
+  color: rgba(16, 17, 18, 0.6);
   display: inline-flex;
   align-items: center;
 
