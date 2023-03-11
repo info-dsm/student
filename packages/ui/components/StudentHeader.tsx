@@ -73,6 +73,7 @@ const HeaderComponent = () => {
                 if (t.content === "로그아웃") {
                   cookie.remove("accessToken");
                   cookie.remove("refreshToken");
+                  window.location.href = "/";
                 } else router.push(t.link);
               }}
             >
