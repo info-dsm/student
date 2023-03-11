@@ -91,7 +91,7 @@ const StudentSignUp = () => {
           subTitle={{
             content1: "대덕 선생님이신가요?",
             content2: "교사 전용 로그인",
-            link: "",
+            link: "https://teacher.info-dsm.info/login/",
           }}
         />
         <StudentAuthKind status={checkStatus.email} content={"이메일"} />

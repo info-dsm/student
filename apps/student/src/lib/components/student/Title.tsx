@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import Logo from "../../../../public/assets/images/logo";
 
@@ -18,7 +19,7 @@ const StudentAuthTitle = ({
       <div>{title}</div>
       <span>
         <span>{subTitle.content1}</span>
-        <a href={subTitle.link}>{subTitle.content2}</a>
+        <Link href={subTitle.link}>{subTitle.content2}</Link>
       </span>
     </TitleDiv>
   );
