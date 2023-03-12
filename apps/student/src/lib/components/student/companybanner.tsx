@@ -21,7 +21,9 @@ const StudentCompanyBanner = () => {
           {companySize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
           개의 <br /> 회사와 MOU를 맺었어요.
         </div>
-        {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 기준
+        <div>
+          {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 기준
+        </div>
       </Banner>
       <BannerImg>
         <Image src={BannerImage} alt="" />
