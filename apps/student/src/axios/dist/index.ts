@@ -93,3 +93,8 @@ export {
 export { NoticeCount } from "../main/notice/count";
 
 export { CompanyCount } from "../main/company/count";
+
+export {
+  getApplyCount,
+  type getApplyCountProps,
+} from "../main/applies/applyCount";
