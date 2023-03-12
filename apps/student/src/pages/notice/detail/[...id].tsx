@@ -52,15 +52,6 @@ const NoticeDetail = () => {
       <MainDiv>
         {NoticeInfo && CompanyInfo ? (
           <DetailDiv>
-            {/* <img
-              src={
-                CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
-                  ? CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
-                      .fileUrl
-                  : ""
-              }
-              alt=""
-            /> */}
             <Carousel>
               <Arrow
                 scale={1}
@@ -117,6 +108,7 @@ const NoticeDetail = () => {
               href={"#resume"}
               point={NoticeID.includes(NoticeInfo.noticeId)}
             >
+              <div>지원자 수 {NoticeInfo.applicantCount}명</div>
               <label
                 style={{
                   cursor: `${
@@ -216,6 +208,10 @@ const ApplyBtn = styled.a<{ point: boolean }>`
   display: flex;
   justify-content: flex-end;
   text-decoration: none;
+  align-items: center;
+  color: #222;
+  font-size: 14px;
+  gap: 15px;
 
   label {
     display: inline-block;

@@ -60,10 +60,6 @@ const DetailRecruitmentJob = ({
               )}
             </span>
           </div>
-          <div>
-            <div>지원자 수</div>
-            <span>{noticeInfo.applicantCount}명</span>
-          </div>
         </InfoDiv>
       </MainDiv>
     </>

@@ -26,11 +26,9 @@ const StudentNotice = ({
         개발자 모집합니다.
       </h1>
       <span>{info.company.companyName}</span>
-      {/* <Address>
-        <span>주소</span>
-        <span>광주광역시 광산구 송정동</span>
-      </Address> */}
-      <br />
+      <Address>
+        <span>지원자 수 {info.applicantCount}명</span>
+      </Address>
       <Part>
         {info.classificationResponse.map((t) => (
           <div>{t.name}</div>
@@ -74,20 +72,14 @@ const NoticeDiv = styled.a`
 `;
 
 const Address = styled.div`
-  margin-top: 16px;
   span {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
-    color: #101112;
-  }
-  span:nth-child(2) {
-    margin-left: 5px;
     color: rgba(16, 17, 18, 0.65);
   }
 `;
 
 const Part = styled.div`
-  margin-top: 18px;
   display: inline-flex;
   flex-wrap: wrap;
   font-size: 13px;
