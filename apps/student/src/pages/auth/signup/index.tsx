@@ -104,14 +104,22 @@ const StudentSignUp = () => {
             content: "인증번호 발송",
             event: () => {
               if (request.email !== "") {
-                codeSend({ email: request.email })
-                  .then(() => {
-                    alert("인증번호가 발송되었습니다.");
-                  })
-                  .catch(() => {
-                    alert("이미 있는 사용자입니다.");
-                  });
-              } else setStatus({ ...status, email: "error" });
+                if (request.email.split("@")[1] === "dsm.hs.kr") {
+                  codeSend({ email: request.email })
+                    .then(() => {
+                      alert("인증번호가 발송되었습니다.");
+                    })
+                    .catch(() => {
+                      alert("이미 있는 사용자입니다.");
+                    });
+                } else {
+                  alert("학교 계정을 입력해주세요.");
+                  setStatus({ ...status, email: "error" });
+                }
+              } else {
+                alert("내용을 입력해주세요.");
+                setStatus({ ...status, email: "error" });
+              }
             },
           }}
         />
