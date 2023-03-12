@@ -93,10 +93,16 @@ const StudentNoticeList = () => {
             </div>
             {cnt > 0 ? (
               <>
-                {closedNotice.map((t) => (
-                  // eslint-disable-next-line react/jsx-key
-                  <StudentClosedNotice info={t} />
-                ))}
+                {closedNotice.length > 0 ? (
+                  <>
+                    {closedNotice.map((t) => (
+                      // eslint-disable-next-line react/jsx-key
+                      <StudentClosedNotice info={t} />
+                    ))}
+                  </>
+                ) : (
+                  <>마감된 공고가 없습니다..</>
+                )}
               </>
             ) : (
               <ClosedNoticePlaceHolder />
