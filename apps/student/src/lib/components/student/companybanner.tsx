@@ -6,6 +6,7 @@ import { CompanyCount } from "@/src/axios/dist";
 
 const StudentCompanyBanner = () => {
   const [companySize, setCompanySize] = useState<number>(0);
+  const date = new Date();
   useEffect(() => {
     CompanyCount().then((res: number) => {
       setCompanySize(res);
@@ -16,10 +17,11 @@ const StudentCompanyBanner = () => {
     <>
       <Banner>
         <div>
-          이번년도에는 총 {companySize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
+          이번년도에는 총{" "}
+          {companySize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
           개의 <br /> 회사와 MOU를 맺었어요.
         </div>
-        <div>2022년 12월 12일 기준</div>
+        {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 기준
       </Banner>
       <BannerImg>
         <Image src={BannerImage} alt="" />

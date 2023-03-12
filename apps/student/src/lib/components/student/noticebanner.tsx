@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 const StudentNoticeBanner = () => {
   const [noticeSize, setNoticeSize] = useState<number>(0);
+  const date = new Date();
 
   useEffect(() => {
     NoticeCount().then((res: number) => {
@@ -20,7 +21,9 @@ const StudentNoticeBanner = () => {
           현재 총 {noticeSize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
           개의 <br /> 모집공고가 있어요
         </div>
-        <div>2022년 12월 12일 기준</div>
+        <div>
+          {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 기준
+        </div>
       </Banner>
       <BannerImg>
         <Image src={BannerImage} alt="" />
