@@ -30,7 +30,13 @@ export const AuthInput = ({
         inputType={type}
         placeholder={placeHolder}
         onChange={(e) => onChange({ e: e, name: name })}
-        type={name.substring(0, 8) === "password" ? "password" : "text"}
+        type={
+          name.substring(0, 8) === "password"
+            ? "password"
+            : name === "entranceYear"
+            ? "number"
+            : "text"
+        }
       />
       <>
         {subClick ? (
@@ -71,7 +77,7 @@ const _Input = styled.input<{
   padding-left: 16px;
   font-size: 15px;
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   ::placeholder {
     color: ${(props) =>
       props.inputType === "normal" ? "rgba(16, 17, 18, 0.4)" : "#E24646"};

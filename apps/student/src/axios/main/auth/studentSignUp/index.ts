@@ -11,6 +11,7 @@ export const studentSignUp = async ({
     studentKey: string;
     githubLink: string;
     passwordCheck: string;
+    entranceYear: number;
   };
 }) => {
   await request({
@@ -25,8 +26,9 @@ export const studentSignUp = async ({
       email: req.email,
       password: req.password,
       githubLink: req.githubLink,
+      entranceYear: req.entranceYear,
     },
   }).catch((err) => {
-    console.log(err)
-  })
+    console.log(err);
+  });
 };

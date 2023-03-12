@@ -35,7 +35,6 @@ export default StudentAuthKind;
 const Kind = styled.div`
   margin-bottom: 4px;
   gap: 5.5px;
-  margin-top: 10px;
   font-size: 15px;
   font-weight: 700;
   color: rgba(16, 17, 18, 0.6);

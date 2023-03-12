@@ -21,6 +21,7 @@ const StudentAuthButton = ({
     studentKey: "normal" | "error";
     githubLink: "normal" | "error";
     passwordCheck: "normal" | "error";
+    entranceYear: "normal" | "error";
   }) => void;
   content: {
     content1: string;
@@ -38,7 +39,10 @@ const StudentAuthButton = ({
   const router = useRouter();
   return (
     <>
-      <LoginBtn top={top} color={Object.values(request).includes("") ? "#888888" : "#6750f8"}>
+      <LoginBtn
+        top={top}
+        color={Object.values(request).includes("") ? "#888888" : "#6750f8"}
+      >
         <button
           onClick={() => {
             if (Object.values(request).includes("")) {
@@ -61,6 +65,7 @@ const StudentAuthButton = ({
                     studentKey: "normal",
                     githubLink: "normal",
                     passwordCheck: "normal",
+                    entranceYear: "normal",
                   }
                 )
               );
@@ -102,7 +107,7 @@ const LoginBtn = styled.div<{ top: number; color: string }>`
   align-items: center;
   row-gap: 12px;
   button {
-    background-color: ${props => props.color};
+    background-color: ${(props) => props.color};
     cursor: pointer;
     width: 100%;
     height: 48px;
