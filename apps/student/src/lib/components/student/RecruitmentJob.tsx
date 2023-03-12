@@ -1,5 +1,8 @@
 // import { getCompanyDetailProps, getNoticeDetailProps } from "apis";
-import { getCompanyDetailProps,getNoticeDetailProps } from "../../../axios/dist";
+import {
+  getCompanyDetailProps,
+  getNoticeDetailProps,
+} from "../../../axios/dist";
 import React from "react";
 import styled from "styled-components";
 import NoticeDetailClassification from "./Classification";
@@ -56,6 +59,10 @@ const DetailRecruitmentJob = ({
                 )
               )}
             </span>
+          </div>
+          <div>
+            <div>지원자 수</div>
+            <span>{noticeInfo.applicantCount}명</span>
           </div>
         </InfoDiv>
       </MainDiv>
