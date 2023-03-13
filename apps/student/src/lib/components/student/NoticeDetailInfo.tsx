@@ -1,4 +1,7 @@
-import { getCompanyDetailProps, getNoticeDetailProps } from "../../../axios/dist";
+import {
+  getCompanyDetailProps,
+  getNoticeDetailProps,
+} from "../../../axios/dist";
 import React from "react";
 import styled from "styled-components";
 import Checked2 from "../../../../public/assets/images/checked2";
@@ -70,7 +73,9 @@ const DetailInfo = ({
           <div>
             <div>지점</div>
             <span>
-              {companyInfo.companyInformation.agentAddress.fullAddress}
+              {companyInfo.companyInformation.agentAddress.fullAddress
+                ? companyInfo.companyInformation.agentAddress.fullAddress
+                : "본사 주소와 동일"}
             </span>
           </div>
         ) : (

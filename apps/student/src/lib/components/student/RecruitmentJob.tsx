@@ -87,7 +87,7 @@ const InfoDiv = styled.div`
       color: #6750f8;
     }
     span {
-      width: 898px;
+      width: 500px;
     }
   }
 

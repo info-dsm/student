@@ -61,6 +61,7 @@ export interface getNoticeDetailProps {
       noticeId: string;
     }
   ];
+  needAttachment: string;
   isPersonalContact: boolean;
 }
 

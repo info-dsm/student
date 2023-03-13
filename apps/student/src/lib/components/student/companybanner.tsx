@@ -19,7 +19,7 @@ const StudentCompanyBanner = () => {
         <div>
           이번년도에는 총{" "}
           {companySize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
-          개의 <br /> 회사와 MOU를 맺었어요.
+          개의 <br /> 회사가 있어요.
         </div>
         <div>
           {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 기준
