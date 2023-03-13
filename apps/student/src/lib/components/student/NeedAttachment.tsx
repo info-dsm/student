@@ -2,9 +2,6 @@ import React from "react";
 import { getNoticeDetailProps } from "../../../axios/dist";
 import NoticeDetailClassification from "./Classification";
 import styled from "styled-components";
-import Image from "next/image";
-import DownLoadImg from "@/public/assets/images/download.png";
-import Link from "next/link";
 
 const NeedAttachment = ({
   noticeInfo,
@@ -13,7 +10,7 @@ const NeedAttachment = ({
 }) => {
   return (
     <MainDiv>
-      <NoticeDetailClassification name={"이력서"} />
+      <NoticeDetailClassification name={"필요 서류"} />
       {noticeInfo.needAttachment !== "" ? (
         <>
           {noticeInfo.needAttachment.split(",").map((t) => (
