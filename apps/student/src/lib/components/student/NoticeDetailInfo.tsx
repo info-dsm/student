@@ -69,13 +69,12 @@ const DetailInfo = ({
         ) : (
           ""
         )}
-        {companyInfo.companyInformation.agentAddress ? (
+        {companyInfo.companyInformation.agentAddress &&
+        companyInfo.companyInformation.agentAddress.fullAddress ? (
           <div>
             <div>지점</div>
             <span>
-              {companyInfo.companyInformation.agentAddress.fullAddress
-                ? companyInfo.companyInformation.agentAddress.fullAddress
-                : "본사 주소와 동일"}
+              {companyInfo.companyInformation.agentAddress.fullAddress}
             </span>
           </div>
         ) : (

@@ -14,6 +14,9 @@ const DetailRecruitmentJob = ({
   noticeInfo: getNoticeDetailProps;
   companyInfo: getCompanyDetailProps;
 }) => {
+
+  console.log(noticeInfo)
+  console.log(companyInfo)
   return (
     <>
       <MainDiv>
@@ -39,7 +42,7 @@ const DetailRecruitmentJob = ({
             <div>근무지</div>
             <span>
               {noticeInfo.workPlace.isSameWithCompanyAddress
-                ? `${companyInfo.companyInformation.agentAddress?.fullAddress}`
+                ? `${companyInfo.companyInformation.homeAddress?.fullAddress}`
                 : noticeInfo.workPlace.otherPlace}
             </span>
           </div>
