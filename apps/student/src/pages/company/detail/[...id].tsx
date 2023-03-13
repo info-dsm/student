@@ -39,45 +39,60 @@ const StudentCompanyDetail = ({}: {}) => {
         <DetailDiv>
           {info && noticeInfo ? (
             <>
-              <Carousel>
-                <Arrow
-                  scale={1}
-                  onClick={() => {
-                    if (current === 0)
-                      setCurrent(
-                        info.companyIntroductionResponse.companyPhotoList
-                          .length - 1
-                      );
-                    else setCurrent(current - 1);
-                  }}
-                >
-                  <div />
-                </Arrow>
-                {info.companyIntroductionResponse.companyPhotoList.map((t) => (
-                  <span>
-                    <CarouselImg
-                      translateX={current * -1000}
-                      src={t.fileUrl}
-                      alt="company photo"
-                      placeholder="blur"
-                    />
-                  </span>
-                ))}
-                <Arrow
-                  scale={-1}
-                  onClick={() => {
-                    if (
-                      current <
-                      info.companyIntroductionResponse.companyPhotoList.length -
-                        1
-                    )
-                      setCurrent(current + 1);
-                    else setCurrent(0);
-                  }}
-                >
-                  <div />
-                </Arrow>
-              </Carousel>
+              {info.companyIntroductionResponse.companyPhotoList.length ===
+              1 ? (
+                <img
+                  src={
+                    info.companyIntroductionResponse.companyPhotoList[0].fileUrl
+                  }
+                  alt=""
+                />
+              ) : (
+                <>
+                  <Carousel>
+                    <Arrow
+                      scale={1}
+                      onClick={() => {
+                        if (current === 0)
+                          setCurrent(
+                            info.companyIntroductionResponse.companyPhotoList
+                              .length - 1
+                          );
+                        else setCurrent(current - 1);
+                      }}
+                    >
+                      <div />
+                    </Arrow>
+                    {info.companyIntroductionResponse.companyPhotoList.map(
+                      (t) => (
+                        <span>
+                          <CarouselImg
+                            translateX={current * -1000}
+                            src={t.fileUrl}
+                            alt="company photo"
+                            placeholder="blur"
+                          />
+                        </span>
+                      )
+                    )}
+                    <Arrow
+                      scale={-1}
+                      onClick={() => {
+                        if (
+                          current <
+                          info.companyIntroductionResponse.companyPhotoList
+                            .length -
+                            1
+                        )
+                          setCurrent(current + 1);
+                        else setCurrent(0);
+                      }}
+                    >
+                      <div />
+                    </Arrow>
+                  </Carousel>
+                </>
+              )}
               <h1>㈜ {info.companyName}</h1>
               <DetailInfo companyInfo={info} subData={""} />
               <StudentCompanyNoticeList companyInfo={info} info={noticeInfo} />
@@ -108,7 +123,7 @@ const Arrow = styled.div<{ scale: number }>`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  box-shadow: 0 0 10px 3px rgba(0,0,0, .1);
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
   div {
     width: 30px;
     height: 60px;
