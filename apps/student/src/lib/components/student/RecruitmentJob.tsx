@@ -51,7 +51,7 @@ const DetailRecruitmentJob = ({
             <span>{noticeInfo.detailBusinessDescription}</span>
           </div>
           <div>
-            <div>채용직원</div>
+            <div>채용절차</div>
             <span>
               {Object.values(noticeInfo.interviewProcessList).map(
                 (t: string, i: number) => (
