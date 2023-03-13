@@ -53,48 +53,61 @@ const NoticeDetail = () => {
       <MainDiv>
         {NoticeInfo && CompanyInfo ? (
           <DetailDiv>
-            <Carousel>
-              <Arrow
-                scale={1}
-                onClick={() => {
-                  if (current === 0)
-                    setCurrent(
-                      CompanyInfo.companyIntroductionResponse.companyPhotoList
-                        .length - 1
-                    );
-                  else setCurrent(current - 1);
-                }}
-              >
-                <div />
-              </Arrow>
-              {CompanyInfo.companyIntroductionResponse.companyPhotoList.map(
-                (t) => (
-                  <span>
-                    <CarouselImg
-                      translateX={current * -1000}
-                      src={t.fileUrl}
-                      alt="company photo"
-                      placeholder="blur"
-                    />
-                  </span>
-                )
-              )}
-              <Arrow
-                scale={-1}
-                onClick={() => {
-                  if (
-                    current <
-                    CompanyInfo.companyIntroductionResponse.companyPhotoList
-                      .length -
-                      1
-                  )
-                    setCurrent(current + 1);
-                  else setCurrent(0);
-                }}
-              >
-                <div />
-              </Arrow>
-            </Carousel>
+            {CompanyInfo.companyIntroductionResponse.companyPhotoList.length ===
+            1 ? (
+              <img
+                src={
+                  CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
+                    .fileUrl
+                }
+                alt=""
+              />
+            ) : (
+              <>
+                <Carousel>
+                  <Arrow
+                    scale={1}
+                    onClick={() => {
+                      if (current === 0)
+                        setCurrent(
+                          CompanyInfo.companyIntroductionResponse
+                            .companyPhotoList.length - 1
+                        );
+                      else setCurrent(current - 1);
+                    }}
+                  >
+                    <div />
+                  </Arrow>
+                  {CompanyInfo.companyIntroductionResponse.companyPhotoList.map(
+                    (t) => (
+                      <span>
+                        <CarouselImg
+                          translateX={current * -1000}
+                          src={t.fileUrl}
+                          alt="company photo"
+                          placeholder="blur"
+                        />
+                      </span>
+                    )
+                  )}
+                  <Arrow
+                    scale={-1}
+                    onClick={() => {
+                      if (
+                        current <
+                        CompanyInfo.companyIntroductionResponse.companyPhotoList
+                          .length -
+                          1
+                      )
+                        setCurrent(current + 1);
+                      else setCurrent(0);
+                    }}
+                  >
+                    <div />
+                  </Arrow>
+                </Carousel>
+              </>
+            )}
             <h1>
               {NoticeInfo.classificationResponse.map((t, i, a) => (
                 <>
@@ -133,7 +146,7 @@ const NoticeDetail = () => {
             <QualificationRequirements noticeInfo={NoticeInfo} />
             <Welfare noticeInfo={NoticeInfo} />
             <Portpoilo noticeInfo={NoticeInfo} />
-            <NeedAttachment noticeInfo={NoticeInfo}/>
+            <NeedAttachment noticeInfo={NoticeInfo} />
             <Attachment NoticeID={NoticeID} NoticeInfo={NoticeInfo} />
           </DetailDiv>
         ) : (
