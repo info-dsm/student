@@ -90,7 +90,8 @@ const InfoDiv = styled.div`
       color: #6750f8;
     }
     span {
-      width: 500px;
+      width: 700px;
+      white-space: pre-wrap;
     }
   }
 
