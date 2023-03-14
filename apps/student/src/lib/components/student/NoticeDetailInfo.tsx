@@ -104,7 +104,7 @@ const DetailInfo = ({
           {companyInfo.companyIntroductionResponse.companyPhotoList.map((t) => (
             <span>
               <CarouselImg
-                translateX={current * -1000}
+                translateX={current * -500}
                 src={t.fileUrl}
                 alt="company photo"
                 placeholder="blur"
