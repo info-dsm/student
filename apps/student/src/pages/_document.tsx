@@ -37,6 +37,10 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Corben:wght@700&display=swap"
+            rel="stylesheet"
+          />
           <link rel="shortcut icon" href="/assets/images/favicon.ico" />
         </Head>
         <body>

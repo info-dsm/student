@@ -23,7 +23,6 @@ const NoticeDetail = () => {
   const [NoticeInfo, setNoticeInfo] = useState<getNoticeDetailProps>();
   const [CompanyInfo, setCompanyInfo] = useState<getCompanyDetailProps>();
   const [NoticeID, setNoticeID] = useState<string[]>([]);
-  const [current, setCurrent] = useState<number>(0);
 
   useEffect(() => {
     if (query) {
@@ -53,61 +52,6 @@ const NoticeDetail = () => {
       <MainDiv>
         {NoticeInfo && CompanyInfo ? (
           <DetailDiv>
-            {CompanyInfo.companyIntroductionResponse.companyPhotoList.length ===
-            1 ? (
-              <img
-                src={
-                  CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
-                    .fileUrl
-                }
-                alt=""
-              />
-            ) : (
-              <>
-                <Carousel>
-                  <Arrow
-                    scale={1}
-                    onClick={() => {
-                      if (current === 0)
-                        setCurrent(
-                          CompanyInfo.companyIntroductionResponse
-                            .companyPhotoList.length - 1
-                        );
-                      else setCurrent(current - 1);
-                    }}
-                  >
-                    <div />
-                  </Arrow>
-                  {CompanyInfo.companyIntroductionResponse.companyPhotoList.map(
-                    (t) => (
-                      <span>
-                        <CarouselImg
-                          translateX={current * -1000}
-                          src={t.fileUrl}
-                          alt="company photo"
-                          placeholder="blur"
-                        />
-                      </span>
-                    )
-                  )}
-                  <Arrow
-                    scale={-1}
-                    onClick={() => {
-                      if (
-                        current <
-                        CompanyInfo.companyIntroductionResponse.companyPhotoList
-                          .length -
-                          1
-                      )
-                        setCurrent(current + 1);
-                      else setCurrent(0);
-                    }}
-                  >
-                    <div />
-                  </Arrow>
-                </Carousel>
-              </>
-            )}
             <h1>
               {NoticeInfo.classificationResponse.map((t, i, a) => (
                 <>
@@ -135,10 +79,24 @@ const NoticeDetail = () => {
                   : "지원하기"}
               </label>
             </ApplyBtn>
-            <DetailInfo
-              companyInfo={CompanyInfo}
-              subData={`${NoticeInfo.noticeOpenPeriod.startDate} ~ ${NoticeInfo.noticeOpenPeriod.endDate}`}
-            />
+            <>
+              <DetailInfo
+                companyInfo={CompanyInfo}
+                subData={`${NoticeInfo.noticeOpenPeriod.startDate} ~ ${NoticeInfo.noticeOpenPeriod.endDate}`}
+              />
+              {CompanyInfo.companyIntroductionResponse.companyPhotoList
+                .length === 1 ? (
+                <img
+                  src={
+                    CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
+                      .fileUrl
+                  }
+                  alt=""
+                />
+              ) : (
+                <></>
+              )}
+            </>
             <DetailRecruitmentJob
               noticeInfo={NoticeInfo}
               companyInfo={CompanyInfo}
@@ -160,54 +118,9 @@ const NoticeDetail = () => {
 
 export default NoticeDetail;
 
-const Arrow = styled.div<{ scale: number }>`
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  cursor: pointer;
-  width: 80px;
-  height: 80px;
-  left: ${(props) => (props.scale === 1 ? 3 : 90)}%;
-  transform: scale(${(props) => props.scale}, 1);
-  background-color: rgba(255, 255, 255, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
-  div {
-    width: 30px;
-    height: 60px;
-    margin-top: 12px;
-    margin-right: 10px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url("data:image/svg+xml,%3Csvg width='14' height='22' viewBox='0 0 14 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.8799 18.6126L5.86488 10.5801L13.8799 2.54758L11.4124 0.0800781L0.912383 10.5801L11.4124 21.0801L13.8799 18.6126Z' fill='%23242424'/%3E%3C/svg%3E%0A");
-    transition: all 0.2s ease;
-  }
-`;
-
-const Carousel = styled.div`
+const Container = styled.div`
   display: inline-flex;
-  white-space: nowrap;
-  width: 1000px;
-  height: 600px;
-  overflow-x: hidden;
-  position: relative;
-  text-align: center;
-  overflow-y: hidden;
-
-  span {
-    text-align: center;
-  }
-`;
-
-const CarouselImg = styled.img<{ translateX: number }>`
-  width: 1000px;
-  height: 600px;
-  object-fit: contain;
-  transition: 1s;
-  transform: translateX(${(props) => props.translateX}px);
+  flex-direction: column;
 `;
 
 const MainDiv = styled.div`
@@ -262,7 +175,7 @@ const DetailDiv = styled.div`
   width: 1200px;
   height: 100%;
   background-color: #fff;
-  padding: 174px 100px;
+  padding: 124px 100px;
 
   > img {
     width: 1000px;
