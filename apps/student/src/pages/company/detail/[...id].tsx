@@ -94,7 +94,7 @@ const StudentCompanyDetail = ({}: {}) => {
                 </>
               )}
               <h1>㈜ {info.companyName}</h1>
-              <DetailInfo companyInfo={info} subData={""} />
+              <DetailInfo companyInfo={info} />
               <StudentCompanyNoticeList companyInfo={info} info={noticeInfo} />
             </>
           ) : (
