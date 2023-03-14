@@ -36,7 +36,7 @@ const Attachment = ({
             createNoticeFile(res, file)
               .then(() => {
                 console.log("success");
-                router.push("/")
+                router.push("/");
               })
               .catch(() => {
                 console.log("error");
@@ -52,56 +52,54 @@ const Attachment = ({
 
   return (
     <>
-      {NoticeID.includes(NoticeInfo.noticeId) ? (
-        <></>
-      ) : (
-        <MainDiv>
-          <hr />
-          <NoticeDetailClassification name={"파일첨부"} />
-          <UploadDiv>
-            <label htmlFor="resume">
-              <Image src={UploadImg} alt="" />
-              <span>Upload Resume</span>
-            </label>
-            <input
-              type={"file"}
-              accept={".pdf, .hwp"}
-              id="resume"
-              multiple
-              onChange={(e: any) =>
-                setFile(file.concat(Object.values(e.target.files)))
-              }
-            />
-            {file.length > 0 ? (
-              <>
-                {file.map((t, i, a) => (
-                  <div>
-                    <span>{t.name}</span>
-                    <span
-                      onClick={() =>
-                        setFile(a.filter((_, a_idx) => a_idx != i))
-                      }
-                    >
-                      Delete File ⨉
-                    </span>
-                  </div>
-                ))}
-              </>
-            ) : (
-              <div>파일을 여러 개 선택해주세요!</div>
-            )}
-            <span>
-              <button
-                onClick={() => {
-                  applyNoticeForm();
-                }}
-              >
-                모집공고 지원하기 →
-              </button>
-            </span>
-          </UploadDiv>
-        </MainDiv>
-      )}
+      <MainDiv>
+        <hr />
+        <NoticeDetailClassification name={"파일첨부"} />
+        <UploadDiv>
+          <label htmlFor="resume">
+            <Image src={UploadImg} alt="" />
+            <span>Upload Resume</span>
+          </label>
+          <input
+            type={"file"}
+            accept={".pdf, .hwp"}
+            id="resume"
+            multiple
+            onChange={(e: any) =>
+              setFile(file.concat(Object.values(e.target.files)))
+            }
+          />
+          {file.length > 0 ? (
+            <>
+              {file.map((t, i, a) => (
+                <div>
+                  <span>{t.name}</span>
+                  <span
+                    onClick={() => setFile(a.filter((_, a_idx) => a_idx != i))}
+                  >
+                    Delete File ⨉
+                  </span>
+                </div>
+              ))}
+            </>
+          ) : (
+            <div>파일을 여러 개 선택해주세요!</div>
+          )}
+          <span>
+            <button
+              onClick={() => {
+                applyNoticeForm();
+              }}
+            >
+              {NoticeID.includes(NoticeInfo.noticeId) ? (
+                <>모집공고 재지원하기 →</>
+              ) : (
+                <>모집공고 지원하기 →</>
+              )}
+            </button>
+          </span>
+        </UploadDiv>
+      </MainDiv>
     </>
   );
 };
@@ -163,6 +161,7 @@ const UploadDiv = styled.div`
       font-size: 18px;
       font-weight: 700;
       color: ${(props) => props.theme.colors.white};
+      cursor: pointer;
     }
   }
 `;

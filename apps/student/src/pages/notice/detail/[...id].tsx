@@ -17,6 +17,7 @@ import { Footer } from "ui/components/Footer";
 import Portpoilo from "../../../lib/components/student/portpolio";
 import Attachment from "@/src/lib/components/student/attachment";
 import NeedAttachment from "@/src/lib/components/student/NeedAttachment";
+import Checked2 from "@/public/assets/images/checked2";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
@@ -62,6 +63,32 @@ const NoticeDetail = () => {
               개발자 모집합니다.
             </h1>
             <h6>㈜ {NoticeInfo.company.companyName}</h6>
+            <Date>
+              <span>
+                {CompanyInfo.isLeading ? (
+                  <span>
+                    <Checked2 />
+                    선도기업
+                  </span>
+                ) : (
+                  <></>
+                )}
+                {CompanyInfo.isAssociated ? (
+                  <span>
+                    <Checked2 />
+                    협력기업
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </span>
+              <span>
+                <span>
+                  {NoticeInfo.noticeOpenPeriod.startDate} ~{" "}
+                  {NoticeInfo.noticeOpenPeriod.endDate}
+                </span>
+              </span>
+            </Date>
             <ApplyBtn
               href={"#resume"}
               point={NoticeID.includes(NoticeInfo.noticeId)}
@@ -80,10 +107,7 @@ const NoticeDetail = () => {
               </label>
             </ApplyBtn>
             <>
-              <DetailInfo
-                companyInfo={CompanyInfo}
-                subData={`${NoticeInfo.noticeOpenPeriod.startDate} ~ ${NoticeInfo.noticeOpenPeriod.endDate}`}
-              />
+              <DetailInfo companyInfo={CompanyInfo} />
               {CompanyInfo.companyIntroductionResponse.companyPhotoList
                 .length === 1 ? (
                 <img
@@ -118,9 +142,30 @@ const NoticeDetail = () => {
 
 export default NoticeDetail;
 
-const Container = styled.div`
+const Date = styled.div`
+  width: 100%;
   display: inline-flex;
-  flex-direction: column;
+  gap: 24px;
+  justify-content: flex-end;
+  margin-bottom: 50px;
+  > span {
+    display: inline-flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 17px;
+    > span {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      > span {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+    }
+  }
 `;
 
 const MainDiv = styled.div`

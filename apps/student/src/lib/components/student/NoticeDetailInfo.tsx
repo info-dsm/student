@@ -4,41 +4,15 @@ import {
 } from "../../../axios/dist";
 import React, { useState } from "react";
 import styled from "styled-components";
-import Checked2 from "../../../../public/assets/images/checked2";
 
 const DetailInfo = ({
   companyInfo,
-  subData,
 }: {
   companyInfo: getCompanyDetailProps;
-  subData: string;
 }) => {
   const [current, setCurrent] = useState<number>(0);
   return (
     <>
-      <Date>
-        <span>
-          {companyInfo.isLeading ? (
-            <span>
-              <Checked2 />
-              선도기업
-            </span>
-          ) : (
-            <></>
-          )}
-          {companyInfo.isAssociated ? (
-            <span>
-              <Checked2 />
-              협력기업
-            </span>
-          ) : (
-            <></>
-          )}
-        </span>
-        <span>
-          <span>{subData}</span>
-        </span>
-      </Date>
       <NoticeInfo>
         <div>
           <div>
@@ -176,31 +150,6 @@ const CarouselImg = styled.img<{ translateX: number }>`
   object-fit: cover;
   transition: 1s;
   transform: translateX(${(props) => props.translateX}px);
-`;
-
-const Date = styled.div`
-  width: 100%;
-  display: inline-flex;
-  gap: 24px;
-  justify-content: flex-end;
-  > span {
-    display: inline-flex;
-    gap: 24px;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 600;
-    font-size: 17px;
-    > span {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      > span {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-      }
-    }
-  }
 `;
 
 const NoticeInfo = styled.div`
