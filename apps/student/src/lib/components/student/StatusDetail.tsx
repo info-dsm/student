@@ -35,7 +35,7 @@ const StatusDetail = ({ t }: { t: getSupportStatusProps }) => {
                 ? "대기중"
                 : t.status === "APPROVE"
                 ? "승인됨"
-                : "거절됨"}
+                : "거부됨"}
             </Status>
             <Field>
               <div>
