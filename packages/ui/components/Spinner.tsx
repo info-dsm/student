@@ -13,7 +13,8 @@ const Rotation = keyframes`
     }
     100% {
         transform: rotate(360deg);
-    }`;
+    }
+`;
 const _BackGround = styled.div`
   height: 100vh;
   width: 100vw;
@@ -21,7 +22,7 @@ const _BackGround = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  background: ${({ theme }) => theme.colors.black40};
+  background: ${({ theme }) => theme.colors.black};
 `;
 const _Spiiner = styled.div`
   width: 48px;

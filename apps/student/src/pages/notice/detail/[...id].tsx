@@ -18,6 +18,7 @@ import Portpoilo from "../../../lib/components/student/portpolio";
 import Attachment from "@/src/lib/components/student/attachment";
 import NeedAttachment from "@/src/lib/components/student/NeedAttachment";
 import Checked2 from "@/public/assets/images/checked2";
+import { Spinner } from "@/../../packages/ui/dist";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
@@ -48,93 +49,97 @@ const NoticeDetail = () => {
 
   return (
     <>
-      <HeaderComponent />
-      <MainDiv>
-        {NoticeInfo && CompanyInfo ? (
-          <DetailDiv>
-            <h1>
-              {NoticeInfo.classificationResponse.map((t, i, a) => (
-                <>
-                  {t.name}
-                  {a.length - 1 !== i ? ", " : " "}
-                </>
-              ))}
-              개발자 모집합니다.
-            </h1>
-            <h6>㈜ {NoticeInfo.company.companyName}</h6>
-            <Date>
-              <span>
-                {CompanyInfo.isLeading ? (
-                  <span>
-                    <Checked2 />
-                    선도기업
-                  </span>
-                ) : (
-                  <></>
-                )}
-                {CompanyInfo.isAssociated ? (
-                  <span>
-                    <Checked2 />
-                    협력기업
-                  </span>
-                ) : (
-                  <></>
-                )}
-              </span>
-              <span>
+      {NoticeInfo && CompanyInfo ? (
+        <>
+          <HeaderComponent />
+          <MainDiv>
+            <DetailDiv>
+              <h1>
+                {NoticeInfo.classificationResponse.map((t, i, a) => (
+                  <>
+                    {t.name}
+                    {a.length - 1 !== i ? ", " : " "}
+                  </>
+                ))}
+                개발자 모집합니다.
+              </h1>
+              <h6>㈜ {NoticeInfo.company.companyName}</h6>
+              <Date>
                 <span>
-                  {NoticeInfo.noticeOpenPeriod.startDate} ~{" "}
-                  {NoticeInfo.noticeOpenPeriod.endDate}
+                  {CompanyInfo.isLeading ? (
+                    <span>
+                      <Checked2 />
+                      선도기업
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                  {CompanyInfo.isAssociated ? (
+                    <span>
+                      <Checked2 />
+                      협력기업
+                    </span>
+                  ) : (
+                    <></>
+                  )}
                 </span>
-              </span>
-            </Date>
-            <ApplyBtn
-              href={"#resume"}
-              point={NoticeID.includes(NoticeInfo.noticeId)}
-            >
-              <div>지원자 수 {NoticeInfo.applicantCount}명</div>
-              <label
-                style={{
-                  cursor: `${
-                    NoticeID.includes(NoticeInfo.noticeId) ? "auto" : "pointer"
-                  }`,
-                }}
+                <span>
+                  <span>
+                    {NoticeInfo.noticeOpenPeriod.startDate} ~{" "}
+                    {NoticeInfo.noticeOpenPeriod.endDate}
+                  </span>
+                </span>
+              </Date>
+              <ApplyBtn
+                href={"#resume"}
+                point={NoticeID.includes(NoticeInfo.noticeId)}
               >
-                {NoticeID.includes(NoticeInfo.noticeId)
-                  ? "지원완료"
-                  : "지원하기"}
-              </label>
-            </ApplyBtn>
-            <>
-              <DetailInfo companyInfo={CompanyInfo} />
-              {CompanyInfo.companyIntroductionResponse.companyPhotoList
-                .length === 1 ? (
-                <img
-                  src={
-                    CompanyInfo.companyIntroductionResponse.companyPhotoList[0]
-                      .fileUrl
-                  }
-                  alt=""
-                />
-              ) : (
-                <></>
-              )}
-            </>
-            <DetailRecruitmentJob
-              noticeInfo={NoticeInfo}
-              companyInfo={CompanyInfo}
-            />
-            <QualificationRequirements noticeInfo={NoticeInfo} />
-            <Welfare noticeInfo={NoticeInfo} />
-            <Portpoilo noticeInfo={NoticeInfo} />
-            <NeedAttachment noticeInfo={NoticeInfo} />
-            <Attachment NoticeID={NoticeID} NoticeInfo={NoticeInfo} />
-          </DetailDiv>
-        ) : (
-          <></>
-        )}
-      </MainDiv>
-      <Footer />
+                <div>지원자 수 {NoticeInfo.applicantCount}명</div>
+                <label
+                  style={{
+                    cursor: `${
+                      NoticeID.includes(NoticeInfo.noticeId)
+                        ? "auto"
+                        : "pointer"
+                    }`,
+                  }}
+                >
+                  {NoticeID.includes(NoticeInfo.noticeId)
+                    ? "지원완료"
+                    : "지원하기"}
+                </label>
+              </ApplyBtn>
+              <>
+                <DetailInfo companyInfo={CompanyInfo} />
+                {CompanyInfo.companyIntroductionResponse.companyPhotoList
+                  .length === 1 ? (
+                  <img
+                    src={
+                      CompanyInfo.companyIntroductionResponse
+                        .companyPhotoList[0].fileUrl
+                    }
+                    alt=""
+                  />
+                ) : (
+                  <></>
+                )}
+              </>
+              <DetailRecruitmentJob
+                noticeInfo={NoticeInfo}
+                companyInfo={CompanyInfo}
+              />
+              <QualificationRequirements noticeInfo={NoticeInfo} />
+              <Welfare noticeInfo={NoticeInfo} />
+              <Portpoilo noticeInfo={NoticeInfo} />
+              <NeedAttachment noticeInfo={NoticeInfo} />
+              <Attachment NoticeID={NoticeID} NoticeInfo={NoticeInfo} />
+            </DetailDiv>
+          </MainDiv>
+          <Footer />
+        </>
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };

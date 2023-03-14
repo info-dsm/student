@@ -11,6 +11,7 @@ import StudentCompanyNoticeList from "../../../lib/components/student/noticeList
 import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
 import { Footer } from "ui/components/Footer";
+import { Spinner } from "@/../../packages/ui/dist";
 
 const StudentCompanyDetail = ({}: {}) => {
   const query = useRouter().query.id as string;
@@ -34,21 +35,26 @@ const StudentCompanyDetail = ({}: {}) => {
 
   return (
     <>
-      <HeaderComponent />
-      <MainDiv>
-        <DetailDiv>
-          {info && noticeInfo ? (
-            <>
-              <h1>㈜ {info.companyName}</h1>
-              <DetailInfo companyInfo={info} />
-              <StudentCompanyNoticeList companyInfo={info} info={noticeInfo} />
-            </>
-          ) : (
-            <></>
-          )}
-        </DetailDiv>
-      </MainDiv>
-      <Footer />
+      {info && noticeInfo ? (
+        <>
+          <HeaderComponent />
+          <MainDiv>
+            <DetailDiv>
+              <>
+                <h1>㈜ {info.companyName}</h1>
+                <DetailInfo companyInfo={info} />
+                <StudentCompanyNoticeList
+                  companyInfo={info}
+                  info={noticeInfo}
+                />
+              </>
+            </DetailDiv>
+          </MainDiv>
+          <Footer />
+        </>
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };

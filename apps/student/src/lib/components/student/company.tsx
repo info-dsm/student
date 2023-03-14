@@ -40,6 +40,8 @@ export default StudentCompany;
 const NoticeDiv = styled.a`
   text-decoration: none;
   height: 381px;
+  background-color: #f6f6f6;
+
   * {
     color: #101112;
   }

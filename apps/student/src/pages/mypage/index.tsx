@@ -11,6 +11,7 @@ import StudentMyPageProfile from "../../lib/components/student/Profile";
 import StudentSupportStatus from "../../lib/components/student/SupportStatus";
 import cookie from "js-cookie";
 import { Footer } from "ui/components/Footer";
+import { Spinner } from "@/../../packages/ui/dist";
 
 const StudentMyPage = () => {
   const [info, setInfo] = useState<getUserInfoProps>();
@@ -33,27 +34,22 @@ const StudentMyPage = () => {
 
   return (
     <>
-      <HeaderComponent />
-      <MainDiv>
-        {info && status ? (
-          <>
-            <div>
-              <StudentMyPageProfile info={info} />
-              <StudentSupportStatus status={status} />
-            </div>
-          </>
-        ) : (
-          <div>
-            <StudentMyPageProfile
-              info={{
-                name: "로그인을 해주세요",
-                email: "",
-              }}
-            />
-          </div>
-        )}
-      </MainDiv>
-      <Footer/>
+      {info && status ? (
+        <>
+          <HeaderComponent />
+          <MainDiv>
+            <>
+              <div>
+                <StudentMyPageProfile info={info} />
+                <StudentSupportStatus status={status} />
+              </div>
+            </>
+          </MainDiv>
+          <Footer />
+        </>
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };
