@@ -97,6 +97,7 @@ const NoticeList = styled.div`
 
     a {
       text-decoration: none;
+      cursor: pointer;
     }
 
     a > div {

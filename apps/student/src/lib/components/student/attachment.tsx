@@ -24,25 +24,23 @@ const Attachment = ({
   const applyNoticeForm = () => {
     reissue()
       .then(() => {
-        if (NoticeInfo && !NoticeID.includes(NoticeInfo.noticeId)) {
-          const form = file.map((t) => ({
-            fileName: t.name,
-            contentType: t.type,
-          }));
-          applyNotice({
-            id: NoticeInfo.noticeId,
-            form: form,
-          }).then((res: any) => {
-            createNoticeFile(res, file)
-              .then(() => {
-                console.log("success");
-                router.push("/");
-              })
-              .catch(() => {
-                console.log("error");
-              });
-          });
-        }
+        const form = file.map((t) => ({
+          fileName: t.name,
+          contentType: t.type,
+        }));
+        applyNotice({
+          id: NoticeInfo.noticeId,
+          form: form,
+        }).then((res: any) => {
+          createNoticeFile(res, file)
+            .then(() => {
+              alert("지원에 성공했습니다!");
+              router.push("/");
+            })
+            .catch(() => {
+              console.log("error");
+            });
+        });
       })
       .catch(() => {
         alert("로그인이 만료되었습니다.");
@@ -92,7 +90,7 @@ const Attachment = ({
               }}
             >
               {NoticeID.includes(NoticeInfo.noticeId) ? (
-                <>모집공고 재지원하기 →</>
+                <>모집공고 수정하기 →</>
               ) : (
                 <>모집공고 지원하기 →</>
               )}

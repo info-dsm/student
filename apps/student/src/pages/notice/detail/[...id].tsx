@@ -29,7 +29,6 @@ const NoticeDetail = () => {
     if (query) {
       getNoticeDetail({ id: query }).then((res: getNoticeDetailProps) => {
         setNoticeInfo(res);
-        console.log(res);
         getCompanyDetail({ id: res.company.companyNumber }).then((res1) => {
           setCompanyInfo(res1);
         });
