@@ -11,6 +11,12 @@ const DetailInfo = ({
   companyInfo: getCompanyDetailProps;
 }) => {
   const [current, setCurrent] = useState<number>(0);
+  const imageList = [
+    companyInfo.companyIntroductionResponse.companyLogo,
+  ].concat(companyInfo.companyIntroductionResponse.companyPhotoList);
+
+  console.log(imageList);
+
   return (
     <>
       <NoticeInfo>
@@ -65,17 +71,13 @@ const DetailInfo = ({
           <Arrow
             scale={1}
             onClick={() => {
-              if (current === 0)
-                setCurrent(
-                  companyInfo.companyIntroductionResponse.companyPhotoList
-                    .length - 1
-                );
+              if (current === 0) setCurrent(imageList.length - 1);
               else setCurrent(current - 1);
             }}
           >
             <span>{"<"}</span>
           </Arrow>
-          {companyInfo.companyIntroductionResponse.companyPhotoList.map((t) => (
+          {imageList.map((t) => (
             <span>
               <CarouselImg
                 translateX={current * -500}
@@ -88,13 +90,7 @@ const DetailInfo = ({
           <Arrow
             scale={-1}
             onClick={() => {
-              if (
-                current <
-                companyInfo.companyIntroductionResponse.companyPhotoList
-                  .length -
-                  1
-              )
-                setCurrent(current + 1);
+              if (current < imageList.length - 1) setCurrent(current + 1);
               else setCurrent(0);
             }}
           >
