@@ -42,6 +42,8 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+          <link rel="canonical" href="https://student.info-dsm.info/notice/detail" />
+          <link rel="canonical" href="https://student.info-dsm.info/company/detail" />
         </Head>
         <body>
           <Main />
