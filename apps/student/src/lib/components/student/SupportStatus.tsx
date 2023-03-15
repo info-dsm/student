@@ -1,21 +1,62 @@
 import { getNoticeDetail, getSupportStatusProps } from "../../../axios/dist";
 import styled from "styled-components";
 import StatusDetail from "./StatusDetail";
+import CommentImg from "@/public/assets/images/comment.png";
+import Image from "next/image";
+import { useState } from "react";
 
 const StudentSupportStatus = ({
   status,
 }: {
   status: getSupportStatusProps[];
 }) => {
+  const [message, setMessage] = useState<{
+    content: string;
+    idx?: number;
+  }>({
+    content: "",
+    idx: undefined,
+  });
   return (
     <SupportStatusDiv>
       <span>지원현황</span>
+      {message.content !== "" ? (
+        <Comment>
+          <h1>Feedback</h1>
+          <span>{message.content}</span>
+        </Comment>
+      ) : (
+        <></>
+      )}
+
       <div>
         {status.length > 0 ? (
           <>
             {status.map((t, i) => (
               <div key={i}>
-                <StatusDetail t={t}/>
+                {t.message ? (
+                  <Message
+                    onClick={() => {
+                      if (t.message) {
+                        if (message.idx === i)
+                          setMessage({
+                            content: "",
+                            idx: undefined,
+                          });
+                        else
+                          setMessage({
+                            content: t.message,
+                            idx: i,
+                          });
+                      }
+                    }}
+                  >
+                    <Image src={CommentImg} alt="메시지" />
+                  </Message>
+                ) : (
+                  <></>
+                )}
+                <StatusDetail t={t} />
               </div>
             ))}
           </>
@@ -29,15 +70,46 @@ const StudentSupportStatus = ({
 
 export default StudentSupportStatus;
 
+const Comment = styled.div`
+  width: 310px;
+  min-height: 200px;
+  background-color: #fefefe;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  position: absolute;
+  left: -26%;
+  top: 55px;
+  font-size: 18px;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+`;
+
+const Message = styled.div`
+  position: absolute;
+  left: -10px;
+  img {
+    width: 40px;
+    height: auto;
+    transform: scale(-1, 1);
+    margin-bottom: 60px;
+    cursor: pointer;
+  }
+`;
 
 const SupportStatusDiv = styled.div`
+  position: relative;
   margin-top: 102px;
   width: 100%;
   > span {
     font-weight: 600;
     font-size: 24px;
   }
-  > div {
+  > div:nth-last-child(1) {
     background-color: #f6f6f6;
     border: 5px solid #f6f6f6;
     border-radius: 5px;
@@ -65,6 +137,7 @@ const SupportStatusDiv = styled.div`
       align-items: center;
       justify-content: space-between;
       margin-bottom: 8px;
+      position: relative;
 
       > span {
         display: inline-flex;

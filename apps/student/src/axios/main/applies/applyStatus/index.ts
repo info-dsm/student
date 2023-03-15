@@ -7,6 +7,7 @@ export interface getSupportStatusProps {
     email: string;
     name: string;
   };
+  message: string | null;
   noticeId: string;
   status: "WAITING" | "APPROVE" | "REJECT";
   resumeList: {
