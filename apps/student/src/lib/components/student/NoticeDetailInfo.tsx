@@ -77,13 +77,14 @@ const DetailInfo = ({
           >
             <span>{"<"}</span>
           </Arrow>
-          {imageList.map((t) => (
+          {imageList.map((t, i) => (
             <span>
               <CarouselImg
                 translateX={current * -500}
                 src={t.fileUrl}
                 alt="company photo"
                 placeholder="blur"
+                object={i === 0}
               />
             </span>
           ))}
@@ -134,16 +135,17 @@ const Carousel = styled.div`
   position: relative;
   text-align: center;
   overflow-y: hidden;
+  border: 2px solid rgba(0, 0, 0, 0.5);
 
   span {
     text-align: center;
   }
 `;
 
-const CarouselImg = styled.img<{ translateX: number }>`
+const CarouselImg = styled.img<{ translateX: number; object: boolean }>`
   width: 500px;
   height: 280px;
-  object-fit: cover;
+  object-fit: ${(props) => (props.object ? "contain" : "cover")};
   transition: 1s;
   transform: translateX(${(props) => props.translateX}px);
 `;
