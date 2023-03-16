@@ -90,7 +90,7 @@ const Attachment = ({
               }}
             >
               {NoticeID.includes(NoticeInfo.noticeId) ? (
-                <>모집공고 수정하기 →</>
+                <>모집공고 재지원하기 →</>
               ) : (
                 <>모집공고 지원하기 →</>
               )}
