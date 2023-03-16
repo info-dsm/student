@@ -41,6 +41,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Corben:wght@700&display=swap"
             rel="stylesheet"
           />
+          <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
           <link rel="shortcut icon" href="/assets/images/favicon.ico" />
           <link rel="canonical" href="https://student.info-dsm.info/notice" />
           <link rel="canonical" href="https://student.info-dsm.info/company" />
