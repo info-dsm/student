@@ -62,10 +62,10 @@ const DetailInfo = ({
           ) : (
             ""
           )}
-          <div>
+          {/* <div>
             <div>이메일</div>
             <span>{companyInfo.contactor.email}</span>
-          </div>
+          </div> */}
         </div>
         <Carousel>
           <Arrow
