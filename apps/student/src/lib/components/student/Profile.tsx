@@ -30,7 +30,7 @@ export default StudentMyPageProfile;
 
 const Profile = styled.div`
   width: 100%;
-  height: 243px;
+  height: 25.93vmin;
   box-shadow: 2px 2px 12px -1px rgba(0, 0, 0, 0.22);
   display: inline-flex;
   justify-content: center;
@@ -40,8 +40,10 @@ const Profile = styled.div`
 `;
 
 const ProfileImage = styled.div`
-  width: 140px;
-  height: 140px;
+  img {
+    width: 7.29vmax;
+    height: 14.94vmin;
+  }
   border-radius: 50%;
   + div {
     div:nth-child(1) {

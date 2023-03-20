@@ -62,8 +62,8 @@ const MainDiv = styled.div`
   justify-content: center;
   background-color: #f8f8f9;
   > div {
-    min-height: 1000px;
-    width: 1448px;
+    min-height: 52.08vmin;
+    width: 75.41vmax;
     padding: 150px 100px;
     background-color: #fff;
     box-shadow: 2px 2px 12px -1px rgba(0, 0, 0, 0.22);

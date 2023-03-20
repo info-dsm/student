@@ -107,7 +107,7 @@ const SupportStatusDiv = styled.div`
   width: 100%;
   > span {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 1.25vmax;
   }
   > div:nth-last-child(1) {
     background-color: #f6f6f6;
@@ -115,14 +115,14 @@ const SupportStatusDiv = styled.div`
     border-radius: 5px;
     margin-top: 20px;
     width: 100%;
-    height: 426px;
+    height: 45.46vmin;
     overflow: scroll;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 12px;
 
     > span {
-      font-size: 18px;
+      font-size: 0.93vmax;
       font-weight: 600;
       height: 100%;
       display: flex;
@@ -145,15 +145,15 @@ const SupportStatusDiv = styled.div`
 
         > span {
           color: #101112;
-          font-size: 15px;
+          font-size: 0.78vmax;
           font-weight: 500;
         }
         > div {
-          font-size: 15px;
+          font-size: 0.78vmax;
         }
       }
 
-      padding: 24px;
+      padding: 1.25vmax;
     }
 
     &::-webkit-scrollbar {
