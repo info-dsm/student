@@ -98,3 +98,10 @@ export {
   getApplyCount,
   type getApplyCountProps,
 } from "../main/applies/applyCount";
+
+export {
+  getClassification,
+  type getClassificationProps,
+} from "../main/notice/classification";
+
+export { getClassificationNotice } from "../main/notice/classificationNotice";
