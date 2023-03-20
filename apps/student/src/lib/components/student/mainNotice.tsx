@@ -46,14 +46,14 @@ const SubData = styled.div`
   > div {
     display: inline-flex;
     gap: 5px;
-    font-size: 13px;
+    font-size: 0.67vmax;
     margin-right: 20px;
   }
 `;
 
 const Notice = styled.div<{ color: string }>`
-  width: 380px;
-  height: 222px;
+  width: 19.79vmax;
+  height: 23.69vmin;
   background-color: #fff;
   opacity: ${(props) => props.color};
   cursor: pointer;

@@ -103,7 +103,7 @@ const MainDiv = styled.div`
 `;
 
 const GridDiv = styled.div`
-  width: 1000px;
+  width: 52.08vmax;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 55px;
@@ -113,8 +113,8 @@ const GridDiv = styled.div`
 
 const ImageDiv = styled.div<{ url: string }>`
   background-image: url(${(props) => props.url});
-  width: 224px;
-  height: 105px;
+  width: 11.66vmax;
+  height: 11.2vmin;
   cursor: pointer;
   background-size: contain;
   background-repeat: no-repeat;
@@ -128,6 +128,5 @@ const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 0px 440px; */
   background-color: #101112;
 `;

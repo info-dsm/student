@@ -29,19 +29,19 @@ const TextBox = ({
 export default TextBox;
 
 const TextDiv = styled.div<{ top: number; bottom: number }>`
-  width: 1200px;
+  width: 62.5vmax;
   padding-top: ${(props) => props.top}px;
   padding-bottom: ${(props) => props.bottom}px;
   color: #fff;
   position: relative;
   background-color: #101112;
   div {
-    font-size: 48px;
+    font-size: 2.5vmax;
     font-weight: 700;
-    line-height: 57.28px;
+    line-height: 2.98vmax;
     + div {
       margin-top: 20px;
-      font-size: 22px;
+      font-size: 1.14vmax;
       font-weight: 600;
       line-height: 1.5vh;
       text-align: start;

@@ -49,8 +49,8 @@ const Banner = styled.div`
     transform: translate(-50%, -50%);
     color: #fff;
     text-align: center;
-    font-size: 48px;
-    line-height: 57.28px;
+    font-size: 2.5vmax;
+    line-height: 2.98vmax;
     font-weight: 700;
     position: relative;
   }
