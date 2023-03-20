@@ -17,8 +17,6 @@ import NoticePlaceHolder from "../../lib/components/student/placeholder";
 import ClosedNoticePlaceHolder from "../../lib/components/student/closedPlaceholder";
 
 const StudentNoticeList = () => {
-  if (typeof document === "undefined") return;
-
   const [notice, setNotice] = useState<getWaitingNoticeListContentProps[]>([]);
   const [closedNotice, setClosedNotice] = useState<
     getClosedNoticeListContentProps[]
@@ -30,10 +28,6 @@ const StudentNoticeList = () => {
   >([]);
   const [show, setShow] = useState<boolean | string>("");
   const [name, setName] = useState({ name: "전체", content: "전체" });
-
-  document.addEventListener("click", () =>
-    show === true ? setShow(false) : setShow("")
-  );
 
   useLayoutEffect(() => {
     const getNotice = () => {
@@ -76,7 +70,6 @@ const StudentNoticeList = () => {
 
   useEffect(() => {
     getClassification().then((res) => {
-      console.log(res);
       setClassification(
         [
           {
@@ -90,7 +83,7 @@ const StudentNoticeList = () => {
     });
   }, []);
 
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined" && typeof document !== "undefined") {
     window.addEventListener("scroll", (e) => {
       if (
         document.body.offsetHeight - window.innerHeight - 1 <=
@@ -99,6 +92,10 @@ const StudentNoticeList = () => {
         setScrolled(true);
       }
     });
+
+    document.addEventListener("click", () =>
+      show === true ? setShow(false) : setShow("")
+    );
   }
 
   return (
@@ -246,7 +243,7 @@ const NoticeContainer = styled.div`
 const SelectDiv = styled.div`
   position: absolute;
   top: 4px;
-  left: 14.58vmax;
+  right: 0.5vmax;
 
   > div:nth-child(1) {
     width: 10.41vmax;
