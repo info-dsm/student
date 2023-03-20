@@ -70,9 +70,13 @@ const Welfare = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
               <div>자율출퇴근입니다.</div>
             )}
           </div>
-          <div>
+        </GridDiv>
+        <GridDiv>
+          <div style={{ width: "1000px" }}>
             <div>기타</div>
-            <span>{otherFeatures ? otherFeatures : "기타 사항이 없습니다."}</span>
+            <span>
+              {otherFeatures ? otherFeatures : "기타 사항이 없습니다."}
+            </span>
           </div>
         </GridDiv>
       </MainDiv>
