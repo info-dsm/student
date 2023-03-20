@@ -21,7 +21,9 @@ export interface getNoticeDetailProps {
   certificateList: { certificateName: string }[];
   workTime: {
     commuteStartTime?: number;
+    commuteStartTimeMinute?: number;
     commuteEndTime?: number;
+    commuteEndTimeMinute?: number;
     workTimePerDay: number;
     workTimePerWeek: number;
     isFlexible: boolean;

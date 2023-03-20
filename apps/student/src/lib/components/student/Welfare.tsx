@@ -14,7 +14,12 @@ const Welfare = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
     elseSupport,
   } = welfare;
   const { breakfast, lunch, dinner, mealSupportPay } = mealSupport;
-  const { commuteEndTime, commuteStartTime } = workTime;
+  const {
+    commuteEndTime,
+    commuteStartTime,
+    commuteEndTimeMinute,
+    commuteStartTimeMinute,
+  } = workTime;
 
   return (
     <>
@@ -62,9 +67,21 @@ const Welfare = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
             {commuteEndTime || commuteStartTime ? (
               <>
                 <div>
-                  {commuteStartTime ? `${commuteStartTime}시 출근` : ""}
+                  {commuteStartTime
+                    ? `${commuteStartTime}시 ${
+                        commuteStartTimeMinute
+                          ? `${commuteStartTimeMinute}분`
+                          : ""
+                      } 출근`
+                    : ""}
                 </div>
-                <div>{commuteEndTime ? `${commuteEndTime}시 퇴근` : ""}</div>
+                <div>
+                  {commuteEndTime
+                    ? `${commuteEndTime}시 ${
+                        commuteEndTimeMinute ? `${commuteEndTimeMinute}분` : ""
+                      } 퇴근`
+                    : ""}
+                </div>
               </>
             ) : (
               <div>자율출퇴근입니다.</div>
