@@ -38,7 +38,10 @@ const StudentCompanyList = () => {
 
   if (typeof window !== "undefined" && typeof document !== "undefined") {
     window.addEventListener("scroll", (e) => {
-      if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
+      if (
+        document.body.offsetHeight - window.innerHeight - 1 <=
+        window.scrollY
+      ) {
         setScrolled(true);
       }
     });
