@@ -109,21 +109,7 @@ const NoticeDetail = () => {
                     : "지원하기"}
                 </label>
               </ApplyBtn>
-              <>
-                <DetailInfo companyInfo={CompanyInfo} />
-                {CompanyInfo.companyIntroductionResponse.companyPhotoList
-                  .length === 1 ? (
-                  <img
-                    src={
-                      CompanyInfo.companyIntroductionResponse
-                        .companyPhotoList[0].fileUrl
-                    }
-                    alt=""
-                  />
-                ) : (
-                  <></>
-                )}
-              </>
+              <DetailInfo companyInfo={CompanyInfo} />
               <DetailRecruitmentJob
                 noticeInfo={NoticeInfo}
                 companyInfo={CompanyInfo}
