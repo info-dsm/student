@@ -41,7 +41,7 @@ const Banner = styled.div`
     #101112 95.05%
   );
   width: 100vw;
-  height: 370px;
+  height: 39.4vmin;
 
   div {
     left: 50%;
@@ -49,14 +49,13 @@ const Banner = styled.div`
     transform: translate(-50%, -50%);
     color: #fff;
     text-align: center;
-    font-size: 48px;
-    line-height: 57.28px;
+    font-size: 2.5vmax;
     font-weight: 700;
     position: relative;
     + div {
       color: rgba(255, 255, 255, 0.5);
       font-weight: 600;
-      font-size: 17px;
+      font-size: 0.88vmax;
       top: 40%;
       left: 50%;
     }

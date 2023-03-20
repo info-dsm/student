@@ -130,7 +130,7 @@ const MainDiv = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 0px 236px;
+  padding: 0px 12.3vmax;
   display: flex;
 `;
 
@@ -138,6 +138,8 @@ const Kind2 = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 80px;
+  font-size: 1.25vmax;
+
   > div:nth-child(1) {
     display: flex;
     align-items: center;
@@ -145,22 +147,22 @@ const Kind2 = styled.div`
     margin-bottom: 30px;
     span {
       font-weight: 600;
-      font-size: 24px;
+      font-size: 1.25vmax;
       + span {
         font-weight: 400;
-        font-size: 17px;
+        font-size: 0.88vmax;
       }
     }
   }
 `;
 
 const NoticeContainer = styled.div`
-  width: 1156px;
+  width: 60.2vmax;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding-bottom: 10%;
-  @media (max-width: 1700px) {
+  /* @media (max-width: 1700px) {
     width: 950px;
     grid-template-columns: repeat(3, 1fr);
-  }
+  } */
 `;

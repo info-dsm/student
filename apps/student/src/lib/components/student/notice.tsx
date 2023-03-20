@@ -46,17 +46,17 @@ const NoticeDiv = styled.a`
     color: #101112;
   }
   cursor: pointer;
-  width: 280px;
+  width: 14.5vmax;
 
   img {
     width: 100%;
-    height: 169px;
+    height: 18vmin;
     margin-bottom: 17px;
     object-fit: cover;
   }
   > h1 {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 1vmax;
     margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -66,7 +66,7 @@ const NoticeDiv = styled.a`
     text-overflow: ellipsis;
   }
   > span {
-    font-size: 13px;
+    font-size: 0.6vmax;
     font-weight: 600;
   }
 `;
@@ -74,7 +74,7 @@ const NoticeDiv = styled.a`
 const Address = styled.div`
   span {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.7vmax;
     color: rgba(16, 17, 18, 0.65);
   }
 `;
@@ -82,7 +82,7 @@ const Address = styled.div`
 const Part = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-  font-size: 13px;
+  font-size: 0.6vmax;
   gap: 20px;
   line-height: 0px;
   margin-bottom: 65px;

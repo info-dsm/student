@@ -90,7 +90,7 @@ export default HeaderComponent;
 
 const MainDiv = styled.div`
   width: 100vw;
-  padding: 22px 116px;
+  padding: 1.1vmax 12.3vmin;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -104,15 +104,16 @@ const MainDiv = styled.div`
   > a {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.52vmax;
     cursor: pointer;
+    width: 5.6vmax;
   }
 
   > div {
-    font-size: 15px;
+    font-size: 0.78vmax;
     font-weight: 600;
     display: inline-flex;
-    gap: 35px;
+    gap: 1.8vmax;
     a {
       color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
