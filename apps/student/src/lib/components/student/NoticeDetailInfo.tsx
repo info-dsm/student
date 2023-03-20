@@ -15,7 +15,7 @@ const DetailInfo = ({
     companyInfo.companyIntroductionResponse.companyLogo,
   ].concat(companyInfo.companyIntroductionResponse.companyPhotoList);
 
-  console.log(imageList);
+  console.log(companyInfo);
 
   return (
     <>
@@ -40,6 +40,16 @@ const DetailInfo = ({
           <div>
             <div>설립연도</div>
             <span>{companyInfo.companyInformation.establishedAt}년</span>
+          </div>
+          <div>
+            <div>연매출액</div>
+            <span>
+              {(
+                parseInt(`${companyInfo.companyInformation.annualSales}`) /
+                100000000
+              ).toFixed(1)}
+              억
+            </span>
           </div>
           {companyInfo.companyInformation.homeAddress ? (
             <div>
