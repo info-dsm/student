@@ -22,7 +22,7 @@ const NoticePlaceHolderBox = keyframes`
 `;
 
 const NoticeContainer = styled.div`
-  width: 1146px;
+  width: 59.68vmax;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 
@@ -31,8 +31,8 @@ const NoticeContainer = styled.div`
   margin-right: 10px;
 
   div {
-    width: 280px;
-    height: 138px;
+    width: 14.58vmax;
+    height: 14.72vmin;
     background-color: #ebebeb;
     position: relative;
     overflow: hidden;

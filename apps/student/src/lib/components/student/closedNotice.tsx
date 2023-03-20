@@ -66,8 +66,8 @@ const NoticeDiv = styled.div`
     color: #101112;
   }
 
-  width: 280px;
-  height: 180px;
+  width: 14.58vmax;
+  height: 19.2vmin;
   background-color: #fff;
   border: 1px solid rgba(16, 17, 18, 0.1);
   border-radius: 5px;
@@ -81,8 +81,8 @@ const NoticeLogo = styled.div`
   justify-content: space-between;
   margin-bottom: 25px;
   img {
-    width: 100px;
-    height: 40px;
+    width: 5.2vmax;
+    height: 4.2vmin;
     object-fit: cover;
     border-radius: 3px;
   }

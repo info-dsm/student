@@ -14,10 +14,7 @@ const StudentCompanyKind = () => {
 export default StudentCompanyKind;
 
 const Kind = styled.div`
-  padding: 80px 256px 30px 236px;
-  @media (max-width: 1700px) {
-    padding: 80px 256px 30px 176px;
-  }
+  padding: 8.5vmin 13.3vmax 3.2vmin 12.29vmax;
   width: 100vw;
   display: inline-flex;
   justify-content: space-between;
@@ -26,11 +23,11 @@ const Kind = styled.div`
     align-items: center;
     gap: 20px;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 1.25vmax;
     color: #101112;
     span {
       font-weight: 400;
-      font-size: 17px;
+      font-size: 0.88vmax;
     }
     + div {
       width: 274px;
