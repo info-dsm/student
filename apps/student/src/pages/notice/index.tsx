@@ -50,7 +50,12 @@ const StudentNoticeList = () => {
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", (e) => {
-      if (document.body.offsetHeight - window.innerHeight === window.scrollY) {
+      console.log(
+        document.body.offsetHeight,
+        window.innerHeight,
+        window.scrollY
+      );
+      if (document.body.offsetHeight - window.innerHeight <= window.scrollY) {
         setScrolled(true);
       }
     });
