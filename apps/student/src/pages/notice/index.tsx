@@ -28,7 +28,7 @@ const StudentNoticeList = () => {
     getClassificationProps[]
   >([]);
   const [show, setShow] = useState<boolean | string>("");
-  const [name, setName] = useState({ name: "전체", content: "전체" });
+  const [name, setName] = useState("전체");
   const [inputValue, setInputValue] = useState("");
 
   useLayoutEffect(() => {
@@ -39,7 +39,7 @@ const StudentNoticeList = () => {
         ) as HTMLDivElement;
 
         if (cnt * 12 === companyContainer.children.length || cnt === 0)
-          if (name.name === "전체")
+          if (name === "전체")
             getWaitingNoticeList({ idx: cnt, size: 12 }).then((res) => {
               setNotice((list) => list?.concat(res.content));
               setCnt(cnt + 1);
@@ -53,13 +53,11 @@ const StudentNoticeList = () => {
               });
             });
           else {
-            getClassificationNotice({ classification: name.name }).then(
-              (res) => {
-                setNotice((list) => list?.concat(res.content));
-                setCnt(cnt + 1);
-                setScrolled(false);
-              }
-            );
+            getClassificationNotice({ classification: name }).then((res) => {
+              setNotice((list) => list?.concat(res.content));
+              setCnt(cnt + 1);
+              setScrolled(false);
+            });
           }
         else setScrolled(false);
       }
@@ -120,10 +118,25 @@ const StudentNoticeList = () => {
                   // console.log("깋".charCodeAt(0));
                   // console.log("힣".charCodeAt(0));
                 }}
-                onChange={(e) => {
-                  setInputValue(e.target.value.toUpperCase());
+                onKeyDown={(e) => {
+                  if (e.keyCode === 13) {
+                    const notice = document.querySelectorAll(
+                      ".noticeFilter"
+                    )[0] as HTMLDivElement;
+                    const dataset_name = notice.dataset.name as string;
+                    setName(dataset_name);
+                    setScrolled(true);
+                    setCnt(0);
+                    setShow(false);
+                    setNotice([]);
+                  }
                 }}
-                placeholder={name.name}
+                onChange={(e) => {
+                  setInputValue(
+                    e.target.value.toUpperCase().replace(/(\s*)/g, "")
+                  );
+                }}
+                placeholder={name}
               ></input>
               <DataList state={show}>
                 {classification.map((e, i) => (
@@ -133,16 +146,15 @@ const StudentNoticeList = () => {
                     ) || e.name.replace(/(\s*)/g, "").includes(inputValue) ? (
                       <div
                         key={i}
+                        className="noticeFilter"
                         onClick={() => {
-                          setName({
-                            name: e.name,
-                            content: e.bigClassification.bigClassificationName,
-                          });
+                          setName(e.name);
                           setScrolled(true);
                           setCnt(0);
                           setShow(false);
                           setNotice([]);
                         }}
+                        data-name={e.name}
                       >
                         {e.name}
                       </div>

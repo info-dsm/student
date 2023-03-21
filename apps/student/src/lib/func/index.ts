@@ -25,7 +25,7 @@ export const GetInitial = (str: string) => {
     const utf = c.charCodeAt(0);
     if (utf >= 44032 && utf <= 55203)
       result += initial[parseInt(String((utf - 44032) / 588))];
-    else result += c;
+    else result += c.toUpperCase();
   });
   return result;
 };

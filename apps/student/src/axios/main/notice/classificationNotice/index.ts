@@ -7,7 +7,7 @@ export const getClassificationNotice = async ({
   classification: string;
 }) => {
   const data: getWaitingNoticeListProps = await request.get(
-    `/notice/classification?idx=0&size=10&smallClassification=${classification}`
+    `/notice/classification/small?idx=0&size=10&smallClassification=${classification}`
   );
   return data;
 };
