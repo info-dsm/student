@@ -15,6 +15,7 @@ import { useState, useLayoutEffect, useEffect } from "react";
 import HeaderComponent from "ui/components/StudentHeader";
 import NoticePlaceHolder from "../../lib/components/student/placeholder";
 import ClosedNoticePlaceHolder from "../../lib/components/student/closedPlaceholder";
+import { GetInitial } from "@/src/lib/func";
 
 const StudentNoticeList = () => {
   const [notice, setNotice] = useState<getWaitingNoticeListContentProps[]>([]);
@@ -28,6 +29,7 @@ const StudentNoticeList = () => {
   >([]);
   const [show, setShow] = useState<boolean | string>("");
   const [name, setName] = useState({ name: "전체", content: "전체" });
+  const [inputValue, setInputValue] = useState("");
 
   useLayoutEffect(() => {
     const getNotice = () => {
@@ -110,31 +112,44 @@ const StudentNoticeList = () => {
               <span>마감 일자순 정렬</span>
             </div>
             <SelectDiv>
-              <div
+              <input
                 onClick={(e) => {
                   e.stopPropagation();
                   setShow(!show);
+                  // console.log("가".charCodeAt(0));
+                  // console.log("깋".charCodeAt(0));
+                  // console.log("힣".charCodeAt(0));
                 }}
-              >
-                {name.name}
-              </div>
+                onChange={(e) => {
+                  setInputValue(e.target.value.toUpperCase());
+                }}
+                placeholder={name.name}
+              ></input>
               <DataList state={show}>
                 {classification.map((e, i) => (
-                  <div
-                    key={i}
-                    onClick={() => {
-                      setName({
-                        name: e.name,
-                        content: e.bigClassification.bigClassificationName,
-                      });
-                      setScrolled(true);
-                      setCnt(0);
-                      setShow(false);
-                      setNotice([]);
-                    }}
-                  >
-                    {e.name}
-                  </div>
+                  <>
+                    {GetInitial(e.name.replace(/(\s*)/g, "")).includes(
+                      inputValue
+                    ) || e.name.replace(/(\s*)/g, "").includes(inputValue) ? (
+                      <div
+                        key={i}
+                        onClick={() => {
+                          setName({
+                            name: e.name,
+                            content: e.bigClassification.bigClassificationName,
+                          });
+                          setScrolled(true);
+                          setCnt(0);
+                          setShow(false);
+                          setNotice([]);
+                        }}
+                      >
+                        {e.name}
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </>
                 ))}
               </DataList>
             </SelectDiv>
@@ -245,7 +260,7 @@ const SelectDiv = styled.div`
   top: 4px;
   right: 0.5vmax;
 
-  > div:nth-child(1) {
+  > input {
     width: 10.41vmax;
     height: 3.94vmin;
     border: 2px solid rgba(0, 0, 0, 0.3);
