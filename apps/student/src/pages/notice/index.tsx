@@ -51,7 +51,7 @@ const StudentNoticeList = () => {
               });
             });
           else {
-            getClassificationNotice({ classification: name.content }).then(
+            getClassificationNotice({ classification: name.name }).then(
               (res) => {
                 setNotice((list) => list?.concat(res.content));
                 setCnt(cnt + 1);
