@@ -48,7 +48,7 @@ const DetailInfo = ({
             <div>연매출액</div>
             <span>
               {annualSales[0] === "," ? annualSales.substring(1) : annualSales}
-              억
+              원
             </span>
           </div>
           {companyInfo.companyInformation.homeAddress ? (

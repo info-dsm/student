@@ -45,7 +45,7 @@ const Welfare = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
           </div>
           <div>
             <div>복지</div>
-            {Object.values(welfare).includes(true) || elseSupport ? (
+            {Object.values(welfare).includes(true) ? (
               <div>
                 {dormitorySupport ? <div>• 기숙사 지원</div> : ""}
                 {selfDevelopmentPay ? <div>• 자기계발비 지원</div> : ""}
@@ -56,7 +56,6 @@ const Welfare = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
                   ""
                 )}
                 {alternativeMilitaryPlan ? <div>• 산업기능요원</div> : ""}
-                {elseSupport ? <div>• {elseSupport}</div> : ""}
               </div>
             ) : (
               <div>복지 혜택이 없습니다.</div>
@@ -86,6 +85,12 @@ const Welfare = ({ noticeInfo }: { noticeInfo: getNoticeDetailProps }) => {
             ) : (
               <div>자율출퇴근입니다.</div>
             )}
+          </div>
+        </GridDiv>
+        <GridDiv>
+          <div style={{ width: "1000px" }}>
+            <div>기타</div>
+            <span>{elseSupport ? elseSupport : "기타 사항이 없습니다."}</span>
           </div>
         </GridDiv>
       </MainDiv>
