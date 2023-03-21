@@ -15,7 +15,10 @@ const DetailInfo = ({
     companyInfo.companyIntroductionResponse.companyLogo,
   ].concat(companyInfo.companyIntroductionResponse.companyPhotoList);
 
-  console.log(companyInfo);
+  const annualSales = `${companyInfo.companyInformation.annualSales}`.replace(
+    /(?=(\d{3})+(?!\d))/g,
+    ","
+  )
 
   return (
     <>
@@ -44,10 +47,7 @@ const DetailInfo = ({
           <div>
             <div>연매출액</div>
             <span>
-              {(
-                parseInt(`${companyInfo.companyInformation.annualSales}`) /
-                100000000
-              ).toFixed(1)}
+              {annualSales[0] === "," ? annualSales.substring(1) : annualSales}
               억
             </span>
           </div>
@@ -62,7 +62,12 @@ const DetailInfo = ({
             ""
           )}
           {companyInfo.companyInformation.agentAddress &&
-          companyInfo.companyInformation.agentAddress.fullAddress ? (
+          companyInfo.companyInformation.homeAddress &&
+          companyInfo.companyInformation.agentAddress.fullAddress &&
+          !(
+            companyInfo.companyInformation.agentAddress.fullAddress ===
+            companyInfo.companyInformation.homeAddress.fullAddress
+          ) ? (
             <div>
               <div>지점</div>
               <span>

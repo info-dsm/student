@@ -1,5 +1,8 @@
 // import { getCompanyDetailProps, getNoticeDetailProps } from "apis";
-import { getCompanyDetailProps, getNoticeDetailProps } from "../../../axios/dist";
+import {
+  getCompanyDetailProps,
+  getNoticeDetailProps,
+} from "../../../axios/dist";
 import React from "react";
 import styled from "styled-components";
 import NoticeDetailClassification from "./Classification";
@@ -9,7 +12,6 @@ const QualificationRequirements = ({
 }: {
   noticeInfo: getNoticeDetailProps;
 }) => {
-  console.log(noticeInfo);
   return (
     <>
       <MainDiv>
@@ -51,9 +53,15 @@ const QualificationRequirements = ({
                 : `${noticeInfo.gradeCutLine}% 이내`}
             </div>
           </div>
-          <div>
+        </GridDiv>
+        <GridDiv>
+          <div style={{ width: "1000px" }}>
             <div>우대사항</div>
-            <span>우대사항이 없습니다.</span>
+            <span>
+              {noticeInfo.otherFeatures
+                ? noticeInfo.otherFeatures
+                : "우대사항이 없습니다."}
+            </span>
           </div>
         </GridDiv>
       </MainDiv>

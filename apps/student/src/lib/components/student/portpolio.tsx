@@ -31,6 +31,7 @@ export default Portpoilo;
 
 const MainDiv = styled.div`
   margin-top: 120px;
+  font-size: 16px;
 
   div {
     margin-top: 30px;
