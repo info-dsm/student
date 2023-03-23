@@ -17,6 +17,7 @@ const StudentSupportStatus = ({
     content: "",
     idx: undefined,
   });
+  console.log(status);
   return (
     <SupportStatusDiv>
       <span>지원현황</span>

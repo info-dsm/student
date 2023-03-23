@@ -8,7 +8,10 @@ export interface getSupportStatusProps {
     name: string;
   };
   message: string | null;
-  noticeId: string;
+  notice: {
+    noticeId: string,
+    smallClassificationList: string[]
+  }
   status: "WAITING" | "APPROVE" | "REJECT";
   resumeList: {
     fileId: string;

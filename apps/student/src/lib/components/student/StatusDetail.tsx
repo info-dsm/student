@@ -11,9 +11,11 @@ const StatusDetail = ({ t }: { t: getSupportStatusProps }) => {
   const [notice, setNotice] = useState<getNoticeDetailProps>();
   const router = useRouter();
   useEffect(() => {
-    getNoticeDetail({ id: t.noticeId }).then((res: getNoticeDetailProps) => {
-      setNotice(res);
-    });
+    getNoticeDetail({ id: t.notice.noticeId }).then(
+      (res: getNoticeDetailProps) => {
+        setNotice(res);
+      }
+    );
   }, []);
 
   return (
