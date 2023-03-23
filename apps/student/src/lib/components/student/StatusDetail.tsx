@@ -54,7 +54,7 @@ const StatusDetail = ({ t }: { t: getSupportStatusProps }) => {
           <span>
             <a
               onClick={() => {
-                router.push(`/notice/detail/${t.noticeId}`);
+                router.push(`/notice/detail/${t.notice.noticeId}`);
               }}
             >
               <Status color={"#fff"} background={"#6750F8"}>
