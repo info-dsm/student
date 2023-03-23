@@ -71,8 +71,8 @@ const StudentSupportStatus = ({
 export default StudentSupportStatus;
 
 const Comment = styled.div`
-  width: 310px;
-  min-height: 200px;
+  width: 16.14vmax;
+  min-height: 21.34vmin;
   background-color: #fefefe;
   border: 2px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -93,7 +93,7 @@ const Message = styled.div`
   position: absolute;
   left: -10px;
   img {
-    width: 40px;
+    width: 2.08vmax;
     height: auto;
     transform: scale(-1, 1);
     margin-bottom: 60px;
@@ -103,7 +103,7 @@ const Message = styled.div`
 
 const SupportStatusDiv = styled.div`
   position: relative;
-  margin-top: 102px;
+  margin-top: 10.88vmin;
   width: 100%;
   > span {
     font-weight: 600;
