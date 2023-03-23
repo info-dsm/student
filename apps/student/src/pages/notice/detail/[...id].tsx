@@ -43,7 +43,7 @@ const NoticeDetail = () => {
 
   const getStatus = () => {
     getSupportStatus().then((res) => {
-      setNoticeID(res.map((e) => e.noticeId));
+      setNoticeID(res.map((e) => e.notice.noticeId));
     });
   };
 
