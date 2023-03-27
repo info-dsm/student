@@ -39,7 +39,7 @@ const Kind = styled.div`
   font-weight: 700;
   color: rgba(16, 17, 18, 0.6);
   display: inline-flex;
-  align-items: center;
+  height: 18px;
 
   div {
     width: 16px;
