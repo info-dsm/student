@@ -24,7 +24,7 @@ export const studentSignUp = async ({
       studentKey: req.studentKey,
       name: req.name,
       email: req.email,
-      password: req.password,
+      password: req.password.toLowerCase(),
       githubLink: req.githubLink,
       entranceYear: req.entranceYear,
     },
