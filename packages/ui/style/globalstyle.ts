@@ -27,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
   * {
+    font-family: 'Apple SD Gothic Neo','Malgun Gothic',arial,sans-serif;
     outline: none;
     box-sizing: border-box;
   }
