@@ -7,6 +7,7 @@ import StudentAuthButton from "../../../lib/components/student/Button";
 import { login1, reissue } from "../../../axios/dist";
 import { useRouter } from "next/router";
 import cookie from "js-cookie";
+import { Notice } from "@/src/lib/components/student/Alert";
 
 const StudentLogin = () => {
   const router = useRouter();
@@ -97,7 +98,10 @@ const StudentLogin = () => {
                 movepage();
               })
               .catch(() => {
-                alert("아이디와 비밀번호가 틀립니다.");
+                Notice({
+                  message: "아이디와 비밀번호가 틀립니다.",
+                  state: "error",
+                });
               });
           }}
         />

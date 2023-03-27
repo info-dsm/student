@@ -7,6 +7,7 @@ import StudentAuthButton from "../../../lib/components/student/Button";
 import { codeSend, codeCheck, studentSignUp } from "../../../axios/dist";
 import StudentAuthKind from "../../../lib/components/student/signupKind";
 import { useRouter } from "next/router";
+import { Notice } from "../../../lib/components/student/Alert";
 
 const StudentSignUp = () => {
   const router = useRouter();
@@ -112,17 +113,26 @@ const StudentSignUp = () => {
                   if (request.email.split("@")[1] === "dsm.hs.kr") {
                     codeSend({ email: request.email })
                       .then(() => {
-                        alert("인증번호가 발송되었습니다.");
+                        Notice({
+                          message: "인증번호가 발송되었습니다.",
+                          state: "success",
+                        });
                       })
                       .catch(() => {
-                        alert("이미 있는 사용자입니다.");
+                        Notice({
+                          message: "이미 있는 사용자입니다.",
+                          state: "error",
+                        });
                       });
                   } else {
-                    alert("학교 계정을 입력해주세요.");
+                    Notice({
+                      message: "학교 계정을 입력해주세요.",
+                      state: "error",
+                    });
                     setStatus({ ...status, email: "error" });
                   }
                 } else {
-                  alert("내용을 입력해주세요.");
+                  Notice({ message: "내용을 입력해주세요.", state: "error" });
                   setStatus({ ...status, email: "error" });
                 }
               },
@@ -136,7 +146,7 @@ const StudentSignUp = () => {
             subClick={{
               content: "인증번호 확인",
               event: () => {
-                if (request.emailCode !== "")
+                if (request.emailCode !== "" || request.email !== "")
                   codeCheck({
                     email: request.email,
                     data: request.emailCode,
@@ -214,7 +224,10 @@ const StudentSignUp = () => {
                   movePage();
                 })
                 .catch(() => {
-                  alert("계정이 성공적으로 생성되지 않았습니다.");
+                  Notice({
+                    message: "계정이 성공적으로 생성되지 않았습니다.",
+                    state: "error",
+                  });
                 });
             }}
           />
