@@ -19,7 +19,6 @@ const StudentSignUp = () => {
     studentKey: string;
     githubLink: string;
     passwordCheck: string;
-    entranceYear: number;
   }>({
     emailCode: "",
     email: "",
@@ -28,7 +27,6 @@ const StudentSignUp = () => {
     studentKey: "",
     githubLink: "",
     passwordCheck: "",
-    entranceYear: 0,
   });
 
   const [status, setStatus] = useState<{
@@ -39,7 +37,6 @@ const StudentSignUp = () => {
     studentKey: "normal" | "error";
     githubLink: "normal" | "error";
     passwordCheck: "normal" | "error";
-    entranceYear: "normal" | "error";
   }>({
     email: "normal",
     password: "normal",
@@ -48,7 +45,6 @@ const StudentSignUp = () => {
     studentKey: "normal",
     githubLink: "normal",
     passwordCheck: "normal",
-    entranceYear: "normal",
   });
 
   const [checkStatus, setCheckStatus] = useState<{
@@ -111,19 +107,7 @@ const StudentSignUp = () => {
               event: () => {
                 if (request.email !== "") {
                   if (request.email.split("@")[1] === "dsm.hs.kr") {
-                    codeSend({ email: request.email })
-                      .then(() => {
-                        Notice({
-                          message: "인증번호가 발송되었습니다.",
-                          state: "success",
-                        });
-                      })
-                      .catch(() => {
-                        Notice({
-                          message: "이미 있는 사용자입니다.",
-                          state: "error",
-                        });
-                      });
+                    codeSend({ email: request.email });
                   } else {
                     Notice({
                       message: "학교 계정을 입력해주세요.",
@@ -180,12 +164,6 @@ const StudentSignUp = () => {
 
             //   },
             // }}
-          />
-          <AuthInput
-            type={status.entranceYear}
-            placeHolder="입학연도을 입력해주세요."
-            onChange={changeInput}
-            name="entranceYear"
           />
           <StudentAuthKind status={checkStatus.password} content={"비밀번호"} />
           <AuthInput
