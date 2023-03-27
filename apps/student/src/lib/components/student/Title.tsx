@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Logo from "../../../../public/assets/images/logo";
+import { useRouter } from "next/router";
 
 const StudentAuthTitle = ({
   title,
@@ -13,9 +14,12 @@ const StudentAuthTitle = ({
     link: string;
   };
 }) => {
+  const router = useRouter();
   return (
     <TitleDiv>
-      <Logo />
+      <div onClick={() => router.push("../")}>
+        <Logo />
+      </div>
       <div>{title}</div>
       <span>
         <span>{subTitle.content1}</span>
@@ -33,6 +37,10 @@ const TitleDiv = styled.div`
   flex-direction: column;
   row-gap: 8px;
   margin-bottom: 20px;
+
+  svg {
+    cursor: pointer;
+  }
 
   div {
     font-size: 24px;

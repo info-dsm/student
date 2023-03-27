@@ -75,10 +75,10 @@ const StudentAuthButton = ({
                   Object.values(check).includes("failed") ||
                   Object.values(check).includes("unChecked")
                 ) {
-                  alert("인증번호 확인을 해주세요.");
+                  alert("인증번호나 비밀번호를 확인해주세요.");
                   //경고 alert
                 } else clickEvent();
-              }
+              } else clickEvent();
             }
           }}
         >

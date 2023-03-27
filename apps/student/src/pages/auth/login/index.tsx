@@ -48,9 +48,11 @@ const StudentLogin = () => {
   const movepage = () => router.push("../");
 
   useEffect(() => {
-    reissue().then(() => {
-      movepage();
-    });
+    reissue()
+      .then(() => {
+        movepage();
+      })
+      .catch(() => {});
   }, []);
 
   return (
