@@ -93,6 +93,7 @@ const GridDiv = styled.div`
     > span {
       color: #101112;
       font-weight: 500;
+      white-space: pre-wrap;
     }
     > div:nth-child(2) {
       margin-bottom: 0px;

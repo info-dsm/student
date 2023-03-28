@@ -41,6 +41,7 @@ const StudentNoticeList = () => {
         if (cnt * 12 === companyContainer.children.length || cnt === 0)
           if (name === "전체")
             getWaitingNoticeList({ idx: cnt, size: 12 }).then((res) => {
+              console.log(res.content);
               setNotice((list) => list?.concat(res.content));
               setCnt(cnt + 1);
               setScrolled(false);
@@ -53,11 +54,14 @@ const StudentNoticeList = () => {
               });
             });
           else {
-            getClassificationNotice({ classification: name }).then((res) => {
-              setNotice((list) => list?.concat(res.content));
-              setCnt(cnt + 1);
-              setScrolled(false);
-            });
+            getClassificationNotice({ classification: name, cnt: cnt }).then(
+              (res) => {
+                console.log(res.content);
+                setNotice((list) => list?.concat(res.content));
+                setCnt(cnt + 1);
+                setScrolled(false);
+              }
+            );
           }
         else setScrolled(false);
       }
