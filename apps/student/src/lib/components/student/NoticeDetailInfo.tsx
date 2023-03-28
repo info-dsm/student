@@ -178,6 +178,9 @@ const NoticeInfo = styled.div`
       display: flex;
       font-weight: 500;
       align-items: center;
+      span {
+        width: 90%;
+      }
       div {
         font-weight: 700;
         width: 114px;
