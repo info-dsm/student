@@ -52,7 +52,7 @@ const NoticeDiv = styled.a`
     width: 100%;
     height: 18vmin;
     margin-bottom: 17px;
-    object-fit: cover;
+    object-fit: contain;
   }
   > h1 {
     font-weight: 600;
