@@ -107,7 +107,6 @@ const StudentNoticeList = () => {
           <Kind2>
             <div>
               <span>모집공고</span>
-              <span>마감 일자순 정렬</span>
             </div>
             <SelectDiv>
               <input
@@ -176,7 +175,7 @@ const StudentNoticeList = () => {
                       ))}
                     </>
                   ) : (
-                    <>모집 공고가 없습니다..</>
+                    <>모집 공고가 없습니다...</>
                   )}
                 </NoticeContainer>
               </>
@@ -270,7 +269,7 @@ const NoticeContainer = styled.div`
 const SelectDiv = styled.div`
   position: absolute;
   top: 4px;
-  right: 0.5vmax;
+  right: 0.8vmax;
 
   > input {
     width: 10.41vmax;
