@@ -12,7 +12,7 @@ const StudentCompany = ({ info }: { info: getCompanyList1ContentProps }) => {
       }}
     >
       <img src={info.companyIntroductionResponse.companyLogo.fileUrl} alt="" />
-      <h1>㈜ {info.companyName}</h1>
+      <h1>{info.companyName}</h1>
       <span>{info.companyIntroductionResponse.introduction}</span>
       <br />
       <div>
@@ -41,8 +41,10 @@ export default StudentCompany;
 
 const NoticeDiv = styled.a`
   text-decoration: none;
-  height: 40.66vmin;
-  background-color: #f6f6f6;
+  padding: 20px;
+  height: 300px;
+  background-color: ${(props) => props.theme.colors.white};
+  margin-bottom: 30px;
 
   * {
     color: #101112;
@@ -65,7 +67,6 @@ const NoticeDiv = styled.a`
     margin-top: 18px;
     display: flex;
     font-size: 0.67vmax;
-    margin-bottom: 65px;
     gap: 20px;
     > div {
       display: flex;

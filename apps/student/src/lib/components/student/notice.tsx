@@ -47,6 +47,10 @@ const NoticeDiv = styled.a`
   }
   cursor: pointer;
   width: 14.5vmax;
+  background-color: ${(props) => props.theme.colors.white};
+  margin-bottom: 35px;
+  padding: 20px;
+  border-radius: 10px;
 
   img {
     width: 100%;
@@ -85,5 +89,4 @@ const Part = styled.div`
   font-size: 0.6vmax;
   gap: 20px;
   line-height: 0px;
-  margin-bottom: 65px;
 `;
