@@ -42,7 +42,7 @@ export default StudentCompany;
 const NoticeDiv = styled.a`
   text-decoration: none;
   padding: 20px;
-  height: 300px;
+  min-height: 280px;
   background-color: ${(props) => props.theme.colors.white};
   margin-bottom: 30px;
 
