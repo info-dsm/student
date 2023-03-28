@@ -1,10 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   body {
-    user-select:none;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
     overflow-x: hidden;
     scroll-behavior: smooth;
     margin: 0;
