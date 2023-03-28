@@ -131,6 +131,7 @@ const StudentNoticeList = () => {
                   }
                 }}
                 onChange={(e) => {
+                  setShow(true);
                   setInputValue(
                     e.target.value.toUpperCase().replace(/(\s*)/g, "")
                   );
