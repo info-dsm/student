@@ -23,7 +23,7 @@ const StudentNotice = ({
             {a.length - 1 !== i ? ", " : " "}
           </>
         ))}
-        개발자 모집합니다.
+        모집합니다.
       </h1>
       <span>{info.company.companyName}</span>
       <Address>
