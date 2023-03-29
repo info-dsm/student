@@ -5,6 +5,7 @@ import request from "../..";
 export interface getUserInfoProps {
   name: string;
   email: string;
+  profilePhotoLink: string;
 }
 
 export const getUserInfo = async () => {

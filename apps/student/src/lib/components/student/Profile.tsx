@@ -9,7 +9,7 @@ const StudentMyPageProfile = ({ info }: { info: getUserInfoProps }) => {
     <Profile>
       <ProfileImage>
         <Image
-          src={UserIcon}
+          src={info.profilePhotoLink}
           alt=""
           width={140}
           height={140}
@@ -43,6 +43,9 @@ const ProfileImage = styled.div`
   img {
     width: 7.29vmax;
     height: 14.94vmin;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: bottom;
   }
   border-radius: 50%;
   + div {
