@@ -42,7 +42,7 @@ const Profile = styled.div`
 const ProfileImage = styled.div`
   img {
     width: 7.29vmax;
-    height: 14.94vmin;
+    height: 7.29vmax;
     border-radius: 50%;
     object-fit: cover;
     object-position: bottom;
