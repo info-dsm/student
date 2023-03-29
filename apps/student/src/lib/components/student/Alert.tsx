@@ -1,4 +1,7 @@
-export const Notice = (props: any) => {
+export const Notice = (props: {
+  message: string;
+  state: "success" | "error";
+}) => {
   if (document.getElementsByClassName("NoticeMainDiv").length === 0) {
     const body = document.querySelector("body");
     const mainDiv = document.createElement("div");
