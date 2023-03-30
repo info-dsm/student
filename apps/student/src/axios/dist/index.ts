@@ -115,3 +115,8 @@ export {
   AnnouncementDetail,
   type AnnouncementDetailProps,
 } from "../main/statistics/announcementDetail";
+
+export {
+  AnnouncementLatest,
+  type AnnouncementLatestProps,
+} from "../main/statistics/latestAnnouncement";
