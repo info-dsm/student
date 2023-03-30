@@ -19,6 +19,7 @@ import Attachment from "@/src/lib/components/student/attachment";
 import NeedAttachment from "@/src/lib/components/student/NeedAttachment";
 import Checked2 from "@/public/assets/images/checked2";
 import { Spinner } from "@/../../packages/ui/dist";
+import NoticeDetailCompanyInfo from "@/src/lib/components/student/CompanyInfo";
 
 const NoticeDetail = () => {
   const query = useRouter().query.id as string;
@@ -110,6 +111,7 @@ const NoticeDetail = () => {
                 </label>
               </ApplyBtn>
               <DetailInfo companyInfo={CompanyInfo} />
+              <NoticeDetailCompanyInfo companyInfo={CompanyInfo} />
               <DetailRecruitmentJob
                 noticeInfo={NoticeInfo}
                 companyInfo={CompanyInfo}
