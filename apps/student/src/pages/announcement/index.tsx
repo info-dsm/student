@@ -209,7 +209,6 @@ const NoticeBox = styled.div`
       word-break: break-all;
       overflow: hidden;
       text-overflow: ellipsis;
-      background-color: red;
     }
   }
 `;
