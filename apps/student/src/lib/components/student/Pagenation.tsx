@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const AnnouncePageNation = ({
@@ -10,6 +11,8 @@ const AnnouncePageNation = ({
   };
   total: number[];
 }) => {
+  const [inputPage, setInputPage] = useState(5);
+
   return (
     <PaginationDiv>
       {total.length <= 4 ? (
@@ -17,11 +20,7 @@ const AnnouncePageNation = ({
           {total.map((t) => (
             <>
               {t === current.state + 1 ? (
-                <NowPagenation
-                  onClick={() => current.setState(parseInt(String(t)) - 1)}
-                >
-                  {t}
-                </NowPagenation>
+                <NowPagenation>{t}</NowPagenation>
               ) : (
                 <div onClick={() => current.setState(parseInt(String(t)) - 1)}>
                   {t}
@@ -40,9 +39,26 @@ const AnnouncePageNation = ({
                     <NowPagenation>{t}</NowPagenation>
                   ) : (
                     <div
-                      onClick={() => current.setState(parseInt(String(t)) - 1)}
+                      onClick={() => {
+                        if (t === "...") setInputPage(i);
+                        else {
+                          setInputPage(5);
+                          current.setState(parseInt(String(t)) - 1);
+                        }
+                      }}
                     >
-                      {t}
+                      {inputPage === i ? (
+                        <input
+                          onKeyDown={(e: any) => {
+                            if (e.keyCode === 13) {
+                              current.setState(parseInt(e.target.value) - 1);
+                              setInputPage(5);
+                            }
+                          }}
+                        />
+                      ) : (
+                        <>{t}</>
+                      )}
                     </div>
                   )}
                 </>
@@ -64,11 +80,28 @@ const AnnouncePageNation = ({
                         <NowPagenation>{t}</NowPagenation>
                       ) : (
                         <div
-                          onClick={() =>
-                            current.setState(parseInt(String(t)) - 1)
-                          }
+                          onClick={() => {
+                            if (t === "...") setInputPage(i);
+                            else {
+                              setInputPage(5);
+                              current.setState(parseInt(String(t)) - 1);
+                            }
+                          }}
                         >
-                          {t}
+                          {inputPage === i ? (
+                            <input
+                              onKeyDown={(e: any) => {
+                                if (e.keyCode === 13) {
+                                  current.setState(
+                                    parseInt(e.target.value) - 1
+                                  );
+                                  setInputPage(5);
+                                }
+                              }}
+                            />
+                          ) : (
+                            <>{t}</>
+                          )}
                         </div>
                       )}
                     </>
@@ -80,20 +113,46 @@ const AnnouncePageNation = ({
                     (t, i) => (
                       <>
                         {i == 2 ? (
-                          <NowPagenation
-                            onClick={() =>
-                              current.setState(parseInt(String(t)) - 1)
-                            }
-                          >
-                            {t}
+                          <NowPagenation>
+                            {inputPage === i ? (
+                              <input
+                                onKeyDown={(e: any) => {
+                                  if (e.keyCode === 13) {
+                                    current.setState(
+                                      parseInt(e.target.value) - 1
+                                    );
+                                    setInputPage(5);
+                                  }
+                                }}
+                              />
+                            ) : (
+                              <>{t}</>
+                            )}
                           </NowPagenation>
                         ) : (
                           <div
-                            onClick={() =>
-                              current.setState(parseInt(String(t)) - 1)
-                            }
+                            onClick={() => {
+                              if (t === "...") setInputPage(i);
+                              else {
+                                setInputPage(5);
+                                current.setState(parseInt(String(t)) - 1);
+                              }
+                            }}
                           >
-                            {t}
+                            {inputPage === i ? (
+                              <input
+                                onKeyDown={(e: any) => {
+                                  if (e.keyCode === 13) {
+                                    current.setState(
+                                      parseInt(e.target.value) - 1
+                                    );
+                                    setInputPage(5);
+                                  }
+                                }}
+                              />
+                            ) : (
+                              <>{t}</>
+                            )}
                           </div>
                         )}
                       </>
@@ -117,6 +176,13 @@ const PaginationDiv = styled.span`
   justify-content: center;
   gap: 30px;
   margin-top: 40px;
+  input {
+    width: 60px;
+    height: 40px;
+    background-color: #ededed;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+  }
   div {
     width: 40px;
     height: 40px;
