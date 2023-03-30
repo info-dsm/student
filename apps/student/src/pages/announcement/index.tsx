@@ -29,7 +29,7 @@ const Announcement = () => {
         setAnnounce(res);
         if (total.length === 0)
           setTotal(
-            Array.from({ length: Math.ceil(res.totalElements / 9) }, (_, i) => {
+            Array.from({ length: Math.ceil(res.totalElements / 11) }, (_, i) => {
               return i + 1;
             })
           );
@@ -54,7 +54,10 @@ const Announcement = () => {
           <span
             onClick={() => {
               if (detail === undefined) router.back();
-              else setDetail(undefined);
+              else {
+                setDetail(undefined);
+                setAnnounceId("");
+              }
             }}
           >
             <Image src={BackArrow} alt="" />
@@ -81,7 +84,9 @@ const Announcement = () => {
                       <div>
                         {t.type === "DEVELOPER" ? "개발자" : "산학부"} |{" "}
                       </div>
-                      <div>{t.title}</div>
+                      <div>
+                        {t.title}
+                      </div>
                     </span>
                     <span>{t.createdAt.substring(0, 10)}</span>
                   </NoticeBox>
@@ -99,6 +104,7 @@ const Announcement = () => {
                     height={0}
                   />
                 ))}
+                <br />
                 <span>{detail.content}</span>
               </AnnounceBox>
             )}
@@ -165,6 +171,12 @@ const NoticeBox = styled.div`
     > div:nth-child(2) {
       margin-left: 5px;
       width: 85%;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 `;

@@ -12,11 +12,11 @@ const AnnouncePageNation = ({
 }) => {
   return (
     <PaginationDiv>
-      {current.state + 1 <= 3 ? (
+      {total.length <= 4 ? (
         <>
-          {["1", "2", "3", "...", total.length].map((t, i) => (
+          {total.map((t) => (
             <>
-              {t === String(current.state + 1) ? (
+              {t === current.state + 1 ? (
                 <NowPagenation
                   onClick={() => current.setState(parseInt(String(t)) - 1)}
                 >
@@ -32,22 +32,12 @@ const AnnouncePageNation = ({
         </>
       ) : (
         <>
-          {current.state + 1 >= total.length - 2 ? (
+          {current.state + 1 <= 3 ? (
             <>
-              {[
-                "1",
-                "...",
-                total.length - 2,
-                total.length - 1,
-                total.length,
-              ].map((t, i) => (
+              {["1", "2", "3", "...", total.length].map((t, i) => (
                 <>
-                  {t === current.state + 1 ? (
-                    <NowPagenation
-                      onClick={() => current.setState(parseInt(String(t)) - 1)}
-                    >
-                      {t}
-                    </NowPagenation>
+                  {t === String(current.state + 1) ? (
+                    <NowPagenation>{t}</NowPagenation>
                   ) : (
                     <div
                       onClick={() => current.setState(parseInt(String(t)) - 1)}
@@ -60,28 +50,56 @@ const AnnouncePageNation = ({
             </>
           ) : (
             <>
-              {["1", "...", current.state + 1, "...", total.length].map(
-                (t, i) => (
-                  <>
-                    {i == 2 ? (
-                      <NowPagenation
-                        onClick={() =>
-                          current.setState(parseInt(String(t)) - 1)
-                        }
-                      >
-                        {t}
-                      </NowPagenation>
-                    ) : (
-                      <div
-                        onClick={() =>
-                          current.setState(parseInt(String(t)) - 1)
-                        }
-                      >
-                        {t}
-                      </div>
-                    )}
-                  </>
-                )
+              {current.state + 1 >= total.length - 2 ? (
+                <>
+                  {[
+                    "1",
+                    "...",
+                    total.length - 2,
+                    total.length - 1,
+                    total.length,
+                  ].map((t, i) => (
+                    <>
+                      {t === current.state + 1 ? (
+                        <NowPagenation>{t}</NowPagenation>
+                      ) : (
+                        <div
+                          onClick={() =>
+                            current.setState(parseInt(String(t)) - 1)
+                          }
+                        >
+                          {t}
+                        </div>
+                      )}
+                    </>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {["1", "...", current.state + 1, "...", total.length].map(
+                    (t, i) => (
+                      <>
+                        {i == 2 ? (
+                          <NowPagenation
+                            onClick={() =>
+                              current.setState(parseInt(String(t)) - 1)
+                            }
+                          >
+                            {t}
+                          </NowPagenation>
+                        ) : (
+                          <div
+                            onClick={() =>
+                              current.setState(parseInt(String(t)) - 1)
+                            }
+                          >
+                            {t}
+                          </div>
+                        )}
+                      </>
+                    )
+                  )}
+                </>
               )}
             </>
           )}
