@@ -106,17 +106,23 @@ const Announcement = () => {
                   <div>날짜</div>
                 </Nav>
                 <hr />
-                {announce?.content.map((t) => (
-                  <NoticeBox onClick={() => setAnnounceId(t.id)}>
-                    <span>
-                      <div>
-                        {t.type === "DEVELOPER" ? "개발자" : "산학부"} |{" "}
-                      </div>
-                      <div>{t.title}</div>
-                    </span>
-                    <span>{t.createdAt.substring(0, 10)}</span>
-                  </NoticeBox>
-                ))}
+                {announce && announce.content.length > 0 ? (
+                  <>
+                    {announce?.content.map((t) => (
+                      <NoticeBox onClick={() => setAnnounceId(t.id)}>
+                        <span>
+                          <div>
+                            {t.type === "DEVELOPER" ? "개발자" : "산학부"} |{" "}
+                          </div>
+                          <div>{t.title}</div>
+                        </span>
+                        <span>{t.createdAt.substring(0, 10)}</span>
+                      </NoticeBox>
+                    ))}
+                  </>
+                ) : (
+                  <>ㅤ 공지가 없습니다.</>
+                )}
               </>
             ) : (
               <AnnounceBox>
