@@ -12,8 +12,10 @@ import {
 import { Footer } from "@/../../packages/ui/dist";
 import AnnouncePageNation from "@/src/lib/components/student/Pagenation";
 import Image from "next/image";
+import DownLoadImg from "@/public/assets/images/download.png";
 import StudentAnnounceBanner from "@/src/lib/components/student/AnnounceBanner";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Announcement = () => {
   const [announce, setAnnounce] = useState<AnnouncementListProps>();
@@ -28,7 +30,6 @@ const Announcement = () => {
   useEffect(() => {
     AnnouncementList({ idx: current, size: 11, type: name }).then(
       (res: AnnouncementListProps) => {
-        console.log(res);
         setAnnounce(res);
         setTotal(
           Array.from({ length: Math.ceil(res.totalElements / 11) }, (_, i) => {
@@ -51,7 +52,7 @@ const Announcement = () => {
     <>
       <HeaderComponent />
       <StudentAnnounceBanner number={total.length} />
-      <MainDiv>
+      <MainDiv id="announce">
         <div>
           <span
             onClick={() => {
@@ -129,15 +130,43 @@ const Announcement = () => {
                 <h1>{detail.title}</h1>
                 <div>{detail.createdAt.substring(0, 10)}</div>
                 {detail.fileList.map((c) => (
-                  <Image
-                    src={c.fileUrl}
-                    alt={c.fileName}
-                    width={0}
-                    height={0}
-                  />
+                  <>
+                    {c.fileType === "IMAGE" ? (
+                      <Image
+                        src={c.fileUrl}
+                        alt={c.fileName}
+                        width={0}
+                        height={0}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </>
                 ))}
                 <br />
                 <span>{detail.content}</span>
+                <br />
+                <br />
+                {detail.fileList.map((c) => (
+                  <>
+                    {c.fileType !== "IMAGE" ? (
+                      <>
+                        <Link href={c.fileUrl}>
+                          • {c.fileName}
+                          <Image
+                            src={DownLoadImg}
+                            alt="download"
+                            width={23}
+                            height={23}
+                          />
+                        </Link>
+                        <br />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                ))}
               </AnnounceBox>
             )}
           </div>
@@ -181,9 +210,23 @@ const AnnounceBox = styled.div`
     margin-bottom: 30px;
   }
 
-  img {
+  > img {
     width: 100%;
     height: auto;
+  }
+  > a,
+  > span {
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.black};
+    margin-bottom: 10px;
+  }
+  > a > img {
+    width: 20px;
+    height: auto;
+    margin-left: 10px;
   }
 `;
 
@@ -214,6 +257,7 @@ const NoticeBox = styled.div`
 `;
 
 const Nav = styled.div`
+  margin-top: 100px;
   display: inline-flex;
   width: 100%;
   justify-content: space-between;
@@ -271,7 +315,6 @@ const MainDiv = styled.div`
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
       border-radius: 5px;
       padding: 30px;
-      padding-top: 100px;
       font-size: 16px;
       position: relative;
 

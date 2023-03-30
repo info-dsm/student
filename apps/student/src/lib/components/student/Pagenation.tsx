@@ -20,11 +20,14 @@ const AnnouncePageNation = ({
           {total.map((t) => (
             <>
               {t === current.state + 1 ? (
-                <NowPagenation>{t}</NowPagenation>
+                <NowPagenation href={"#announce"}>{t}</NowPagenation>
               ) : (
-                <div onClick={() => current.setState(parseInt(String(t)) - 1)}>
+                <a
+                  href={"#announce"}
+                  onClick={() => current.setState(parseInt(String(t)) - 1)}
+                >
                   {t}
-                </div>
+                </a>
               )}
             </>
           ))}
@@ -36,9 +39,10 @@ const AnnouncePageNation = ({
               {["1", "2", "3", "...", total.length].map((t, i) => (
                 <>
                   {t === String(current.state + 1) ? (
-                    <NowPagenation>{t}</NowPagenation>
+                    <NowPagenation href={"#announce"}>{t}</NowPagenation>
                   ) : (
-                    <div
+                    <a
+                      href={"#announce"}
                       onClick={() => {
                         if (t === "...") setInputPage(i);
                         else {
@@ -59,7 +63,7 @@ const AnnouncePageNation = ({
                       ) : (
                         <>{t}</>
                       )}
-                    </div>
+                    </a>
                   )}
                 </>
               ))}
@@ -77,9 +81,10 @@ const AnnouncePageNation = ({
                   ].map((t, i) => (
                     <>
                       {t === current.state + 1 ? (
-                        <NowPagenation>{t}</NowPagenation>
+                        <NowPagenation href={"#announce"}>{t}</NowPagenation>
                       ) : (
-                        <div
+                        <a
+                          href={"#announce"}
                           onClick={() => {
                             if (t === "...") setInputPage(i);
                             else {
@@ -102,7 +107,7 @@ const AnnouncePageNation = ({
                           ) : (
                             <>{t}</>
                           )}
-                        </div>
+                        </a>
                       )}
                     </>
                   ))}
@@ -113,7 +118,7 @@ const AnnouncePageNation = ({
                     (t, i) => (
                       <>
                         {i == 2 ? (
-                          <NowPagenation>
+                          <NowPagenation href={"#announce"}>
                             {inputPage === i ? (
                               <input
                                 onKeyDown={(e: any) => {
@@ -130,7 +135,8 @@ const AnnouncePageNation = ({
                             )}
                           </NowPagenation>
                         ) : (
-                          <div
+                          <a
+                            href={"#announce"}
                             onClick={() => {
                               if (t === "...") setInputPage(i);
                               else {
@@ -153,7 +159,7 @@ const AnnouncePageNation = ({
                             ) : (
                               <>{t}</>
                             )}
-                          </div>
+                          </a>
                         )}
                       </>
                     )
@@ -183,7 +189,7 @@ const PaginationDiv = styled.span`
     border: 1px solid #d3d3d3;
     border-radius: 5px;
   }
-  div {
+  a {
     width: 40px;
     height: 40px;
     display: flex;
@@ -193,10 +199,11 @@ const PaginationDiv = styled.span`
     font-size: 18px;
     font-weight: 700;
     cursor: pointer;
+    text-decoration: none;
   }
 `;
 
-const NowPagenation = styled.div`
+const NowPagenation = styled.a`
   background-color: ${(props) => props.theme.colors.blue};
   color: ${(props) => props.theme.colors.white};
 `;
