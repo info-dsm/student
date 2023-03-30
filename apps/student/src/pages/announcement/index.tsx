@@ -202,13 +202,14 @@ const NoticeBox = styled.div`
     width: 85%;
     > div:nth-child(2) {
       margin-left: 5px;
-      width: 85%;
+      width: 80%;
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       word-break: break-all;
       overflow: hidden;
       text-overflow: ellipsis;
+      background-color: red;
     }
   }
 `;
