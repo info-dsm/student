@@ -107,7 +107,7 @@ const StudentNoticeList = () => {
     <>
       <HeaderComponent />
       <StudentNoticeBanner />
-      <MegaPhone />
+      {/* <MegaPhone /> */}
       <MainDiv>
         <Content>
           <Kind2>

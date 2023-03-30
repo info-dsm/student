@@ -52,7 +52,7 @@ const StudentCompanyList = () => {
     <>
       <HeaderComponent />
       <StudentCompanyBanner />
-      <MegaPhone />
+      {/* <MegaPhone /> */}
       <MainDiv>
         <StudentCompanyKind />
         <Content>
