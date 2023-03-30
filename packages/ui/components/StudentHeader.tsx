@@ -10,6 +10,7 @@ const HeaderComponent = () => {
   const nav = [
     { content: "회사", link: "/company" },
     { content: "모집공고", link: "/notice" },
+    { content: "공지", link: "/announcement" },
     !cookie.get("accessToken")
       ? {
           content: "로그인",
