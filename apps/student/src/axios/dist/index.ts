@@ -110,3 +110,8 @@ export {
   AnnouncementList,
   type AnnouncementListProps,
 } from "../main/statistics/announcementList";
+
+export {
+  AnnouncementDetail,
+  type AnnouncementDetailProps,
+} from "../main/statistics/announcementDetail";
