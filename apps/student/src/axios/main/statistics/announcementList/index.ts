@@ -2,6 +2,7 @@ import request from "../..";
 
 export interface AnnouncementListProps {
   content: {
+    id: string;
     title: string;
     createdAt: string;
     type: "DEVELOPER" | "TEACHER";

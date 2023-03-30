@@ -2,39 +2,69 @@ import StudentNoticeBanner from "../../../src/lib/components/student/noticebanne
 import HeaderComponent from "ui/components/StudentHeader";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
-import { AnnouncementList, AnnouncementListProps } from "@/src/axios/dist";
+import BackArrow from "@/public/assets/images/BackArrow.png";
+import {
+  AnnouncementDetail,
+  AnnouncementDetailProps,
+  AnnouncementList,
+  AnnouncementListProps,
+} from "@/src/axios/dist";
 import { Footer } from "@/../../packages/ui/dist";
+import AnnouncePageNation from "@/src/lib/components/student/Pagenation";
+import Image from "next/image";
+import StudentAnnounceBanner from "@/src/lib/components/student/AnnounceBanner";
+import { useRouter } from "next/router";
 
 const Announcement = () => {
   const [announce, setAnnounce] = useState<AnnouncementListProps>();
   const [current, setCurrent] = useState<number>(0);
   const [total, setTotal] = useState<number[]>([]);
+  const [announceId, setAnnounceId] = useState("");
+  const [detail, setDetail] = useState<AnnouncementDetailProps>();
+  const router = useRouter();
+
   useEffect(() => {
-    AnnouncementList({ idx: current, size: 10 }).then(
+    AnnouncementList({ idx: current, size: 11 }).then(
       (res: AnnouncementListProps) => {
         setAnnounce(res);
         if (total.length === 0)
           setTotal(
-            Array.from(
-              { length: Math.ceil(res.totalElements / 10) },
-              (_, i) => {
-                return i + 1;
-              }
-            )
+            Array.from({ length: Math.ceil(res.totalElements / 9) }, (_, i) => {
+              return i + 1;
+            })
           );
       }
     );
-  }, []);
+  }, [current]);
+
+  useEffect(() => {
+    if (announceId !== "")
+      AnnouncementDetail({ announcementId: announceId }).then((res) => {
+        console.log(res);
+        setDetail(res);
+      });
+  }, [announceId]);
 
   return (
     <>
       <HeaderComponent />
-      <StudentNoticeBanner />
+      <StudentAnnounceBanner number={total.length} />
       <MainDiv>
         <div>
-          <span>교내 공지</span>
+          <span
+            onClick={() => {
+              if (detail === undefined) router.back();
+              else setDetail(undefined);
+            }}
+          >
+            <Image src={BackArrow} alt="" />
+            <span>뒤로가기</span>
+            <br />
+            <br />
+          </span>
+          <h1>공지</h1>
           <div>
-            {announce ? (
+            {detail === undefined ? (
               <>
                 <Nav>
                   <span>
@@ -45,8 +75,8 @@ const Announcement = () => {
                   <div>날짜</div>
                 </Nav>
                 <hr />
-                {announce.content.map((t) => (
-                  <NoticeBox>
+                {announce?.content.map((t) => (
+                  <NoticeBox onClick={() => setAnnounceId(t.id)}>
                     <span>
                       <div>
                         {t.type === "DEVELOPER" ? "개발자" : "산학부"} |{" "}
@@ -58,22 +88,29 @@ const Announcement = () => {
                 ))}
               </>
             ) : (
-              <></>
+              <AnnounceBox>
+                <h1>{detail.title}</h1>
+                <div>{detail.createdAt.substring(0, 10)}</div>
+                {detail.fileList.map((c) => (
+                  <Image
+                    src={c.fileUrl}
+                    alt={c.fileName}
+                    width={0}
+                    height={0}
+                  />
+                ))}
+                <span>{detail.content}</span>
+              </AnnounceBox>
             )}
           </div>
-          <Pagination>
-            {total.map((t, i, a) => (
-              <>{i < 3 ? <div>{t}</div> : <></>}</>
-            ))}
-            {total.length > 3 ? (
-              <>
-                <div>...</div>
-                <div>{total.length}</div>
-              </>
-            ) : (
-              <></>
-            )}
-          </Pagination>
+          {detail === undefined ? (
+            <AnnouncePageNation
+              total={total}
+              current={{ state: current, setState: setCurrent }}
+            />
+          ) : (
+            <></>
+          )}
         </div>
       </MainDiv>
       <Footer />
@@ -82,12 +119,34 @@ const Announcement = () => {
 };
 export default Announcement;
 
-const Pagination = styled.span`
-  width: 100%;
-  display: inline-flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 40px;
+const AnnounceBox = styled.div`
+  padding: 30px;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 100%;
+
+  ::-webkit-scrollbar {
+    background-color: #fff;
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #6141cc;
+    border-radius: 3px;
+    width: 10px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  > div {
+    width: 100%;
+    text-align: end;
+    margin-bottom: 30px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const NoticeBox = styled.div`
@@ -144,9 +203,19 @@ const MainDiv = styled.div`
     width: 50vw;
     height: 120vh;
     background-color: #fff;
-    padding: 70px 120px 150px;
-
+    padding: 70px 120px 250px;
     > span:nth-child(1) {
+      font-size: 24px;
+      font-weight: 800;
+      display: inline-flex;
+      cursor: pointer;
+      align-items: center;
+      img {
+        width: 50px;
+        height: auto;
+      }
+    }
+    > h1 {
       font-size: 24px;
       font-weight: 800;
     }
