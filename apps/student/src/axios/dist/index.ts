@@ -105,3 +105,8 @@ export {
 } from "../main/notice/classification";
 
 export { getClassificationNotice } from "../main/notice/classificationNotice";
+
+export {
+  AnnouncementList,
+  type AnnouncementListProps,
+} from "../main/statistics/announcementList";

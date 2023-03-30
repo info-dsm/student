@@ -14,7 +14,7 @@ const StudentCompanyKind = () => {
 export default StudentCompanyKind;
 
 const Kind = styled.div`
-  padding: 8.5vmin 13.3vmax 3.2vmin 12.29vmax;
+  padding: 0vmin 13.3vmax 3.2vmin 12.29vmax;
   width: 100vw;
   display: inline-flex;
   justify-content: space-between;

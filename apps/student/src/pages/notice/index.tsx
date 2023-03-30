@@ -16,6 +16,7 @@ import HeaderComponent from "ui/components/StudentHeader";
 import NoticePlaceHolder from "../../lib/components/student/placeholder";
 import ClosedNoticePlaceHolder from "../../lib/components/student/closedPlaceholder";
 import { GetInitial } from "@/src/lib/func";
+import MegaPhone from "@/src/lib/components/student/MegaPhone";
 
 const StudentNoticeList = () => {
   const [notice, setNotice] = useState<getWaitingNoticeListContentProps[]>([]);
@@ -106,6 +107,7 @@ const StudentNoticeList = () => {
     <>
       <HeaderComponent />
       <StudentNoticeBanner />
+      <MegaPhone />
       <MainDiv>
         <Content>
           <Kind2>
@@ -240,7 +242,6 @@ const Content = styled.div`
 const Kind2 = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
   font-size: 1.25vmax;
   position: relative;
 
