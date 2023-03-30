@@ -1,6 +1,6 @@
 import StudentNoticeBanner from "../../../src/lib/components/student/noticebanner";
 import HeaderComponent from "ui/components/StudentHeader";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import React, { useEffect, useState } from "react";
 import BackArrow from "@/public/assets/images/BackArrow.png";
 import {
@@ -21,21 +21,23 @@ const Announcement = () => {
   const [total, setTotal] = useState<number[]>([]);
   const [announceId, setAnnounceId] = useState("");
   const [detail, setDetail] = useState<AnnouncementDetailProps>();
+  const [show, setShow] = useState(false);
+  const [name, setName] = useState<"전체" | "DEVELOPER" | "TEACHER">("전체");
   const router = useRouter();
 
   useEffect(() => {
-    AnnouncementList({ idx: current, size: 11 }).then(
+    AnnouncementList({ idx: current, size: 11, type: name }).then(
       (res: AnnouncementListProps) => {
+        console.log(res);
         setAnnounce(res);
-        if (total.length === 0)
-          setTotal(
-            Array.from({ length: Math.ceil(res.totalElements / 11) }, (_, i) => {
-              return i + 1;
-            })
-          );
+        setTotal(
+          Array.from({ length: Math.ceil(res.totalElements / 11) }, (_, i) => {
+            return i + 1;
+          })
+        );
       }
     );
-  }, [current]);
+  }, [current, name]);
 
   useEffect(() => {
     if (announceId !== "")
@@ -69,6 +71,32 @@ const Announcement = () => {
           <div>
             {detail === undefined ? (
               <>
+                <SelectDiv>
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShow(!show);
+                    }}
+                  >
+                    {name}
+                  </span>
+                  <DataList state={show}>
+                    {["전체", "DEVELOPER", "TEACHER"].map((e: any, i) => (
+                      <>
+                        <div
+                          key={i}
+                          onClick={() => {
+                            setName(e);
+                            setShow(false);
+                            setCurrent(0);
+                          }}
+                        >
+                          {e}
+                        </div>
+                      </>
+                    ))}
+                  </DataList>
+                </SelectDiv>
                 <Nav>
                   <span>
                     <div>Type</div>
@@ -84,9 +112,7 @@ const Announcement = () => {
                       <div>
                         {t.type === "DEVELOPER" ? "개발자" : "산학부"} |{" "}
                       </div>
-                      <div>
-                        {t.title}
-                      </div>
+                      <div>{t.title}</div>
                     </span>
                     <span>{t.createdAt.substring(0, 10)}</span>
                   </NoticeBox>
@@ -239,7 +265,9 @@ const MainDiv = styled.div`
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
       border-radius: 5px;
       padding: 30px;
+      padding-top: 100px;
       font-size: 16px;
+      position: relative;
 
       hr {
         border: none;
@@ -249,5 +277,66 @@ const MainDiv = styled.div`
         margin-bottom: 20px;
       }
     }
+  }
+`;
+
+const SelectDiv = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  > span {
+    width: 8vmax;
+    height: 3.94vmin;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    padding-left: 10px;
+    color: ${(props) => props.theme.colors.black};
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    font-size: 0.72vmax;
+    cursor: pointer;
+    font-weight: 500;
+  }
+`;
+const FadeInDataList = keyframes`
+0% {
+    transform: translateY(-50px);
+    opacity: 0;
+}100% {
+    transform: translateY(0);
+    opacity: 1;
+}
+`;
+
+const DataList = styled.div<{ state: boolean | string }>`
+  position: absolute;
+  animation: ${FadeInDataList} 0.5s;
+  width: 100%;
+  z-index: 2;
+  max-height: 14.58vmax;
+  transition: 1s;
+  display: ${(props) => (props.state ? "block" : "none")};
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.black};
+  border-radius: 4px;
+  overflow-y: scroll;
+  font-weight: 500;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  div {
+    cursor: pointer;
+    height: 4.48vmin;
+    display: flex;
+    align-items: center;
+    font-size: 0.72vmax;
+    padding-left: 10px;
+  }
+
+  div:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: 0.2s;
   }
 `;

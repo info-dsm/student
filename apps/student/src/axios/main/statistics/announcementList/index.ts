@@ -13,11 +13,17 @@ export interface AnnouncementListProps {
 export const AnnouncementList = async (props: {
   idx: number;
   size: number;
+  type: "전체" | "DEVELOPER" | "TEACHER";
 }) => {
   const data: AnnouncementListProps = await request.get(
-    `/statistics/announcement`,
+    `/statistics/announcement${
+      props.type !== "전체" ? "?type=" + props.type : ""
+    }`,
     {
-      params: props,
+      params: {
+        idx: props.idx,
+        size: props.size,
+      },
     }
   );
   return data;
