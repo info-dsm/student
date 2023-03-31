@@ -56,6 +56,21 @@ const StudentLogin = () => {
       .catch(() => {});
   }, []);
 
+  const login = () => {
+    login1({ email: request.email, password: request.password }, "user")
+      .then((res) => {
+        cookie.set("accessToken", res.accessToken, { expires: 7 });
+        cookie.set("refreshToken", res.refreshToken, { expires: 7 });
+        movepage();
+      })
+      .catch(() => {
+        Notice({
+          message: "아이디와 비밀번호가 틀립니다.",
+          state: "error",
+        });
+      });
+  };
+
   return (
     <>
       <StudentAuthBanner />
@@ -73,12 +88,14 @@ const StudentLogin = () => {
           placeHolder="이메일을 입력해주세요."
           onChange={changeInput}
           name="email"
+          keyDownEvent={login}
         />
         <AuthInput
           type={status.password}
           placeHolder="비밀번호를 입력해주세요."
           onChange={changeInput}
           name="password"
+          keyDownEvent={login}
         />
         <StudentAuthButton
           top={117}
@@ -90,20 +107,7 @@ const StudentLogin = () => {
             content3: "회원가입",
             link: "/auth/signup",
           }}
-          clickEvent={() => {
-            login1({ email: request.email, password: request.password }, "user")
-              .then((res) => {
-                cookie.set("accessToken", res.accessToken, { expires: 7 });
-                cookie.set("refreshToken", res.refreshToken, { expires: 7 });
-                movepage();
-              })
-              .catch(() => {
-                Notice({
-                  message: "아이디와 비밀번호가 틀립니다.",
-                  state: "error",
-                });
-              });
-          }}
+          clickEvent={() => login()}
         />
       </ModalDiv>
     </>
