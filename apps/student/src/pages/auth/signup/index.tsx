@@ -107,7 +107,16 @@ const StudentSignUp = () => {
               event: () => {
                 if (request.email !== "") {
                   if (request.email.split("@")[1] === "dsm.hs.kr") {
-                    codeSend({ email: request.email });
+                    codeSend({ email: request.email })
+                      .then(() =>
+                        Notice({ message: "인증번호 전송!", state: "success" })
+                      )
+                      .catch(() =>
+                        Notice({
+                          message: "인증번호 전송 실패",
+                          state: "error",
+                        })
+                      );
                   } else {
                     Notice({
                       message: "학교 계정을 입력해주세요.",
@@ -135,14 +144,18 @@ const StudentSignUp = () => {
                     email: request.email,
                     data: request.emailCode,
                     type: "SIGNUP_EMAIL",
-                  })
-                    .then(() => {
+                  }).then((res) => {
+                    if (res) {
+                      Notice({ message: "인증번호 확인!", state: "success" });
                       setCheckStatus({ ...checkStatus, email: "checked" });
-                    })
-                    .catch(() => {
+                    } else {
+                      Notice({ message: "인증번호 확인 실패", state: "error" });
                       setCheckStatus({ ...checkStatus, email: "failed" });
-                    });
-                else setStatus({ ...status, emailCode: "error" });
+                    }
+                  });
+                else {
+                  setStatus({ ...status, emailCode: "error" });
+                }
               },
             }}
           />

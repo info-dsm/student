@@ -14,7 +14,7 @@ export const codeCheck = async ({
     | "TEACHER"
     | "REFRESH";
 }) => {
-  await request({
+  const data1: boolean = await request({
     method: "POST",
     url: "/auth/code",
     data: {
@@ -22,7 +22,7 @@ export const codeCheck = async ({
       data: data,
       type: type,
     },
-  }).catch((err) => {
-    console.log(err);
   });
+
+  return data1;
 };
