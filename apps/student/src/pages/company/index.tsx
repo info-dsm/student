@@ -20,8 +20,8 @@ const StudentCompanyList = () => {
           "companyContainer"
         ) as HTMLDivElement;
 
-        if (cnt * 15 >= companyContainer.children.length)
-          getCompanyList1({ idx: cnt, size: 15 }).then(
+        if (cnt * 12 >= companyContainer.children.length)
+          getCompanyList1({ idx: cnt, size: 12 }).then(
             (res: { content: any }) => {
               setCompany((list) => list?.concat(res.content));
               setCnt(cnt + 1);

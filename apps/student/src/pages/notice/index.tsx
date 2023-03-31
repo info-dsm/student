@@ -39,9 +39,9 @@ const StudentNoticeList = () => {
           "noticeContainer"
         ) as HTMLDivElement;
 
-        if (cnt * 12 === companyContainer.children.length || cnt === 0)
+        if (cnt * 9 === companyContainer.children.length || cnt === 0)
           if (name === "전체")
-            getWaitingNoticeList({ idx: cnt, size: 12 }).then((res) => {
+            getWaitingNoticeList({ idx: cnt, size: 9 }).then((res) => {
               console.log(res.content);
               setNotice((list) => list?.concat(res.content));
               setCnt(cnt + 1);
