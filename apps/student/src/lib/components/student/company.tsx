@@ -41,7 +41,7 @@ export default StudentCompany;
 
 const NoticeDiv = styled.a`
   text-decoration: none;
-  padding: 20px;
+  padding: 30px;
   min-height: 280px;
   background-color: ${(props) => props.theme.colors.white};
   margin-bottom: 30px;
@@ -50,7 +50,8 @@ const NoticeDiv = styled.a`
     color: #101112;
   }
   cursor: pointer;
-  width: 14.58vmax;
+  width: 18.3vmax;
+  border-radius: 10px;
 
   img {
     width: 100%;

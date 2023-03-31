@@ -22,16 +22,16 @@ const CompanyPlaceHolderBox = keyframes`
 `;
 
 const CompanyContainer = styled.div`
-  width: 1448px;
+  width: 74.3vmax;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding-bottom: 10%;
   grid-gap: 10px;
-  margin-right: 10px;
+  margin-left: 10px;
 
   div {
-    width: 280px;
-    height: 169px;
+    width: 18.3vmax;
+    height: 36.3vmin;
     background-color: #ebebeb;
     position: relative;
     overflow: hidden;

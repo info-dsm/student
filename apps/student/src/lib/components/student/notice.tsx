@@ -46,10 +46,11 @@ const NoticeDiv = styled.a`
     color: #101112;
   }
   cursor: pointer;
-  width: 14.5vmax;
+  width: 19.3vmax;
   background-color: ${(props) => props.theme.colors.white};
   margin-bottom: 35px;
-  padding: 20px;
+  padding: 30px;
+  padding-bottom: 50px;
   border-radius: 10px;
 
   img {

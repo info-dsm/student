@@ -264,7 +264,7 @@ const Kind2 = styled.div`
 const NoticeContainer = styled.div`
   width: 60.2vmax;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   padding-bottom: 10%;
   /* @media (max-width: 1700px) {
     width: 950px;
