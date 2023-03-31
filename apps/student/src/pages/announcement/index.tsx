@@ -22,6 +22,7 @@ const Announcement = () => {
   const [current, setCurrent] = useState<number>(0);
   const [total, setTotal] = useState<number[]>([]);
   const [announceId, setAnnounceId] = useState("");
+  const [cnt, setCnt] = useState<number>(0);
   const [detail, setDetail] = useState<AnnouncementDetailProps>();
   const [show, setShow] = useState(false);
   const [name, setName] = useState<"전체" | "DEVELOPER" | "TEACHER">("전체");
@@ -36,6 +37,8 @@ const Announcement = () => {
             return i + 1;
           })
         );
+
+        if (cnt === 0) setCnt(res.totalElements);
       }
     );
   }, [current, name]);
@@ -43,7 +46,6 @@ const Announcement = () => {
   useEffect(() => {
     if (announceId !== "")
       AnnouncementDetail({ announcementId: announceId }).then((res) => {
-        console.log(res);
         setDetail(res);
       });
   }, [announceId]);
@@ -51,7 +53,7 @@ const Announcement = () => {
   return (
     <>
       <HeaderComponent />
-      <StudentAnnounceBanner number={total.length} />
+      <StudentAnnounceBanner number={cnt} />
       <MainDiv id="announce">
         <div>
           <span
