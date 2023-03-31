@@ -224,6 +224,7 @@ const AnnounceBox = styled.div`
     text-decoration: none;
     color: ${(props) => props.theme.colors.black};
     margin-bottom: 10px;
+    white-space: pre-wrap;
   }
   > a > img {
     width: 20px;
