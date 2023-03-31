@@ -17,6 +17,7 @@ import NoticePlaceHolder from "../../lib/components/student/placeholder";
 import ClosedNoticePlaceHolder from "../../lib/components/student/closedPlaceholder";
 import { GetInitial } from "@/src/lib/func";
 import MegaPhone from "@/src/lib/components/student/MegaPhone";
+import MegaPhoneV2 from "@/src/lib/components/student/MegaPhoneV2";
 
 const StudentNoticeList = () => {
   const [notice, setNotice] = useState<getWaitingNoticeListContentProps[]>([]);
@@ -107,7 +108,7 @@ const StudentNoticeList = () => {
     <>
       <HeaderComponent />
       <StudentNoticeBanner />
-      <MegaPhone />
+      <MegaPhoneV2 />
       <MainDiv>
         <Content>
           <Kind2>

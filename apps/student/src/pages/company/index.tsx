@@ -7,6 +7,7 @@ import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "../../lib/components/student/Kind";
 import CompanyPlaceHolder from "../../lib/components/student/detailplaceholder";
 import MegaPhone from "@/src/lib/components/student/MegaPhone";
+import MegaPhoneV2 from "@/src/lib/components/student/MegaPhoneV2";
 
 const StudentCompanyList = () => {
   const [company, setCompany] = useState<getCompanyList1ContentProps[]>([]);
@@ -52,7 +53,7 @@ const StudentCompanyList = () => {
     <>
       <HeaderComponent />
       <StudentCompanyBanner />
-      <MegaPhone />
+      <MegaPhoneV2 />
       <MainDiv>
         <StudentCompanyKind />
         <Content>
