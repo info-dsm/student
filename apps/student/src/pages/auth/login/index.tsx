@@ -74,7 +74,12 @@ const StudentLogin = () => {
   return (
     <>
       <StudentAuthBanner />
-      <ModalDiv>
+      <ModalDiv
+        onSubmit={(e) => {
+          e.preventDefault();
+          login();
+        }}
+      >
         <StudentAuthTitle
           title={"학생 로그인"}
           subTitle={{
@@ -116,7 +121,7 @@ const StudentLogin = () => {
 
 export default StudentLogin;
 
-const ModalDiv = styled.div`
+const ModalDiv = styled.form`
   width: 480px;
   background-color: #f8f8f9;
   border-radius: 5px;

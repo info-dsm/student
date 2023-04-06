@@ -32,9 +32,6 @@ export const AuthInput = ({
         inputType={type}
         placeholder={placeHolder}
         onChange={(e) => onChange({ e: e, name: name })}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") keyDownEvent();
-        }}
         type={
           name.substring(0, 8) === "password"
             ? "password"
@@ -42,6 +39,7 @@ export const AuthInput = ({
             ? "number"
             : "text"
         }
+        autoComplete="off"
       />
       <>
         {subClick ? (
