@@ -12,7 +12,9 @@ const StudentNotice = ({
   return (
     <NoticeDiv
       onClick={() => {
-        router.push(`/notice/detail/${info.noticeId}`);
+        router.push({
+          pathname: `/notice/detail/${info.noticeId}`,
+        });
       }}
     >
       <img src={info.company.imageList[0]} alt="" />
