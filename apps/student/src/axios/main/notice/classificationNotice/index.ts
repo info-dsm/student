@@ -4,12 +4,14 @@ import { getWaitingNoticeListProps } from "../getNoticeList";
 export const getClassificationNotice = async ({
   classification,
   cnt,
+  size
 }: {
   classification: string;
   cnt: number;
+  size: number
 }) => {
   const data: getWaitingNoticeListProps = await request.get(
-    `/notice/classification/small?idx=${cnt}&size=12&smallClassification=${classification}`
+    `/notice/classification/small?idx=${cnt}&size=${size}&smallClassification=${classification}`
   );
   return data;
 };

@@ -56,14 +56,16 @@ const StudentNoticeList = () => {
               });
             });
           else {
-            getClassificationNotice({ classification: name, cnt: cnt }).then(
-              (res) => {
-                console.log(res.content);
-                setNotice((list) => list?.concat(res.content));
-                setCnt(cnt + 1);
-                setScrolled(false);
-              }
-            );
+            getClassificationNotice({
+              classification: name,
+              cnt: cnt,
+              size: 9,
+            }).then((res) => {
+              console.log(res.content);
+              setNotice((list) => list?.concat(res.content));
+              setCnt(cnt + 1);
+              setScrolled(false);
+            });
           }
         else setScrolled(false);
       }
