@@ -32,11 +32,6 @@ export const AuthInput = ({
         inputType={type}
         placeholder={placeHolder}
         onChange={(e) => onChange({ e: e, name: name })}
-        onKeyDown={(e) => {
-          if (e.keyCode === 13) {
-            keyDownEvent();
-          }
-        }}
         type={
           name.substring(0, 8) === "password"
             ? "password"
