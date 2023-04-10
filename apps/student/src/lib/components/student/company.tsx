@@ -1,10 +1,16 @@
 import { getCompanyList1ContentProps } from "../../../axios/dist";
 import styled from "styled-components";
 import Checked2 from "../../../../public/assets/images/checked2";
+import { useRouter } from "next/router";
 
 const StudentCompany = ({ info }: { info: getCompanyList1ContentProps }) => {
+  const router = useRouter();
   return (
-    <NoticeDiv href={`/company/detail/${info.companyNumber}`}>
+    <NoticeDiv
+      onClick={() => {
+        router.push(`/company/detail/${info.companyNumber}`);
+      }}
+    >
       <img src={info.companyIntroductionResponse.companyLogo.fileUrl} alt="" />
       <h1>{info.companyName}</h1>
       <span>{info.companyIntroductionResponse.introduction}</span>
