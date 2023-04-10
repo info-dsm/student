@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 
 const StatusDetail = ({ t }: { t: getSupportStatusProps }) => {
   const [notice, setNotice] = useState<getNoticeDetailProps>();
-  const router = useRouter();
   useEffect(() => {
     getNoticeDetail({ id: t.notice.noticeId }).then(
       (res: getNoticeDetailProps) => {
@@ -52,11 +51,7 @@ const StatusDetail = ({ t }: { t: getSupportStatusProps }) => {
             <span>채용인원 {notice.numberOfEmployee}명</span>
           </span>
           <span>
-            <a
-              onClick={() => {
-                router.push(`/notice/detail/${t.notice.noticeId}`);
-              }}
-            >
+            <a href={`/notice/detail/?id=${t.notice.noticeId}`}>
               <Status color={"#fff"} background={"#6750F8"}>
                 모집공고 정보
               </Status>

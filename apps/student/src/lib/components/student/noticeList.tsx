@@ -26,7 +26,7 @@ const StudentCompanyNoticeList = ({
                     new Date(t.noticeOpenPeriod.endDate).getTime() + 86400000 >
                     new Date().getTime()
                   )
-                    router.push(`/notice/detail/${t.noticeId}`);
+                    router.push(`/notice/detail/?id=${t.noticeId}`);
                   else {
                     alert("마감된 공고입니다.");
                   }
