@@ -65,7 +65,7 @@ const Banner = styled.div`
 
 const BannerImg = styled.div`
   width: 100vw;
-  height: 370px;
+  height: 39.48vmin;
   position: absolute;
   top: 0;
   z-index: -1;
