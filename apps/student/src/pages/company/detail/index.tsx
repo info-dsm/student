@@ -19,7 +19,6 @@ const StudentCompanyDetail = ({}: {}) => {
   const [info, setInfo] = useState<getCompanyDetailProps>();
   const [noticeInfo, setNoticeInfo] =
     useState<getWaitingNoticeListContentProps[]>();
-  const [current, setCurrent] = useState<number>(0);
 
   useEffect(() => {
     if (query) {

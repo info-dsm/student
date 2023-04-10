@@ -4,6 +4,7 @@ import {
   getClassificationProps,
   getClosedNoticeList,
   getClosedNoticeListContentProps,
+  getNoticeCompanySearch,
   getWaitingNoticeList,
   getWaitingNoticeListContentProps,
 } from "../../axios/dist";
@@ -16,7 +17,6 @@ import HeaderComponent from "ui/components/StudentHeader";
 import NoticePlaceHolder from "../../lib/components/student/placeholder";
 import ClosedNoticePlaceHolder from "../../lib/components/student/closedPlaceholder";
 import { GetInitial } from "@/src/lib/func";
-import MegaPhone from "@/src/lib/components/student/MegaPhone";
 import MegaPhoneV2 from "@/src/lib/components/student/MegaPhoneV2";
 
 const StudentNoticeList = () => {
@@ -32,6 +32,8 @@ const StudentNoticeList = () => {
   const [show, setShow] = useState<boolean | string>("");
   const [name, setName] = useState("전체");
   const [inputValue, setInputValue] = useState("");
+  const [search, setSearch] = useState(false);
+  const [current, setCurrent] = useState(-1);
 
   useLayoutEffect(() => {
     const getNotice = () => {
@@ -43,7 +45,6 @@ const StudentNoticeList = () => {
         if (cnt * 9 === companyContainer.children.length || cnt === 0)
           if (name === "전체")
             getWaitingNoticeList({ idx: cnt, size: 9 }).then((res) => {
-              console.log(res.content);
               setNotice((list) => list?.concat(res.content));
               setCnt(cnt + 1);
               setScrolled(false);
@@ -56,16 +57,26 @@ const StudentNoticeList = () => {
               });
             });
           else {
-            getClassificationNotice({
-              classification: name,
-              cnt: cnt,
-              size: 9,
-            }).then((res) => {
-              console.log(res.content);
-              setNotice((list) => list?.concat(res.content));
-              setCnt(cnt + 1);
-              setScrolled(false);
-            });
+            if (search) {
+              getNoticeCompanySearch({
+                name: name,
+                cnt: cnt,
+                size: 9,
+              }).then((res) => {
+                setNotice((list) => list?.concat(res.content));
+                setCnt(cnt + 1);
+                setScrolled(false);
+              });
+            } else
+              getClassificationNotice({
+                classification: name,
+                cnt: cnt,
+                size: 9,
+              }).then((res) => {
+                setNotice((list) => list?.concat(res.content));
+                setCnt(cnt + 1);
+                setScrolled(false);
+              });
           }
         else setScrolled(false);
       }
@@ -106,6 +117,22 @@ const StudentNoticeList = () => {
     );
   }
 
+  useEffect(() => {
+    if (document.querySelectorAll(".noticeFilter")[current]) {
+      const notice = document.querySelectorAll(
+        ".noticeFilter"
+      ) as unknown as HTMLDivElement[];
+
+      notice.forEach((e, i) => {
+        if (current === i) {
+          notice[current].style.backgroundColor = "rgba(0, 0, 0, 0.15)";
+        } else {
+          notice[i].style.backgroundColor = "#fff";
+        }
+      });
+    }
+  }, [current]);
+
   return (
     <>
       <HeaderComponent />
@@ -127,12 +154,25 @@ const StudentNoticeList = () => {
                   // console.log("힣".charCodeAt(0));
                 }}
                 onKeyDown={(e) => {
+                  if (
+                    e.keyCode === 40 &&
+                    document.querySelectorAll(".noticeFilter")[current + 1]
+                  ) {
+                    setCurrent(current + 1);
+                  }
+                  if (e.keyCode === 38 && current > 0) setCurrent(current - 1);
                   if (e.keyCode === 13) {
-                    const notice = document.querySelectorAll(
-                      ".noticeFilter"
-                    )[0] as HTMLDivElement;
-                    const dataset_name = notice.dataset.name as string;
-                    setName(dataset_name);
+                    if (document.querySelectorAll(".noticeFilter")[0]) {
+                      const notice = document.querySelectorAll(".noticeFilter")[
+                        current
+                      ] as HTMLDivElement;
+                      setName(notice.dataset.name as string);
+                      setSearch(false);
+                    } else {
+                      const target = e.target as HTMLTextAreaElement;
+                      setName(target.value);
+                      setSearch(true);
+                    }
                     setScrolled(true);
                     setCnt(0);
                     setShow(false);
@@ -140,6 +180,7 @@ const StudentNoticeList = () => {
                   }
                 }}
                 onChange={(e) => {
+                  setCurrent(-1);
                   setShow(true);
                   setInputValue(
                     e.target.value.toUpperCase().replace(/(\s*)/g, "")
@@ -317,6 +358,8 @@ const DataList = styled.div<{ state: boolean | string }>`
   max-height: 14.58vmax;
   overflow-y: scroll;
   font-weight: 500;
+  transition: 0.2s;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -326,10 +369,5 @@ const DataList = styled.div<{ state: boolean | string }>`
     align-items: center;
     padding-left: 15px;
     font-size: 0.72vmax;
-  }
-
-  div:hover {
-    background-color: rgba(0, 0, 0, 0.15);
-    transition: 0.2s;
   }
 `;

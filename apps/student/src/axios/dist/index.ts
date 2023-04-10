@@ -120,3 +120,5 @@ export {
   AnnouncementLatest,
   type AnnouncementLatestProps,
 } from "../main/statistics/latestAnnouncement";
+
+export { getNoticeCompanySearch } from "../main/notice/getNoticeCompanySearch";
