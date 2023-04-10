@@ -50,9 +50,8 @@ export default StudentClosedNotice;
 
 const SubData = styled.div`
   gap: 20px;
-  margin-top: 14px;
   display: inline-flex;
-  font-size: 14px;
+  font-size: 0.72vmax;
   font-weight: 600;
   color: rgba(16, 17, 18, 0.65);
   div {
@@ -71,15 +70,14 @@ const NoticeDiv = styled.div`
   background-color: #fff;
   border: 1px solid rgba(16, 17, 18, 0.1);
   border-radius: 5px;
-  margin-bottom: 6px;
-  padding: 15px 24px;
+  padding: 0.78vmax 1.25vmin;
 `;
 
 const NoticeLogo = styled.div`
   width: 100%;
   display: inline-flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  margin-bottom: 2.66vmin;
   img {
     width: 5.2vmax;
     height: 4.2vmin;
@@ -87,13 +85,12 @@ const NoticeLogo = styled.div`
     border-radius: 3px;
   }
   span {
-    font-size: 14px;
+    font-size: 0.72vmax;
     font-weight: 600;
   }
 
   + div {
     font-weight: 600;
-    line-height: 20px;
 
     div {
       display: -webkit-box;
@@ -102,11 +99,10 @@ const NoticeLogo = styled.div`
       word-break: break-all;
       overflow: hidden;
       text-overflow: ellipsis;
-      line-height: 30px;
-      font-size: 20px;
+      font-size: 1vmax;
     }
     span {
-      font-size: 13px;
+      font-size: 0.67vmax;
     }
   }
 `;
