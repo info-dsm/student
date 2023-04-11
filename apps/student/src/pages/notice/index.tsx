@@ -5,6 +5,7 @@ import {
   getClosedNoticeList,
   getClosedNoticeListContentProps,
   getNoticeCompanySearch,
+  getNoticeSearch,
   getWaitingNoticeList,
   getWaitingNoticeListContentProps,
 } from "../../axios/dist";
@@ -30,9 +31,14 @@ const StudentNoticeList = () => {
     getClassificationProps[]
   >([]);
   const [show, setShow] = useState<boolean | string>("");
-  const [name, setName] = useState("전체");
+  const [name, setName] = useState<{
+    companyName: string;
+    smallClassification: string;
+  }>({
+    companyName: "",
+    smallClassification: "전체",
+  });
   const [inputValue, setInputValue] = useState("");
-  const [search, setSearch] = useState(false);
   const [current, setCurrent] = useState(-1);
 
   useLayoutEffect(() => {
@@ -43,7 +49,7 @@ const StudentNoticeList = () => {
         ) as HTMLDivElement;
 
         if (cnt * 9 === companyContainer.children.length || cnt === 0)
-          if (name === "전체")
+          if (name.companyName === "" && name.smallClassification === "전체")
             getWaitingNoticeList({ idx: cnt, size: 9 }).then((res) => {
               setNotice((list) => list?.concat(res.content));
               setCnt(cnt + 1);
@@ -57,26 +63,16 @@ const StudentNoticeList = () => {
               });
             });
           else {
-            if (search) {
-              getNoticeCompanySearch({
-                name: name,
-                cnt: cnt,
-                size: 9,
-              }).then((res) => {
-                setNotice((list) => list?.concat(res.content));
-                setCnt(cnt + 1);
-                setScrolled(false);
-              });
-            } else
-              getClassificationNotice({
-                classification: name,
-                cnt: cnt,
-                size: 9,
-              }).then((res) => {
-                setNotice((list) => list?.concat(res.content));
-                setCnt(cnt + 1);
-                setScrolled(false);
-              });
+            getNoticeSearch({
+              companyName: name.companyName,
+              smallClassification: name.smallClassification,
+              cnt: cnt,
+              size: 9,
+            }).then((res) => {
+              setNotice((list) => list?.concat(res.content));
+              setCnt(cnt + 1);
+              setScrolled(false);
+            });
           }
         else setScrolled(false);
       }
@@ -124,11 +120,8 @@ const StudentNoticeList = () => {
       ) as unknown as HTMLDivElement[];
 
       notice.forEach((e, i) => {
-        if (current === i) {
-          notice[current].style.backgroundColor = "rgba(0, 0, 0, 0.15)";
-        } else {
-          notice[i].style.backgroundColor = "#fff";
-        }
+        if (current === i) notice[current].classList.add("hover");
+        else notice[i].classList.remove("hover");
       });
     }
   }, [current]);
@@ -144,11 +137,28 @@ const StudentNoticeList = () => {
             <div>
               <span>모집공고</span>
             </div>
+            <CompanyInput>
+              <SearchInput
+                placeholder="회사 이름 검색"
+                onChange={(e) =>
+                  setName({ ...name, ["companyName"]: e.target.value })
+                }
+                onKeyDown={(e) => {
+                  if (e.keyCode === 13) {
+                    setScrolled(true);
+                    setCnt(0);
+                    setShow(false);
+                    setNotice([]);
+                  }
+                }}
+              />
+            </CompanyInput>
             <SelectDiv>
-              <input
+              <SearchInput
                 onClick={(e) => {
                   e.stopPropagation();
                   setShow(!show);
+                  setCurrent(-1);
                   // console.log("가".charCodeAt(0));
                   // console.log("깋".charCodeAt(0));
                   // console.log("힣".charCodeAt(0));
@@ -157,21 +167,22 @@ const StudentNoticeList = () => {
                   if (
                     e.keyCode === 40 &&
                     document.querySelectorAll(".noticeFilter")[current + 1]
-                  ) {
+                  )
                     setCurrent(current + 1);
-                  }
                   if (e.keyCode === 38 && current > 0) setCurrent(current - 1);
                   if (e.keyCode === 13) {
-                    if (document.querySelectorAll(".noticeFilter")[0]) {
+                    if (
+                      document.querySelectorAll(".noticeFilter")[
+                        current === -1 ? 0 : current
+                      ]
+                    ) {
                       const notice = document.querySelectorAll(".noticeFilter")[
-                        current
+                        current === -1 ? 0 : current
                       ] as HTMLDivElement;
-                      setName(notice.dataset.name as string);
-                      setSearch(false);
-                    } else {
-                      const target = e.target as HTMLTextAreaElement;
-                      setName(target.value);
-                      setSearch(true);
+                      setName({
+                        ...name,
+                        ["smallClassification"]: notice.dataset.name as string,
+                      });
                     }
                     setScrolled(true);
                     setCnt(0);
@@ -186,8 +197,8 @@ const StudentNoticeList = () => {
                     e.target.value.toUpperCase().replace(/(\s*)/g, "")
                   );
                 }}
-                placeholder={name}
-              ></input>
+                placeholder={name.smallClassification}
+              ></SearchInput>
               <DataList state={show}>
                 {classification.map((e, i) => (
                   <>
@@ -198,7 +209,7 @@ const StudentNoticeList = () => {
                         key={i}
                         className="noticeFilter"
                         onClick={() => {
-                          setName(e.name);
+                          // setName(e.name);
                           setScrolled(true);
                           setCnt(0);
                           setShow(false);
@@ -270,6 +281,25 @@ const StudentNoticeList = () => {
 
 export default StudentNoticeList;
 
+const CompanyInput = styled.div`
+  position: absolute;
+  right: 12vmax;
+  top: 4px;
+`;
+
+const SearchInput = styled.input`
+  width: 10.41vmax;
+  height: 3.94vmin;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  padding-left: 10px;
+  color: ${(props) => props.theme.colors.black};
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 0.72vmax;
+  font-weight: 500;
+`;
+
 const MainDiv = styled.div`
   width: 100vw;
   height: 100%;
@@ -320,19 +350,6 @@ const SelectDiv = styled.div`
   position: absolute;
   top: 4px;
   right: 0.8vmax;
-
-  > input {
-    width: 10.41vmax;
-    height: 3.94vmin;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    padding-left: 10px;
-    color: ${(props) => props.theme.colors.black};
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    font-size: 0.72vmax;
-    font-weight: 500;
-  }
 `;
 const FadeInDataList = keyframes`
 0% {
@@ -358,7 +375,6 @@ const DataList = styled.div<{ state: boolean | string }>`
   max-height: 14.58vmax;
   overflow-y: scroll;
   font-weight: 500;
-  transition: 0.2s;
 
   &::-webkit-scrollbar {
     display: none;
@@ -369,5 +385,12 @@ const DataList = styled.div<{ state: boolean | string }>`
     align-items: center;
     padding-left: 15px;
     font-size: 0.72vmax;
+    transition: 0.2s;
+  }
+  div:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+  .hover {
+    background-color: rgba(0, 0, 0, 0.15);
   }
 `;
