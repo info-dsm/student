@@ -122,3 +122,5 @@ export {
 } from "../main/statistics/latestAnnouncement";
 
 export { getNoticeCompanySearch } from "../main/notice/getNoticeCompanySearch";
+
+export { getNoticeSearch } from "../main/notice/getNoticeSearch";
