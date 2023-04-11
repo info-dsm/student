@@ -209,7 +209,6 @@ const StudentNoticeList = () => {
                         key={i}
                         className="noticeFilter"
                         onClick={() => {
-                          // setName(e.name);
                           setScrolled(true);
                           setCnt(0);
                           setShow(false);
