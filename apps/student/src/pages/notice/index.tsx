@@ -63,12 +63,28 @@ const StudentNoticeList = () => {
               });
             });
           else {
-            getNoticeSearch({
-              companyName: name.companyName,
-              smallClassification: name.smallClassification,
-              cnt: cnt,
+            let params: {
+              idx: number;
+              size: number;
+              companyName?: string;
+              smallClassification?: string;
+            } = {
+              idx: cnt,
               size: 9,
-            }).then((res) => {
+            };
+            params =
+              name.companyName !== ""
+                ? { ...params, ["companyName"]: name.companyName }
+                : { ...params };
+            params =
+              name.smallClassification !== "전체"
+                ? {
+                    ...params,
+                    ["smallClassification"]: name.smallClassification,
+                  }
+                : { ...params };
+
+            getNoticeSearch({ params }).then((res) => {
               setNotice((list) => list?.concat(res.content));
               setCnt(cnt + 1);
               setScrolled(false);
