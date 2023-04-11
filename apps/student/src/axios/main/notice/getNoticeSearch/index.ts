@@ -21,16 +21,6 @@ export const getNoticeSearch = async ({
     idx: cnt,
     size: size,
   };
-  params =
-    companyName !== ""
-      ? { ...params, ["companyName"]: companyName }
-      : { ...params };
-  params =
-    smallClassification !== "전체"
-      ? { ...params, ["smallClassification"]: smallClassification }
-      : { ...params };
-
-  console.log(params);
 
   const data: getWaitingNoticeListProps = await request.get(`/notice/search`, {
     params,
