@@ -225,6 +225,10 @@ const StudentNoticeList = () => {
                         key={i}
                         className="noticeFilter"
                         onClick={() => {
+                          setName({
+                            ...name,
+                            ["smallClassification"]: e.name,
+                          });
                           setScrolled(true);
                           setCnt(0);
                           setShow(false);
