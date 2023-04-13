@@ -38,7 +38,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Corben:wght@700@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Corben:wght@700&display=swap"
             rel="stylesheet"
           />
           <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />

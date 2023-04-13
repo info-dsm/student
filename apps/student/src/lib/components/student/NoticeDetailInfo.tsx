@@ -18,7 +18,7 @@ const DetailInfo = ({
   const annualSales = `${companyInfo.companyInformation.annualSales}`.replace(
     /(?=(\d{3})+(?!\d))/g,
     ","
-  )
+  );
 
   return (
     <>
@@ -131,13 +131,14 @@ const Arrow = styled.div<{ scale: number }>`
   height: 50px;
   left: ${(props) => (props.scale === 1 ? 3 : 87)}%;
   background-color: rgba(255, 255, 255, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 50%;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
   span {
-    margin-bottom: 7px;
+    position: absolute;
+    top: -0.26vmax;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-family: "Corben", cursive;
   }
 `;
 
