@@ -83,15 +83,19 @@ const DetailInfo = ({
           </div> */}
         </div>
         <Carousel>
-          <Arrow
-            scale={1}
-            onClick={() => {
-              if (current === 0) setCurrent(imageList.length - 1);
-              else setCurrent(current - 1);
-            }}
-          >
-            <span>{"<"}</span>
-          </Arrow>
+          {imageList.length === 1 ? (
+            <></>
+          ) : (
+            <Arrow
+              scale={1}
+              onClick={() => {
+                if (current === 0) setCurrent(imageList.length - 1);
+                else setCurrent(current - 1);
+              }}
+            >
+              <span>{"<"}</span>
+            </Arrow>
+          )}
           {imageList.map((t, i) => (
             <span>
               <CarouselImg
@@ -103,15 +107,19 @@ const DetailInfo = ({
               />
             </span>
           ))}
-          <Arrow
-            scale={-1}
-            onClick={() => {
-              if (current < imageList.length - 1) setCurrent(current + 1);
-              else setCurrent(0);
-            }}
-          >
-            <span>{">"}</span>
-          </Arrow>
+          {imageList.length === 1 ? (
+            <></>
+          ) : (
+            <Arrow
+              scale={-1}
+              onClick={() => {
+                if (current < imageList.length - 1) setCurrent(current + 1);
+                else setCurrent(0);
+              }}
+            >
+              <span>{">"}</span>
+            </Arrow>
+          )}
         </Carousel>
       </NoticeInfo>
     </>
