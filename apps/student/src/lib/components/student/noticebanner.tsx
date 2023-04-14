@@ -3,6 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import BannerImage from "../../../../public/assets/images/main.png";
 import { useState, useEffect } from "react";
+import { frameRate, totalFrame } from "@/public/data";
 
 const StudentNoticeBanner = () => {
   const [noticeSize, setNoticeSize] = useState<number>(0);
@@ -10,7 +11,15 @@ const StudentNoticeBanner = () => {
 
   useEffect(() => {
     NoticeCount().then((res: number) => {
-      setNoticeSize(res);
+      let currentNumber = 0;
+      const counter = setInterval(() => {
+        const progress = ++currentNumber / totalFrame;
+        setNoticeSize(Math.round(res * progress));
+
+        if (progress === 1) {
+          clearInterval(counter);
+        }
+      }, frameRate);
     });
   }, []);
 

@@ -4,13 +4,22 @@ import MainImage from "../../../../public/assets/images/main.png";
 import ArrowText from "./Arrow";
 import { useEffect, useState } from "react";
 import { NoticeCount } from "@/src/axios/dist";
+import { frameRate, totalFrame } from "@/public/data";
 
 const StudentBanner = () => {
   const [noticeSize, setNoticeSize] = useState<number>(0);
 
   useEffect(() => {
     NoticeCount().then((res: number) => {
-      setNoticeSize(res);
+      let currentNumber = 0;
+      const counter = setInterval(() => {
+        const progress = ++currentNumber / totalFrame;
+        setNoticeSize(Math.round(res * progress));
+
+        if (progress === 1) {
+          clearInterval(counter);
+        }
+      }, frameRate);
     });
   }, []);
 

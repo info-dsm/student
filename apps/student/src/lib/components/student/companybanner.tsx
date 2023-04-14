@@ -3,13 +3,22 @@ import styled from "styled-components";
 import BannerImage from "../../../../public/assets/images/main.png";
 import { useEffect, useState } from "react";
 import { CompanyCount } from "@/src/axios/dist";
+import { frameRate, totalFrame } from "@/public/data";
 
 const StudentCompanyBanner = () => {
   const [companySize, setCompanySize] = useState<number>(0);
   const date = new Date();
   useEffect(() => {
     CompanyCount().then((res: number) => {
-      setCompanySize(res);
+      let currentNumber = 0;
+      const counter = setInterval(() => {
+        const progress = ++currentNumber / totalFrame;
+        setCompanySize(Math.round(res * progress));
+
+        if (progress === 1) {
+          clearInterval(counter);
+        }
+      }, frameRate);
     });
   }, []);
 
