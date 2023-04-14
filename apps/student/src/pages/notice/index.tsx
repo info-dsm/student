@@ -165,6 +165,7 @@ const StudentNoticeList = () => {
                     setCnt(0);
                     setShow(false);
                     setNotice([]);
+                    setClosedNotice([]);
                   }
                 }}
               />
@@ -204,6 +205,7 @@ const StudentNoticeList = () => {
                     setCnt(0);
                     setShow(false);
                     setNotice([]);
+                    setClosedNotice([]);
                   }
                 }}
                 onChange={(e) => {
@@ -233,6 +235,7 @@ const StudentNoticeList = () => {
                           setCnt(0);
                           setShow(false);
                           setNotice([]);
+                          setClosedNotice([]);
                         }}
                         data-name={e.name}
                       >
