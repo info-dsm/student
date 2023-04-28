@@ -1,5 +1,5 @@
 import StudentNoticeBanner from "../../../src/lib/components/student/noticebanner";
-import HeaderComponent from "ui/components/StudentHeader";
+import HeaderComponent from "@/../../packages/ui/components/StudentHeader";
 import styled, { keyframes } from "styled-components";
 import React, { useEffect, useState } from "react";
 import BackArrow from "@/public/assets/images/BackArrow.png";

@@ -4,7 +4,6 @@ import TitleIcon from "../images/title";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
 import { reissue } from "../../../apps/student/src/axios/dist";
-
 const HeaderComponent = () => {
   const router = useRouter();
   const nav = [
@@ -86,9 +85,7 @@ const HeaderComponent = () => {
     </>
   );
 };
-
 export default HeaderComponent;
-
 const MainDiv = styled.div`
   width: 100vw;
   padding: 1.1vmax 12.3vmin;
@@ -98,7 +95,7 @@ const MainDiv = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(16, 17, 18, 0.5);
+  background: rgba(16, 17, 18, 0.6);
   backdrop-filter: blur(9px);
   z-index: 99;
 

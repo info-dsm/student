@@ -29,26 +29,40 @@ export { SearchBar, type SearchBarProps } from "../components/SearchBar";
 export { ModalHeader, type ModalHeaderProps } from "../modal/ModalHeader";
 export { LabelButton, type LabelButtonProps } from "../components/Label";
 export { NoticeList } from "../components/NoticeList";
-export { ChangeSelect, type ChangeSelectProps } from "../components/ChangeStatus";
+export {
+  ChangeSelect,
+  type ChangeSelectProps,
+} from "../components/ChangeStatus";
 export { ModalCompany, type ModalCompanyProps } from "../modal/ModalCompany";
 export { SmallInput, type SmallInputProps } from "../components/SmallInput";
 export { AddressInput, type AddressInputProps } from "../components/Address";
 export { FileManage, type FileManageProps } from "../components/FileManage";
-export { SecondModalCompany, type SecondModalCompanyProps } from "../modal/SecondModal";
+export {
+  SecondModalCompany,
+  type SecondModalCompanyProps,
+} from "../modal/SecondModal";
 export { CheckInput, type CheckInputProps } from "../components/Check";
 export { TextArea, type TextAreaProps } from "../components/TextArea";
-export { NoticeSelect, type NoticeSelectProps } from "../components/NoticeSelectProps";
+export {
+  NoticeSelect,
+  type NoticeSelectProps,
+} from "../components/NoticeSelectProps";
 export { NumberInput, type NumberInputProps } from "../components/NumberInput";
 export { CheckBox, type CheckBoxProps } from "../components/CheckBox";
 export { BigCheck, type BigCheckProps } from "../components/BigCheckInput";
 export { InputNotice, type InputNoticeProps } from "../components/InputNotice";
 export { OtherSearch, type OtherSearchProps } from "../components/OthersSearch";
 export { SelectPrime, type SelectPrimeProps } from "../components/SelectPrime";
-export { NoticeCompanyList,CompanyTitle,type NoticeCompanyListProps,type CompanyTitleProps } from "../components/CompanyNoticeList";
+export {
+  NoticeCompanyList,
+  CompanyTitle,
+  type NoticeCompanyListProps,
+  type CompanyTitleProps,
+} from "../components/CompanyNoticeList";
 export { CompanyTable } from "../components/TableCompany";
-export { DetailRecruitmentJob } from "../components/noticeprops/Detail"
-export { Welfare } from "../components/noticeprops/Welfare"
-export { QualificationRequirements } from "../components/noticeprops/Qualification"
-export { Footer } from "../components/Footer"
-export { Spinner } from "../components/Spinner"
-
+export { DetailRecruitmentJob } from "../components/noticeprops/Detail";
+export { Welfare } from "../components/noticeprops/Welfare";
+export { QualificationRequirements } from "../components/noticeprops/Qualification";
+export { Footer } from "../components/Footer";
+export { Spinner } from "../components/Spinner";
+export {AuthInput} from "../components/AuthInput";
