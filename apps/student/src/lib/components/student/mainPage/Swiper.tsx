@@ -1,31 +1,44 @@
 import Arrow from "@/public/assets/images/arrow";
+import {
+  getWaitingNoticeList,
+  getWaitingNoticeListContentProps,
+} from "@/src/axios/dist";
 import { useState } from "react";
 import { useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const SwiperImage = () => {
-  const [move, setMove] = useState<number>(0);
-  const [arr, setArr] = useState<number[]>(
-    Array.from({ length: 6 }, (_, i) => {
-      return i;
-    })
-  );
+  const [arr, setArr] = useState<getWaitingNoticeListContentProps[]>();
+
   useEffect(() => {
-    let beforeNumber = 0;
-    let cnt = 1;
-    let beforeArr = Array.from({ length: 6 }, (_, i) => {
-      return i;
+    getWaitingNoticeList({ idx: 0, size: 6 }).then((res) => {
+      setArr(res.content);
     });
-    const counter = setInterval(() => {
-      const currentNumber = ++beforeNumber;
-      setMove(currentNumber);
-      if (cnt * 510 <= currentNumber) {
-        beforeArr = beforeArr.concat([7]);
-        setArr(beforeArr);
-        cnt += 1;
-      }
-    }, 30);
   }, []);
+
+  const slide = () => {
+    return (
+      <>
+        {arr?.map((e) => (
+          <div>
+            <img src={e.company.imageList[0]} alt="" />
+            <div>
+              <h1>
+                {e.classificationResponse.map(
+                  (t, i, a) =>
+                    `  
+                      ${t.name}
+                      ${a.length - 1 !== i ? ", " : " "}`
+                )}
+              </h1>
+              <h2>{e.company.companyName}</h2>
+              <span>채용 인원 {e.numberOfEmployee}명</span>
+            </div>
+          </div>
+        ))}
+      </>
+    );
+  };
 
   return (
     <MainPage>
@@ -42,11 +55,8 @@ const SwiperImage = () => {
         </button>
       </h1>
       <div>
-        <Slide move={move}>
-          {arr.map((e) => (
-            <div>{e}</div>
-          ))}
-        </Slide>
+        <Slide>{slide()}</Slide>
+        <Slide>{slide()}</Slide>
       </div>
     </MainPage>
   );
@@ -65,10 +75,6 @@ const MainPage = styled.div`
   justify-content: space-between;
   padding-bottom: 30px;
   box-sizing: border-box;
-
-  * {
-    font-family: "Pretendard Variable";
-  }
 
   > h1 {
     padding-top: 13.14vmin;
@@ -104,15 +110,76 @@ const MainPage = styled.div`
       }
     }
   }
+  > div {
+    width: 3090px;
+    display: flex;
+
+    &:hover > div {
+      animation-play-state: paused;
+    }
+  }
 `;
 
-const Slide = styled.div<{ move: number }>`
-  display: inline-flex;
-  gap: 30px;
-  transform: translateX(-${(props) => props.move}px);
-  div {
+const Loop = keyframes`
+  100% {
+    transform: translateX(-100%);
+  }
+`;
+
+const Slide = styled.div`
+  display: flex;
+  animation: ${Loop} 30s linear infinite;
+
+  > div {
     width: 480px;
     height: 387px;
-    background-color: red;
+    background-color: #fff;
+    margin: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 12px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    > img {
+      width: 100%;
+      height: 60%;
+      object-fit: contain;
+      padding: 20px;
+    }
+    > div {
+      width: 100%;
+      height: 40%;
+      box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+      background-color: #fcfcfc;
+      border-radius: 0 0 12px 12px;
+      padding: 20px 32px;
+
+      > h1 {
+        width: 100%;
+        margin: 0;
+        font-size: 25px;
+        margin-bottom: 8px;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      > h2 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 14px;
+      }
+      > span {
+        font-size: 16px;
+        color: #00000060;
+        font-weight: 500;
+      }
+    }
   }
 `;
