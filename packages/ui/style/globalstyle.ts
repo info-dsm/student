@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     background-color: #F8F8F9;
     ::-webkit-scrollbar {
-      background-color: ${(props) => props.theme.colors.gray};
+      background-color: transparent;
       width: 10px; 
     }
     ::-webkit-scrollbar-thumb {
