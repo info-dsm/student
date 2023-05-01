@@ -92,7 +92,7 @@ const MainDiv = styled.div`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: rgba(16, 17, 18, 0.6);
