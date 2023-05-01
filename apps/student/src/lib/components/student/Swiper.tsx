@@ -16,15 +16,15 @@ const SwiperImage = () => {
     let beforeArr = Array.from({ length: 6 }, (_, i) => {
       return i;
     });
-    // const counter = setInterval(() => {
-    //   const currentNumber = ++beforeNumber;
-    //   setMove(currentNumber);
-    //   if (cnt * 510 <= currentNumber) {
-    //     beforeArr = beforeArr.concat([7]);
-    //     setArr(beforeArr);
-    //     cnt += 1;
-    //   }
-    // }, 30);
+    const counter = setInterval(() => {
+      const currentNumber = ++beforeNumber;
+      setMove(currentNumber);
+      if (cnt * 510 <= currentNumber) {
+        beforeArr = beforeArr.concat([7]);
+        setArr(beforeArr);
+        cnt += 1;
+      }
+    }, 30);
   }, []);
 
   return (
