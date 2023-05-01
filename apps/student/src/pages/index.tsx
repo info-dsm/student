@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import StudentBanner from "../lib/components/student/Banner";
-import StudentMainNoticeContainer from "../lib/components/student/NoticeContainer";
+import BeforeStudentBanner from "../lib/components/student/BeforeMainPage/Banner";
+import BeforeStudentMainNoticeContainer from "../lib/components/student/NoticeContainer";
 import TextBox from "../lib/components/student/TextBox";
 import React, { useLayoutEffect, useState } from "react";
 import { getCompanyList1, getCompanyList1ContentProps } from "../axios/dist";
@@ -23,7 +23,7 @@ const StudentPage = () => {
     <>
       <HeaderComponent />
       <MainDiv>
-        <StudentBanner />
+        <BeforeStudentBanner />
         <ContainerDiv>
           <hr />
           <TextBox
@@ -69,7 +69,7 @@ const StudentPage = () => {
             }}
           />
         </ContainerDiv>
-        <StudentMainNoticeContainer />
+        <BeforeStudentMainNoticeContainer />
         <hr />
         <Footer />
       </MainDiv>
