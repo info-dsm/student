@@ -32,7 +32,8 @@ const ArrowAnimation = keyframes`
 const ArrowDiv = styled.span`
   a {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.7);
+    color: #c7c7c7;
+    font-family: "Pretendard Variable";
     margin-top: 2px;
   }
   margin-top: 1vh;
