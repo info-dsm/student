@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import Image from "next/image";
-import MainImage from "../../../../public/assets/images/main.png";
-import ArrowText from "./Arrow";
+import MainImage from "../../../../../public/assets/images/main.png";
+import ArrowText from "../Arrow";
 import { useEffect, useState } from "react";
 import { NoticeCount } from "@/src/axios/dist";
 import { frameRate, totalFrame } from "@/public/data";
 
-const StudentBanner = () => {
+const BeforeStudentBanner = () => {
   const [noticeSize, setNoticeSize] = useState<number>(0);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const StudentBanner = () => {
   );
 };
 
-export default StudentBanner;
+export default BeforeStudentBanner;
 
 const Banner = styled.div`
   scroll-snap-align: start;
