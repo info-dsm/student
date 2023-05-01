@@ -7,7 +7,7 @@ import {
   getWaitingNoticeListProps,
 } from "../../../axios/dist";
 
-const StudentMainNoticeContainer = () => {
+const BeforeStudentMainNoticeContainer = () => {
   const [companyKind, setCompanyKind] = useState<
     getWaitingNoticeListContentProps[]
   >([
@@ -96,7 +96,7 @@ const StudentMainNoticeContainer = () => {
   );
 };
 
-export default StudentMainNoticeContainer;
+export default BeforeStudentMainNoticeContainer;
 
 const NoticeCompany = styled.div`
   background-color: #101112;
