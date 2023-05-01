@@ -20,7 +20,7 @@ const StudentPage = () => {
   }, []);
 
   return (
-    <>
+    <FontDiv>
       <HeaderComponent />
       <MainDiv>
         <StudentBanner />
@@ -73,11 +73,17 @@ const StudentPage = () => {
         <hr />
         <Footer />
       </MainDiv>
-    </>
+    </FontDiv>
   );
 };
 
 export default StudentPage;
+
+const FontDiv = styled.div`
+  * {
+    font-family: "Pretendard Variable";
+  }
+`;
 
 const MainDiv = styled.div`
   overflow: auto;

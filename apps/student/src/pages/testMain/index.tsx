@@ -4,6 +4,7 @@ import React from "react";
 import HeaderComponent from "ui/components/StudentHeader";
 import { Footer } from "ui/components/Footer";
 import SwiperImage from "@/src/lib/components/student/mainPage/Swiper";
+import CompanyCarousel from "@/src/lib/components/student/mainPage/CompanyCarousel";
 
 const NewStudentPage = () => {
   // const [companyKind, setCompanyKind] =
@@ -17,10 +18,11 @@ const NewStudentPage = () => {
 
   return (
     <>
-      <HeaderComponent />
       <MainDiv>
+        <HeaderComponent />
         <StudentBanner />
         <SwiperImage />
+        <CompanyCarousel />
         <Footer />
       </MainDiv>
     </>
@@ -34,6 +36,9 @@ const MainDiv = styled.div`
   overflow-x: hidden;
   width: 100vw;
   height: 100vh;
+  * {
+    font-family: "Pretendard Variable";
+  }
   hr {
     scroll-snap-align: start;
     margin: 0;

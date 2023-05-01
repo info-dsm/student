@@ -72,7 +72,7 @@ const StudentLogin = () => {
   };
 
   return (
-    <>
+    <FontDiv>
       <StudentAuthBanner />
       <ModalDiv
         onSubmit={(e) => {
@@ -115,11 +115,17 @@ const StudentLogin = () => {
           clickEvent={() => login()}
         />
       </ModalDiv>
-    </>
+    </FontDiv>
   );
 };
 
 export default StudentLogin;
+
+const FontDiv = styled.div`
+  * {
+    font-family: "Pretendard Variable";
+  }
+`;
 
 const ModalDiv = styled.form`
   width: 480px;

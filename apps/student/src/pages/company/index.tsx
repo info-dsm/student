@@ -50,7 +50,7 @@ const StudentCompanyList = () => {
   }
 
   return (
-    <>
+    <FontDiv>
       <HeaderComponent />
       <StudentCompanyBanner />
       <MegaPhoneV2 />
@@ -74,11 +74,17 @@ const StudentCompanyList = () => {
           )}
         </Content>
       </MainDiv>
-    </>
+    </FontDiv>
   );
 };
 
 export default StudentCompanyList;
+
+const FontDiv = styled.div`
+  * {
+    font-family: "Pretendard Variable";
+  }
+`;
 
 const MainDiv = styled.div`
   width: 100vw;

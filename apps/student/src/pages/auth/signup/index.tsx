@@ -84,7 +84,7 @@ const StudentSignUp = () => {
   };
 
   return (
-    <>
+    <FontDiv>
       <StudentAuthBanner />
       <MainDiv>
         <ModalDiv>
@@ -224,11 +224,17 @@ const StudentSignUp = () => {
           />
         </ModalDiv>
       </MainDiv>
-    </>
+    </FontDiv>
   );
 };
 
 export default StudentSignUp;
+
+const FontDiv = styled.div`
+  * {
+    font-family: "Pretendard Variable";
+  }
+`;
 
 const MainDiv = styled.div`
   position: absolute;

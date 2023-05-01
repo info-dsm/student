@@ -35,7 +35,7 @@ const StudentMyPage = () => {
   return (
     <>
       {info && status ? (
-        <>
+        <FontDiv>
           <HeaderComponent />
           <MainDiv>
             <>
@@ -46,7 +46,7 @@ const StudentMyPage = () => {
             </>
           </MainDiv>
           <Footer />
-        </>
+        </FontDiv>
       ) : (
         <Spinner />
       )}
@@ -55,6 +55,11 @@ const StudentMyPage = () => {
 };
 
 export default StudentMyPage;
+const FontDiv = styled.div`
+  * {
+    font-family: "Pretendard Variable";
+  }
+`;
 
 const MainDiv = styled.div`
   width: 100vw;

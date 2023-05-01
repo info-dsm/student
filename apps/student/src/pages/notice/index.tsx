@@ -143,7 +143,7 @@ const StudentNoticeList = () => {
   }, [current]);
 
   return (
-    <>
+    <FontDiv>
       <HeaderComponent />
       <StudentNoticeBanner />
       <MegaPhoneV2 />
@@ -297,11 +297,17 @@ const StudentNoticeList = () => {
           </Kind2>
         </Content>
       </MainDiv>
-    </>
+    </FontDiv>
   );
 };
 
 export default StudentNoticeList;
+
+const FontDiv = styled.div`
+  * {
+    font-family: "Pretendard Variable";
+  }
+`;
 
 const CompanyInput = styled.div`
   position: absolute;

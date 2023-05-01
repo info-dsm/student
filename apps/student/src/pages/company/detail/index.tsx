@@ -36,7 +36,7 @@ const StudentCompanyDetail = ({}: {}) => {
   return (
     <>
       {info && noticeInfo ? (
-        <>
+        <FontDiv>
           <HeaderComponent />
           <MainDiv>
             <DetailDiv>
@@ -52,7 +52,7 @@ const StudentCompanyDetail = ({}: {}) => {
             </DetailDiv>
           </MainDiv>
           <Footer />
-        </>
+        </FontDiv>
       ) : (
         <Spinner />
       )}
@@ -61,6 +61,12 @@ const StudentCompanyDetail = ({}: {}) => {
 };
 
 export default StudentCompanyDetail;
+
+const FontDiv = styled.div`
+  * {
+    font-family: "Pretendard Variable";
+  }
+`;
 
 const MainDiv = styled.div`
   display: flex;
