@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import StudentBanner from "../../lib/components/student/MainPage/Banner";
+import StudentBanner from "../../lib/components/student/Banner";
 import StudentMainNoticeContainer from "../../lib/components/student/NoticeContainer";
 import TextBox from "../../lib/components/student/TextBox";
 import React, { useLayoutEffect, useState } from "react";
@@ -7,7 +7,7 @@ import { getCompanyList1, getCompanyList1ContentProps } from "../../axios/dist";
 import HeaderComponent from "ui/components/StudentHeader";
 import { Footer } from "ui/components/Footer";
 import { useRouter } from "next/router";
-import SwiperImage from "../../lib/components/student/MainPage/Notice";
+import SwiperImage from "../../lib/components/student/Swiper";
 
 const StudentPage = () => {
   const router = useRouter();

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BeforeStudentBanner from "../../lib/components/student/BeforeMainPage/Banner";
+import BeforeStudentBanner from "../../lib/components/student/BeforeBanner";
 import BeforeStudentMainNoticeContainer from "../../lib/components/student/NoticeContainer";
 import TextBox from "../../lib/components/student/TextBox";
 import React, { useLayoutEffect, useState } from "react";

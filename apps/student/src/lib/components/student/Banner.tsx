@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import MainImage from "../../../../../public/assets/images/main.png";
-import ArrowText from "../Arrow";
+import ArrowText from "./Arrow";
 import { useEffect, useState } from "react";
 import { NoticeCount } from "@/src/axios/dist";
 import { frameRate, totalFrame } from "@/public/data";
