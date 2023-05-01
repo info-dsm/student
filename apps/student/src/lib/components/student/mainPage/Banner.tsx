@@ -31,7 +31,7 @@ const StudentBanner = () => {
   }, []);
 
   return (
-    <MainDiv>
+    <>
       <Banner>
         <div>
           현재 총 {noticeSize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
@@ -55,17 +55,11 @@ const StudentBanner = () => {
       <BannerImg>
         <Image src={MainImage} alt="" />
       </BannerImg>
-    </MainDiv>
+    </>
   );
 };
 
 export default StudentBanner;
-
-const MainDiv = styled.div`
-  * {
-    font-family: "Pretendard Variable";
-  }
-`;
 
 const Notice = styled.div`
   width: 100%;
