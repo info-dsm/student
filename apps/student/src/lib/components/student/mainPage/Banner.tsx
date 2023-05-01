@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import Image from "next/image";
 import MainImage from "@/public/assets/images/main.png";
-import ArrowText from "./Arrow";
+import ArrowText from "../Arrow";
 import { useEffect, useState } from "react";
 import { NoticeCount } from "@/src/axios/dist";
 import { frameRate, totalFrame } from "@/public/data";
 import { AnnouncementList } from "@/src/axios/dist";
 import { AnnouncementListProps } from "@/src/axios/dist";
 
-const NewStudentBanner = () => {
+const StudentBanner = () => {
   const [noticeSize, setNoticeSize] = useState<number>(0);
   const [announcement, setAnnounce] = useState<AnnouncementListProps>();
 
@@ -59,7 +59,7 @@ const NewStudentBanner = () => {
   );
 };
 
-export default NewStudentBanner;
+export default StudentBanner;
 
 const MainDiv = styled.div`
   * {
