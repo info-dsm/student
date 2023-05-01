@@ -45,6 +45,11 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/assets/images/favicon.ico" />
           <link rel="canonical" href="https://student.info-dsm.info/notice" />
           <link rel="canonical" href="https://student.info-dsm.info/company" />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css"
+          />
         </Head>
         <body>
           <Main />
