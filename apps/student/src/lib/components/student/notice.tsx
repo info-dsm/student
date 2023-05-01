@@ -20,7 +20,7 @@ const StudentNotice = ({
       </h1>
       <span>{info.company.companyName}</span>
       <Address>
-        <span>지원자 수 {info.applicantCount}명</span>
+        {/* <span>지원자 수 {info.applicantCount}명</span> */}
       </Address>
       <Part>
         {info.classificationResponse.map((t) => (

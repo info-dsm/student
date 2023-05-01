@@ -51,7 +51,7 @@ const NoticeDetail = () => {
   return (
     <>
       {NoticeInfo && CompanyInfo ? (
-        <>
+        <FontDiv>
           <HeaderComponent />
           <MainDiv>
             <DetailDiv>
@@ -95,7 +95,7 @@ const NoticeDetail = () => {
                 href={"#resume"}
                 point={NoticeID.includes(NoticeInfo.noticeId)}
               >
-                <div>지원자 수 {NoticeInfo.applicantCount}명</div>
+                {/* <div>지원자 수 {NoticeInfo.applicantCount}명</div> */}
                 <label
                   style={{
                     cursor: `${
@@ -124,7 +124,7 @@ const NoticeDetail = () => {
             </DetailDiv>
           </MainDiv>
           <Footer />
-        </>
+        </FontDiv>
       ) : (
         <Spinner />
       )}
@@ -133,7 +133,11 @@ const NoticeDetail = () => {
 };
 
 export default NoticeDetail;
-
+const FontDiv = styled.div`
+  * {
+    font-family: "Pretendard Variable";
+  }
+`;
 const Date = styled.div`
   width: 100%;
   display: inline-flex;
