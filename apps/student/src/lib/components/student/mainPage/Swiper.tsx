@@ -20,7 +20,7 @@ const SwiperImage = () => {
     return (
       <>
         {arr?.map((e) => (
-          <div>
+          <a href={`/notice/detail/?id=${e.noticeId}`}>
             <img src={e.company.imageList[0]} alt="" />
             <div>
               <h1>
@@ -34,7 +34,7 @@ const SwiperImage = () => {
               <h2>{e.company.companyName}</h2>
               <span>채용 인원 {e.numberOfEmployee}명</span>
             </div>
-          </div>
+          </a>
         ))}
       </>
     );
@@ -49,10 +49,12 @@ const SwiperImage = () => {
           있어요.
         </span>
         <br />
-        <button>
-          <div>맞춤 포지션 더 보기</div>
-          <Arrow color="#332D72" />
-        </button>
+        <a href="/notice/">
+          <button>
+            <div>맞춤 포지션 더 보기</div>
+            <Arrow color="#332D72" />
+          </button>
+        </a>
       </h1>
       <div>
         <Slide>{slide()}</Slide>
@@ -90,10 +92,11 @@ const MainPage = styled.div`
       font-size: 28px;
       font-weight: 500;
     }
-    > button {
+    > a > button {
       background-color: #fff;
       width: 242px;
       height: 54px;
+      cursor: pointer;
       border-radius: 24px;
       border: none;
       margin-top: 50px;
@@ -130,7 +133,9 @@ const Slide = styled.div`
   display: flex;
   animation: ${Loop} 30s linear infinite;
 
-  > div {
+  > a {
+    text-decoration: none;
+    color: #000;
     width: 480px;
     height: 387px;
     background-color: #fff;

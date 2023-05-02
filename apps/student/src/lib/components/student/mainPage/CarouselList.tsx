@@ -102,6 +102,7 @@ const CarouselDiv = styled.div`
   text-align: center;
   overflow-y: hidden;
   border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
 `;
 
 const Content = styled.div<{ translateX: number }>`

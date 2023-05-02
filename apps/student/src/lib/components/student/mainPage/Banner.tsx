@@ -43,10 +43,10 @@ const StudentBanner = () => {
             <div>공지사항</div>
             <div>
               {announcement?.content.map((e, i) => (
-                <div>
+                <a href={`/announcement/`}>
                   <span>{e.title}</span>
                   <span>{e.createdAt.substring(0, 10)}</span>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -90,7 +90,9 @@ const Notice = styled.div`
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 12px;
       grid-row-gap: 11px;
-      div {
+      a {
+        text-decoration: none;
+        color: #000;
         background-color: rgba(255, 255, 255, 0.85);
         border-radius: 12px;
         padding: 19px 21px;
