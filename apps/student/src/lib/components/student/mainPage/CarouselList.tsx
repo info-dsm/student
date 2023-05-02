@@ -18,7 +18,7 @@ const Carousel = ({ companyList }: { companyList: getCompanyList1Props }) => {
       </Arrow>
       <CarouselDiv>
         {companyList.content.map((t, i) => (
-          <Content translateX={current * -1280}>
+          <Content translateX={current * -66.66}>
             <img src={t.companyIntroductionResponse.companyLogo.fileUrl} />
             <div>
               <h1>{t.companyName}</h1>
@@ -110,8 +110,8 @@ const Content = styled.div<{ translateX: number }>`
   height: 64vmin;
   background-color: #fff;
   transition: 1s;
-  transform: translateX(${(props) => props.translateX}px);
-  padding: 52px;
+  transform: translateX(${(props) => props.translateX}vmax);
+  padding: 2.7vmax;
   display: inline-flex;
   justify-content: space-between;
 
@@ -124,7 +124,7 @@ const Content = styled.div<{ translateX: number }>`
   }
 
   > div {
-    width: 516px;
+    width: 26.875vmax;
 
     hr {
       border: none;
@@ -138,25 +138,26 @@ const Content = styled.div<{ translateX: number }>`
     h1 {
       text-align: left;
       color: #241b58;
-      font-size: 55px;
-      margin-bottom: 50px;
+      font-size: 2.86vmax;
+      margin-bottom: 2.6vmax;
     }
 
     > p {
-      width: 516px;
+      width: 26.875vmax;
       white-space: pre-wrap;
       text-align: left;
+      font-size: 1vmax;
     }
 
     > div {
       text-align: left;
-
+      font-size: 1vmax;
       > div {
         margin-bottom: 7px;
         display: inline-flex;
         color: #241b58;
         > div {
-          width: 169px;
+          width: 8.8vmax;
           font-weight: 600;
         }
         > span {

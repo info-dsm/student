@@ -67,15 +67,15 @@ const Notice = styled.div`
   justify-content: center;
   margin-top: 42.6vmin;
   > div {
-    width: 1280px;
-    height: 336px;
+    width: 66.66vmax;
+    height: 35.85vmin;
     background-color: rgba(9, 5, 38, 0.4);
     border-radius: 30px;
     padding: 27px 31px;
     display: flex;
     flex-direction: column;
     > div:nth-child(1) {
-      font-size: 28px;
+      font-size: 1.45vmax;
       color: #fff;
       width: 100%;
       text-align: left;
@@ -95,14 +95,14 @@ const Notice = styled.div`
         color: #000;
         background-color: rgba(255, 255, 255, 0.85);
         border-radius: 12px;
-        padding: 19px 21px;
+        padding: 0.98vmax 1.94vmin;
         box-sizing: border-box;
         display: inline-flex;
         justify-content: space-between;
         align-items: center;
         > span:nth-child(1) {
-          width: 440px;
-          font-size: 23px;
+          width: 22.91vmax;
+          font-size: 1.19vmax;
           font-weight: 500;
           display: -webkit-box;
           -webkit-line-clamp: 1;
@@ -112,7 +112,7 @@ const Notice = styled.div`
           text-overflow: ellipsis;
         }
         > span:nth-child(2) {
-          font-size: 16px;
+          font-size: 0.83vmax;
           color: #000;
           opacity: 0.4;
         }

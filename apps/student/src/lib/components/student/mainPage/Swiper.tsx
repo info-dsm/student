@@ -80,11 +80,11 @@ const MainPage = styled.div`
 
   > h1 {
     padding-top: 13.14vmin;
-    padding-left: 360px;
+    padding-left: 18.75vmax;
 
     > div {
       white-space: pre-wrap;
-      font-size: 64px;
+      font-size: 3.33vmax;
       color: #fff;
     }
     > span {
@@ -94,8 +94,8 @@ const MainPage = styled.div`
     }
     > a > button {
       background-color: #fff;
-      width: 242px;
-      height: 54px;
+      width: 12.6vmax;
+      height: 5vmin;
       cursor: pointer;
       border-radius: 24px;
       border: none;
@@ -107,14 +107,14 @@ const MainPage = styled.div`
         height: 24px;
         display: flex;
         align-items: center;
-        font-size: 20px;
+        font-size: 1vmax;
         color: #332d72;
         font-weight: 700;
       }
     }
   }
   > div {
-    width: 3090px;
+    width: 150.875vmax;
     display: flex;
 
     &:hover > div {
@@ -136,10 +136,10 @@ const Slide = styled.div`
   > a {
     text-decoration: none;
     color: #000;
-    width: 480px;
-    height: 387px;
+    width: 25vmax;
+    height: 35.83vmin;
     background-color: #fff;
-    margin: 15px;
+    margin: 0.78125vmax;
     cursor: pointer;
     transition: transform 0.3s ease;
     border-radius: 12px;
@@ -165,8 +165,8 @@ const Slide = styled.div`
       > h1 {
         width: 100%;
         margin: 0;
-        font-size: 25px;
-        margin-bottom: 8px;
+        font-size: 1.3vmax;
+        margin-bottom: 4px;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
@@ -176,12 +176,12 @@ const Slide = styled.div`
       }
       > h2 {
         margin: 0;
-        font-size: 22px;
+        font-size: 1.14vmax;
         font-weight: 500;
-        margin-bottom: 14px;
+        margin-bottom: 1vmin;
       }
       > span {
-        font-size: 16px;
+        font-size: 0.83vmax;
         color: #00000060;
         font-weight: 500;
       }

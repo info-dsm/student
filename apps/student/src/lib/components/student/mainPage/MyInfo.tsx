@@ -124,10 +124,10 @@ const Profile = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
+  width: 26.04vmax;
   img {
-    width: 300px;
-    height: 300px;
+    width: 15.625vmax;
+    height: 15.625vmax;
     border-radius: 50%;
   }
 
@@ -153,8 +153,8 @@ const Profile = styled.div`
 `;
 
 const Apply = styled.div`
-  width: 723px;
-  height: 676px;
+  width: 37.65vmax;
+  height: 35.2vmax;
   background-color: #f6f6f6;
   border-radius: 25px;
   > div:nth-child(1) {

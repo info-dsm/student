@@ -38,11 +38,11 @@ const MainDiv = styled.div`
   h1 {
     text-align: center;
     div {
-      font-size: 64px;
+      font-size: 3.33vmax;
       color: #fff;
     }
     span {
-      font-size: 28px;
+      font-size: 1.45vmax;
       color: #ffffff58;
     }
   }
