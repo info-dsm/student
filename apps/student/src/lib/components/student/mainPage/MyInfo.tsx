@@ -9,6 +9,7 @@ import {
 } from "@/src/axios/dist";
 import { useState } from "react";
 import Image from "next/image";
+import StatusDetail from "./StatusDetail";
 
 const MyInfo = () => {
   const [info, setInfo] = useState<getUserInfoProps>();
@@ -33,7 +34,7 @@ const MyInfo = () => {
     <MainDiv>
       <div>
         <Profile>
-          {info && status ? (
+          {info ? (
             <>
               <Image
                 src={info.profilePhotoLink}
@@ -59,13 +60,46 @@ const MyInfo = () => {
         </Profile>
         <Apply>
           <div>지원현황</div>
-          <Empty>지원한 이력이 없습니다..</Empty>
+          {status && status.length > 0 ? (
+            <ApplyDiv>
+              {status.map((t, i) => (
+                <StatusDetail t={t} />
+              ))}
+            </ApplyDiv>
+          ) : (
+            <Empty>지원한 이력이 없습니다..</Empty>
+          )}
         </Apply>
       </div>
     </MainDiv>
   );
 };
 export default MyInfo;
+
+const ApplyDiv = styled.div`
+  width: 100%;
+  padding: 12px;
+  height: 87.25%;
+  border-radius: 24px;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+
+  > div {
+    width: 100%;
+    height: 74px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 24px;
+    > div {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+    }
+  }
+`;
 
 const MainDiv = styled.div`
   width: 100vw;
@@ -118,9 +152,9 @@ const Profile = styled.div`
 const Apply = styled.div`
   width: 723px;
   height: 676px;
-  background-color: #fff;
+  background-color: #f6f6f6;
   border-radius: 25px;
-  div:nth-child(1) {
+  > div:nth-child(1) {
     height: 13.75%;
     width: 100%;
     background-color: #5850b260;
