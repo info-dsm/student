@@ -50,7 +50,10 @@ const MyInfo = () => {
             </>
           ) : (
             <>
-              <img src="" alt="" />
+              <img
+                src="https://cdn.discordapp.com/attachments/1071077149605384262/1102828957910454323/28378971_131020764389215_1240752824240279573_n.jpg"
+                alt=""
+              />
               <h1>이동현</h1>
               <hr />
               <div>프론트엔드 개발자</div>
