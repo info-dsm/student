@@ -5,6 +5,7 @@ import HeaderComponent from "ui/components/StudentHeader";
 import { Footer } from "ui/components/Footer";
 import SwiperImage from "@/src/lib/components/student/mainPage/Swiper";
 import CompanyCarousel from "@/src/lib/components/student/mainPage/CompanyCarousel";
+import MyInfo from "@/src/lib/components/student/mainPage/MyInfo";
 
 const NewStudentPage = () => {
   // const [companyKind, setCompanyKind] =
@@ -23,6 +24,7 @@ const NewStudentPage = () => {
         <StudentBanner />
         <SwiperImage />
         <CompanyCarousel />
+        <MyInfo />
         <Footer />
       </MainDiv>
     </>
