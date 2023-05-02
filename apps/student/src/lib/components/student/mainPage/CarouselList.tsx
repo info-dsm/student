@@ -108,7 +108,6 @@ const Content = styled.div<{ translateX: number }>`
   min-width: 66.66vmax;
   height: 64vmin;
   background-color: #fff;
-  border: 1px solid red;
   transition: 1s;
   transform: translateX(${(props) => props.translateX}px);
   padding: 52px;
