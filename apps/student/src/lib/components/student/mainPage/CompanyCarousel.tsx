@@ -9,7 +9,7 @@ const CompanyCarousel = () => {
     getCompanyList1({ idx: 0, size: 6 }).then((res) => {
       setCompanyList(res);
     });
-  });
+  }, []);
 
   return (
     <MainDiv>
