@@ -43,7 +43,7 @@ const StudentPage = () => {
               // eslint-disable-next-line react/jsx-key
               <a
                 onClick={() => {
-                  router.push(`/company/detail/${t.companyNumber}`);
+                  router.push(`/company/detail?id=${t.companyNumber}`);
                 }}
               >
                 <ImageDiv

@@ -15,7 +15,7 @@ const StudentMainNotice = ({
     <Notice
       color={condition ? "1" : "0.3"}
       onClick={() => {
-        router.push(`/notice/detail/${info.noticeId}`);
+        router.push(`/notice/detail?id=${info.noticeId}`);
       }}
     >
       <img src={info.company.imageList[0]} alt="" />
