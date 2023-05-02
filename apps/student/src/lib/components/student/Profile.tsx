@@ -10,7 +10,7 @@ const StudentMyPageProfile = ({ info }: { info: getUserInfoProps }) => {
       <ProfileImage>
         <Image
           src={info.profilePhotoLink}
-          alt=""
+          alt="프로필 사진"
           width={140}
           height={140}
           object-fit={"cover"}
