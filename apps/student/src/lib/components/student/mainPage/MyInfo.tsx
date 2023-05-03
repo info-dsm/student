@@ -51,13 +51,10 @@ const MyInfo = () => {
           ) : (
             <>
               <img
-                src="https://cdn.discordapp.com/attachments/1071077149605384262/1102828957910454323/28378971_131020764389215_1240752824240279573_n.jpg"
+                src="https://cdn.discordapp.com/attachments/1071077149605384262/1103215142952513546/user.png"
                 alt=""
               />
-              <h1>이동현</h1>
-              <hr />
-              <div>프론트엔드 개발자</div>
-              <div>ldh7228@gmail.com</div>
+              <h1>로그인 해주세요</h1>
             </>
           )}
         </Profile>
