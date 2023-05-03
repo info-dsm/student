@@ -43,6 +43,7 @@ export const Footer = () => {
                 <div>김진건</div>
                 <div>안진형</div>
                 <div>임수빈</div>
+                <div>권효원</div>
               </_FlexProps>
             </_Box>
           </_Flex>
@@ -83,6 +84,7 @@ const _Box = styled.div`
 const _FlexProps = styled.div`
   display: flex;
   gap: 30px;
+  width: 300px;
   div {
     font: 500 14px "Pretendard";
     color: ${({ theme }) => theme.colors.white};
