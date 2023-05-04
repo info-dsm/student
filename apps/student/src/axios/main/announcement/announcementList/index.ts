@@ -16,7 +16,7 @@ export const AnnouncementList = async (props: {
   type: "전체" | "DEVELOPER" | "TEACHER";
 }) => {
   const data: AnnouncementListProps = await request.get(
-    `/announcement${
+    `/announcement/${
       props.type !== "전체" ? "?type=" + props.type : ""
     }`,
     {
