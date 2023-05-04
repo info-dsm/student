@@ -9,7 +9,7 @@ export interface AnnouncementLatestProps {
 
 export const AnnouncementLatest = async () => {
   const data: AnnouncementLatestProps = await request.get(
-    "/statistics/announcement/latest"
+    "/announcement/announcement/latest"
   );
   return data;
 };

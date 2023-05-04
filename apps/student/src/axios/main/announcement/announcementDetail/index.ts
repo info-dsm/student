@@ -24,7 +24,7 @@ export const AnnouncementDetail = async ({
   announcementId: string;
 }) => {
   const data: AnnouncementDetailProps = await request.get(
-    `/statistics/announcement/${announcementId}`
+    `/announcement/announcement/${announcementId}`
   );
   return data;
 };

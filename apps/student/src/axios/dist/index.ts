@@ -109,17 +109,17 @@ export { getClassificationNotice } from "../main/notice/classificationNotice";
 export {
   AnnouncementList,
   type AnnouncementListProps,
-} from "../main/statistics/announcementList";
+} from "../main/announcement/announcementList";
 
 export {
   AnnouncementDetail,
   type AnnouncementDetailProps,
-} from "../main/statistics/announcementDetail";
+} from "../main/announcement/announcementDetail";
 
 export {
   AnnouncementLatest,
   type AnnouncementLatestProps,
-} from "../main/statistics/latestAnnouncement";
+} from "../main/announcement/latestAnnouncement";
 
 export { getNoticeCompanySearch } from "../main/notice/getNoticeCompanySearch";
 
