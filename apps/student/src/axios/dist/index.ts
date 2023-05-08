@@ -125,3 +125,4 @@ export { getNoticeCompanySearch } from "../main/notice/getNoticeCompanySearch";
 
 export { getNoticeSearch } from "../main/notice/getNoticeSearch";
 export { getPosition } from "../main/notice/getPosition";
+export { getCompanyPreference } from "../main/company/getCompanyPreference";
