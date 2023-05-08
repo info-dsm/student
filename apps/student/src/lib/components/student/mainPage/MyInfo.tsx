@@ -1,7 +1,11 @@
 import { useLayoutEffect } from "react";
 import cookie from "js-cookie";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
+  getClassification,
+  getClassificationProps,
+  getCompanyPreference,
+  getPosition,
   getSupportStatus,
   getSupportStatusProps,
   getUserInfo,
@@ -10,10 +14,18 @@ import {
 import { useState } from "react";
 import Image from "next/image";
 import StatusDetail from "./StatusDetail";
+import { GetInitial } from "@/src/lib/func";
 
 const MyInfo = () => {
   const [info, setInfo] = useState<getUserInfoProps>();
   const [status, setStatus] = useState<getSupportStatusProps[]>();
+  const [pos, setPos] = useState<string>();
+  const [company, setCompany] = useState<string>();
+  const [classification, setClassification] = useState<
+    getClassificationProps[]
+  >([]);
+  const [inputValue, setInputValue] = useState("");
+  const [show, setShow] = useState<boolean | string>("");
 
   useLayoutEffect(() => {
     if (typeof window !== "undefined" && cookie.get("accessToken")) {
@@ -27,17 +39,39 @@ const MyInfo = () => {
         .catch(() => {
           setStatus([]);
         });
+      getPosition().then((res) => {
+        setPos(res);
+      });
+      getCompanyPreference().then((res) => {
+        setCompany(res);
+      });
+      getClassification().then((res) => {
+        setClassification(
+          [
+            {
+              bigClassification: {
+                bigClassificationName: "전체",
+              },
+              name: "전체",
+            },
+          ].concat(res)
+        );
+      });
     }
   }, []);
 
   return (
-    <MainDiv>
+    <MainDiv id="myinfo">
       <div>
         <Profile>
           {info ? (
             <>
               <Image
-                src={info.profilePhotoLink}
+                src={
+                  info.profilePhotoLink
+                    ? info.profilePhotoLink
+                    : "https://cdn.discordapp.com/attachments/1071077149605384262/1103215142952513546/user.png"
+                }
                 alt="프로필 사진"
                 width={300}
                 height={300}
@@ -45,8 +79,16 @@ const MyInfo = () => {
               />
               <h1>{info.name}</h1>
               <hr />
-              {/* <div>프론트엔드 개발자</div> */}
-              <div>{info.email}</div>
+              <div>
+                {pos && pos.length > 0 ? pos : "맞춤 포지션을 설정해주세요."}
+              </div>
+
+              <div>
+                {company && company.length > 0
+                  ? company
+                  : "희망하는 기업 규모를 선택해주세요."}
+              </div>
+              <button>정보 수정하기</button>
             </>
           ) : (
             <>
@@ -142,10 +184,21 @@ const Profile = styled.div`
     margin: 25px;
   }
   div {
-    margin-bottom: 17px;
-    color: #ffffff58;
+    color: #ffffffaa;
     font-size: 28px;
     font-weight: 600;
+    margin-bottom: 6px;
+  }
+  button {
+    margin-top: 13px;
+    padding: 10px 23px;
+    background-color: #ffffff98;
+    color: #121212;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 24px;
+    border: none;
   }
 `;
 
@@ -175,4 +228,66 @@ const Empty = styled.div`
   align-items: center;
   font-size: 20px;
   color: #241b58;
+`;
+
+const SelectDiv = styled.div`
+  position: absolute;
+  top: 4px;
+  right: 0.8vmax;
+`;
+const FadeInDataList = keyframes`
+0% {
+    transform: translateY(-50px);
+    opacity: 0;
+}100% {
+    transform: translateY(0);
+    opacity: 1;
+}
+`;
+
+const DataList = styled.div<{ state: boolean | string }>`
+  position: absolute;
+  animation: ${FadeInDataList} 0.5s;
+  width: 100%;
+  z-index: 2;
+  transition: 1s;
+  display: ${(props) => (props.state ? "block" : "none")};
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.black};
+  border-radius: 4px;
+  max-height: 14.58vmax;
+  overflow-y: scroll;
+  font-weight: 500;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  div {
+    height: 4.48vmin;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 0.72vmax;
+    transition: 0.2s;
+  }
+  div:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+  .hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+`;
+
+const SearchInput = styled.input`
+  width: 10.41vmax;
+  height: 3.94vmin;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  padding-left: 10px;
+  color: ${(props) => props.theme.colors.black};
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 0.72vmax;
+  font-weight: 500;
 `;
