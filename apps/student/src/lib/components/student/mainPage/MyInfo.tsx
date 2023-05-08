@@ -4,7 +4,6 @@ import styled, { keyframes } from "styled-components";
 import {
   getClassification,
   getClassificationProps,
-  getCompanyPreference,
   getPosition,
   getSupportStatus,
   getSupportStatusProps,
@@ -39,24 +38,24 @@ const MyInfo = () => {
         .catch(() => {
           setStatus([]);
         });
-      getPosition().then((res) => {
-        setPos(res);
-      });
-      getCompanyPreference().then((res) => {
-        setCompany(res);
-      });
-      getClassification().then((res) => {
-        setClassification(
-          [
-            {
-              bigClassification: {
-                bigClassificationName: "전체",
-              },
-              name: "전체",
-            },
-          ].concat(res)
-        );
-      });
+      // getPosition().then((res) => {
+      //   setPos(res);
+      // });
+      // getCompanyPreference().then((res) => {
+      //   setCompany(res);
+      // });
+      // getClassification().then((res) => {
+      //   setClassification(
+      //     [
+      //       {
+      //         bigClassification: {
+      //           bigClassificationName: "전체",
+      //         },
+      //         name: "전체",
+      //       },
+      //     ].concat(res)
+      //   );
+      // });
     }
   }, []);
 
@@ -79,7 +78,7 @@ const MyInfo = () => {
               />
               <h1>{info.name}</h1>
               <hr />
-              <div>
+              {/* <div>
                 {pos && pos.length > 0 ? pos : "맞춤 포지션을 설정해주세요."}
               </div>
 
@@ -87,7 +86,7 @@ const MyInfo = () => {
                 {company && company.length > 0
                   ? company
                   : "희망하는 기업 규모를 선택해주세요."}
-              </div>
+              </div> */}
               <button>정보 수정하기</button>
             </>
           ) : (
