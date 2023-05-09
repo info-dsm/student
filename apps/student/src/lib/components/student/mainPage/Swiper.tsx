@@ -1,5 +1,7 @@
 import Arrow from "@/public/assets/images/arrow";
 import {
+  getNoticeCustom,
+  getPosition,
   getWaitingNoticeList,
   getWaitingNoticeListContentProps,
 } from "@/src/axios/dist";
@@ -9,12 +11,27 @@ import styled, { keyframes } from "styled-components";
 
 const SwiperImage = () => {
   const [arr, setArr] = useState<getWaitingNoticeListContentProps[]>();
+  const [position, setPosition] = useState<string>();
 
   useEffect(() => {
-    getWaitingNoticeList({ idx: 0, size: 6 }).then((res) => {
-      setArr(res.content);
+    getPosition().then((res) => {
+      setPosition(res);
     });
   }, []);
+
+  useEffect(() => {
+    if (!(typeof position === "undefined")) {
+      if (typeof position === "string" && position.length > 0) {
+        getNoticeCustom().then((res) => {
+          setArr(res.content);
+        });
+      } else {
+        getWaitingNoticeList({ idx: 0, size: 6 }).then((res) => {
+          setArr(res.content);
+        });
+      }
+    }
+  }, [position]);
 
   const slide = () => {
     return (
@@ -45,13 +62,18 @@ const SwiperImage = () => {
       <h1>
         <div>{"모집공고에서\n취업의 기회를 잡아봐요!"}</div>
         <span>
-          직군, 자격요건, 회사상황, 전형절차, 복리후생 등 여러 조건을 확인 할 수
-          있어요.
+          {position && position.length > 0
+            ? "직군, 자격요건, 회사상황, 전형절차, 복리후생 등 여러 조건을 확인 할 수있어요."
+            : "선호 포지션을 등록하면 포지션에 맞는 회사를 추천 받을 수 있어요."}
         </span>
         <br />
-        <a href="/notice/">
+        <a href={position && position.length > 0 ? "/notice" : "#myinfo"}>
           <button>
-            <div>맞춤 포지션 더 보기</div>
+            <div>
+              {position && position.length > 0
+                ? "맞춤 포지션 더 보기"
+                : "선호 포지션 등록하기"}
+            </div>
             <Arrow color="#332D72" />
           </button>
         </a>
@@ -88,7 +110,7 @@ const MainPage = styled.div`
       color: #fff;
     }
     > span {
-      color: #ffffff58;
+      color: #ffffff99;
       font-size: 28px;
       font-weight: 500;
     }
