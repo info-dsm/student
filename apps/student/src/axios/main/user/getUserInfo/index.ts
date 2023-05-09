@@ -5,7 +5,7 @@ import request from "../..";
 export interface getUserInfoProps {
   name: string;
   email: string;
-  profilePhotoLink: string;
+  profilePhotoLink: string | null;
 }
 
 export const getUserInfo = async () => {
