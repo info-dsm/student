@@ -111,7 +111,7 @@ const Content = styled.div<{ translateX: number }>`
   background-color: #fff;
   transition: 1s;
   transform: translateX(${(props) => props.translateX}vmax);
-  padding: 2.7vmax;
+  padding: 1vmax 2vmax;
   display: inline-flex;
   justify-content: space-between;
 
@@ -147,6 +147,13 @@ const Content = styled.div<{ translateX: number }>`
       white-space: pre-wrap;
       text-align: left;
       font-size: 1vmax;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 8;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     > div {
