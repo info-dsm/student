@@ -59,22 +59,6 @@ export const createNotice = async (
     contentType: string;
   }[]
 ) => {
-  console.log({
-    smallClassificationList,
-    needCertificateList,
-    languageList,
-    technologyList,
-    workTime,
-    pay,
-    mealSupport,
-    interviewProcessMap,
-    noticeOpenPeriod,
-    ...props,
-    welfare,
-    workPlace,
-    generateFileListRequest,
-    isPeronalContact: false,
-  });
   const data: createNoticeProps = await request({
     method: "post",
     url: "/notice/",
@@ -96,6 +80,5 @@ export const createNotice = async (
       isPeronalContact: false,
     },
   });
-  console.log(data);
   return data;
 };

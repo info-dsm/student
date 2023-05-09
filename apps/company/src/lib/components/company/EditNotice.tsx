@@ -62,7 +62,6 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
     UseQueryResult<getBaseListProps>,
     UseQueryResult<getNoticeDetailProps2>
   ];
-  console.log(data);
   const [certificateList, setCertificateList] = useState<{
     list: {
       bigClassification: string;
@@ -222,7 +221,6 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
           });
         }
       }
-      console.log(data[1].data.classificationResponse[0]);
       let now =
         arr.findIndex((el) => {
           if (data[1].data?.classificationResponse[0] !== undefined) {
@@ -623,7 +621,6 @@ const WriteNotice = ({ menu, companyNumber, noticeId }: WriteNoticeProps) => {
             contentType: string;
           }[]
         ).then((res) => {
-          console.log(res);
           createNoticeFile(res, file as File[]);
         });
       }

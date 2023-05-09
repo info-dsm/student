@@ -15,7 +15,6 @@ const CompanyNoticeList = ({
   info: NoticeCompanyDtoType;
   path: string;
 }) => {
-  console.log(info);
   const router = useRouter();
   return (
     <NoticeList>

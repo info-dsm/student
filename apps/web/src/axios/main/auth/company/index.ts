@@ -72,6 +72,5 @@ export const companySignUp = async (
       ...photos,
     },
   });
-  console.log(data);
   return data;
 };

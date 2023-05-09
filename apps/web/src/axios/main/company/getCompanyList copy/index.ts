@@ -118,6 +118,5 @@ export const getCompanyList1 = async ({
       size: size,
     },
   });
-  console.log(data);
   return data;
 };

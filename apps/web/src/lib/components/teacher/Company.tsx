@@ -63,7 +63,6 @@ const TeacherCompany = ({
     [now, setNow]
   );
   const CheckAll = useCallback(() => {
-    console.log(check);
     if (check.every((v) => v === true)) {
       setCheck(new Array(check.length).fill(false));
     } else {
@@ -114,7 +113,6 @@ const TeacherCompany = ({
           GetCompanyNumberList("isAssociated"),
           "associate"
         ).then(() => {
-          console.log(queryKey);
           queryClient.refetchQueries({
             queryKey: [queryKey, getIndex],
           });

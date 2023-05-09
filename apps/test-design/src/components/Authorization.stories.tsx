@@ -18,7 +18,6 @@ const Template: ComponentStory<typeof AuthorizationInput> = (args) => {
   const [error, setError] = useState<boolean>(true);
   const onFocus = () => {
     setError(false);
-    console.log("focus");
   };
   return (
     <AuthorizationInput

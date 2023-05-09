@@ -55,22 +55,6 @@ export const editNotice = async (
     contentType: string;
   }[]
 ) => {
-  console.log({
-    smallClassificationList,
-    needCertificateList,
-    languageList,
-    technologyList,
-    workTime,
-    pay,
-    mealSupport,
-    interviewProcessMap,
-    noticeOpenPeriod,
-    ...props,
-    welfare,
-    workPlace,
-    generateFileListRequest,
-    isPeronalContact: false,
-  });
   const data: createNoticeProps = await request({
     method: "patch",
     url: `/notice/${companyNumber}/${noticeId}`,
@@ -91,6 +75,5 @@ export const editNotice = async (
       isPeronalContact: false,
     },
   });
-  console.log(data);
   return data;
 };

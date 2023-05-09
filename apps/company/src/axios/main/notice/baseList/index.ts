@@ -18,6 +18,5 @@ export const getBaseList = async () => {
     request.get("/notice/classification"),
     request.get("/notice/interview"),
   ])) as getBaseListProps;
-  console.log(data);
   return data;
 };

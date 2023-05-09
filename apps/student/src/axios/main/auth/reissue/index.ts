@@ -9,7 +9,6 @@ export const reissue = async () => {
       refreshToken: cookie.get("refreshToken"),
     }
   );
-  console.log(res, "fltmdldp리승버야메");
   request.defaults.headers.common[
     "Authorization"
   ] = `Bearer ${res.accessToken}`;

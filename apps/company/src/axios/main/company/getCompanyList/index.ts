@@ -92,6 +92,5 @@ export const getCompanyList = async (idx: number) => {
       size: 11,
     },
   });
-  console.log(data);
   return data;
 };

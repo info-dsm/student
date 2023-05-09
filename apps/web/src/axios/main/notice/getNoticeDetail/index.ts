@@ -69,7 +69,6 @@ export const getNoticeDetail = async ({ id }: { id: string }) => {
     method: "GET",
     url: `notice/${id}`,
   });
-  console.log(data);
 
   return data;
 };

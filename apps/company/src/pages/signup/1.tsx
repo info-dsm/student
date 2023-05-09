@@ -18,7 +18,6 @@ const FirstSignUp = () => {
 
       e: string | { companyName: string }
     ) {
-      console.log(data);
       setData({ ...data, [props]: e });
     },
     [data, setData]

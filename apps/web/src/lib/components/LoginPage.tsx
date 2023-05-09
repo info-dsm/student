@@ -87,7 +87,6 @@ const LoginPage = ({
       : { companyNumber, password };
     login(loginData, member ? "user" : "company")
       .then((res: { accessToken: string; refreshToken: string }) => {
-        console.log(res);
         request.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${res.accessToken}`;

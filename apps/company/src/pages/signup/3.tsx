@@ -105,10 +105,8 @@ const LastSignUpPage = () => {
             ...file,
             [props]: [...e, ...(file[props] as File[] | [])],
           });
-          console.log(file);
         } else {
           setFile({ ...file, [props]: e });
-          console.log(file);
         }
       }
     },

@@ -14,9 +14,6 @@ const DetailRecruitmentJob = ({
   noticeInfo: getNoticeDetailProps;
   companyInfo: getCompanyDetailProps;
 }) => {
-
-  console.log(noticeInfo)
-  console.log(companyInfo)
   return (
     <>
       <MainDiv>

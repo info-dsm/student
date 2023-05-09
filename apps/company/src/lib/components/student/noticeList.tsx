@@ -8,7 +8,6 @@ const StudentCompanyNoticeList = ({
   companyInfo: getCompanyDetailProps;
   info: getWaitingNoticeListContentProps[];
 }) => {
-  console.log(info);
   return (
     <NoticeList>
       <span>모집공고</span>

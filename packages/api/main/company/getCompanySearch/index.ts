@@ -19,6 +19,5 @@ export const getCompanySearch = async ({
       size: size,
     },
   });
-  console.log(data);
   return data;
 };

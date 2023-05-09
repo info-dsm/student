@@ -6,7 +6,6 @@ import CompanyDetail from "../../lib/components/company/CompanyDetail";
 
 const MyCompany = () => {
   const router = useRouter();
-  console.log(router.query);
   return (
     <>
       <CompanyDetail

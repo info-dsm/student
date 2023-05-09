@@ -117,6 +117,5 @@ export const getCompanyList = async ({
       size: size,
     },
   });
-  console.log(data);
   return data;
 };

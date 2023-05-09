@@ -46,7 +46,6 @@ const TeacherNotice = ({
   result?: string;
 }) => {
   const router = useRouter();
-  console.log(router.asPath);
   const [remainCount, setRemainCount] = useState<number>(0);
   const [check, setCheck] = useState<boolean[]>([false]);
   const [modal, setModal] = useState<string>("");
@@ -57,7 +56,6 @@ const TeacherNotice = ({
     }
   }, [data]);
   const CheckAll = useCallback(() => {
-    console.log(check);
     if (check.every((v) => v === true)) {
       setCheck(new Array(check.length).fill(false));
     } else {

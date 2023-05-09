@@ -9,7 +9,5 @@ export const presigned = async (url: string, file: File) => {
       Accept: file.type,
       "Content-Type": file.type,
     },
-  }).then((res) => {
-    console.log(res);
-  });
+  })
 };
