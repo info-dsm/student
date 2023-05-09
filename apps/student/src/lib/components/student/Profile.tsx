@@ -9,7 +9,11 @@ const StudentMyPageProfile = ({ info }: { info: getUserInfoProps }) => {
     <Profile>
       <ProfileImage>
         <Image
-          src={info.profilePhotoLink}
+          src={
+            info.profilePhotoLink
+              ? info.profilePhotoLink
+              : "https://cdn.discordapp.com/attachments/1071077149605384262/1103215142952513546/user.png"
+          }
           alt="프로필 사진"
           width={140}
           height={140}
