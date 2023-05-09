@@ -7,7 +7,6 @@ export const QualificationRequirements = ({
 }: {
   noticeInfo: getNoticeDetailProps;
 }) => {
-  console.log(noticeInfo);
   return (
     <>
       <MainDiv>
