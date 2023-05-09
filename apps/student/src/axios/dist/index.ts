@@ -126,3 +126,7 @@ export { getNoticeCompanySearch } from "../main/notice/getNoticeCompanySearch";
 export { getNoticeSearch } from "../main/notice/getNoticeSearch";
 export { getPosition } from "../main/notice/getPosition";
 export { getCompanyPreference } from "../main/company/getCompanyPreference";
+export { postCompanyCustom } from "../main/company/postCustom";
+export { PostNoticeCustom } from "../main/notice/postCustom";
+export { getCompanyCustom } from "../main/company/getCompanyCustom";
+export { getNoticeCustom } from "../main/notice/getNoticeCustom";
