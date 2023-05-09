@@ -56,7 +56,7 @@ const StudentNoticeList = () => {
               setScrolled(false);
               getClosedNoticeList({
                 idx: cnt,
-                size: 5,
+                size: 6,
                 status: "APPROVE",
               }).then((res) => {
                 setClosedNotice((list) => list?.concat(res.content));

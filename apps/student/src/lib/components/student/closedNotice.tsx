@@ -66,7 +66,7 @@ const NoticeDiv = styled.div`
   }
 
   width: 14.58vmax;
-  height: 19.2vmin;
+  height: 20.55vmin;
   background-color: #fff;
   border: 1px solid rgba(16, 17, 18, 0.1);
   border-radius: 5px;
