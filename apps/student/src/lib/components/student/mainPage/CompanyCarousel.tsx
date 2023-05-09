@@ -2,14 +2,34 @@ import { useState } from "react";
 import styled from "styled-components";
 import Carousel from "./CarouselList";
 import { useEffect } from "react";
-import { getCompanyList1, getCompanyList1Props } from "@/src/axios/dist";
+import {
+  getCompanyCustom,
+  getCompanyList1,
+  getCompanyList1Props,
+  getCompanyPreference,
+} from "@/src/axios/dist";
 const CompanyCarousel = () => {
   const [companyList, setCompanyList] = useState<getCompanyList1Props>();
+  const [companyPreference, setCompanyPreference] = useState<string>();
+  
   useEffect(() => {
-    getCompanyList1({ idx: 0, size: 6 }).then((res) => {
-      setCompanyList(res);
+    getCompanyPreference().then((res) => {
+      setCompanyPreference(res);
     });
   }, []);
+
+  useEffect(() => {
+    if (!(typeof companyPreference === "undefined")) {
+      if (typeof companyPreference === "string" && companyPreference.length > 0)
+        getCompanyCustom().then((res) => {
+          setCompanyList(res);
+        });
+      else
+        getCompanyList1({ idx: 0, size: 6 }).then((res) => {
+          setCompanyList(res);
+        });
+    }
+  }, [companyPreference]);
 
   return (
     <MainDiv>
@@ -43,7 +63,7 @@ const MainDiv = styled.div`
     }
     span {
       font-size: 1.45vmax;
-      color: #ffffff58;
+      color: #ffffff99;
     }
   }
   > div {
