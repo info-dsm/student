@@ -29,6 +29,7 @@ const MainDiv = styled.div`
   overflow-x: hidden;
   width: 100vw;
   height: 100vh;
+  scroll-behavior: smooth;
   * {
     font-family: "Pretendard Variable";
   }
