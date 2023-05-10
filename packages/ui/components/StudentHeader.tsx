@@ -9,6 +9,7 @@ const HeaderComponent = () => {
     { content: "공지사항", link: "/announcement" },
     { content: "기업정보", link: "/company" },
     { content: "모집공고", link: "/notice" },
+    { content: "취업현황", link: "/employment" },
     !cookie.get("accessToken")
       ? {
           content: "로그인",
