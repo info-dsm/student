@@ -64,12 +64,12 @@ const Slide = styled.div<{ duration: number }>`
     > div {
       padding: 10px;
       div {
-        font-size: 22px;
+        font-size: 1.1vmax;
         font-weight: 700;
       }
     }
     span {
-      font-size: 15px;
+      font-size: 0.78vmax;
       color: #1011127f;
     }
   }
