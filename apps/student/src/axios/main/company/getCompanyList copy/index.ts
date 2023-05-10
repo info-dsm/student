@@ -33,12 +33,13 @@ export interface getCompanyList1ContentProps {
   companyNumber: string;
   contactorEmail: string;
   companyName: string;
+  hiringClassificationList: string[];
   homeAddressInfo: {
     fullAddress: string;
     addressNumber: string;
   };
   businessTagged: {
-    name: string;
+    id: string;
   }[];
   workerCount: number;
   annualSales: bigint;
