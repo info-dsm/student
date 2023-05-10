@@ -25,27 +25,36 @@ const Carousel = ({ companyList }: { companyList: getCompanyList1Props }) => {
               <div>
                 <div>
                   <div>직무</div>
-                  <span>프론트엔드 개발자</span>
+                  <span>
+                    {t.hiringClassificationList.map((e, i, a) => {
+                      return `${e}${i === a.length - 1 ? " " : ", "}`;
+                    })}
+                    개발자
+                  </span>
                 </div>
                 <br />
                 <div>
                   <div>근로자 수</div>
-                  <span>13명</span>
+                  <span>{t.workerCount}명</span>
                 </div>
                 <br />
                 <div>
                   <div>사업분야 응용</div>
-                  <span>소프트웨어 개발</span>
+                  <span>
+                    {t.businessTagged.map((e, i, a) => {
+                      return `${e.id}${i === a.length - 1 ? " " : ", "}`;
+                    })}
+                  </span>
                 </div>
                 <br />
                 <div>
                   <div>설립연도</div>
-                  <span>2021년</span>
+                  <span>{t.latestNoticeYear}년</span>
                 </div>
                 <br />
                 <div>
                   <div>위치</div>
-                  <span>서울 관악구 남부순환로 1783 6층</span>
+                  <span>{t.homeAddressInfo.fullAddress}</span>
                 </div>
               </div>
               <hr />
@@ -149,7 +158,7 @@ const Content = styled.div<{ translateX: number }>`
       font-size: 1vmax;
 
       display: -webkit-box;
-      -webkit-line-clamp: 8;
+      -webkit-line-clamp: 7;
       -webkit-box-orient: vertical;
       word-break: break-all;
       overflow: hidden;
@@ -169,6 +178,8 @@ const Content = styled.div<{ translateX: number }>`
         }
         > span {
           font-weight: 400;
+          width: 17.7vmax;
+          white-space: pre-wrap;
         }
       }
     }
