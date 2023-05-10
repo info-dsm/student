@@ -117,9 +117,8 @@ const Profile = styled.div`
     color: #ffffffaa;
     font-size: 28px;
     font-weight: 600;
-    margin-bottom: 6px;
     position: relative;
-    margin-bottom: 20px;
+    margin: 10px 0;
   }
   > button {
     margin-top: 13px;
