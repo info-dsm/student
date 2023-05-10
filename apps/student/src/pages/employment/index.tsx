@@ -39,23 +39,23 @@ const EmploymentPage = () => {
           </NavContent>
         ))}
       </Nav>
-      <Container>
-        {classInfo ? (
-          <>
+      {classInfo ? (
+        <>
+          <Container>
             <RoundGraph
               rate={
-                ((classInfo.totalEmployedClassStudent /
+                (classInfo.totalEmployedClassStudent /
                   classInfo.totalClassStudent) *
-                100)
+                100
               }
             />
             <ClassInfo classInfo={classInfo} />
-          </>
-        ) : (
-          <></>
-        )}
-      </Container>
-      <Swiper />
+          </Container>
+          <Swiper classInfo={classInfo} />
+        </>
+      ) : (
+        <></>
+      )}
     </MainDiv>
   );
 };

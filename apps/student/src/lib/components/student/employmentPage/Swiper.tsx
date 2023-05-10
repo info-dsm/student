@@ -1,15 +1,16 @@
+import { getEmploymentClassProps } from "@/src/axios/dist";
 import styled, { keyframes } from "styled-components";
 
-const Swiper = () => {
+const Swiper = ({ classInfo }: { classInfo: getEmploymentClassProps }) => {
   const slide = () => {
     return (
       <>
-        {[1, 1, 1].map((e) => (
+        {classInfo.employmentList.map((e) => (
           <div>
-            <img />
+            <img src={e.comapny.companyLogo} alt="company logo" />
             <div>
-              <div>두들린</div>
-              <span>000-00-00000</span>
+              <div>{e.comapny.companyName}</div>
+              <span>{e.comapny.companyNumber}</span>
             </div>
           </div>
         ))}
