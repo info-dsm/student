@@ -40,7 +40,7 @@ const Select = ({
     else if (defaultName === "희망하는 기업 규모를 선택해주세요.") {
       setDataList([
         { name: "스타트업", value: "STARTUP" },
-        { name: "대기업", value: "LARGE_SCALE" },
+        { name: "규모가 큰 기업", value: "LARGE_SCALE" },
       ]);
     }
   }, []);
