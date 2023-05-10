@@ -7,20 +7,25 @@ import SwiperImage from "@/src/lib/components/student/mainPage/Swiper";
 import CompanyCarousel from "@/src/lib/components/student/mainPage/CompanyCarousel";
 import MyInfo from "@/src/lib/components/student/mainPage/MyInfo";
 import { useState } from "react";
+import { isMobile } from "react-device-detect";
 
 const NewStudentPage = () => {
   const [fix, setFix] = useState<boolean>(false);
 
   return (
     <>
-      <MainDiv>
-        <HeaderComponent />
-        <StudentBanner />
-        <SwiperImage fix={fix} />
-        <CompanyCarousel fix={fix} />
-        <MyInfo fix={{ state: fix, setState: setFix }} />
-        <Footer />
-      </MainDiv>
+      {isMobile ? (
+        <>PC로 접속해주세요.</>
+      ) : (
+        <MainDiv>
+          <HeaderComponent />
+          <StudentBanner />
+          <SwiperImage fix={fix} />
+          <CompanyCarousel fix={fix} />
+          <MyInfo fix={{ state: fix, setState: setFix }} />
+          <Footer />
+        </MainDiv>
+      )}
     </>
   );
 };
