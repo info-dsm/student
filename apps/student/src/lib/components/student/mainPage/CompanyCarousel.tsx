@@ -11,7 +11,7 @@ import {
 const CompanyCarousel = () => {
   const [companyList, setCompanyList] = useState<getCompanyList1Props>();
   const [companyPreference, setCompanyPreference] = useState<string>();
-  
+
   useEffect(() => {
     getCompanyPreference().then((res) => {
       setCompanyPreference(res);
