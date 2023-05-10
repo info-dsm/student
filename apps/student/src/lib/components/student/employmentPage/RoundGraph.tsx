@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-const RoundGraph = () => {
+const RoundGraph = ({ rate }: { rate: number }) => {
   return (
     <RoundGraphDiv>
       <svg viewBox="0 0 80 80">
@@ -15,7 +15,7 @@ const RoundGraph = () => {
       <svg viewBox="0 0 80 80">
         <path
           id="graph"
-          stroke-dasharray="25, 100"
+          stroke-dasharray={`${rate.toFixed(2)}, 100`}
           d="M20 4
       a 15.9155 15.9155 0 0 1 0 31.831
       a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -80,10 +80,11 @@ const RoundGraphDiv = styled.div`
     fill: none;
     stroke-width: 7;
     transform: scale(2, 2);
+    transition: 1s;
   }
 
   #graph {
     stroke: #6750f8;
-    animation: ${GraphAnimation} 1.5s ease-in-out;
+    animation: ${GraphAnimation} 1s ease-in-out;
   }
 `;
