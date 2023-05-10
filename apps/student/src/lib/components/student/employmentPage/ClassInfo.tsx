@@ -1,28 +1,35 @@
+import { getEmploymentClassProps } from "@/src/axios/dist";
 import styled from "styled-components";
 
-const ClassInfo = () => {
+const ClassInfo = ({ classInfo }: { classInfo: getEmploymentClassProps }) => {
   return (
     <ClassInfoDiv>
-      <h1>임베디드소프트웨어과</h1>
-      <p>
-        SW 및 HW에 대한 기본적인 이해를 바탕으로 임베디드 SW 구현을 위한
-        펌웨어/OS 시스템/플랫폼/응용 SW의 개발, 시험, 유지보수를 수행할 수 있는
-        임베디드SW 개발자 양성을 목표로 한다.
-      </p>
+      <h1>{classInfo.information.major}</h1>
+      <p>{classInfo.information.description}</p>
       <div>
         <div>
           <span>취업률</span>
-          <span>25.00%</span>
+          <span>
+            {(
+              (classInfo.totalEmployedClassStudent /
+                classInfo.totalClassStudent) *
+              100
+            ).toFixed(2)}
+            %
+          </span>
         </div>
         <VerticalLine />
         <div>
-          <span>취업률</span>
-          <span>25.00%</span>
+          <span>통계</span>
+          <span>
+            {classInfo.totalEmployedClassStudent}/{classInfo.totalClassStudent}
+            명
+          </span>
         </div>
         <VerticalLine />
         <div>
-          <span>취업률</span>
-          <span>25.00%</span>
+          <span>담임</span>
+          <span>{classInfo.information.homeroomTeacherName}</span>
         </div>
       </div>
     </ClassInfoDiv>
