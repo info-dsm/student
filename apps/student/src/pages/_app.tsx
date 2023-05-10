@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RecoilRoot } from "recoil";
 import Head from "next/head";
+import { isMobile } from "react-device-detect";
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
     () =>
@@ -35,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   content="width=device-width, initial-scale=1"
                 />
               </Head>
-              <Component {...pageProps} />
+              {isMobile ? <></> : <Component {...pageProps} />}
             </CustomThemeProvider>
           </RecoilRoot>
         </Hydrate>
