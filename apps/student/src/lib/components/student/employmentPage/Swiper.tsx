@@ -45,8 +45,8 @@ const Slide = styled.div<{ duration: number }>`
   display: flex;
   animation: ${Loop} ${(props) => props.duration * 3.5}s linear infinite;
   > div {
-    width: 300px;
-    height: 150px;
+    width: 15.625vmax;
+    height: 15vmin;
     box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.1);
     margin: 15px;
     border-radius: 12px;

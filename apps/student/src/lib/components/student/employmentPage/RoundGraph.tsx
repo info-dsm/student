@@ -43,7 +43,7 @@ const RoundGraphDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 50px 200px;
+  padding: 2.6vmax 21.34vmin;
 
   > div {
     display: inline-flex;
@@ -62,18 +62,17 @@ const RoundGraphDiv = styled.div`
       border-radius: 50%;
     }
     > div:nth-child(2) {
-      font-size: 22px;
-      width: 100px;
+      font-size: 1.1vmax;
     }
   }
 
   svg {
     position: absolute;
-    top: 25px;
-    left: 360px;
+    top: 2.68vmin;
+    left: 18.75vmax;
     display: block;
-    width: 400px;
-    height: 400px;
+    width: 20.83vmax;
+    height: 20.83vmax;
   }
   path {
     stroke: #e1dcfe;

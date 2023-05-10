@@ -44,16 +44,16 @@ const VerticalLine = styled.div`
 `;
 
 const ClassInfoDiv = styled.div`
-  width: 470px;
+  width: 25vmax;
   text-align: center;
   white-space: pre-line;
   > h1 {
     margin: 0;
     margin-bottom: 20px;
-    font-size: 40px;
+    font-size: 2vmax;
   }
   > p {
-    font-size: 18px;
+    font-size: 0.93vmax;
     color: #000000a5;
     margin-bottom: 56px;
   }
@@ -66,9 +66,11 @@ const ClassInfoDiv = styled.div`
       flex-direction: column;
       row-gap: 10px;
       > span:nth-child(1) {
+        font-size: 0.93vmax;
         color: #6750f8;
       }
       > span:nth-child(2) {
+        font-size: 1.1vmax;
         font-weight: 600;
       }
     }

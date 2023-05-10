@@ -27,7 +27,7 @@ const EmploymentPage = () => {
     <MainDiv>
       <HeaderComponent />
       <Nav>
-        <Dot transX={38 + selectClass * 140} />
+        <Dot transX={1.97 + selectClass * 7.29} />
         {classroom.map((e, i) => (
           <NavContent
             onClick={() => {
@@ -77,16 +77,16 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 290px;
-  height: 470px;
+  padding-right: 15.1vmax;
+  height: 50.53vmin;
 `;
 
 const Nav = styled.div`
-  padding: 140px 0 0 324px;
-  white-space: pre-wrap;
+  padding: 15vmin 0 0 16.5vmax;
+  white-space: pre-line;
   display: inline-flex;
-  font-size: 18px;
-  gap: 60px;
+  font-size: 0.93vmax;
+  gap: 3.19vmax;
   position: relative;
 `;
 
@@ -97,7 +97,7 @@ const Dot = styled.div<{ transX: number }>`
   height: 8px;
   border-radius: 50%;
   background-color: #593fff;
-  transform: translateX(${(props) => props.transX}px);
+  transform: translateX(${(props) => props.transX}vmax);
   transition: 0.5s;
   bottom: -20px;
 `;
@@ -106,7 +106,7 @@ const NavContent = styled.div<{ selected: boolean }>`
   text-align: center;
   cursor: pointer;
   font-weight: 700;
-  width: 80px;
+  width: 4.16vmax;
   display: flex;
   flex-direction: column;
   align-items: center;
