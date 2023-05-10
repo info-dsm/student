@@ -8,7 +8,7 @@ import {
   getCompanyList1Props,
   getCompanyPreference,
 } from "@/src/axios/dist";
-const CompanyCarousel = () => {
+const CompanyCarousel = ({ fix }: { fix: boolean }) => {
   const [companyList, setCompanyList] = useState<getCompanyList1Props>();
   const [companyPreference, setCompanyPreference] = useState<string>();
 
@@ -29,7 +29,7 @@ const CompanyCarousel = () => {
           setCompanyList(res);
         });
     }
-  }, [companyPreference]);
+  }, [companyPreference, fix]);
 
   return (
     <MainDiv>

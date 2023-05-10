@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
-const SwiperImage = () => {
+const SwiperImage = ({ fix }: { fix: boolean }) => {
   const [arr, setArr] = useState<getWaitingNoticeListContentProps[]>();
   const [position, setPosition] = useState<string>();
 
@@ -31,7 +31,7 @@ const SwiperImage = () => {
         });
       }
     }
-  }, [position]);
+  }, [position, fix]);
 
   const slide = () => {
     return (
@@ -58,7 +58,7 @@ const SwiperImage = () => {
   };
 
   return (
-    <MainPage>
+    <MainPage id="notice">
       <h1>
         <div>{"모집공고에서\n취업의 기회를 잡아봐요!"}</div>
         <span>

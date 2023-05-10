@@ -6,16 +6,19 @@ import { Footer } from "ui/components/Footer";
 import SwiperImage from "@/src/lib/components/student/mainPage/Swiper";
 import CompanyCarousel from "@/src/lib/components/student/mainPage/CompanyCarousel";
 import MyInfo from "@/src/lib/components/student/mainPage/MyInfo";
+import { useState } from "react";
 
 const NewStudentPage = () => {
+  const [fix, setFix] = useState<boolean>(false);
+
   return (
     <>
       <MainDiv>
         <HeaderComponent />
         <StudentBanner />
-        <SwiperImage />
-        <CompanyCarousel />
-        <MyInfo />
+        <SwiperImage fix={fix} />
+        <CompanyCarousel fix={fix} />
+        <MyInfo fix={{ state: fix, setState: setFix }} />
         <Footer />
       </MainDiv>
     </>

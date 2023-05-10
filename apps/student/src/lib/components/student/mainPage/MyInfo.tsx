@@ -1,15 +1,23 @@
 import { useLayoutEffect } from "react";
 import cookie from "js-cookie";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { getUserInfo, getUserInfoProps } from "@/src/axios/dist";
 import { useState } from "react";
 import Image from "next/image";
 import MyInfoApply from "./Apply";
 import MyInfoPrefer from "./MyInfoPrefer";
+import { useRouter } from "next/router";
 
-const MyInfo = () => {
+const MyInfo = ({
+  fix,
+}: {
+  fix: {
+    state: boolean;
+    setState: (value: boolean) => void;
+  };
+}) => {
   const [info, setInfo] = useState<getUserInfoProps>();
-  const [fix, setFix] = useState<boolean>(false);
+  const router = useRouter();
 
   useLayoutEffect(() => {
     if (typeof window !== "undefined" && cookie.get("accessToken")) {
@@ -40,19 +48,24 @@ const MyInfo = () => {
               <hr />
               <div style={{ zIndex: 2 }}>
                 <MyInfoPrefer
-                  fix={fix}
+                  fix={fix.state}
                   defaultName={"맞춤 포지션을 설정해주세요."}
                 />
               </div>
 
               <div>
                 <MyInfoPrefer
-                  fix={fix}
+                  fix={fix.state}
                   defaultName={"희망하는 기업 규모를 선택해주세요."}
                 />
               </div>
-              <button onClick={() => setFix(!fix)}>
-                {fix ? "완료" : "정보 수정하기"}
+              <button
+                onClick={() => {
+                  fix.setState(!fix.state);
+                  if (fix.state) router.push("#notice");
+                }}
+              >
+                {fix.state ? "완료" : "정보 수정하기"}
               </button>
             </>
           ) : (
