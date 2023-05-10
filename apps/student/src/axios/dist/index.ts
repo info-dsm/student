@@ -130,3 +130,7 @@ export { postCompanyCustom } from "../main/company/postCustom";
 export { PostNoticeCustom } from "../main/notice/postCustom";
 export { getCompanyCustom } from "../main/company/getCompanyCustom";
 export { getNoticeCustom } from "../main/notice/getNoticeCustom";
+export {
+  getEmploymentClass,
+  type getEmploymentClassProps,
+} from "../main/employment/class";
