@@ -1,48 +1,33 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import TitleIcon from "../images/title";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
-import { reissue } from "../../../apps/student/src/axios/dist";
 
 const HeaderComponent = () => {
   const router = useRouter();
   const nav = [
-    { content: "회사", link: "/company" },
+    { content: "공지사항", link: "/announcement" },
+    { content: "기업정보", link: "/company" },
     { content: "모집공고", link: "/notice" },
-    { content: "공지", link: "/announcement" },
     !cookie.get("accessToken")
       ? {
           content: "로그인",
           link: "/auth/login",
         }
       : {
-          content: "내정보",
-          link: "/mypage",
-        },
-    cookie.get("accessToken")
-      ? {
           content: "로그아웃",
           link: "",
-        }
-      : { content: "", link: "" },
+        },
   ];
-
-  // useEffect(() => {
-  // reissue().catch(() => {
-  //   cookie.remove("accessToken");
-  //   cookie.remove("refreshToken");
-  //   if (confirm("로그인이 만료되었습니다.")) router.push("/auth/login");
-  //   else {
-  //     cookie.remove("accessToken");
-  //     cookie.remove("refreshToken");
-  //   }
-  // });
-  // }, []);
 
   return (
     <>
-      <MainDiv>
+      <MainDiv
+        background={
+          // router.pathname === "/"
+          true
+        }
+      >
         <a
           onClick={() => {
             router.push("/");
@@ -89,7 +74,7 @@ const HeaderComponent = () => {
 
 export default HeaderComponent;
 
-const MainDiv = styled.div`
+const MainDiv = styled.div<{ background: boolean }>`
   width: 100vw;
   padding: 1.1vmax 12.3vmin;
   display: inline-flex;
@@ -98,7 +83,8 @@ const MainDiv = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(16, 17, 18, 0.5);
+  background: ${(props) =>
+    props.background ? "rgba(16, 17, 18, 0.5)" : "transparent"};
   backdrop-filter: blur(9px);
   z-index: 99;
 
