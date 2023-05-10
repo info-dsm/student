@@ -59,6 +59,7 @@ const Slide = styled.div<{ duration: number }>`
       border-radius: 12px;
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
       background-color: #fff;
+      padding: 8px;
     }
     > div {
       padding: 10px;
