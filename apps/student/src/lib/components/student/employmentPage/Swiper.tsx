@@ -2,6 +2,7 @@ import { getEmploymentClassProps } from "@/src/axios/dist";
 import styled, { keyframes } from "styled-components";
 
 const Swiper = ({ classInfo }: { classInfo: getEmploymentClassProps }) => {
+  const duration = classInfo.employmentList.length;
   const slide = () => {
     return (
       <>
@@ -20,9 +21,9 @@ const Swiper = ({ classInfo }: { classInfo: getEmploymentClassProps }) => {
 
   return (
     <SwiperDiv>
-      <Slide>{slide()}</Slide>
-      <Slide>{slide()}</Slide>
-      <Slide>{slide()}</Slide>
+      <Slide duration={duration}>{slide()}</Slide>
+      <Slide duration={duration}>{slide()}</Slide>
+      <Slide duration={duration}>{slide()}</Slide>
     </SwiperDiv>
   );
 };
@@ -40,9 +41,9 @@ const SwiperDiv = styled.div`
   margin-top: 10px;
 `;
 
-const Slide = styled.div`
+const Slide = styled.div<{ duration: number }>`
   display: flex;
-  animation: ${Loop} 13s linear infinite;
+  animation: ${Loop} ${(props) => props.duration * 3.5}s linear infinite;
   > div {
     width: 300px;
     height: 150px;
@@ -54,6 +55,10 @@ const Slide = styled.div`
     img {
       height: 100%;
       width: 48%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
     }
     > div {
       padding: 10px;
