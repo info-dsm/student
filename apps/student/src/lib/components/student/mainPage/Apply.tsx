@@ -18,7 +18,7 @@ const MyInfoApply = () => {
           setStatus([]);
         });
     }
-  });
+  }, []);
   return (
     <Apply>
       <div>지원현황</div>
