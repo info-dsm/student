@@ -8,10 +8,10 @@ const Swiper = ({ classInfo }: { classInfo: getEmploymentClassProps }) => {
       <>
         {classInfo.employmentList.map((e) => (
           <div>
-            <img src={e.comapny.companyLogo} alt="company logo" />
+            <img src={e.company.companyLogo} alt="company logo" />
             <div>
-              <div>{e.comapny.companyName}</div>
-              <span>{e.comapny.companyNumber}</span>
+              <div>{e.company.companyName}</div>
+              <span>{e.company.companyNumber}</span>
             </div>
           </div>
         ))}

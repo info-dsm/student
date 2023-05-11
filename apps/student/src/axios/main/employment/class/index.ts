@@ -14,7 +14,7 @@ export interface getEmploymentClassProps {
   totalGradeStudent: number;
   totalEmployedGradeStudent: number;
   employmentList: {
-    comapny: {
+    company: {
       companyNumber: string;
       companyName: string;
       companyLogo: string;
