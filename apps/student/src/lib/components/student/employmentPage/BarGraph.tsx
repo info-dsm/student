@@ -1,10 +1,12 @@
 import styled, { keyframes } from "styled-components";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   getEmploymentTotalClass,
   getEmploymentTotalClassProps,
 } from "@/src/axios/dist";
 import { totalFrame, frameRate } from "@/public/data";
+import { useInterval } from "@/src/lib/func/useInterval";
+
 
 const BarGraph = ({
   selectClass,
@@ -22,6 +24,7 @@ const BarGraph = ({
   ];
   const [totalClass, setTotalClass] = useState<getEmploymentTotalClassProps>();
   const [employed, setEmployed] = useState<number>(0);
+  const [delay, setDelay] = useState<number | null>(10000);
 
   useEffect(() => {
     getEmploymentTotalClass({ year: 2023 }).then((res) => {
@@ -38,6 +41,14 @@ const BarGraph = ({
       }, frameRate);
     });
   }, []);
+
+  useInterval(() => {
+    selectClass.setState((selectClass.state + 1) % 4);
+  }, delay);
+
+  useEffect(() => {
+    setDelay(10000);
+  }, [delay]);
 
   return (
     <>
@@ -81,7 +92,10 @@ const BarGraph = ({
                 </div>
                 <Nav
                   selected={i === selectClass.state}
-                  onClick={() => selectClass.setState(i)}
+                  onClick={() => {
+                    selectClass.setState(i);
+                    setDelay(null);
+                  }}
                 >
                   {e}
                 </Nav>
