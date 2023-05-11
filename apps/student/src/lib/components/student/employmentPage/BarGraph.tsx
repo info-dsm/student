@@ -4,6 +4,8 @@ import {
   getEmploymentTotalClass,
   getEmploymentTotalClassProps,
 } from "@/src/axios/dist";
+import { totalFrame } from "@/public/data";
+import { frameRate } from "@/out/data";
 
 const BarGraph = ({
   selectClass,
@@ -20,9 +22,21 @@ const BarGraph = ({
     "정보\n보안과",
   ];
   const [totalClass, setTotalClass] = useState<getEmploymentTotalClassProps>();
+  const [employed, setEmployed] = useState<number>(0);
+
   useEffect(() => {
     getEmploymentTotalClass({ year: 2023 }).then((res) => {
       setTotalClass(res);
+
+      let currentNumber = 0;
+      const counter = setInterval(() => {
+        const progress = ++currentNumber / totalFrame;
+        setEmployed(Math.round(res.totalEmployedGradeStudent * progress));
+
+        if (progress === 1) {
+          clearInterval(counter);
+        }
+      }, frameRate);
     });
   }, []);
 
@@ -35,11 +49,7 @@ const BarGraph = ({
               <span>
                 <span>전체 취업률</span>
                 <span>
-                  {(
-                    (totalClass.totalEmployedGradeStudent /
-                      totalClass.totalGradeStudent) *
-                    100
-                  ).toFixed(2)}
+                  {((employed / totalClass.totalGradeStudent) * 100).toFixed(2)}
                   %
                 </span>
               </span>
@@ -47,8 +57,7 @@ const BarGraph = ({
               <span>
                 <span>전체 통계</span>
                 <span>
-                  {totalClass.totalEmployedGradeStudent}/
-                  {totalClass.totalGradeStudent}명
+                  {employed}/{totalClass.totalGradeStudent}명
                 </span>
               </span>
             </div>
@@ -151,7 +160,7 @@ const BarDiv = styled.div<{ height: number }>`
   position: absolute;
   bottom: 0;
   background-color: #6750f8;
-  animation: ${BarAnimation} 1s ease-in-out forwards;
+  animation: ${BarAnimation} 1.5s ease-in-out forwards;
 `;
 
 const ClassInfoDiv = styled.div`
