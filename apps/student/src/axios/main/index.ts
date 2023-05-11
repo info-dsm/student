@@ -21,6 +21,11 @@ request.interceptors.response.use(
     return response.data;
   },
   (error) => {
+    if (error.response.status === 500) {
+      cookie.remove("accessToken");
+      cookie.remove("refreshToken");
+      window.location.href = "/";
+    }
     return Promise.reject(error);
   }
 );
