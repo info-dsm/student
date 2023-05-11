@@ -32,10 +32,59 @@ const ClassInfo = ({ classInfo }: { classInfo: getEmploymentClassProps }) => {
           <span>{classInfo.information.homeroomTeacherName}</span>
         </div>
       </div>
+      <span>
+        <GridBox>
+          {classInfo.employmentList.map((e, i) => (
+            <div>
+              <img src={e.company.companyLogo} alt="c" />
+              <div>
+                <div>{e.company.companyName}</div>
+                <span>{e.company.companyNumber}</span>
+              </div>
+            </div>
+          ))}
+        </GridBox>
+      </span>
     </ClassInfoDiv>
   );
 };
 export default ClassInfo;
+
+const GridBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  > div {
+    width: 9vmax;
+    height: 9.6vmin;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    margin: 10px;
+    img {
+      height: 100%;
+      width: 3.5vmax;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      padding: 5px;
+      margin-right: 10px;
+    }
+    
+    > div {
+      div {
+        text-align: left;
+        font-size: 0.6vmax;
+        font-weight: 700;
+      }
+    }
+    span {
+      font-size: 0.1vmax;
+      color: #1011127f;
+    }
+  }
+`;
 
 const VerticalLine = styled.div`
   height: 54px;
@@ -47,6 +96,9 @@ const ClassInfoDiv = styled.div`
   width: 25vmax;
   text-align: center;
   white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   > h1 {
     margin: 0;
     margin-bottom: 20px;
@@ -60,7 +112,7 @@ const ClassInfoDiv = styled.div`
   > div {
     display: inline-flex;
     gap: 38px;
-    margin-bottom: 130px;
+    margin-bottom: 30px;
     > div {
       display: flex;
       flex-direction: column;
