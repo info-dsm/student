@@ -134,3 +134,4 @@ export {
   getEmploymentClass,
   type getEmploymentClassProps,
 } from "../main/employment/class";
+export {getEmploymentTotalClass, type getEmploymentTotalClassProps} from "../main/employment/totalClass"
