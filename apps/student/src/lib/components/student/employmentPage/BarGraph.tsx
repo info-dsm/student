@@ -4,8 +4,7 @@ import {
   getEmploymentTotalClass,
   getEmploymentTotalClassProps,
 } from "@/src/axios/dist";
-import { totalFrame } from "@/public/data";
-import { frameRate } from "@/out/data";
+import { totalFrame, frameRate } from "@/public/data";
 
 const BarGraph = ({
   selectClass,
