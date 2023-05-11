@@ -22,6 +22,8 @@ const _BackGround = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
+  top: 0;
+  left: 0;
   background: ${({ theme }) => theme.colors.black};
 `;
 const _Spiiner = styled.div`
