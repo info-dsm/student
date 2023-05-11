@@ -45,7 +45,7 @@ const MainDiv = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  padding: 0 200px;
+  padding: 0 10.4vmax;
   * {
     font-family: "Pretendard Variable";
   }
@@ -54,7 +54,7 @@ const MainDiv = styled.div`
 const Container = styled.div`
   position: relative;
   width: 50%;
-  margin-top: 170px;
+  margin-top: 18.5vmin;
   display: flex;
   align-items: center;
   flex-direction: column;

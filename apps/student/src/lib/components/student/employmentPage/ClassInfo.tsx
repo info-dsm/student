@@ -54,11 +54,11 @@ const GridBox = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   > div {
-    width: 9vmax;
+    width: 9.5vmax;
     height: 9.6vmin;
     box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     display: flex;
     margin: 10px;
     img {
@@ -69,7 +69,7 @@ const GridBox = styled.div`
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
       background-color: #fff;
       padding: 5px;
-      margin-right: 10px;
+      margin-right: 0.5vmax;
     }
     
     > div {
@@ -81,7 +81,7 @@ const GridBox = styled.div`
     }
     span {
       font-size: 0.1vmax;
-      color: #1011127f;
+      color: #1011128f;
     }
   }
 `;

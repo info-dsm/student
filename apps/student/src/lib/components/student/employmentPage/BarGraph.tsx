@@ -67,7 +67,7 @@ const BarGraph = ({
               <div>
                 <div>
                   <BarContainer
-                    height={20 * totalClass.classList[i].totalClassStudent}
+                    height={2.3 * totalClass.classList[i].totalClassStudent}
                   >
                     <div>
                       {totalClass.classList[i].totalEmployedClassStudent}/
@@ -75,7 +75,7 @@ const BarGraph = ({
                     </div>
                     <BarDiv
                       height={
-                        20 * totalClass.classList[i].totalEmployedClassStudent
+                        2.3 * totalClass.classList[i].totalEmployedClassStudent
                       }
                     />
                   </BarContainer>
@@ -105,6 +105,7 @@ const Nav = styled.div<{ selected: boolean }>`
   cursor: pointer;
   color: ${(props) => (props.selected ? "#6750f8" : "#000")};
   font-weight: ${(props) => (props.selected ? 600 : 400)};
+  font-size: 0.9vmax;
   transition: 0.5s;
 `;
 
@@ -112,7 +113,7 @@ const BarGraphDiv = styled.div`
   display: inline-flex;
   text-align: center;
   > div {
-    width: 150px;
+    width: 7.8vmax;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
@@ -121,18 +122,15 @@ const BarGraphDiv = styled.div`
     font-size: 18px;
   }
   > div > div:nth-child(1) {
-    height: 430px;
-    width: 50px;
+    height: 46.2vmin;
+    width: 2.6vmax;
     position: relative;
-    > div:nth-child(1) {
-      margin-bottom: 10px;
-    }
   }
 `;
 
 const BarContainer = styled.div<{ height: number }>`
   width: 100%;
-  height: ${(props) => props.height}px;
+  height: ${(props) => props.height}vmin;
   position: absolute;
   bottom: 0;
   background-color: #d9d9d9;
@@ -142,7 +140,7 @@ const BarContainer = styled.div<{ height: number }>`
     left: 50%;
     transform: translateX(-50%);
     top: -8%;
-    font-size: 20px;
+    font-size: 1vmax;
     font-weight: 600;
   }
 `;
@@ -154,9 +152,8 @@ const BarAnimation = keyframes`
 `;
 
 const BarDiv = styled.div<{ height: number }>`
-  margin-top: 10px;
   width: 100%;
-  height: ${(props) => props.height}px;
+  height: ${(props) => props.height}vmin;
   position: absolute;
   bottom: 0;
   background-color: #6750f8;
@@ -170,7 +167,7 @@ const ClassInfoDiv = styled.div`
   > div {
     display: inline-flex;
     gap: 57px;
-    margin-bottom: 70px;
+    margin-bottom: 7.5vmin;
     > span {
       width: 7.29vmax;
       display: flex;
