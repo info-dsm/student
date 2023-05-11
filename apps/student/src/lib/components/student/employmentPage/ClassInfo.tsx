@@ -36,7 +36,7 @@ const ClassInfo = ({ classInfo }: { classInfo: getEmploymentClassProps }) => {
         <GridBox>
           {classInfo.employmentList.map((e, i) => (
             <div>
-              <img src={e.company.companyLogo} alt="c" />
+              <img src={e.company.companyLogo} alt="companyLogo" />
               <div>
                 <div>{e.company.companyName}</div>
                 <span>{e.company.companyNumber}</span>

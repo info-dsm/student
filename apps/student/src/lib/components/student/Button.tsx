@@ -31,7 +31,6 @@ const StudentAuthButton = ({
   };
   check?: {
     email: "unChecked" | "checked" | "failed";
-    // student: "unChecked" | "checked" | "failed";
     password: "unChecked" | "checked" | "failed";
   };
   clickEvent: () => void;

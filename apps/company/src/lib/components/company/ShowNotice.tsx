@@ -26,13 +26,6 @@ const ShowCompanyNotice = ({ status, data }: ShowCompnayNoticeProps) => {
       text: "전체 모집 공고",
       status: (router.asPath as string) === ("/company/" || "/company"),
     },
-    // {
-    //   onClick: () => router.push("/company/notice/approve"),
-    //   text: "승인된 모집공고",
-    //   status:
-    //     (router.asPath as string) ===
-    //     ("/company/notice/approve/" || "/company/notice/approve"),
-    // },
   ];
   const [remainCount, setRemainCount] = useState<number>(0);
   useLayoutEffect(() => {

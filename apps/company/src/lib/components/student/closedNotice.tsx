@@ -1,5 +1,4 @@
 import { getClosedNoticeListContentProps } from "../../../axios/dist";
-// import Image from "next/image";
 import styled from "styled-components";
 
 const StudentClosedNotice = ({

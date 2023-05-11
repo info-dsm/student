@@ -38,6 +38,5 @@ export const Notice = (props: {
         body.removeChild(mainDiv);
       }, 3500);
     }
-    // clearTimeout();
   }
 };

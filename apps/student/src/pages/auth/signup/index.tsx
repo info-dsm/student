@@ -49,11 +49,9 @@ const StudentSignUp = () => {
 
   const [checkStatus, setCheckStatus] = useState<{
     email: "unChecked" | "checked" | "failed";
-    // student: "unChecked" | "checked" | "failed";
     password: "unChecked" | "checked" | "failed";
   }>({
     email: "unChecked",
-    // student: "unChecked",
     password: "unChecked",
   });
 
@@ -171,12 +169,6 @@ const StudentSignUp = () => {
             placeHolder="학번을 입력해주세요."
             onChange={changeInput}
             name="studentKey"
-            // subClick={{
-            //   content: "학번 중복 확인",
-            //   event: () => {
-
-            //   },
-            // }}
           />
           <StudentAuthKind status={checkStatus.password} content={"비밀번호"} />
           <AuthInput

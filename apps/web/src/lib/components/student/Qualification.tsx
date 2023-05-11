@@ -1,4 +1,3 @@
-// import { getCompanyDetailProps, getNoticeDetailProps } from "apis";
 import { getCompanyDetailProps, getNoticeDetailProps } from "../../../axios/dist";
 import React from "react";
 import styled from "styled-components";

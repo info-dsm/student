@@ -1,4 +1,3 @@
-// import { getCompanyDetailProps, getNoticeDetailProps } from "apis";
 import {
   getCompanyDetailProps,
   getNoticeDetailProps,

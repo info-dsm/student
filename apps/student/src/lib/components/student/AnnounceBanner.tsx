@@ -1,8 +1,6 @@
-import { NoticeCount } from "@/src/axios/dist";
 import Image from "next/image";
 import styled from "styled-components";
 import BannerImage from "../../../../public/assets/images/main.png";
-import { useState, useEffect } from "react";
 
 const StudentAnnounceBanner = ({ number }: { number: number }) => {
   const date = new Date();
@@ -12,7 +10,7 @@ const StudentAnnounceBanner = ({ number }: { number: number }) => {
       <Banner>
         <div>
           현재 총 {number.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
-          개의 <br /> 공지가 있어요
+          개의 <br /> 공지사항이 있어요
         </div>
         <div>
           {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 기준
