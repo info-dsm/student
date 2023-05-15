@@ -24,35 +24,28 @@ const Attachment = ({
 
   const applyNoticeForm = () => {
     if (file.length >= 1) {
-      reissue()
-        .then(() => {
-          const form = file.map((t) => ({
-            fileName: t.name,
-            contentType: t.type,
-          }));
-          applyNotice({
-            id: NoticeInfo.noticeId,
-            form: form,
-          }).then((res: any) => {
-            createNoticeFile(res, file)
-              .then(() => {
-                alert("지원에 성공했습니다!");
-                router.push("/");
-              })
-              .catch(() => {
-                console.log("error");
-              });
+      const form = file.map((t) => ({
+        fileName: t.name,
+        contentType: t.type,
+      }));
+      applyNotice({
+        id: NoticeInfo.noticeId,
+        form: form,
+      }).then((res: any) => {
+        createNoticeFile(res, file)
+          .then(() => {
+            alert("지원에 성공했습니다!");
+            router.push("/");
+          })
+          .catch(() => {
+            console.log("error");
           });
-        })
-        .catch(() => {
-          alert("로그인이 만료되었습니다.");
-          router.push("/auth/login");
-        });
-    }
-    else Notice({
-      message: "파일을 넣어주세요.",
-      state: "error"
-    })
+      });
+    } else
+      Notice({
+        message: "파일을 넣어주세요.",
+        state: "error",
+      });
   };
 
   return (

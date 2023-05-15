@@ -1,6 +1,7 @@
 // axios instance 를 생성해주었습니다.
 import axios from "axios";
 import cookie from "js-cookie";
+import { reissue } from "../dist";
 const request = axios.create({
   baseURL: "https://api.info-dsm.info/",
 });
@@ -26,9 +27,11 @@ request.interceptors.response.use(
       error.response.status === 403 ||
       error.response.status === 401
     ) {
-      cookie.remove("accessToken");
-      cookie.remove("refreshToken");
-      window.location.href = "/auth/login";
+      reissue().catch(() => {
+        cookie.remove("accessToken");
+        cookie.remove("refreshToken");
+        window.location.href = "/auth/login";
+      });
     }
     return Promise.reject(error);
   }

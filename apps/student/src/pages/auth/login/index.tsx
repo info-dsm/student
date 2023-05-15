@@ -50,14 +50,6 @@ const StudentLogin = () => {
     window.location.href = "/";
   };
 
-  // useEffect(() => {
-  //   reissue()
-  //     .then(() => {
-  //       movepage();
-  //     })
-  //     .catch(() => {});
-  // }, []);
-
   const login = () => {
     login1({ email: request.email, password: request.password }, "user")
       .then((res) => {

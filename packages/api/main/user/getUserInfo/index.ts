@@ -9,15 +9,14 @@ export interface getUserInfoProps {
 export const getUserInfo = async () => {
   if (typeof window !== "undefined") {
     if (sessionStorage.getItem("accessToken")) {
-      const data = reissue().then(async () => {
-        return await requestApi({
-          method: "get",
-          url: "/user/info",
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-          },
-        });
+      const data = await requestApi({
+        method: "get",
+        url: "/user/info",
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        },
       });
+
       return data;
     }
   }
