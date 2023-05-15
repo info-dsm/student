@@ -28,7 +28,7 @@ request.interceptors.response.use(
     ) {
       cookie.remove("accessToken");
       cookie.remove("refreshToken");
-      // window.location.href = "/auth/login";
+      window.location.href = "/auth/login";
     }
     return Promise.reject(error);
   }

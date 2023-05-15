@@ -46,15 +46,17 @@ const StudentLogin = () => {
     setStatus({ ...status, [name]: "normal" });
   };
 
-  const movepage = () => router.push("../");
+  const movepage = () => {
+    window.location.href = "/";
+  };
 
-  useEffect(() => {
-    reissue()
-      .then(() => {
-        movepage();
-      })
-      .catch(() => {});
-  }, []);
+  // useEffect(() => {
+  //   reissue()
+  //     .then(() => {
+  //       movepage();
+  //     })
+  //     .catch(() => {});
+  // }, []);
 
   const login = () => {
     login1({ email: request.email, password: request.password }, "user")
