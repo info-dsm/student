@@ -21,7 +21,11 @@ request.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    if (error.response.status === 500 || error.response.status === 403) {
+    if (
+      error.response.status === 500 ||
+      error.response.status === 403 ||
+      error.response.status === 401
+    ) {
       cookie.remove("accessToken");
       cookie.remove("refreshToken");
       window.location.href = "/auth/login";
