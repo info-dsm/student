@@ -27,6 +27,7 @@ request.interceptors.response.use(
       error.response.status === 403 ||
       error.response.status === 401
     ) {
+      console.log("asd");
       reissue().catch(() => {
         cookie.remove("accessToken");
         cookie.remove("refreshToken");
