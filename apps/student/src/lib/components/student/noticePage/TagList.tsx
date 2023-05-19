@@ -25,7 +25,19 @@ const TagList = ({
             },
             name: "전체",
           },
-        ].concat(res)
+          {
+            bigClassification: {
+              bigClassificationName: "웹",
+            },
+            name: "프론트",
+          },
+          {
+            bigClassification: {
+              bigClassificationName: "웹",
+            },
+            name: "백엔드",
+          },
+        ].concat(res.filter((e) => e.name !== "프론트" && e.name !== "백엔드"))
       );
     });
   }, []);
