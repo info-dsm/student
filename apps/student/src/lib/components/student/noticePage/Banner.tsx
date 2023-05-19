@@ -4,10 +4,19 @@ import styled from "styled-components";
 import BannerImage from "../../../../../public/assets/images/main.png";
 import { useState, useEffect } from "react";
 import { frameRate, totalFrame } from "@/public/data";
+import { TagNameType } from "@/src/lib/types";
 
-const StudentNoticeBanner = () => {
-  const [noticeSize, setNoticeSize] = useState<number>(0);
+const StudentNoticeBanner = ({
+  name,
+}: {
+  name: {
+    state: TagNameType;
+    setState: (value: TagNameType) => void;
+  };
+}) => {
   const date = new Date();
+  const [noticeSize, setNoticeSize] = useState<number>(0);
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     NoticeCount().then((res: number) => {
@@ -23,9 +32,16 @@ const StudentNoticeBanner = () => {
     });
   }, []);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    name.setState({ ...name.state, ["companyName"]: search });
+  };
+
   return (
     <>
-      <Banner>
+      <Banner
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+      >
         <div>
           현재 총 {noticeSize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
           개의 <br /> 모집공고가 있어요
@@ -33,7 +49,11 @@ const StudentNoticeBanner = () => {
         <div>
           {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 기준
         </div>
-        <input placeholder="기업, 취업 공고를 검색해보세요."/>
+        <input
+          placeholder="기업, 취업 공고를 검색해보세요."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </Banner>
       <BannerImg>
         <Image src={BannerImage} alt="" />
@@ -44,7 +64,7 @@ const StudentNoticeBanner = () => {
 
 export default StudentNoticeBanner;
 
-const Banner = styled.div`
+const Banner = styled.form`
   background: linear-gradient(
     180deg,
     rgba(16, 17, 18, 0.2) 4.95%,
