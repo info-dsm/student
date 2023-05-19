@@ -72,6 +72,13 @@ const NoticePage = () => {
               setNotice((list) => list?.concat(res.content));
               setCnt(cnt + 1);
               setScrolled(false);
+              getClosedNoticeList({
+                idx: cnt,
+                size: 4,
+                status: "APPROVE",
+              }).then((res) => {
+                setClosedNotice((list) => list?.concat(res.content));
+              });
             });
           }
         else setScrolled(false);
