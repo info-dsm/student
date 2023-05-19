@@ -56,7 +56,7 @@ const Banner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 120px;
+  padding-top: 12.8vmin;
 
   div {
     color: #fff;
@@ -73,13 +73,13 @@ const Banner = styled.div`
 
   > input {
     width: 50%;
-    height: 60px;
-    margin-top: 60px;
+    height: 6.4vmin;
+    margin-top: 5.4vmin;
     background-color: #f5f2f2;
     border: none;
     border-radius: 40px;
     padding-left: 40px;
-    font-size: 20px;
+    font-size: 1rem;
   }
 `;
 
