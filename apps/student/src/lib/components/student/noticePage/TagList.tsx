@@ -73,7 +73,7 @@ const TagList = ({
   }
 
   const moveAnimation = (per: number, duration: number) => {
-    const nextPercentage = per > 0 ? 0 : per < -77.7 ? -77.7 : per;
+    const nextPercentage = per > 0 ? 0 : per < -76.1 ? -76.1 : per;
 
     ref.current.dataset.percentage = nextPercentage;
 
