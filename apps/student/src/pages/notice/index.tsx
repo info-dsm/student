@@ -54,7 +54,7 @@ const NoticePage = () => {
               smallClassification?: string;
             } = {
               idx: cnt,
-              size: 9,
+              size: 6,
             };
             params =
               name.companyName !== ""
@@ -85,8 +85,12 @@ const NoticePage = () => {
 
   if (typeof window !== "undefined" && typeof document !== "undefined") {
     window.addEventListener("scroll", (e) => {
+      console.log(
+        document.body.offsetHeight - window.innerHeight - 5,
+        window.scrollY
+      );
       if (
-        document.body.offsetHeight - window.innerHeight - 1 <=
+        document.body.offsetHeight - window.innerHeight - 5 <=
         window.scrollY
       ) {
         setScrolled(true);
