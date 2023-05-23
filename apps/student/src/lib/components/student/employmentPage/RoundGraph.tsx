@@ -3,24 +3,27 @@ import styled, { keyframes } from "styled-components";
 const RoundGraph = ({ rate }: { rate: number }) => {
   return (
     <RoundGraphDiv>
-      <svg viewBox="0 0 80 80">
-        <path
-          stroke-dasharray="100, 100"
-          d="M20 4
+      <span>
+      <h1>25%</h1>
+        <svg viewBox="0 0 80 80">
+          <path
+            stroke-dasharray="100, 100"
+            d="M20 4
       a 15.9155 15.9155 0 0 1 0 31.831
       a 15.9155 15.9155 0 0 1 0 -31.831"
-        />
-      </svg>
+          />
+        </svg>
 
-      <svg viewBox="0 0 80 80">
-        <path
-          id="graph"
-          stroke-dasharray={`${rate.toFixed(2)}, 100`}
-          d="M20 4
+        <svg viewBox="0 0 80 80">
+          <path
+            id="graph"
+            stroke-dasharray={`${rate.toFixed(2)}, 100`}
+            d="M20 4
       a 15.9155 15.9155 0 0 1 0 31.831
       a 15.9155 15.9155 0 0 1 0 -31.831"
-        />
-      </svg>
+          />
+        </svg>
+      </span>
       <div>
         <div /> <div>취업완료</div>
       </div>
@@ -39,40 +42,53 @@ const GraphAnimation = keyframes`
 `;
 
 const RoundGraphDiv = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   justify-content: flex-end;
-  padding: 2.6vmax 21.34vmin;
+  position: relative;
+  margin-top: 1.6vmin;
+  height: 9.5vmax;
 
   > div {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 1.1vmin;
     + div {
       > div:nth-child(1) {
         background-color: #e1dcfe;
       }
     }
     > div:nth-child(1) {
-      width: 20px;
-      height: 20px;
+      width: 0.8vmax;
+      height: 0.8vmax;
       background-color: #6750f8;
       border-radius: 50%;
     }
     > div:nth-child(2) {
-      font-size: 1.1vmax;
+      width: 4.2vmax;
+      font-size: 0.9vmax;
     }
   }
 
+  > span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.6vmax;
+    h1 {
+      margin: 0;
+      display: flex;
+      font-size: 1.2vmax;
+    }
+  }
   svg {
     position: absolute;
-    top: 2.68vmin;
-    left: 18.75vmax;
+    top: 0;
     display: block;
-    width: 20.83vmax;
-    height: 20.83vmax;
+    width: 8vmax;
+    height: 8vmax;
   }
   path {
     stroke: #e1dcfe;
