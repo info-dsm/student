@@ -4,7 +4,7 @@ const RoundGraph = ({ rate }: { rate: number }) => {
   return (
     <RoundGraphDiv>
       <span>
-      <h1>25%</h1>
+        <h1>{rate.toFixed(0)}%</h1>
         <svg viewBox="0 0 80 80">
           <path
             stroke-dasharray="100, 100"
@@ -48,13 +48,15 @@ const RoundGraphDiv = styled.div`
   justify-content: flex-end;
   position: relative;
   margin-top: 1.6vmin;
-  height: 9.5vmax;
+  height: 51%;
+  padding-bottom: 10px;
 
   > div {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     margin-top: 1.1vmin;
+
     + div {
       > div:nth-child(1) {
         background-color: #e1dcfe;
@@ -77,10 +79,15 @@ const RoundGraphDiv = styled.div`
     display: flex;
     justify-content: center;
     margin-bottom: 1.6vmax;
+    position: absolute;
+    top: 0;
+
     h1 {
+      position: absolute;
       margin: 0;
-      display: flex;
       font-size: 1.2vmax;
+      /* top: 5vmin; */
+      transform: translateY(220%);
     }
   }
   svg {
