@@ -52,12 +52,12 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 15px;
+  row-gap: 1.5vmin;
   > div {
     > div {
       margin-top: 2px;
       width: 100%;
-      height: 14px;
+      height: 1.5vmin;
       background-color: #e5e5e5;
       border-radius: 12px;
       position: relative;
