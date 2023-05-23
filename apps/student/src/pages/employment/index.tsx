@@ -1,61 +1,59 @@
 import HeaderComponent from "@/../../packages/ui/components/StudentHeader";
-import { Spinner } from "@/../../packages/ui/dist";
-import { getEmploymentClass, getEmploymentClassProps } from "@/src/axios/dist";
-import BarGraph from "@/src/lib/components/student/employmentPage/BarGraph";
-import ClassInfo from "@/src/lib/components/student/employmentPage/ClassInfo";
-import { useState, useEffect } from "react";
+import {
+  getEmploymentTotalClass,
+  getEmploymentTotalClassProps,
+} from "@/src/axios/dist";
+import ClassEmployment from "@/src/lib/components/student/employmentPagev2/ClassEmployment";
+import EmployGrid from "@/src/lib/components/student/employmentPagev2/EmployGrid";
+import TotalEmployment from "@/src/lib/components/student/employmentPagev2/TotalEmployment";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const EmploymentPage = () => {
-  const [classInfo, setClassInfo] = useState<getEmploymentClassProps>();
-  const [selectClass, setSelectClass] = useState(0);
-
+  const [classInfo, setClassInfo] = useState<getEmploymentTotalClassProps>();
   useEffect(() => {
-    getEmploymentClass({ classroom: selectClass }).then((res) => {
+    getEmploymentTotalClass({ year: 2023 }).then((res) => {
       setClassInfo(res);
     });
-  }, [selectClass]);
+  }, []);
 
   return (
     <>
-      {classInfo ? (
-        <>
-          <HeaderComponent />
-          <MainDiv>
-            <Container>
-              <BarGraph
-                selectClass={{ state: selectClass, setState: setSelectClass }}
-              />
-            </Container>
-            <Container>
-              <ClassInfo classInfo={classInfo} />
-            </Container>
-          </MainDiv>
-        </>
-      ) : (
-        <Spinner />
-      )}
+      <HeaderComponent />
+      <MainDiv>
+        <SideBox>
+          {classInfo ? (
+            <>
+              <TotalEmployment classInfo={classInfo} />
+              <ClassEmployment classInfo={classInfo} />
+            </>
+          ) : (
+            <></>
+          )}
+        </SideBox>
+        <EmployGrid />
+      </MainDiv>
     </>
   );
 };
-
 export default EmploymentPage;
 
 const MainDiv = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  padding: 0 10.4vmax;
+
   * {
     font-family: "Pretendard Variable";
   }
 `;
 
-const Container = styled.div`
-  position: relative;
-  width: 50%;
-  margin-top: 18.5vmin;
+const SideBox = styled.div`
+  width: 25%;
+  height: 100%;
+  padding: 5.5% 1.5% 1.5% 1.5%;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  justify-content: space-between;
+  border-right: 2px solid #10111230;
 `;
