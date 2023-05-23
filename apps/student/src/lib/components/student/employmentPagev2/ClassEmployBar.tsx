@@ -1,5 +1,6 @@
+import { classArray } from "@/public/data";
 import { getEmploymentTotalClassProps } from "@/src/axios/dist";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const ClassEmployBar = ({
   select,
@@ -11,12 +12,6 @@ const ClassEmployBar = ({
   };
   classInfo: getEmploymentTotalClassProps;
 }) => {
-  const classArray = [
-    "소프트웨어 개발1반",
-    "소프트웨어 개발2반",
-    "임베디드 개발과",
-    "정보보안과",
-  ];
   return (
     <MainDiv>
       <h1>취업현황</h1>
@@ -27,8 +22,9 @@ const ClassEmployBar = ({
             <div>
               <Bar
                 width={
-                  classInfo.classList[i].totalEmployedClassStudent /
-                  classInfo.classList[i].totalClassStudent * 100
+                  (classInfo.classList[i].totalEmployedClassStudent /
+                    classInfo.classList[i].totalClassStudent) *
+                  100
                 }
               />
             </div>
@@ -72,11 +68,20 @@ const Content = styled.div`
   }
 `;
 
+const BarAnimation = (width: number) => keyframes`
+    0% {
+        width: 0;
+    }
+    100% {
+        width: ${width}%;
+    }
+`;
+
 const Bar = styled.div<{ width: number }>`
-  width: ${props => props.width}%;
-  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   border-radius: 12px;
   position: absolute;
   height: 100%;
   background-color: #6750f8;
+  width: 0;
+  animation: ${(props) => BarAnimation(props.width)} 1s ease-in-out forwards;
 `;
