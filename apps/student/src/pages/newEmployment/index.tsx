@@ -4,6 +4,7 @@ import {
   getEmploymentTotalClassProps,
 } from "@/src/axios/dist";
 import ClassEmployment from "@/src/lib/components/student/employmentPagev2/ClassEmployment";
+import EmployGrid from "@/src/lib/components/student/employmentPagev2/EmployGrid";
 import TotalEmployment from "@/src/lib/components/student/employmentPagev2/TotalEmployment";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -30,7 +31,7 @@ const EmploymentPage = () => {
             <></>
           )}
         </SideBox>
-        <Container></Container>
+        <EmployGrid />
       </MainDiv>
     </>
   );
@@ -54,10 +55,5 @@ const SideBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
-
-const Container = styled.div`
-  width: 75%;
-  height: 100%;
-  background-color: blue;
+  border-right: 2px solid #10111230;
 `;
