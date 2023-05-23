@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import ClassEmployBar from "./ClassEmployBar";
 import { getEmploymentTotalClassProps } from "@/src/axios/dist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useInterval } from "@/src/lib/func/useInterval";
 
 const ClassEmployment = ({
   classInfo,
@@ -10,12 +11,26 @@ const ClassEmployment = ({
 }) => {
   const [selectClass, setSelectClass] = useState(0);
 
+  const [delay, setDelay] = useState<number | null>(3000);
+
+  useInterval(() => {
+    setSelectClass((selectClass + 1) % 4);
+  }, delay);
+
+  useEffect(() => {
+    setDelay(3000);
+  }, [delay]);
+
   return (
     <MainDiv>
       <h1>{classInfo.classList[selectClass].information.major}</h1>
       <p>{`${classInfo.classList[selectClass].information.description}`}</p>
       <hr />
-      <ClassEmployBar select={{state: selectClass,setState: setSelectClass}} classInfo={classInfo}/>
+      <ClassEmployBar
+        delay={{ setState: setDelay }}
+        select={{ state: selectClass, setState: setSelectClass }}
+        classInfo={classInfo}
+      />
     </MainDiv>
   );
 };
@@ -34,12 +49,13 @@ const MainDiv = styled.div`
     text-align: center;
   }
   > p {
-    padding: 0 10%;
+    padding: 0 5%;
     text-align: center;
     white-space: pre-line;
     font-size: 0.7vmax;
     text-align: center;
     margin-bottom: 18px;
+    transition: 1s;
   }
   > hr {
     width: 80%;

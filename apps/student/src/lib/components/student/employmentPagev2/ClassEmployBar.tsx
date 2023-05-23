@@ -5,19 +5,29 @@ import styled, { keyframes } from "styled-components";
 const ClassEmployBar = ({
   select,
   classInfo,
+  delay,
 }: {
   select: {
     state: number;
     setState: (value: number) => void;
   };
   classInfo: getEmploymentTotalClassProps;
+  delay: {
+    setState: (value: number | null) => void;
+  };
 }) => {
   return (
     <MainDiv>
       <h1>취업현황</h1>
-      <Content>
+      <Container>
         {classArray.map((e, i) => (
-          <div>
+          <Content
+            select={select.state === i}
+            onClick={() => {
+              select.setState(i);
+              delay.setState(null);
+            }}
+          >
             <span>{e}</span>
             <div>
               <Bar
@@ -28,9 +38,10 @@ const ClassEmployBar = ({
                 }
               />
             </div>
-          </div>
+          </Content>
         ))}
-      </Content>
+        <Dot topPos={select.state * 27.5 + 4.5} />
+      </Container>
     </MainDiv>
   );
 };
@@ -45,15 +56,29 @@ const MainDiv = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Dot = styled.div<{ topPos: number }>`
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #6750f8;
+  /* top: ${(props) => props.topPos}vmin; */
+  top: ${(props) => props.topPos}%;
+  transition: 0.3s ease-out;
+  left: -7px;
+`;
+
+const Container = styled.div`
   width: 100%;
   height: 78%;
   padding-left: 10px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   row-gap: 1.5vmin;
   > div {
+    cursor: pointer;
     > div {
       margin-top: 2px;
       width: 100%;
@@ -65,6 +90,13 @@ const Content = styled.div`
     > span {
       font-size: 0.8vmax;
     }
+  }
+`;
+
+const Content = styled.div<{ select: boolean }>`
+  > span {
+    color: ${(props) => (props.select ? "#6750f8" : "#101112")};
+    font-weight: ${(props) => (props.select ? 700 : 400)};
   }
 `;
 
