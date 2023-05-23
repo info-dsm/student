@@ -1,15 +1,34 @@
 import HeaderComponent from "@/../../packages/ui/components/StudentHeader";
-import RoundGraph from "@/src/lib/components/student/employmentPage/RoundGraph";
+import {
+  getEmploymentTotalClass,
+  getEmploymentTotalClassProps,
+} from "@/src/axios/dist";
+import ClassEmployment from "@/src/lib/components/student/employmentPagev2/ClassEmployment";
 import TotalEmployment from "@/src/lib/components/student/employmentPagev2/TotalEmployment";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const EmploymentPage = () => {
+  const [classInfo, setClassInfo] = useState<getEmploymentTotalClassProps>();
+  useEffect(() => {
+    getEmploymentTotalClass({ year: 2023 }).then((res) => {
+      setClassInfo(res);
+    });
+  }, []);
+
   return (
     <>
       <HeaderComponent />
       <MainDiv>
         <SideBox>
-          <TotalEmployment />
+          {classInfo ? (
+            <>
+              <TotalEmployment classInfo={classInfo} />
+              <ClassEmployment classInfo={classInfo} />
+            </>
+          ) : (
+            <></>
+          )}
         </SideBox>
         <Container></Container>
       </MainDiv>
@@ -31,7 +50,10 @@ const MainDiv = styled.div`
 const SideBox = styled.div`
   width: 25%;
   height: 100%;
-  padding: 5.5% 2% 1.5% 2%;
+  padding: 5.5% 1.5% 1.5% 1.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Container = styled.div`
