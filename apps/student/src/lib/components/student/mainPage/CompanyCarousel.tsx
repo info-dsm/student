@@ -29,6 +29,9 @@ const CompanyCarousel = ({ fix }: { fix: boolean }) => {
           setCompanyList(res);
         });
     }
+    getCompanyPreference().then((res) => {
+      setCompanyPreference(res);
+    });
   }, [companyPreference, fix]);
 
   return (
@@ -36,7 +39,7 @@ const CompanyCarousel = ({ fix }: { fix: boolean }) => {
       <div>
         <h1>
           <div>요즘 떠오르고있는 기업이에요!</div>
-          <span>규모가 ‘스타트업’인 회사들을 모아 추천드려요.</span>
+          <span>규모가 ‘{companyPreference}’인 회사들을 모아 추천드려요.</span>
         </h1>
         {companyList ? <Carousel companyList={companyList} /> : <></>}
       </div>
