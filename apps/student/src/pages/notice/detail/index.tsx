@@ -12,6 +12,7 @@ import { Spinner } from "@/../../packages/ui/dist";
 import NoticeDetail from "@/src/lib/components/student/detail/NoticeDetail";
 import DetailCompanyInfo from "@/src/lib/components/student/detail/CompanyInfo";
 import HeaderComponent from "@/../../packages/ui/components/StudentHeader";
+import { Footer } from "@/../../packages/ui/components/Footer";
 
 const StudentNoticeDetail = () => {
   const query = useRouter().query.id as string;
@@ -49,9 +50,14 @@ const StudentNoticeDetail = () => {
             <NoticeDetail noticeInfo={NoticeInfo} companyInfo={CompanyInfo} />
             <DetailCompanyInfo
               companyInfo={CompanyInfo}
+              noticeInfo={{
+                info: NoticeInfo,
+                id: NoticeID,
+              }}
               date={NoticeInfo.noticeOpenPeriod.endDate}
             />
           </MainDiv>
+          <Footer />
         </>
       ) : (
         <Spinner />
