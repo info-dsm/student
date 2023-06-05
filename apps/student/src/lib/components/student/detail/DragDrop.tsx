@@ -8,22 +8,23 @@ import React, {
 import UploadImg from "@/public/assets/images/upload-border.png";
 import styled from "styled-components";
 import Image from "next/image";
+import { FilesType } from "@/src/lib/types";
 
-interface FilesType {
-  checked: boolean;
-  file: File;
-}
-
-const DragDrop = () => {
+const DragDrop = ({
+  files,
+}: {
+  files: {
+    state: FilesType[];
+    setState: (value: FilesType[]) => void;
+  };
+}) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [files, setFiles] = useState<FilesType[]>([]);
-
   const dragRef = useRef<HTMLDivElement | null>(null);
 
   const onChangeFiles = useCallback(
     (e: ChangeEvent<HTMLInputElement> | any): void => {
       let selectFiles: File[] = [];
-      let tempFiles: FilesType[] = files;
+      let tempFiles: FilesType[] = files.state;
 
       if (e.type === "drop") selectFiles = e.dataTransfer.files;
       else selectFiles = e.target.files;
@@ -42,7 +43,7 @@ const DragDrop = () => {
           ];
       }
 
-      setFiles(tempFiles);
+      files.setState(tempFiles);
     },
     [files]
   );
@@ -103,19 +104,23 @@ const DragDrop = () => {
     return () => resetDragEvents();
   }, [initDragEvents, resetDragEvents]);
 
+  // useEffect(() => {
+  //   localStorage.setItem("files", JSON.stringify(files.state));
+  // }, [files.state]);
+
   return (
     <IsHover isDragging={isDragging}>
-      <DragDropDiv ref={dragRef} isScroll={files.length >= 6}>
+      <DragDropDiv ref={dragRef} isScroll={files.state.length >= 6}>
         <div>
-          {files.length > 0 &&
-            files.map((file: FilesType, i) => (
+          {files.state.length > 0 &&
+            files.state.map((file: FilesType, i) => (
               <FileLabel id="check" key={i}>
                 <input
                   type="checkbox"
                   checked={file.checked}
                   onChange={() => {
-                    setFiles(
-                      files.map((e: FilesType, i2) => {
+                    files.setState(
+                      files.state.map((e: FilesType, i2) => {
                         return i === i2
                           ? { checked: !e.checked, file: e.file }
                           : e;
@@ -130,7 +135,7 @@ const DragDrop = () => {
                 <svg
                   onClick={(e) => {
                     e.preventDefault();
-                    setFiles(files.filter((_, _i) => i !== _i));
+                    files.setState(files.state.filter((_, _i) => i !== _i));
                   }}
                   width="8"
                   height="8"
@@ -164,7 +169,7 @@ const DragDrop = () => {
           onChange={(e) => onChangeFiles(e)}
         />
 
-        {files.length > 0 ? (
+        {files.state.length > 0 ? (
           <></>
         ) : (
           <span>
@@ -218,7 +223,6 @@ const FileLabel = styled.label`
     word-break: break-all;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 10px;
   }
 
   > input {

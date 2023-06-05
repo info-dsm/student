@@ -2,8 +2,59 @@ import Image from "next/image";
 import styled from "styled-components";
 import DownImg from "@/public/assets/images/download.png";
 import DragDrop from "./DragDrop";
+import { useState } from "react";
+import { applyNotice, createNoticeFile } from "@/src/axios/dist";
+import { useRouter } from "next/router";
+import { Notice } from "../Alert";
+import { FilesType } from "@/src/lib/types";
 
 const DetailPageAttachedFile = () => {
+  const [files, setFiles] = useState<FilesType[]>([]);
+  const router = useRouter();
+
+  const applyNoticeForm = () => {
+    const form = files.reduce(
+      (
+        acc: {
+          fileName: string;
+          contentType: string;
+        }[],
+        t
+      ) => {
+        if (t.checked) {
+          acc.push({
+            fileName: t.file.name,
+            contentType: t.file.type,
+          });
+        }
+        return acc;
+      },
+      []
+    );
+    if (form.length >= 1) {
+      applyNotice({
+        id: "NoticeInfo.noticeId",
+        form: form,
+      }).then((res: any) => {
+        createNoticeFile(
+          res,
+          files.map((e) => e.file)
+        )
+          .then(() => {
+            alert("지원에 성공했습니다!");
+            router.push("/");
+          })
+          .catch(() => {
+            console.log("error");
+          });
+      });
+    } else
+      Notice({
+        message: "파일을 넣어주세요.",
+        state: "error",
+      });
+  };
+
   return (
     <MainDiv>
       <div>
@@ -12,11 +63,10 @@ const DetailPageAttachedFile = () => {
           이력서 파일 다운로드
           <Image src={DownImg} alt="" />
         </Explain>
-        <DragDrop />
-        {/* <UploadBtn>업로드</UploadBtn> */}
+        <DragDrop files={{ state: files, setState: setFiles }} />
       </div>
       <SubmitBtn>
-        <button>제출하기</button>
+        <button onClick={() => applyNoticeForm()}>제출하기</button>
       </SubmitBtn>
     </MainDiv>
   );
@@ -35,17 +85,6 @@ const MainDiv = styled.div`
       font-size: 21px;
     }
   }
-`;
-
-const UploadBtn = styled.div`
-  margin-top: 38px;
-  width: 100%;
-  border: 1px solid #6750f8;
-  border-radius: 24px;
-  padding: 11px;
-  text-align: center;
-  font-size: 18px;
-  color: #6750f8;
 `;
 
 const SubmitBtn = styled.div`
