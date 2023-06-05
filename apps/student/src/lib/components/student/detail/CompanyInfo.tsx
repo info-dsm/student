@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import EmployDict from "./EmployJob";
-import { getCompanyDetailProps } from "@/src/axios/dist";
+import { getCompanyDetailProps, getNoticeDetailProps } from "@/src/axios/dist";
 import { useState } from "react";
 import DetailPageAttachedFile from "./AttachedFile";
 
 const DetailPageCompanyInfo = ({
   companyInfo,
   date,
+  noticeInfo,
 }: {
   date: string;
   companyInfo: getCompanyDetailProps;
+  noticeInfo: {
+    id: string[];
+    info: getNoticeDetailProps;
+  };
 }) => {
   const annualSales = `${companyInfo.companyInformation.annualSales}`.replace(
     /(?=(\d{3})+(?!\d))/g,
@@ -24,13 +29,17 @@ const DetailPageCompanyInfo = ({
           <span>{companyInfo.companyName.replace(" ", "\n")}</span>
           <span>
             <ApplyBtn apply={apply} onClick={() => setApply(!apply)}>
-              {apply ? "뒤로" : "지원하기"}
+              {apply
+                ? "뒤로"
+                : noticeInfo.id.includes(noticeInfo.info.noticeId)
+                ? "재지원하기"
+                : "지원하기"}
             </ApplyBtn>
             <div>마감일 | {date}</div>
           </span>
         </h1>
         {apply ? (
-          <DetailPageAttachedFile />
+          <DetailPageAttachedFile noticeInfo={noticeInfo.info} />
         ) : (
           <EmployDict
             width={65}

@@ -3,12 +3,20 @@ import styled from "styled-components";
 import DownImg from "@/public/assets/images/download.png";
 import DragDrop from "./DragDrop";
 import { useState } from "react";
-import { applyNotice, createNoticeFile } from "@/src/axios/dist";
+import {
+  applyNotice,
+  createNoticeFile,
+  getNoticeDetailProps,
+} from "@/src/axios/dist";
 import { useRouter } from "next/router";
 import { Notice } from "../Alert";
 import { FilesType } from "@/src/lib/types";
 
-const DetailPageAttachedFile = () => {
+const DetailPageAttachedFile = ({
+  noticeInfo,
+}: {
+  noticeInfo: getNoticeDetailProps;
+}) => {
   const [files, setFiles] = useState<FilesType[]>([]);
   const router = useRouter();
 
@@ -33,7 +41,7 @@ const DetailPageAttachedFile = () => {
     );
     if (form.length >= 1) {
       applyNotice({
-        id: "NoticeInfo.noticeId",
+        id: noticeInfo.noticeId,
         form: form,
       }).then((res: any) => {
         createNoticeFile(
