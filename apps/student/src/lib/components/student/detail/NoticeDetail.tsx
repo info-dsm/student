@@ -4,7 +4,7 @@ import EmployProcess from "./EmployProcess";
 import EmployDict from "./EmployJob";
 import DetailPageBenefit from "./Benefit";
 import { getCompanyDetailProps, getNoticeDetailProps } from "@/src/axios/dist";
-import { Footer } from "@/../../packages/ui/components/Footer";
+import NoticeDetailClassification from "../Classification";
 
 const NoticeDetail = ({
   noticeInfo,
@@ -16,12 +16,12 @@ const NoticeDetail = ({
   return (
     <MainDiv>
       <DetailPageCarousel companyInfo={companyInfo} />
-      <Title>회사 정보</Title>
+      <NoticeDetailClassification name={"회사 정보"} />
       <CompanyInfoContent>
         {companyInfo.companyIntroductionResponse.introduction}
       </CompanyInfoContent>
       <DividingLine />
-      <Title>채용직무</Title>
+      <NoticeDetailClassification name={"채용직무"} />
       <EmployDict
         width={85}
         data={[
@@ -54,10 +54,10 @@ const NoticeDetail = ({
         ]}
       />
       <DividingLine />
-      <Title>채용절차</Title>
+      <NoticeDetailClassification name={"채용절차"} />
       <EmployProcess process={Object.values(noticeInfo.interviewProcessList)} />
       <DividingLine />
-      <Title>자격조건</Title>
+      <NoticeDetailClassification name={"자격조건"} />
       <EmployDict
         width={85}
         data={[
@@ -104,7 +104,7 @@ const NoticeDetail = ({
         ]}
       />
       <DividingLine />
-      <Title>복리후생</Title>
+      <NoticeDetailClassification name={"복리후생"} />
       <DetailPageBenefit info={noticeInfo} />
     </MainDiv>
   );
@@ -134,4 +134,6 @@ const CompanyInfoContent = styled.div`
 const Title = styled.h2`
   font-size: 20px;
   font-weight: 700;
+  /* border-left: 3px solid #6750f8;
+  padding-left: 7px; */
 `;
