@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { Spinner } from "@/../../packages/ui/dist";
 import NoticeDetail from "@/src/lib/components/student/detail/NoticeDetail";
 import DetailCompanyInfo from "@/src/lib/components/student/detail/CompanyInfo";
+import HeaderComponent from "@/../../packages/ui/components/StudentHeader";
 
 const StudentNoticeDetail = () => {
   const query = useRouter().query.id as string;
@@ -43,6 +44,7 @@ const StudentNoticeDetail = () => {
     <>
       {NoticeInfo && CompanyInfo ? (
         <>
+          <HeaderComponent />
           <MainDiv>
             <NoticeDetail noticeInfo={NoticeInfo} companyInfo={CompanyInfo} />
             <DetailCompanyInfo
