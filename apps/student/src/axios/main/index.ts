@@ -2,6 +2,7 @@
 import axios from "axios";
 import cookie from "js-cookie";
 import { reissue } from "../dist";
+import { Notice } from "@/src/lib/components/student/Alert";
 const request = axios.create({
   baseURL: "https://api.info-dsm.info/",
 });
@@ -27,7 +28,10 @@ request.interceptors.response.use(
       error.response.status === 403 ||
       error.response.status === 401
     ) {
-      console.log("asd");
+      Notice({
+        state: "error",
+        message: "로그인이 필요합니다.",
+      })
       reissue().catch(() => {
         cookie.remove("accessToken");
         cookie.remove("refreshToken");
