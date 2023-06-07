@@ -1,8 +1,9 @@
 import cookie from "js-cookie";
 import request from "../../";
+import axios from "axios";
 
 export const reissue = async () => {
-  const res: { accessToken: string; refreshToken: string } = await request.put(
+  const res: { accessToken: string; refreshToken: string } = await axios.put(
     "/auth/reissue",
     {
       accessToken: cookie.get("accessToken"),
