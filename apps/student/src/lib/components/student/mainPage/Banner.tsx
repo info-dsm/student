@@ -5,12 +5,14 @@ import ArrowText from "../Arrow";
 import { useEffect, useState } from "react";
 import { NoticeCount } from "@/src/axios/dist";
 import { frameRate, totalFrame } from "@/public/data";
-import { AnnouncementList } from "@/src/axios/dist";
 import { AnnouncementListProps } from "@/src/axios/dist";
 
-const StudentBanner = () => {
+const StudentBanner = ({
+  announcement,
+}: {
+  announcement: AnnouncementListProps;
+}) => {
   const [noticeSize, setNoticeSize] = useState<number>(0);
-  const [announcement, setAnnounce] = useState<AnnouncementListProps>();
 
   useEffect(() => {
     NoticeCount().then((res: number) => {
@@ -23,10 +25,6 @@ const StudentBanner = () => {
           clearInterval(counter);
         }
       }, frameRate);
-    });
-
-    AnnouncementList({ idx: 0, size: 6, type: "전체" }).then((res) => {
-      setAnnounce(res);
     });
   }, []);
 
