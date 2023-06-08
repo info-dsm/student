@@ -31,7 +31,7 @@ request.interceptors.response.use(
       Notice({
         state: "error",
         message: "로그인이 필요합니다.",
-      })
+      });
       reissue().catch(() => {
         cookie.remove("accessToken");
         cookie.remove("refreshToken");

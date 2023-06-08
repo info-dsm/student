@@ -7,20 +7,29 @@ import SwiperImage from "@/src/lib/components/student/mainPage/Swiper";
 import CompanyCarousel from "@/src/lib/components/student/mainPage/CompanyCarousel";
 import MyInfo from "@/src/lib/components/student/mainPage/MyInfo";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { AnnouncementList, AnnouncementListProps } from "../axios/dist";
+import { Spinner } from "@/../../packages/ui/dist";
 
 const NewStudentPage = () => {
   const [fix, setFix] = useState<boolean>(false);
-
+  const { status, data } = useQuery(["announcement", []], async () =>
+    AnnouncementList({ idx: 0, size: 6, type: "전체" })
+  );
   return (
     <>
-      <MainDiv>
-        <HeaderComponent />
-        <StudentBanner />
-        <SwiperImage fix={fix} />
-        <CompanyCarousel fix={fix} />
-        <MyInfo fix={{ state: fix, setState: setFix }} />
-        <Footer />
-      </MainDiv>
+      {status === "loading" ? (
+        <Spinner />
+      ) : (
+        <MainDiv>
+          <HeaderComponent />
+          <StudentBanner announcement={data as AnnouncementListProps} />
+          <SwiperImage fix={fix} />
+          <CompanyCarousel fix={fix} />
+          <MyInfo fix={{ state: fix, setState: setFix }} />
+          <Footer />
+        </MainDiv>
+      )}
     </>
   );
 };
