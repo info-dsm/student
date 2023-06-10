@@ -41,7 +41,7 @@ const DetailInfo = ({
             <span>{companyInfo.companyNumber}</span>
           </div>
           <div>
-            <div>마지막 모집 의뢰 년도</div>
+            <div>설립연도</div>
             <span>{companyInfo.companyInformation.establishedAt}년</span>
           </div>
           <div>

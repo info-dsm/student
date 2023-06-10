@@ -59,7 +59,7 @@ const DetailPageCompanyInfo = ({
                 value: companyInfo.companyNumber,
               },
               {
-                key: "마지막 모집의뢰 년도",
+                key: "설립년도",
                 value: `${companyInfo.companyInformation.establishedAt}년`,
               },
               {
