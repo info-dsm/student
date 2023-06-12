@@ -67,10 +67,10 @@ const NoticeDetail = ({
               noticeInfo.languageList.length > 0 ||
               noticeInfo.technologyList.length > 0
                 ? `${noticeInfo.languageList
-                    .map((t) => "• {t.languageName}")
+                    .map((t) => `• ${t.languageName}`)
                     .join("\n")}` +
                   `${noticeInfo.technologyList
-                    .map((t) => "• {t.technologyName}")
+                    .map((t) => `• ${t.technologyName}`)
                     .join("\n")}`
                 : "필요한 기술 스택이 없습니다."
             }`,
