@@ -44,13 +44,15 @@ const EmployGrid = () => {
 export default EmployGrid;
 
 const ImageBox = styled.div<{ height: number }>`
-  margin-top: 0.7vmax;
+  margin-top: 0.7vmin;
   display: grid;
-  height: ${(props) => props.height}%;
+  /* height: ${(props) => props.height}%; */
+  height: 32vmin;
   grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 1vmin;
   img {
     width: 7.3vmax;
-    height: 6.4vmin;
+    height: 6vmin;
     object-fit: contain;
     border-radius: 5px;
     border: none;
