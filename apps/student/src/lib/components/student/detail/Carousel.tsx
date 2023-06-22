@@ -89,7 +89,7 @@ const Carousel = styled.div`
   position: relative;
   text-align: center;
   overflow-y: hidden;
-  border: 2px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.3);
 
   span {
     text-align: center;
