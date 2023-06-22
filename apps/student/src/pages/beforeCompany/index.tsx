@@ -51,7 +51,7 @@ const StudentCompanyList = () => {
   return (
     <FontDiv>
       <HeaderComponent />
-      <StudentCompanyBanner />
+      {/* <StudentCompanyBanner /> */}
       <MegaPhoneV2 />
       <MainDiv>
         <StudentCompanyKind />
