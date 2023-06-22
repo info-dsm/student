@@ -13,18 +13,6 @@ const DetailPageBenefit = ({ info }: { info: getNoticeDetailProps }) => {
   } = welfare;
   const { breakfast, lunch, dinner, mealSupportPay } = mealSupport;
 
-  console.log([
-    breakfast,
-    lunch,
-    dinner,
-    mealSupportPay,
-    dormitorySupport,
-    selfDevelopmentPay,
-    equipmentSupport,
-    youthTomorrowChaeumDeduction,
-    alternativeMilitaryPlan,
-    elseSupport,
-  ]);
   return (
     <MainDiv>
       {[
