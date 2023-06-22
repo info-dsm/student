@@ -27,39 +27,33 @@ const CompanyDetailPosition = ({
   });
 
   useEffect(() => {
-    const { kakao }: any = window;
-
-    const container = document.getElementById("map");
-    const options = {
-      center: new kakao.maps.LatLng(pos.y, pos.x),
-      level: 3,
-    };
-    const map = new kakao.maps.Map(container, options);
-
-    var geocoder = new kakao.maps.services.Geocoder();
-
-    geocoder.addressSearch(
-      `${companyInfo.companyInformation.homeAddress?.fullAddress}`,
-      function (result: any, status: any) {
-        if (status === kakao.maps.services.Status.OK) {
-          setPos({ x: result[0].x, y: result[0].y });
-          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-          var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords,
-          });
-
-          var infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="width:150px;text-align:center;padding:6px 0;color:#f6f6f6;border:none;background-color:#6750f8;border-radius:8px;">${companyInfo.companyName}</div>`,
-          });
-          infowindow.open(map, marker);
-
-          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-          map.setCenter(coords);
-        }
-      }
-    );
+    // const { kakao }: any = window;
+    // const container = document.getElementById("map");
+    // const options = {
+    //   center: new kakao.maps.LatLng(pos.y, pos.x),
+    //   level: 3,
+    // };
+    // const map = new kakao.maps.Map(container, options);
+    // var geocoder = new kakao.maps.services.Geocoder();
+    // geocoder.addressSearch(
+    //   `${companyInfo.companyInformation.homeAddress?.fullAddress}`,
+    //   function (result: any, status: any) {
+    //     if (status === kakao.maps.services.Status.OK) {
+    //       setPos({ x: result[0].x, y: result[0].y });
+    //       var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    //       var marker = new kakao.maps.Marker({
+    //         map: map,
+    //         position: coords,
+    //       });
+    //       var infowindow = new kakao.maps.InfoWindow({
+    //         content: `<div style="width:150px;text-align:center;padding:6px 0;color:#f6f6f6;border:none;background-color:#6750f8;border-radius:8px;">${companyInfo.companyName}</div>`,
+    //       });
+    //       infowindow.open(map, marker);
+    //       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+    //       map.setCenter(coords);
+    //     }
+    //   }
+    // );
   }, []);
 
   return (
@@ -75,7 +69,7 @@ const CompanyDetailPosition = ({
               </div>
             ))}
           </div>
-          <div id="map"></div>
+          {/* <div id="map"></div> */}
         </span>
         <div>
           <a
@@ -98,14 +92,14 @@ export default CompanyDetailPosition;
 const Position = styled.div`
   margin: 30px 0;
 
-  #map {
+  /* #map {
     > div > div > div > div {
       border-radius: 8px;
       > img {
         content: url("https://cdn.discordapp.com/attachments/1071077149605384262/1121231084710006944/image.png");
       }
     }
-  }
+  } */
 
   > h4 {
     margin-top: 22px;

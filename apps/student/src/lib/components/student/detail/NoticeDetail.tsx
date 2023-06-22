@@ -108,8 +108,8 @@ const NoticeDetail = ({
       <NoticeDetailClassification name={"복리후생"} />
       <DetailPageBenefit info={noticeInfo} />
       <DividingLine />
-      {/* <CompanyDetailPosition companyInfo={companyInfo} /> */}
-      {/* <DividingLine /> */}
+      <CompanyDetailPosition companyInfo={companyInfo} />
+      <DividingLine />
     </MainDiv>
   );
 };
