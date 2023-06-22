@@ -6,13 +6,11 @@ import {
   getCompanyNotice,
   getWaitingNoticeListContentProps,
 } from "../../../axios/dist";
-import DetailInfo from "../../../lib/components/student/NoticeDetailInfo";
-import StudentCompanyNoticeList from "../../../lib/components/student/noticeList";
-import HeaderComponent from "ui/components/StudentHeader";
 import { useRouter } from "next/router";
-import { Footer } from "ui/components/Footer";
 import { Spinner } from "@/../../packages/ui/dist";
-import NoticeDetailCompanyInfo from "@/src/lib/components/student/CompanyInfo";
+import CompanyDetail from "@/src/lib/components/student/companyPage/detail/CompanyDetail";
+import CompanyPageNotice from "@/src/lib/components/student/companyPage/NoticeContainer";
+import HeaderComponent from "ui/components/StudentHeader";
 
 const StudentCompanyDetail = ({}: {}) => {
   const query = useRouter().query.id as string;
@@ -22,13 +20,11 @@ const StudentCompanyDetail = ({}: {}) => {
 
   useEffect(() => {
     if (query) {
-      getCompanyDetail({ id: query }).then((res: getCompanyDetailProps) => {
-        setInfo(res);
-      });
+      getCompanyDetail({ id: query }).then((res: getCompanyDetailProps) =>
+        setInfo(res)
+      );
       getCompanyNotice({ id: query }).then(
-        (res: getWaitingNoticeListContentProps[]) => {
-          setNoticeInfo(res);
-        }
+        (res: getWaitingNoticeListContentProps[]) => setNoticeInfo(res)
       );
     }
   }, [query]);
@@ -36,23 +32,13 @@ const StudentCompanyDetail = ({}: {}) => {
   return (
     <>
       {info && noticeInfo ? (
-        <FontDiv>
+        <>
           <HeaderComponent />
           <MainDiv>
-            <DetailDiv>
-              <>
-                <h1>㈜ {info.companyName}</h1>
-                <DetailInfo companyInfo={info} />
-                <NoticeDetailCompanyInfo companyInfo={info} />
-                <StudentCompanyNoticeList
-                  companyInfo={info}
-                  info={noticeInfo}
-                />
-              </>
-            </DetailDiv>
+            <CompanyDetail companyInfo={info} />
+            <CompanyPageNotice companyInfo={info} noticeInfo={noticeInfo}/>
           </MainDiv>
-          <Footer />
-        </FontDiv>
+        </>
       ) : (
         <Spinner />
       )}
@@ -62,30 +48,12 @@ const StudentCompanyDetail = ({}: {}) => {
 
 export default StudentCompanyDetail;
 
-const FontDiv = styled.div`
+const MainDiv = styled.div`
+  padding: 7.1vmax 25.15vmin;
+  display: flex;
+  position: relative;
+
   * {
     font-family: "Pretendard Variable";
-  }
-`;
-
-const MainDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  height: 100%;
-  background-color: #f4f4f5;
-`;
-
-const DetailDiv = styled.div`
-  width: 1200px;
-  height: 100%;
-  background-color: #fff;
-  padding: 174px 100px;
-
-  > h1 {
-    margin: 0;
-    margin-top: 32px;
-    font-size: 40px;
-    font-weight: 600;
   }
 `;

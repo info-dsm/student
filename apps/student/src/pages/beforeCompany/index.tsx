@@ -6,7 +6,6 @@ import StudentCompanyBanner from "../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "../../lib/components/student/Kind";
 import CompanyPlaceHolder from "../../lib/components/student/detailplaceholder";
-import MegaPhone from "@/src/lib/components/student/MegaPhone";
 import MegaPhoneV2 from "@/src/lib/components/student/MegaPhoneV2";
 
 const StudentCompanyList = () => {
@@ -53,6 +52,7 @@ const StudentCompanyList = () => {
     <FontDiv>
       <HeaderComponent />
       <StudentCompanyBanner />
+      <MegaPhoneV2 />
       <MainDiv>
         <StudentCompanyKind />
         <Content>
@@ -88,7 +88,6 @@ const FontDiv = styled.div`
 const MainDiv = styled.div`
   width: 100vw;
   height: 100%;
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
