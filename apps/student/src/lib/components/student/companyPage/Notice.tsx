@@ -22,6 +22,7 @@ const CompanyPageNoticeBox = ({
           </span>
         </div>
       ))}
+      {info.length === 0 ? "현재 진행중인 모집공고가 없습니다." : ""}
     </MainDiv>
   );
 };
