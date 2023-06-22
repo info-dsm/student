@@ -102,4 +102,6 @@ const CarouselImg = styled.img<{ translateX: number; object: boolean }>`
   object-fit: ${(props) => (props.object ? "contain" : "cover")};
   transition: 1s;
   transform: translateX(${(props) => props.translateX}vmax);
+  padding: 30px;
+  background-color: #fff;
 `;
