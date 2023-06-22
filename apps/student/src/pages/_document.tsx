@@ -54,6 +54,10 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a33698fbb4cbdc35a7a5e659299d3ee&libraries=services"
+          ></script>
         </body>
       </Html>
     );
