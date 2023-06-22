@@ -21,7 +21,8 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "dotenv-cli": "^6.0.0"
+    "dotenv-cli": "^6.0.0",
+    "react-kakao-maps-sdk": "^1.1.9"
   },
   "packageManager": "yarn@1.22.19"
 }
