@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 const CompanyPlaceHolder = () => {
   return (
     <CompanyContainer>
-      {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map(() => (
+      {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map(() => (
         <div />
       ))}
     </CompanyContainer>
@@ -31,7 +31,7 @@ const CompanyContainer = styled.div`
 
   div {
     width: 18.3vmax;
-    height: 36.3vmin;
+    height: 26.3vmin;
     background-color: #ebebeb;
     position: relative;
     overflow: hidden;
