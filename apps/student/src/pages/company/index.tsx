@@ -1,4 +1,8 @@
-import { getCompanyList1, getCompanyList1ContentProps } from "../../axios/dist";
+import {
+  getCompanyList1,
+  getCompanyList1ContentProps,
+  getCompanySearch,
+} from "../../axios/dist";
 import styled from "styled-components";
 import { useState, useLayoutEffect } from "react";
 import StudentCompany from "../../lib/components/student/company";
@@ -6,13 +10,12 @@ import StudentCompanyBanner from "../../lib/components/student/companybanner";
 import HeaderComponent from "ui/components/StudentHeader";
 import StudentCompanyKind from "../../lib/components/student/Kind";
 import CompanyPlaceHolder from "../../lib/components/student/detailplaceholder";
-import MegaPhone from "@/src/lib/components/student/MegaPhone";
-import MegaPhoneV2 from "@/src/lib/components/student/MegaPhoneV2";
 
 const StudentCompanyList = () => {
   const [company, setCompany] = useState<getCompanyList1ContentProps[]>([]);
   const [cnt, setCnt] = useState<number>(0);
   const [scrolled, setScrolled] = useState<boolean>(true);
+  const [name, setName] = useState<string>("");
 
   useLayoutEffect(() => {
     const getCompany = () => {
@@ -22,13 +25,22 @@ const StudentCompanyList = () => {
         ) as HTMLDivElement;
 
         if (cnt * 12 >= companyContainer.children.length)
-          getCompanyList1({ idx: cnt, size: 12 }).then(
-            (res: { content: any }) => {
-              setCompany((list) => list?.concat(res.content));
-              setCnt(cnt + 1);
-              setScrolled(false);
-            }
-          );
+          if (name === "")
+            getCompanyList1({ idx: cnt, size: 12 }).then(
+              (res: { content: any }) => {
+                setCompany((list) => list?.concat(res.content));
+                setCnt(cnt + 1);
+                setScrolled(false);
+              }
+            );
+          else
+            getCompanySearch({ idx: cnt, size: 12, name: name }).then(
+              (res: { content: any }) => {
+                setCompany((list) => list?.concat(res.content));
+                setCnt(cnt + 1);
+                setScrolled(false);
+              }
+            );
         else setScrolled(false);
       }
     };
@@ -37,6 +49,12 @@ const StudentCompanyList = () => {
       getCompany();
     }
   }, [scrolled, setScrolled]);
+
+  useLayoutEffect(() => {
+    setCnt(0);
+    setScrolled(true);
+    setCompany([]);
+  }, [name]);
 
   if (typeof window !== "undefined" && typeof document !== "undefined") {
     window.addEventListener("scroll", (e) => {
@@ -52,7 +70,7 @@ const StudentCompanyList = () => {
   return (
     <FontDiv>
       <HeaderComponent />
-      <StudentCompanyBanner />
+      <StudentCompanyBanner name={{ setState: setName }} />
       <MainDiv>
         <StudentCompanyKind />
         <Content>

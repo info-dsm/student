@@ -5,9 +5,17 @@ import { useEffect, useState } from "react";
 import { CompanyCount } from "@/src/axios/dist";
 import { frameRate, totalFrame } from "@/public/data";
 
-const StudentCompanyBanner = () => {
+const StudentCompanyBanner = ({
+  name,
+}: {
+  name: {
+    setState: (value: string) => void;
+  };
+}) => {
   const [companySize, setCompanySize] = useState<number>(0);
+  const [search, setSearch] = useState<string>("");
   const date = new Date();
+
   useEffect(() => {
     CompanyCount().then((res: number) => {
       let currentNumber = 0;
@@ -22,9 +30,16 @@ const StudentCompanyBanner = () => {
     });
   }, []);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    name.setState(search);
+  };
+
   return (
     <>
-      <Banner>
+      <Banner
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+      >
         <div>
           이번년도에는 총{" "}
           {companySize.toString().replace(/(?=(\d{3})+(?!\d))/g, ",")}
@@ -33,6 +48,11 @@ const StudentCompanyBanner = () => {
         <div>
           {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 기준
         </div>
+        <input
+          placeholder="기업을 검색해보세요."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </Banner>
       <BannerImg>
         <Image src={BannerImage} alt="" />
@@ -43,25 +63,24 @@ const StudentCompanyBanner = () => {
 
 export default StudentCompanyBanner;
 
-const Banner = styled.div`
+const Banner = styled.form`
   background: linear-gradient(
     180deg,
     rgba(16, 17, 18, 0.2) 4.95%,
     #101112 95.05%
   );
   width: 100vw;
-  height: 39.48vmin;
+  height: 45.4vmin;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12.8vmin;
 
   div {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     color: #fff;
     font-size: 2.5vmax;
-    padding-left: 11.82vmax;
-    line-height: 2.98vmax;
     font-weight: 700;
-    position: relative;
     + div {
       color: rgba(255, 255, 255, 0.5);
       font-weight: 600;
@@ -70,11 +89,22 @@ const Banner = styled.div`
       left: 50%;
     }
   }
+
+  > input {
+    width: 50%;
+    height: 6.4vmin;
+    margin-top: 5.4vmin;
+    background-color: #f5f2f2;
+    border: none;
+    border-radius: 40px;
+    padding-left: 40px;
+    font-size: 1rem;
+  }
 `;
 
 const BannerImg = styled.div`
   width: 100vw;
-  height: 39.48vmin;
+  height: 45.4vmin;
   position: absolute;
   top: 0;
   z-index: -1;
