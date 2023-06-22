@@ -106,7 +106,7 @@ const MainDiv = styled.div`
   width: 100%;
   margin-left: 40px;
   > div {
-    top: 25px;
+    top: 60px;
     position: sticky;
     > h1 {
       width: 100%;

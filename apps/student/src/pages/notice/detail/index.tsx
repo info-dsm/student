@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { Spinner } from "@/../../packages/ui/dist";
 import NoticeDetail from "@/src/lib/components/student/detail/NoticeDetail";
 import DetailCompanyInfo from "@/src/lib/components/student/detail/CompanyInfo";
-import HeaderComponent from "@/../../packages/ui/components/StudentHeader";
+import HeaderComponent from "@/../../packages/ui/components/StudentHeaderv2";
 import { Footer } from "@/../../packages/ui/components/Footer";
 
 const StudentNoticeDetail = () => {

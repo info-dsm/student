@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { Spinner } from "@/../../packages/ui/dist";
 import CompanyDetail from "@/src/lib/components/student/companyPage/detail/CompanyDetail";
 import CompanyPageNotice from "@/src/lib/components/student/companyPage/NoticeContainer";
-import HeaderComponent from "ui/components/StudentHeader";
+import HeaderComponent from "ui/components/StudentHeaderv2";
 
 const StudentCompanyDetail = ({}: {}) => {
   const query = useRouter().query.id as string;

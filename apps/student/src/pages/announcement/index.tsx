@@ -1,4 +1,3 @@
-import StudentNoticeBanner from "../../../src/lib/components/student/noticebanner";
 import HeaderComponent from "ui/components/StudentHeader";
 import styled, { keyframes } from "styled-components";
 import React, { useEffect, useState } from "react";

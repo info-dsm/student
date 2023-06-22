@@ -38,15 +38,15 @@ const HeaderComponent = () => {
           >
             <path
               d="M0 2.64286H17.376C26.9725 2.64286 34.752 10.334 34.752 19.8214C34.752 29.3089 26.9725 37 17.376 37C7.77951 37 0 29.3089 0 19.8214V2.64286Z"
-              fill="white"
+              fill="#6750F8"
               fill-opacity="0.7"
             ></path>
             <path
               d="M5.34647 0L5.34647 16.5179C5.34647 25.6404 12.8268 33.0357 22.0542 33.0357C31.2816 33.0357 38.7619 25.6404 38.7619 16.5179C38.7619 7.3953 31.2816 1.12078e-06 22.0542 7.22019e-07L5.34647 0Z"
-              fill="white"
+              fill="#6750F8"
             ></path>
           </svg>
-          <TitleIcon color="white" />
+          <TitleIcon color="#6750F8"/>
         </a>
         <div>
           {nav.map((t) => (
@@ -79,9 +79,9 @@ const MainDiv = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(16, 17, 18, 0.5);
-  backdrop-filter: blur(9px);
+  background: #f8f8f9;
   z-index: 99;
+  border-bottom: 1px solid rgba(16, 17, 18, 0.5);
 
   * {
     font-family: "Pretendard Variable";
@@ -96,24 +96,26 @@ const MainDiv = styled.div`
   }
 
   > div {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     display: inline-flex;
     gap: 1.8vmax;
     margin-right: 20px;
     a {
-      color: rgba(255, 255, 255, 0.8);
+      color: rgb(16, 17, 18);
       text-decoration: none;
       cursor: pointer;
-
+      padding-bottom: 3px;
+      margin-top: 3px;
       background-size: 0% 100%;
       background-image: linear-gradient(
         transparent calc(100% - 2px),
-        ${(props) => props.theme.colors.white} 2px
+        #6750f8 2px
       );
       background-repeat: no-repeat;
-      transition: background-size 0.3s;
+      transition: all 0.3s ease;
       &:hover {
+        color: #6750f8;
         background-size: 100% 100%;
       }
     }

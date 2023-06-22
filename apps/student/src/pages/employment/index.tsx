@@ -1,4 +1,4 @@
-import HeaderComponent from "@/../../packages/ui/components/StudentHeader";
+import HeaderComponent from "@/../../packages/ui/components/StudentHeaderv2";
 import {
   getEmploymentTotalClass,
   getEmploymentTotalClassProps,
