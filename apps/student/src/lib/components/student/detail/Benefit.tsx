@@ -67,11 +67,16 @@ const Box = styled.span`
   > div {
     display: flex;
     width: max-content;
-    padding: 20px 40px;
-    margin-right: 30px;
+    padding: 15px 25px;
+    margin-right: 10px;
     border-radius: 10px;
     color: #6750f8;
     background-color: rgba(103, 80, 248, 0.1);
     font-size: 20px;
+  }
+  + div {
+    color: rgba(16, 17, 18, 0.5);
+    margin-top: 30px;
+    font-size: 14px;
   }
 `;
