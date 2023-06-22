@@ -5,6 +5,7 @@ import EmployDict from "./EmployJob";
 import DetailPageBenefit from "./Benefit";
 import { getCompanyDetailProps, getNoticeDetailProps } from "@/src/axios/dist";
 import NoticeDetailClassification from "../Classification";
+import CompanyDetailPosition from "../companyPage/detail/Position";
 
 const NoticeDetail = ({
   noticeInfo,
@@ -106,6 +107,9 @@ const NoticeDetail = ({
       <DividingLine />
       <NoticeDetailClassification name={"복리후생"} />
       <DetailPageBenefit info={noticeInfo} />
+      <DividingLine />
+      <CompanyDetailPosition companyInfo={companyInfo} />
+      <DividingLine />
     </MainDiv>
   );
 };
@@ -120,7 +124,7 @@ const DividingLine = styled.hr`
   height: 1px;
   background-color: rgba(0, 0, 0, 0.2);
   border: none;
-  margin-top: 21px;
+  margin-top: 40px;
   margin-bottom: 42px;
 `;
 
