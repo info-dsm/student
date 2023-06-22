@@ -3,6 +3,7 @@ import request from "../..";
 export interface getCompanyDetailProps {
   companyNumber: string;
   companyName: string;
+  hiringClassificationList: string[];
   contactor: {
     name: string;
     email: string;
