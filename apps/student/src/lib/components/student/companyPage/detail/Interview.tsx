@@ -83,28 +83,40 @@ const CompanyDetailInterview = ({
 };
 export default CompanyDetailInterview;
 
-const RunModal = keyframes`
+const FoldIn = keyframes`
     0% {
-    transform:translateX(-90vw) skewX(30deg) scaleX(1.3);
-  }
-  70% {
-    transform:translateX(3vw) skewX(5deg) scaleX(.95);
+    transform:scaleY(0);
   }
   100% {
-    transform:translateX(0px) skewX(0deg) scaleX(1);
+    transform:scaleY(1);
   }
   `;
 
-const roadRunnerOut = keyframes`
-  0% {
-    transform:translateX(0px) skewX(0deg) scaleX(1);
-  }
-  30% {
-    transform:translateX(-3vw) skewX(-5deg) scaleX(.9);
+const FoldOut = keyframes`
+   0% {
+     transform:scaleY(1);
   }
   100% {
-    transform:translateX(90vw) skewX(30deg) scaleX(1.3);
+    transform:scaleY(0);
   }
+`;
+
+const FadeIn = keyframes`
+  0% {
+    transform:scale(0);
+  }
+  100% {
+    transform:scale(1);
+  }
+  `;
+
+const FadeOut = keyframes`
+0% {
+  transform:scale(1);
+}
+100% {
+  transform:scale(0);
+}
 `;
 
 const Container = styled.div<{ current: number }>`
@@ -115,7 +127,7 @@ const Container = styled.div<{ current: number }>`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(16, 17, 18, 0.4);
+    background-color: rgba(16, 17, 18, 0.8);
     z-index: 100;
   }
   > div:nth-child(2) {
@@ -123,14 +135,16 @@ const Container = styled.div<{ current: number }>`
       props.current === 0 || props.current === -1 || props.current === -3
         ? "none"
         : "flex"};
+    animation: ${(props) =>
+        props.current > 0 ? FoldIn : props.current === -2 ? FoldOut : ""}
+      0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation-delay: ${(props) => (props.current > 0 ? 0 : 0.5)}s;
     > div {
+      transform: scale(0);
       animation: ${(props) =>
-          props.current > 0
-            ? RunModal
-            : props.current === -2
-            ? roadRunnerOut
-            : ""}
+          props.current > 0 ? FadeIn : props.current === -2 ? FadeOut : ""}
         0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+      animation-delay: ${(props) => (props.current > 0 ? 0.5 : 0)}s;
     }
   }
   > div:nth-child(3) {
@@ -138,42 +152,18 @@ const Container = styled.div<{ current: number }>`
       props.current > 0 || props.current === -2 || props.current === -3
         ? "none"
         : "flex"};
+    animation: ${(props) =>
+        props.current === 0 ? FoldIn : props.current === -1 ? FoldOut : ""}
+      0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation-delay: ${(props) => (props.current === 0 ? 0 : 0.5)}s;
     > div {
+      transform: scale(0);
       animation: ${(props) =>
-          props.current === 0
-            ? RunModal
-            : props.current === -1
-            ? roadRunnerOut
-            : ""}
+          props.current === 0 ? FadeIn : props.current === -1 ? FadeOut : ""}
         0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+      animation-delay: ${(props) => (props.current === 0 ? 0.5 : 0)}s;
     }
   }
-  /* &.four {
-    z-index: 0;
-    transform: scale(1);
-    .modal-background {
-      background: rgba(0, 0, 0, 0.7);
-      .modal {
-        animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-      }
-    }
-    + .content {
-      z-index: 1;
-      animation: blowUpContent 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    }
-    &.out {
-      .modal-background {
-        .modal {
-          animation: blowUpModalTwo 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)
-            forwards;
-        }
-      }
-      + .content {
-        animation: blowUpContentTwo 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)
-          forwards;
-      }
-    }
-  } */
 `;
 
 const ArrowAnimation = keyframes`
@@ -195,7 +185,7 @@ const MainDiv = styled.div`
     > span {
       cursor: pointer;
       font-size: 18px;
-      color: rgba(16, 17, 18, 0.6);
+      color: rgba(16, 17, 18, 0.8);
       display: flex;
       &:hover {
         > svg {

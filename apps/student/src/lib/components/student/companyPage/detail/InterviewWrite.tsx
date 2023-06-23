@@ -28,7 +28,7 @@ const CompanyDetailInterviewWrite = ({
     current.setState(-1);
     setTimeout(() => {
       current.setState(-3);
-    }, 500);
+    }, 1000);
   };
 
   return (

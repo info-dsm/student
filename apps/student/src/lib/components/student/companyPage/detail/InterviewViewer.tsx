@@ -16,7 +16,7 @@ const CompanyDetailInterviewViewer = ({
     current.setState(-2);
     setTimeout(() => {
       current.setState(-3);
-    }, 500);
+    }, 1000);
   };
 
   return (
