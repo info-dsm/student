@@ -11,8 +11,10 @@ const CompanyPageNoticeBox = ({
       {info.map((e) => (
         <div>
           <div>
-            <span>프론트엔드 개발자</span>
-            <div>마감일 | ~05.09</div>
+            <span>
+              {e.classificationResponse.map((e) => `${e.name} `)}개발자
+            </span>
+            <div>마감일 | ~{e.noticeOpenPeriod.endDate.substring(5, 10)}</div>
           </div>
           <p>{`• 채용인원: ${e.numberOfEmployee}명\n• 성적: ${
             e.gradeCutLine ? `${e.applicantCount}이내` : "성적무관"
