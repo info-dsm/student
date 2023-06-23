@@ -5,6 +5,7 @@ import {
   getInterviewListApi,
   getInterviewListApiResType,
 } from "@/src/axios/dist";
+import Arrow from "@/out/assets/images/arrow";
 const CompanyDetailInterview = ({
   companyNumber,
 }: {
@@ -13,6 +14,7 @@ const CompanyDetailInterview = ({
   const [interview, setInterview] = useState<getInterviewListApiResType[]>([]);
   const [interviewDetail, setInterviewDetial] = useState();
   const [current, setCurrent] = useState<number>(-1);
+  const body = document.querySelector("body") as HTMLBodyElement;
 
   useEffect(() => {
     getInterviewListApi({ companyNumber: companyNumber }).then((res) => {
@@ -26,7 +28,14 @@ const CompanyDetailInterview = ({
       <MainDiv>
         <span>
           <NoticeDetailClassification name={"면접 후기"} />
-          <span>asd</span>
+          <span
+            onClick={() => {
+              setCurrent(0);
+              body.style.overflow = "hidden";
+            }}
+          >
+            면접후기 작성 <Arrow color={"rgba(16,17,18,0.7)"} />
+          </span>
         </span>
         <Content>
           {interview.length > 0 ? (
@@ -35,9 +44,6 @@ const CompanyDetailInterview = ({
                 <div
                   onClick={() => {
                     setCurrent(e.id);
-                    const body = document.querySelector(
-                      "body"
-                    ) as HTMLBodyElement;
                     body.style.overflow = "hidden";
                   }}
                 >
@@ -54,6 +60,7 @@ const CompanyDetailInterview = ({
           )}
         </Content>
       </MainDiv>
+      <div></div>
       <div></div>
     </Container>
   );
@@ -101,7 +108,8 @@ const FadeInModal = keyframes`
   `;
 
 const Container = styled.div<{ current: number }>`
-  > div:nth-child(2) {
+  > div:nth-child(2),
+  > div:nth-child(3) {
     position: fixed;
     top: 0;
     left: 0;
@@ -110,7 +118,13 @@ const Container = styled.div<{ current: number }>`
     background-color: rgba(16, 17, 18, 0.5);
     z-index: 100;
     transform: scale(0);
-    animation: ${(props) => (props.current !== -1 ? FadeInModal : "")} 0.5s
+  }
+  > div:nth-child(2) {
+    animation: ${(props) => (props.current > 0 ? FadeInModal : "")} 0.5s
+      cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+  > div:nth-child(2) {
+    animation: ${(props) => (props.current === -0 ? FadeInModal : "")} 0.5s
       cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   }
   /* &.four {
@@ -141,6 +155,15 @@ const Container = styled.div<{ current: number }>`
   } */
 `;
 
+const ArrowAnimation = keyframes`
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(30%);
+  }
+`;
+
 const MainDiv = styled.div`
   width: 100%;
   > span {
@@ -148,6 +171,17 @@ const MainDiv = styled.div`
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
+    > span {
+      cursor: pointer;
+      font-size: 18px;
+      color: rgba(16, 17, 18, 0.6);
+      display: flex;
+      &:hover {
+        > svg {
+          animation: ${ArrowAnimation} 0.5s infinite alternate ease-in-out;
+        }
+      }
+    }
   }
 `;
 const Content = styled.div`
