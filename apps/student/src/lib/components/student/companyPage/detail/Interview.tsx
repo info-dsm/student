@@ -2,18 +2,22 @@ import styled, { keyframes } from "styled-components";
 import NoticeDetailClassification from "../../Classification";
 import { useEffect, useState } from "react";
 import {
+  GetInterviewDetailApi,
+  GetInterviewDetailApiResType,
   getInterviewListApi,
   getInterviewListApiResType,
 } from "@/src/axios/dist";
 import Arrow from "@/public/assets/images/arrow";
 import CompanyDetailInterviewWrite from "./InterviewWrite";
+import CompanyDetailInterviewViewer from "./InterviewViewer";
 const CompanyDetailInterview = ({
   companyNumber,
 }: {
   companyNumber: string;
 }) => {
   const [interview, setInterview] = useState<getInterviewListApiResType[]>([]);
-  const [interviewDetail, setInterviewDetial] = useState();
+  const [interviewDetail, setInterviewDetial] =
+    useState<GetInterviewDetailApiResType>();
   const [current, setCurrent] = useState<number>(-3);
   const body = document.querySelector("body") as HTMLBodyElement;
 
@@ -22,6 +26,11 @@ const CompanyDetailInterview = ({
       getInterviewListApi({ companyNumber: companyNumber }).then((res) => {
         setInterview(res);
       });
+    else if (current > 0) {
+      GetInterviewDetailApi({ interviewId: current }).then((res) => {
+        setInterviewDetial(res);
+      });
+    }
   }, [current]);
 
   return (
@@ -61,7 +70,10 @@ const CompanyDetailInterview = ({
           )}
         </Content>
       </MainDiv>
-      <div></div>
+      <CompanyDetailInterviewViewer
+        current={{ setState: setCurrent }}
+        interview={interviewDetail}
+      />
       <CompanyDetailInterviewWrite
         companyNumber={companyNumber}
         current={{ setState: setCurrent }}
@@ -70,37 +82,6 @@ const CompanyDetailInterview = ({
   );
 };
 export default CompanyDetailInterview;
-
-// @keyframes blowUpContentTwo {
-//   0% {
-//     transform:scale(2);
-//     opacity:0;
-//   }
-//   100% {
-//     transform:scale(1);
-//     opacity:1;
-//   }
-// }
-
-// @keyframes blowUpModal {
-//   0% {
-//     transform:scale(0);
-//   }
-//   100% {
-//     transform:scale(1);
-//   }
-// }
-
-// @keyframes blowUpModalTwo {
-//   0% {
-//     transform:scale(1);
-//     opacity:1;
-//   }
-//   100% {
-//     transform:scale(0);
-//     opacity:0;
-//   }
-// }
 
 const RunModal = keyframes`
     0% {
