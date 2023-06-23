@@ -14,7 +14,7 @@ export default NoticeDetailClassification;
 const MainDiv = styled.div`
   width: max-content;
   background-color: #6750f8;
-  border-radius: 0px 34px 34px 55px;
+  border-radius: 0px 34px 34px 50px;
   padding: 10px 24px;
   color: #fff;
   font-weight: 600;
