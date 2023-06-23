@@ -5,7 +5,7 @@ import {
   getInterviewListApi,
   getInterviewListApiResType,
 } from "@/src/axios/dist";
-import Arrow from "@/out/assets/images/arrow";
+import Arrow from "@/public/assets/images/arrow";
 import CompanyDetailInterviewWrite from "./InterviewWrite";
 const CompanyDetailInterview = ({
   companyNumber,
