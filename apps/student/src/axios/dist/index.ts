@@ -134,4 +134,11 @@ export {
   getEmploymentClass,
   type getEmploymentClassProps,
 } from "../main/employment/class";
-export {getEmploymentTotalClass, type getEmploymentTotalClassProps} from "../main/employment/totalClass"
+export {
+  getEmploymentTotalClass,
+  type getEmploymentTotalClassProps,
+} from "../main/employment/totalClass";
+export {
+  getInterviewListApi,
+  type getInterviewListApiResType,
+} from "../main/company/getInterviewList";
