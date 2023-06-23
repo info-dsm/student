@@ -6,6 +6,7 @@ import {
   getInterviewListApiResType,
 } from "@/src/axios/dist";
 import Arrow from "@/out/assets/images/arrow";
+import CompanyDetailInterviewWrite from "./InterviewWrite";
 const CompanyDetailInterview = ({
   companyNumber,
 }: {
@@ -13,15 +14,15 @@ const CompanyDetailInterview = ({
 }) => {
   const [interview, setInterview] = useState<getInterviewListApiResType[]>([]);
   const [interviewDetail, setInterviewDetial] = useState();
-  const [current, setCurrent] = useState<number>(-1);
+  const [current, setCurrent] = useState<number>(-3);
   const body = document.querySelector("body") as HTMLBodyElement;
 
   useEffect(() => {
-    getInterviewListApi({ companyNumber: companyNumber }).then((res) => {
-      setInterview(res);
-      console.log(res);
-    });
-  }, []);
+    if (current === -3)
+      getInterviewListApi({ companyNumber: companyNumber }).then((res) => {
+        setInterview(res);
+      });
+  }, [current]);
 
   return (
     <Container current={current}>
@@ -61,7 +62,10 @@ const CompanyDetailInterview = ({
         </Content>
       </MainDiv>
       <div></div>
-      <div></div>
+      <CompanyDetailInterviewWrite
+        companyNumber={companyNumber}
+        current={{ setState: setCurrent }}
+      />
     </Container>
   );
 };
@@ -98,14 +102,29 @@ export default CompanyDetailInterview;
 //   }
 // }
 
-const FadeInModal = keyframes`
-  0% {
-    transform:scale(0);
+const RunModal = keyframes`
+    0% {
+    transform:translateX(-90vw) skewX(30deg) scaleX(1.3);
+  }
+  70% {
+    transform:translateX(3vw) skewX(5deg) scaleX(.95);
   }
   100% {
-    transform:scale(1);
+    transform:translateX(0px) skewX(0deg) scaleX(1);
   }
   `;
+
+const roadRunnerOut = keyframes`
+  0% {
+    transform:translateX(0px) skewX(0deg) scaleX(1);
+  }
+  30% {
+    transform:translateX(-3vw) skewX(-5deg) scaleX(.9);
+  }
+  100% {
+    transform:translateX(90vw) skewX(30deg) scaleX(1.3);
+  }
+`;
 
 const Container = styled.div<{ current: number }>`
   > div:nth-child(2),
@@ -115,17 +134,38 @@ const Container = styled.div<{ current: number }>`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(16, 17, 18, 0.5);
+    background-color: rgba(16, 17, 18, 0.4);
     z-index: 100;
-    transform: scale(0);
   }
   > div:nth-child(2) {
-    animation: ${(props) => (props.current > 0 ? FadeInModal : "")} 0.5s
-      cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    display: ${(props) =>
+      props.current === 0 || props.current === -1 || props.current === -3
+        ? "none"
+        : "flex"};
+    > div {
+      animation: ${(props) =>
+          props.current > 0
+            ? RunModal
+            : props.current === -2
+            ? roadRunnerOut
+            : ""}
+        0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
   }
-  > div:nth-child(2) {
-    animation: ${(props) => (props.current === -0 ? FadeInModal : "")} 0.5s
-      cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  > div:nth-child(3) {
+    display: ${(props) =>
+      props.current > 0 || props.current === -2 || props.current === -3
+        ? "none"
+        : "flex"};
+    > div {
+      animation: ${(props) =>
+          props.current === 0
+            ? RunModal
+            : props.current === -1
+            ? roadRunnerOut
+            : ""}
+        0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
   }
   /* &.four {
     z-index: 0;
