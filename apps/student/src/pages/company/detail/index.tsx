@@ -33,14 +33,14 @@ const StudentCompanyDetail = ({}: {}) => {
   return (
     <>
       {info && noticeInfo ? (
-        <div id="StudentCompanyDetail">
+        <>
           <HeaderComponent />
           <MainDiv>
             <CompanyDetail companyInfo={info} />
             <CompanyPageNotice companyInfo={info} noticeInfo={noticeInfo} />
           </MainDiv>
           <Footer />
-        </div>
+        </>
       ) : (
         <Spinner />
       )}
