@@ -146,3 +146,7 @@ export {
   PostInterviewApi,
   type PostInterviewApiResType,
 } from "../main/company/postInterview";
+export {
+  GetInterviewDetailApi,
+  type GetInterviewDetailApiResType,
+} from "../main/company/getInterviewDetail";
