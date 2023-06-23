@@ -92,7 +92,6 @@ const CompanyDetailPosition = ({
 export default CompanyDetailPosition;
 
 const Position = styled.div`
-  margin: 30px 0;
 
   #map {
     > div > div > div > div {
