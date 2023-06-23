@@ -3,13 +3,13 @@ import DetailPageCarousel from "../../detail/Carousel";
 import { getCompanyDetailProps } from "@/src/axios/dist";
 import { useEffect } from "react";
 import CompanyDetailPosition from "./Position";
+import CompanyDetailInterview from "./Interview";
 
 const CompanyDetail = ({
   companyInfo,
 }: {
   companyInfo: getCompanyDetailProps;
 }) => {
-  console.log(companyInfo);
   return (
     <MainDiv>
       <DetailPageCarousel companyInfo={companyInfo} />
@@ -24,6 +24,7 @@ const CompanyDetail = ({
       <hr />
       <CompanyDetailPosition companyInfo={companyInfo} />
       <hr />
+      <CompanyDetailInterview companyNumber={companyInfo.companyNumber}/>
     </MainDiv>
   );
 };
@@ -43,6 +44,7 @@ const MainDiv = styled.div`
     background-color: rgba(0, 0, 0, 0.3);
     border: none;
     height: 1px;
+    margin: 50px 0;
   }
 `;
 
