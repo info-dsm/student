@@ -33,7 +33,10 @@ const EmployGrid = () => {
           </h1>
           <ImageBox height={Math.ceil(e1.employmentList.length / 4) * 22.5}>
             {e1.employmentList.map((e2, i2) => (
-              <img src={e2.company.companyLogo} alt="" />
+              <div>
+                <img src={e2.company.companyLogo} alt="" />
+                <div>{e2.company.companyName}</div>
+              </div>
             ))}
           </ImageBox>
         </div>
@@ -50,14 +53,25 @@ const ImageBox = styled.div<{ height: number }>`
   height: 32vmin;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 1vmin;
+  > div {
+    position: relative;
+  }
   img {
     width: 7.3vmax;
     height: 6vmin;
     object-fit: contain;
     border-radius: 5px;
     border: none;
-    padding: 5px;
+    padding: 12px;
     box-shadow: 0 0 10px 0 #10111230;
+  }
+  > div > div {
+    position: absolute;
+    right: 15%;
+    top: 4vmin;
+    font-size: 12px;
+    font-weight: 600;
+    text-shadow: -0.1vmin 0 white, 0 0.1vmin white, 0.1vmin 0 white, 0 -0.1vmin white;
   }
 `;
 
