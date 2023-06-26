@@ -62,7 +62,7 @@ const ImageBox = styled.div<{ height: number }>`
     object-fit: contain;
     border-radius: 5px;
     border: none;
-    padding: 1.2vmax;
+    padding: 1.1vmax;
     padding-top: 0.3vmax;
     box-shadow: 0 0 10px 0 #10111230;
     background-color: white;
