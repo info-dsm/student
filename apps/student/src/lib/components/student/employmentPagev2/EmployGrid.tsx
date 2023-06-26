@@ -62,16 +62,23 @@ const ImageBox = styled.div<{ height: number }>`
     object-fit: contain;
     border-radius: 5px;
     border: none;
-    padding: 12px;
+    padding: 1.2vmax;
+    padding-top: 0.3vmax;
     box-shadow: 0 0 10px 0 #10111230;
+    background-color: white;
   }
   > div > div {
     position: absolute;
-    right: 15%;
+    /* left: 50%;
+    transform: translateX(-50%); */
+    right: 5%;
+    padding-right: 1vmax;
+    white-space: nowrap;
     top: 4vmin;
-    font-size: 12px;
+    font-size: 0.65vmax;
     font-weight: 600;
-    text-shadow: -0.1vmin 0 white, 0 0.1vmin white, 0.1vmin 0 white, 0 -0.1vmin white;
+    /* text-shadow: -0.1vmin 0 white, 0 0.1vmin white, 0.1vmin 0 white,
+      0 -0.1vmin white; */
   }
 `;
 
