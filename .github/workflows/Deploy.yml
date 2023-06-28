@@ -20,4 +20,4 @@ jobs:
         run: yarn
 
       - name: Yarn Build
-        run: turbo run build --filter student
+        run: yarn build --filter student
