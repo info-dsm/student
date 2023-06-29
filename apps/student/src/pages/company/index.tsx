@@ -76,9 +76,15 @@ const StudentCompanyList = () => {
         <Content>
           {cnt > 0 ? (
             <CompanyContainer id="companyContainer">
-              {company.map((t) => (
-                <StudentCompany info={t} />
-              ))}
+              {company.length > 0 ? (
+                <>
+                  {company.map((t) => (
+                    <StudentCompany info={t} />
+                  ))}
+                </>
+              ) : (
+                <>회사가 없습니다...</>
+              )}
             </CompanyContainer>
           ) : (
             <>
@@ -119,6 +125,8 @@ const Content = styled.div`
 `;
 
 const CompanyContainer = styled.div`
+  width: 75.2vmax;
+  background-color: red;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 12px;
