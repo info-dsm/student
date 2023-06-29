@@ -74,7 +74,7 @@ const StudentCompanyList = () => {
       <MainDiv>
         <StudentCompanyKind />
         <Content>
-          {company.length > 0 ? (
+          {cnt > 0 ? (
             <CompanyContainer id="companyContainer">
               {company.map((t) => (
                 <StudentCompany info={t} />
