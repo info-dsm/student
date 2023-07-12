@@ -126,7 +126,6 @@ const Content = styled.div`
 
 const CompanyContainer = styled.div`
   width: 75.2vmax;
-  background-color: red;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 12px;
