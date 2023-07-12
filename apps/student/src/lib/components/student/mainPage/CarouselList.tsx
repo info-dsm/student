@@ -48,7 +48,7 @@ const Carousel = ({ companyList }: { companyList: getCompanyList1Props }) => {
                 </div>
                 <br />
                 <div>
-                  <div>설립연도</div>
+                  <div>마지막 모집공고</div>
                   <span>{t.latestNoticeYear}년</span>
                 </div>
                 <br />
